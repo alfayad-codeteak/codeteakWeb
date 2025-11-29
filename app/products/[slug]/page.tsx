@@ -972,7 +972,7 @@ export default function ProductDetailPage() {
       {/* Main Content */}
       <main>
         {/* Product Hero - Full Screen */}
-          <motion.div
+      <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
@@ -1017,7 +1017,7 @@ export default function ProductDetailPage() {
           </motion.div>
 
             {/* Centered Mockup */}
-          <motion.div
+                  <motion.div
               initial={{ opacity: 0, y: 100, rotate: -15, scale: 0.8 }}
               animate={{ 
                 opacity: 1, 
@@ -1046,7 +1046,7 @@ export default function ProductDetailPage() {
               }}
               className="relative z-20 max-w-[280px] sm:max-w-sm md:max-w-md mx-auto px-4 mt-12 sm:mt-16 md:mt-20"
             >
-                <Image
+                        <Image
                   src={product.image}
                   alt={product.name}
                 width={400}
@@ -1063,20 +1063,20 @@ export default function ProductDetailPage() {
               transition={{ duration: 0.6, delay: 0.8 }}
               className="absolute bottom-4 md:bottom-8 left-0 right-0 text-center z-10 px-4"
             >
-              <Link
+                        <Link
                 href="/contact"
                 className="inline-flex items-center gap-2 px-6 py-3 md:px-8 md:py-4 bg-[#FC4B01] text-white rounded-lg font-semibold hover:opacity-90 transition-opacity shadow-lg text-sm md:text-base"
-              >
+                        >
                 Get Started
                 <ArrowRight className="w-5 h-5" />
-              </Link>
+                        </Link>
             </motion.div>
-          </motion.div>
-
+                  </motion.div>
+                  
         {/* Description Section */}
         <section className="py-12 md:py-20 px-4 sm:px-6 lg:px-8">
           <div className="container mx-auto max-w-6xl">
-          <motion.div
+                  <motion.div
             initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -1087,8 +1087,8 @@ export default function ProductDetailPage() {
                 <span className="inline-block w-4 h-4 bg-[#FC4B01] align-middle mx-1"></span>{" "}
                 track employee attendance contactlessly with over 90% accuracy, even when offline.
               </p>
-            </motion.div>
-            </div>
+                  </motion.div>
+                </div>
         </section>
 
         {/* Main Task & Challenges Section */}
@@ -1108,7 +1108,7 @@ export default function ProductDetailPage() {
                 </motion.div>
 
               {/* Description */}
-              <motion.div
+            <motion.div
                 initial={{ opacity: 0, x: 20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
@@ -1118,8 +1118,8 @@ export default function ProductDetailPage() {
                 <p className="text-base sm:text-lg text-muted-foreground leading-relaxed">
                   The primary goal of YaadroLens is to provide a seamless solution for contactless employee attendance management through advanced face recognition technology. The platform aims to meet the needs of retail stores, supermarkets, and businesses seeking automated, accurate, and secure attendance tracking with offline capabilities.
                 </p>
-              </motion.div>
-            </div>
+            </motion.div>
+        </div>
 
             {/* Feature Cards */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
@@ -1140,7 +1140,7 @@ export default function ProductDetailPage() {
           </motion.div>
 
               {/* Card 2: Offline-First Architecture - Highlighted */}
-          <motion.div
+      <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -1153,10 +1153,10 @@ export default function ProductDetailPage() {
                 <p className="text-sm md:text-base leading-relaxed">
                   Works seamlessly without internet connectivity, automatically syncing all attendance data when connection is restored. Perfect for locations with unreliable network coverage.
                 </p>
-              </motion.div>
+      </motion.div>
 
               {/* Card 3: Multi-Tenant SaaS */}
-              <motion.div
+      <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -1169,7 +1169,7 @@ export default function ProductDetailPage() {
                 <p className="text-sm md:text-base text-muted-foreground leading-relaxed">
                   Secure, isolated data management for multiple shops and locations. Enterprise-grade security with JWT authentication, role-based access control, and rate limiting.
                 </p>
-              </motion.div>
+      </motion.div>
                 </div>
             </div>
         </section>
@@ -1179,11 +1179,11 @@ export default function ProductDetailPage() {
           <div className="container mx-auto max-w-7xl">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 lg:gap-16">
               {/* Left Section - Header and Description */}
-              <motion.div
-                initial={{ opacity: 0, x: -20 }}
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.6 }}
+            transition={{ duration: 0.6 }}
               >
                 {/* Tag */}
                 <motion.div
@@ -1195,11 +1195,11 @@ export default function ProductDetailPage() {
                 >
                   <HelpCircle className="w-4 h-4 text-[#FC4B01]" />
                   <span className="text-sm font-medium text-muted-foreground">Frequently asked questions</span>
-                </motion.div>
+          </motion.div>
 
                 {/* Main Heading */}
                 <motion.h2
-                  initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: 0.2 }}
@@ -1219,10 +1219,10 @@ export default function ProductDetailPage() {
                 >
                   Choose a solution that fits your business needs and budget. No hidden fees, no surprises—just straightforward pricing for powerful attendance management.
                 </motion.p>
-              </motion.div>
+          </motion.div>
 
               {/* Right Section - FAQ Items */}
-              <motion.div
+          <motion.div
                 initial={{ opacity: 0, x: 20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
@@ -1251,8 +1251,8 @@ export default function ProductDetailPage() {
                     answer: "YaadroLens achieves over 90% accuracy in employee identification using DeepFace ML with ArcFace embeddings. The system continuously learns and improves its recognition capabilities through ML performance monitoring."
                   }
                 ].map((faq, index) => (
-                  <motion.div
-                    key={index}
+                <motion.div
+                  key={index}
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
@@ -1274,11 +1274,11 @@ export default function ProductDetailPage() {
                         ) : (
                           <ChevronDown className="w-5 h-5 text-[#FC4B01]" />
                         )}
-          </motion.div>
-        </div>
+                </motion.div>
+            </div>
                     <AnimatePresence>
                       {openFaqIndex === index && (
-                        <motion.div
+          <motion.div
                           initial={{ opacity: 0, height: 0 }}
                           animate={{ opacity: 1, height: "auto" }}
                           exit={{ opacity: 0, height: 0 }}
@@ -1290,7 +1290,7 @@ export default function ProductDetailPage() {
                         >
                           <motion.p
                             initial={{ opacity: 0, y: -10 }}
-                            animate={{ opacity: 1, y: 0 }}
+            animate={{ opacity: 1, y: 0 }}
                             exit={{ opacity: 0, y: -10 }}
                             transition={{ 
                               duration: 0.3,
@@ -1305,8 +1305,8 @@ export default function ProductDetailPage() {
                     </AnimatePresence>
                   </motion.div>
                 ))}
-              </motion.div>
-            </div>
+          </motion.div>
+        </div>
           </div>
         </section>
       </main>
