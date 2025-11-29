@@ -272,9 +272,8 @@ export default function ServicesSection({ language, isStandalonePage = false }: 
               transition={{ duration: 0.6, delay: 0.1 }}
               className="flex justify-center"
             >
-              <div className="relative inline-flex p-0.5 rounded-full backdrop-blur-xl bg-gradient-to-r from-white/10 via-white/5 to-white/10 border border-white/20 dark:from-white/10 dark:via-white/5 dark:to-white/10 dark:border-white/20 shadow-2xl"
+              <div className="relative inline-flex p-1 rounded-full bg-white dark:bg-background/90 border border-white/20 dark:border-white/10 shadow-2xl"
                 style={{
-                  background: 'linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 50%, rgba(255,255,255,0.1) 100%)',
                   backdropFilter: 'blur(20px) saturate(180%)',
                   WebkitBackdropFilter: 'blur(20px) saturate(180%)',
                   boxShadow: '0 8px 32px 0 rgba(0, 0, 0, 0.1), inset 0 1px 0 0 rgba(255, 255, 255, 0.2)'
@@ -283,7 +282,7 @@ export default function ServicesSection({ language, isStandalonePage = false }: 
                 {/* Active Tab Indicator */}
                 <motion.div
                   layoutId="activeTab"
-                  className="absolute inset-y-0 rounded-full bg-gradient-to-r from-[#FC4B01] via-[#FF6B35] to-[#FC4B01] shadow-lg shadow-[#FC4B01]/50"
+                  className="absolute top-1 bottom-1 rounded-full bg-gradient-to-r from-[#FC4B01] via-[#FF6B35] to-[#FC4B01] shadow-lg shadow-[#FC4B01]/50"
                   initial={false}
                   transition={{
                     type: "spring",
@@ -291,8 +290,8 @@ export default function ServicesSection({ language, isStandalonePage = false }: 
                     damping: 30
                   }}
                   style={{
-                    left: `${tabs.findIndex(t => t.id === activeTab) * (100 / tabs.length)}%`,
-                    width: `${100 / tabs.length}%`,
+                    left: `calc(${tabs.findIndex(t => t.id === activeTab) * (100 / tabs.length)}% + 0.25rem)`,
+                    width: `calc(${100 / tabs.length}% - 0.5rem)`,
                   }}
                 />
 
@@ -333,9 +332,8 @@ export default function ServicesSection({ language, isStandalonePage = false }: 
             transition={{ duration: 0.6, delay: 0.1 }}
             className="flex justify-center mb-12"
           >
-            <div className="relative inline-flex p-0.5 rounded-full backdrop-blur-xl bg-gradient-to-r from-white/10 via-white/5 to-white/10 border border-white/20 dark:from-white/10 dark:via-white/5 dark:to-white/10 dark:border-white/20 shadow-2xl"
+            <div className="relative inline-flex p-1 rounded-full bg-white dark:bg-background/90 border border-white/20 dark:border-white/10 shadow-2xl"
               style={{
-                background: 'linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 50%, rgba(255,255,255,0.1) 100%)',
                 backdropFilter: 'blur(20px) saturate(180%)',
                 WebkitBackdropFilter: 'blur(20px) saturate(180%)',
                 boxShadow: '0 8px 32px 0 rgba(0, 0, 0, 0.1), inset 0 1px 0 0 rgba(255, 255, 255, 0.2)'
@@ -344,7 +342,7 @@ export default function ServicesSection({ language, isStandalonePage = false }: 
               {/* Active Tab Indicator */}
               <motion.div
                 layoutId="activeTab"
-                className="absolute inset-y-0 rounded-full bg-gradient-to-r from-[#FC4B01] via-[#FF6B35] to-[#FC4B01] shadow-lg shadow-[#FC4B01]/50"
+                className="absolute top-1 bottom-1 rounded-full bg-gradient-to-r from-[#FC4B01] via-[#FF6B35] to-[#FC4B01] shadow-lg shadow-[#FC4B01]/50"
                 initial={false}
                 transition={{
                   type: "spring",
@@ -352,8 +350,8 @@ export default function ServicesSection({ language, isStandalonePage = false }: 
                   damping: 30
                 }}
                 style={{
-                  left: `${tabs.findIndex(t => t.id === activeTab) * (100 / tabs.length)}%`,
-                  width: `${100 / tabs.length}%`,
+                  left: `calc(${tabs.findIndex(t => t.id === activeTab) * (100 / tabs.length)}% + 0.25rem)`,
+                  width: `calc(${100 / tabs.length}% - 0.5rem)`,
                 }}
               />
 
