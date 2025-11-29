@@ -800,7 +800,7 @@ export default function ProductDetailPage() {
                 </h3>
                 
                 {/* Description */}
-                <p className="text-muted-foreground leading-relaxed">
+                <p className="text-sm md:text-base text-muted-foreground leading-relaxed">
                   {t.productDetail.yaadro.process.steps.createOrder.description}
                 </p>
               </motion.div>
@@ -830,7 +830,7 @@ export default function ProductDetailPage() {
                 </h3>
                 
                 {/* Description */}
-                <p className="text-muted-foreground leading-relaxed">
+                <p className="text-sm md:text-base text-muted-foreground leading-relaxed">
                   {t.productDetail.yaadro.process.steps.assignPartner.description}
                 </p>
               </motion.div>
@@ -860,7 +860,7 @@ export default function ProductDetailPage() {
                 </h3>
                 
                 {/* Description */}
-                <p className="text-muted-foreground leading-relaxed">
+                <p className="text-sm md:text-base text-muted-foreground leading-relaxed">
                   {t.productDetail.yaadro.process.steps.completeOrder.description}
                 </p>
               </motion.div>
@@ -949,291 +949,18 @@ export default function ProductDetailPage() {
 
   // Default design for other products (Lens)
   return (
-    <div className="min-h-screen bg-background relative">
-      {/* Top Left - Company Logo */}
-      <motion.div
-        initial={{ opacity: 0, x: -20 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.5 }}
-        className="fixed top-6 left-6 z-50"
-      >
-        <Link href="/" className="block">
-          <Image
-            src={theme === "dark" ? "/logo/logo-white.svg" : "/logo/logo-black.svg"}
-            alt="CodeTeak Logo"
-            width={120}
-            height={40}
-            className="h-8 w-auto"
-            priority
-          />
-        </Link>
-      </motion.div>
-
-      {/* Top Right - Navigation Items */}
-      <motion.div
-        initial={{ opacity: 0, x: 20 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.5 }}
-        className={`fixed top-6 right-6 z-50 flex items-center gap-6 px-4 py-2 rounded-full transition-all duration-300 ${
-          isScrolled 
-            ? 'backdrop-blur-xl bg-gradient-to-r from-white/5 via-white/10 to-white/5 dark:from-white/5 dark:via-white/10 dark:to-white/5 border border-white/20 dark:border-white/10 shadow-[0_8px_32px_0_rgba(0,0,0,0.1)]' 
-            : 'bg-transparent'
-        }`}
-        style={isScrolled ? {
-          background: theme === "dark" 
-            ? 'linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.1) 50%, rgba(255,255,255,0.05) 100%)'
-            : 'linear-gradient(135deg, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0.1) 50%, rgba(0,0,0,0.05) 100%)',
-          backdropFilter: 'blur(20px) saturate(180%)',
-          WebkitBackdropFilter: 'blur(20px) saturate(180%)',
-          boxShadow: '0 8px 32px 0 rgba(0, 0, 0, 0.1), inset 0 1px 0 0 rgba(255, 255, 255, 0.1)'
-        } : {}}
-      >
-        <Link href="/" className="text-foreground hover:text-[#FC4B01] transition-colors text-sm">
-          {t.nav.home}
-        </Link>
-        
-        {/* Product Dropdown */}
-        <div
-          className="relative"
-          onMouseEnter={() => setIsProductHovered(true)}
-          onMouseLeave={() => setIsProductHovered(false)}
-        >
-          <Link href="/products" className="text-[#FC4B01] transition-colors text-sm cursor-pointer font-medium">
-            {t.nav.product}
-          </Link>
-          
-          {/* Dropdown Menu */}
-          {isProductHovered && (
-            <motion.div
-              initial={{ opacity: 0, y: -10, scale: 0.95 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: -10, scale: 0.95 }}
-              transition={{ duration: 0.2, ease: "easeOut" }}
-              className="absolute top-full left-1/2 -translate-x-1/2 pt-3 w-96"
-              onMouseEnter={() => setIsProductHovered(true)}
-            >
-              <div className="bg-card/95 backdrop-blur-lg border border-border/50 rounded-2xl shadow-2xl overflow-hidden"
-                style={{ boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)' }}
-              >
-                <div className="p-6">
-                  {/* Yaadro Section */}
-                  <motion.div
-                    initial={{ opacity: 0, x: -10 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 0.1 }}
-                    className="mb-6 pb-6 border-b border-border/50"
-                  >
-                    <div className="flex items-start gap-4">
-                      <div className="flex-shrink-0 w-16 h-16 rounded-lg overflow-hidden">
-                        <Image
-                          src="/mockup/yaadro.png"
-                          alt="Yaadro"
-                          width={64}
-                          height={64}
-                          className="w-full h-full object-cover"
-                        />
-                      </div>
-                      <div className="flex-1 min-w-0">
-                        <h3 className="text-foreground font-bold text-base mb-3 uppercase tracking-wider">{t.product.yaadro.title}</h3>
-                        <p className="text-muted-foreground text-xs mb-4 leading-relaxed">
-                          {t.product.yaadro.description}
-                        </p>
-                        <Link
-                          href="/products/yaadro"
-                          className="inline-flex items-center gap-2 text-[#FC4B01] hover:text-[#FC4B01]/80 transition-colors text-sm font-medium group"
-                        >
-                          {t.product.learnMore}
-                          <ArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
-                        </Link>
-                      </div>
-                    </div>
-                  </motion.div>
-                  
-                  {/* Lens Section */}
-                  <motion.div
-                    initial={{ opacity: 0, x: -10 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 0.15 }}
-                  >
-                    <div className="flex items-start gap-4">
-                      <div className="flex-shrink-0 w-16 h-16 rounded-lg overflow-hidden">
-                        <Image
-                          src="/mockup/lens.png"
-                          alt="Lens"
-                          width={64}
-                          height={64}
-                          className="w-full h-full object-cover"
-                        />
-                      </div>
-                      <div className="flex-1 min-w-0">
-                        <h3 className="text-foreground font-bold text-base mb-3 uppercase tracking-wider">{t.product.lens.title}</h3>
-                        <p className="text-muted-foreground text-xs mb-4 leading-relaxed">
-                          {t.product.lens.description}
-                        </p>
-                        <Link
-                          href="/products/lens"
-                          className="inline-flex items-center gap-2 text-[#FC4B01] hover:text-[#FC4B01]/80 transition-colors text-sm font-medium group"
-                        >
-                          {t.product.learnMore}
-                          <ArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
-                        </Link>
-                      </div>
-                    </div>
-                  </motion.div>
-                </div>
-              </div>
-            </motion.div>
-          )}
-        </div>
-        
-        <Link href="/#about" className="text-muted-foreground hover:text-[#FC4B01] transition-colors text-sm">
-          {t.nav.about}
-        </Link>
-        <Link href="/#contact" className="text-muted-foreground hover:text-[#FC4B01] transition-colors text-sm">
-          {t.nav.contact}
-        </Link>
-
-        {/* Language Selector */}
-        <div
-          className="relative"
-          onMouseEnter={() => setIsLanguageHovered(true)}
-          onMouseLeave={() => setIsLanguageHovered(false)}
-        >
-            <button className="text-muted-foreground hover:text-[#FC4B01] transition-colors text-sm flex items-center gap-1">
-              <span className="text-lg">{language === "en" ? "🇮🇳" : "🇦🇪"}</span>
-              <span>{language === "en" ? "EN" : "AR"}</span>
-              <ChevronDown className="w-3 h-3" />
-            </button>
-          
-          {/* Language Dropdown */}
-          {isLanguageHovered && (
-            <motion.div
-              initial={{ opacity: 0, y: -10, scale: 0.95 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: -10, scale: 0.95 }}
-              transition={{ duration: 0.2, ease: "easeOut" }}
-              className="absolute top-full right-0 pt-3 mt-2"
-              onMouseEnter={() => setIsLanguageHovered(true)}
-            >
-              <div className="bg-card/95 backdrop-blur-lg border border-border/50 rounded-xl shadow-2xl overflow-hidden min-w-[120px]"
-                style={{ boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)' }}
-              >
-                <div className="p-2">
-                  <button
-                    onClick={() => changeLanguage("en")}
-                    className={`w-full text-left px-4 py-2 rounded-lg text-sm transition-colors flex items-center gap-2 ${
-                      language === "en" 
-                        ? "bg-[#FC4B01]/10 text-[#FC4B01] font-medium" 
-                        : "text-foreground hover:bg-muted"
-                    }`}
-                  >
-                    <span>🇮🇳</span>
-                    <span>{t.common.english}</span>
-                  </button>
-                  <button
-                    onClick={() => changeLanguage("ar")}
-                    className={`w-full text-left px-4 py-2 rounded-lg text-sm transition-colors flex items-center gap-2 ${
-                      language === "ar" 
-                        ? "bg-[#FC4B01]/10 text-[#FC4B01] font-medium" 
-                        : "text-foreground hover:bg-muted"
-                    }`}
-                  >
-                    <span>🇦🇪</span>
-                    <span>{t.common.uae}</span>
-                  </button>
-                </div>
-              </div>
-            </motion.div>
-          )}
-        </div>
-      </motion.div>
-
-      {/* Top Center - Back to Top Button */}
-      {showBackToTop && (
-        <motion.button
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -20 }}
-          transition={{ duration: 0.3 }}
-          onClick={scrollToTop}
-          className="fixed top-6 left-1/2 -translate-x-1/2 z-50 px-4 py-2 rounded-full backdrop-blur-xl border border-white/20 dark:border-white/10 flex items-center gap-2 text-foreground hover:border-[#FC4B01]/50 transition-all"
-          style={{
-            background: theme === "dark" 
-              ? 'linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.1) 50%, rgba(255,255,255,0.05) 100%)'
-              : 'linear-gradient(135deg, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0.1) 50%, rgba(0,0,0,0.05) 100%)',
-            backdropFilter: 'blur(20px) saturate(180%)',
-            WebkitBackdropFilter: 'blur(20px) saturate(180%)',
-            boxShadow: '0 8px 32px 0 rgba(0, 0, 0, 0.1), inset 0 1px 0 0 rgba(255, 255, 255, 0.1)'
-          }}
-          aria-label="Back to top"
-        >
-          <ArrowUp className="w-4 h-4" />
-          <span className="text-sm font-medium">{t.common.top}</span>
-        </motion.button>
-      )}
-
-      {/* Bottom Left - Social Media Icons */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, delay: 0.2 }}
-        className="fixed bottom-6 left-6 z-50 flex flex-col gap-4"
-      >
-        {socialLinks.map((social) => {
-          const Icon = social.icon;
-          return (
-            <a
-              key={social.label}
-              href={social.href}
-              className="text-muted-foreground hover:text-[#FC4B01] transition-colors"
-              aria-label={social.label}
-            >
-              <Icon className="w-5 h-5" />
-            </a>
-          );
-        })}
-      </motion.div>
-
-      {/* Bottom Right - Company Email */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, delay: 0.2 }}
-        className="fixed bottom-6 right-6 z-50"
-      >
-        <a
-          href="mailto:hello@codeteak.com"
-          className="text-muted-foreground hover:text-[#FC4B01] transition-colors text-sm flex items-center gap-2"
-          style={{ writingMode: 'vertical-rl', textOrientation: 'mixed' }}
-        >
-          <Mail className="w-4 h-4" />
-          <span>hello@codeteak.com</span>
-        </a>
-      </motion.div>
-
-      {/* Bottom Center - Theme Toggle Button */}
-      <motion.button
-        initial={{ opacity: 0, scale: 0.8 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.5, delay: 0.3 }}
-        onClick={toggleTheme}
-        className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 w-12 h-12 rounded-full backdrop-blur-xl border border-white/20 dark:border-white/10 flex items-center justify-center text-foreground hover:border-[#FC4B01]/50 transition-all"
-        style={{
-          background: theme === "dark" 
-            ? 'linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.1) 50%, rgba(255,255,255,0.05) 100%)'
-            : 'linear-gradient(135deg, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0.1) 50%, rgba(0,0,0,0.05) 100%)',
-          backdropFilter: 'blur(20px) saturate(180%)',
-          WebkitBackdropFilter: 'blur(20px) saturate(180%)',
-          boxShadow: '0 8px 32px 0 rgba(0, 0, 0, 0.1), inset 0 1px 0 0 rgba(255, 255, 255, 0.1)'
-        }}
-        aria-label="Toggle theme"
-      >
-        {theme === "dark" ? (
-          <Sun className="w-5 h-5" />
-        ) : (
-          <Moon className="w-5 h-5" />
-        )}
-      </motion.button>
+    <div className="min-h-screen bg-background relative pb-20 md:pb-0">
+      {/* Navigation Component */}
+      <Navigation
+        theme={theme}
+        language={language}
+        isMounted={isMounted}
+        isScrolled={isScrolled}
+        showBackToTop={showBackToTop}
+        onThemeChange={updateTheme}
+        onLanguageChange={changeLanguage}
+        onScrollToTop={scrollToTop}
+      />
 
       {/* Main Content */}
       <main>
@@ -1242,7 +969,7 @@ export default function ProductDetailPage() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-          className="relative min-h-screen w-full flex items-center justify-center overflow-hidden"
+          className="relative min-h-screen w-full flex items-center justify-center overflow-hidden pt-20 md:pt-0"
         >
             {/* Large Background Text - LENS */}
             <motion.div
@@ -1310,7 +1037,7 @@ export default function ProductDetailPage() {
                   ease: "easeInOut"
                 }
               }}
-              className="relative z-20 max-w-sm sm:max-w-md mx-auto"
+              className="relative z-20 max-w-[280px] sm:max-w-sm md:max-w-md mx-auto px-4"
             >
                 <Image
                   src={product.image}
@@ -1327,11 +1054,11 @@ export default function ProductDetailPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.8 }}
-              className="absolute bottom-8 left-0 right-0 text-center z-10"
+              className="absolute bottom-4 md:bottom-8 left-0 right-0 text-center z-10 px-4"
             >
               <Link
                 href="/contact"
-                className="inline-flex items-center gap-2 px-8 py-4 bg-[#FC4B01] text-white rounded-lg font-semibold hover:opacity-90 transition-opacity shadow-lg"
+                className="inline-flex items-center gap-2 px-6 py-3 md:px-8 md:py-4 bg-[#FC4B01] text-white rounded-lg font-semibold hover:opacity-90 transition-opacity shadow-lg text-sm md:text-base"
               >
                 Get Started
                 <ArrowRight className="w-5 h-5" />
@@ -1348,7 +1075,7 @@ export default function ProductDetailPage() {
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
-              <p className="text-2xl sm:text-3xl lg:text-4xl text-foreground leading-relaxed max-w-5xl">
+              <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl text-foreground leading-relaxed max-w-5xl">
                 YaadroLens is an innovative AI-powered face recognition system that enables retail stores and supermarkets to{" "}
                 <span className="inline-block w-4 h-4 bg-[#FC4B01] align-middle mx-1"></span>{" "}
                 track employee attendance contactlessly with over 90% accuracy, even when offline.
@@ -1360,7 +1087,7 @@ export default function ProductDetailPage() {
         {/* Main Task & Challenges Section */}
         <section className="py-20 px-4 sm:px-6 lg:px-8 bg-muted/30">
           <div className="container mx-auto max-w-7xl">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 mb-8 md:mb-16">
               {/* Header */}
                 <motion.div
                   initial={{ opacity: 0, x: -20 }}
@@ -1381,26 +1108,26 @@ export default function ProductDetailPage() {
                 transition={{ duration: 0.6 }}
                 className="flex items-center"
               >
-                <p className="text-lg text-muted-foreground leading-relaxed">
+                <p className="text-base sm:text-lg text-muted-foreground leading-relaxed">
                   The primary goal of YaadroLens is to provide a seamless solution for contactless employee attendance management through advanced face recognition technology. The platform aims to meet the needs of retail stores, supermarkets, and businesses seeking automated, accurate, and secure attendance tracking with offline capabilities.
                 </p>
               </motion.div>
             </div>
 
             {/* Feature Cards */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
               {/* Card 1: Face Recognition Technology */}
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.1 }}
-                className="bg-card border border-border rounded-2xl p-8"
+                className="bg-card border border-border rounded-2xl p-6 md:p-8"
               >
-                <h3 className="text-xl font-bold text-foreground mb-4">
+                <h3 className="text-lg md:text-xl font-bold text-foreground mb-3 md:mb-4">
                   FACE RECOGNITION TECHNOLOGY
                 </h3>
-                <p className="text-muted-foreground leading-relaxed">
+                <p className="text-sm md:text-base text-muted-foreground leading-relaxed">
                   Advanced DeepFace ML with ArcFace embeddings delivering over 90% accuracy in employee identification, ensuring reliable and precise attendance tracking.
                 </p>
           </motion.div>
@@ -1411,12 +1138,12 @@ export default function ProductDetailPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.2 }}
-                className="bg-[#FC4B01] text-white rounded-2xl p-8"
+                className="bg-[#FC4B01] text-white rounded-2xl p-6 md:p-8"
               >
-                <h3 className="text-xl font-bold mb-4">
+                <h3 className="text-lg md:text-xl font-bold mb-3 md:mb-4">
                   OFFLINE-FIRST ARCHITECTURE
                 </h3>
-                <p className="leading-relaxed">
+                <p className="text-sm md:text-base leading-relaxed">
                   Works seamlessly without internet connectivity, automatically syncing all attendance data when connection is restored. Perfect for locations with unreliable network coverage.
                 </p>
               </motion.div>
@@ -1429,10 +1156,10 @@ export default function ProductDetailPage() {
                 transition={{ duration: 0.6, delay: 0.3 }}
             className="bg-card border border-border rounded-2xl p-8"
           >
-                <h3 className="text-xl font-bold text-foreground mb-4">
+                <h3 className="text-lg md:text-xl font-bold text-foreground mb-3 md:mb-4">
                   MULTI-TENANT SAAS
                 </h3>
-                <p className="text-muted-foreground leading-relaxed">
+                <p className="text-sm md:text-base text-muted-foreground leading-relaxed">
                   Secure, isolated data management for multiple shops and locations. Enterprise-grade security with JWT authentication, role-based access control, and rate limiting.
                 </p>
               </motion.div>
@@ -1443,7 +1170,7 @@ export default function ProductDetailPage() {
         {/* FAQ Section */}
         <section className="py-12 md:py-20 px-4 sm:px-6 lg:px-8">
           <div className="container mx-auto max-w-7xl">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 lg:gap-16">
               {/* Left Section - Header and Description */}
               <motion.div
                 initial={{ opacity: 0, x: -20 }}
@@ -1469,7 +1196,7 @@ export default function ProductDetailPage() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: 0.2 }}
-                  className="text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground mb-6 leading-tight"
+                  className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-4 md:mb-6 leading-tight"
                 >
                   Frequently asked{" "}
                   <span className="text-[#FC4B01]">questions</span>
@@ -1481,7 +1208,7 @@ export default function ProductDetailPage() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: 0.3 }}
-                  className="text-lg text-muted-foreground leading-relaxed"
+                  className="text-base sm:text-lg text-muted-foreground leading-relaxed"
                 >
                   Choose a solution that fits your business needs and budget. No hidden fees, no surprises—just straightforward pricing for powerful attendance management.
                 </motion.p>
@@ -1523,11 +1250,11 @@ export default function ProductDetailPage() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.5, delay: 0.1 * index }}
-                    className="bg-card border border-border rounded-xl p-6 cursor-pointer hover:border-[#FC4B01]/30 transition-colors"
+                    className="bg-card border border-border rounded-xl p-4 md:p-6 cursor-pointer hover:border-[#FC4B01]/30 transition-colors"
                     onClick={() => setOpenFaqIndex(openFaqIndex === index ? null : index)}
                   >
                     <div className="flex items-start justify-between gap-4">
-                      <h3 className="text-lg font-bold text-foreground flex-1">
+                      <h3 className="text-base md:text-lg font-bold text-foreground flex-1">
                         {faq.question}
                       </h3>
                       <motion.div 
