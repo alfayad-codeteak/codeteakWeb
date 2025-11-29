@@ -987,8 +987,10 @@ export default function ProductDetailPage() {
               className="absolute inset-0 flex items-center justify-center pointer-events-none z-0"
             >
               <h1 className="text-[16rem] sm:text-[18rem] md:text-[20rem] lg:text-[28rem] xl:text-[32rem] 2xl:text-[38rem] font-black text-foreground dark:text-foreground/20 select-none leading-none tracking-tighter flex"
+                dir="ltr"
                 style={{
                   WebkitTextStroke: theme === "dark" ? "1px rgba(255,255,255,0.1)" : "1px rgba(0,0,0,0.1)",
+                  direction: 'ltr',
                 } as React.CSSProperties}
               >
                 {["L", "E", "N", "S"].map((letter, index) => (
@@ -1058,10 +1060,10 @@ export default function ProductDetailPage() {
                 className="w-full h-auto object-contain drop-shadow-[0_20px_60px_rgba(0,0,0,0.3)]"
                 priority
               />
-            </motion.div>
-
+                  </motion.div>
+                  
             {/* Content Overlay */}
-            <motion.div
+                  <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.8 }}
@@ -1074,8 +1076,8 @@ export default function ProductDetailPage() {
                 Get Started
                 <ArrowRight className="w-5 h-5" />
                         </Link>
-            </motion.div>
                   </motion.div>
+            </motion.div>
                   
         {/* Description Section */}
         <section className="py-12 md:py-20 px-4 sm:px-6 lg:px-8">
@@ -1087,12 +1089,24 @@ export default function ProductDetailPage() {
               transition={{ duration: 0.6 }}
             >
               <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl text-foreground leading-relaxed max-w-5xl">
-                YaadroLens is an innovative AI-powered face recognition system that enables retail stores and supermarkets to{" "}
-                <span className="inline-block w-4 h-4 bg-[#FC4B01] align-middle mx-1"></span>{" "}
-                track employee attendance contactlessly with over 90% accuracy, even when offline.
+                {language === "en" && t.productDetail.lens.heroDescription.includes("track") ? (
+                  <>
+                    {t.productDetail.lens.heroDescription.split("track")[0]}{" "}
+                    <span className="inline-block w-4 h-4 bg-[#FC4B01] align-middle mx-1"></span>{" "}
+                    track{t.productDetail.lens.heroDescription.split("track")[1]}
+                  </>
+                ) : language === "ar" && t.productDetail.lens.heroDescription.includes("تتبع") ? (
+                  <>
+                    {t.productDetail.lens.heroDescription.split("تتبع")[0]}{" "}
+                    <span className="inline-block w-4 h-4 bg-[#FC4B01] align-middle mx-1"></span>{" "}
+                    تتبع{t.productDetail.lens.heroDescription.split("تتبع")[1]}
+                  </>
+                ) : (
+                  t.productDetail.lens.heroDescription
+                )}
               </p>
                   </motion.div>
-                </div>
+        </div>
         </section>
 
         {/* Main Task & Challenges Section */}
@@ -1107,7 +1121,7 @@ export default function ProductDetailPage() {
                 transition={{ duration: 0.6 }}
               >
                 <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-foreground mb-6 md:mb-8">
-                  01/ MAIN TASK & CHALLENGES
+                  {t.productDetail.lens.mainTask.title}
                 </h2>
                 </motion.div>
 
@@ -1120,7 +1134,7 @@ export default function ProductDetailPage() {
                 className="flex items-center"
               >
                 <p className="text-base sm:text-lg text-muted-foreground leading-relaxed">
-                  The primary goal of YaadroLens is to provide a seamless solution for contactless employee attendance management through advanced face recognition technology. The platform aims to meet the needs of retail stores, supermarkets, and businesses seeking automated, accurate, and secure attendance tracking with offline capabilities.
+                  {t.productDetail.lens.mainTask.description}
                 </p>
             </motion.div>
         </div>
@@ -1136,10 +1150,10 @@ export default function ProductDetailPage() {
                 className="bg-card border border-border rounded-2xl p-6 md:p-8"
               >
                 <h3 className="text-lg md:text-xl font-bold text-foreground mb-3 md:mb-4">
-                  FACE RECOGNITION TECHNOLOGY
+                  {t.productDetail.lens.features.faceRecognition.title}
                 </h3>
                 <p className="text-sm md:text-base text-muted-foreground leading-relaxed">
-                  Advanced DeepFace ML with ArcFace embeddings delivering over 90% accuracy in employee identification, ensuring reliable and precise attendance tracking.
+                  {t.productDetail.lens.features.faceRecognition.description}
                 </p>
           </motion.div>
 
@@ -1152,10 +1166,10 @@ export default function ProductDetailPage() {
                 className="bg-[#FC4B01] text-white rounded-2xl p-6 md:p-8"
               >
                 <h3 className="text-lg md:text-xl font-bold mb-3 md:mb-4">
-                  OFFLINE-FIRST ARCHITECTURE
+                  {t.productDetail.lens.features.offlineFirst.title}
                 </h3>
                 <p className="text-sm md:text-base leading-relaxed">
-                  Works seamlessly without internet connectivity, automatically syncing all attendance data when connection is restored. Perfect for locations with unreliable network coverage.
+                  {t.productDetail.lens.features.offlineFirst.description}
                 </p>
       </motion.div>
 
@@ -1168,10 +1182,10 @@ export default function ProductDetailPage() {
             className="bg-card border border-border rounded-2xl p-8"
           >
                 <h3 className="text-lg md:text-xl font-bold text-foreground mb-3 md:mb-4">
-                  MULTI-TENANT SAAS
+                  {t.productDetail.lens.features.multiTenant.title}
                 </h3>
                 <p className="text-sm md:text-base text-muted-foreground leading-relaxed">
-                  Secure, isolated data management for multiple shops and locations. Enterprise-grade security with JWT authentication, role-based access control, and rate limiting.
+                  {t.productDetail.lens.features.multiTenant.description}
                 </p>
       </motion.div>
                 </div>
@@ -1198,7 +1212,7 @@ export default function ProductDetailPage() {
                   className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-muted/50 mb-6"
                 >
                   <HelpCircle className="w-4 h-4 text-[#FC4B01]" />
-                  <span className="text-sm font-medium text-muted-foreground">Frequently asked questions</span>
+                  <span className="text-sm font-medium text-muted-foreground">{t.productDetail.lens.faq.tag}</span>
           </motion.div>
 
                 {/* Main Heading */}
@@ -1209,8 +1223,8 @@ export default function ProductDetailPage() {
                   transition={{ duration: 0.6, delay: 0.2 }}
                   className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-4 md:mb-6 leading-tight"
                 >
-                  Frequently asked{" "}
-                  <span className="text-[#FC4B01]">questions</span>
+                  {t.productDetail.lens.faq.title}{" "}
+                  <span className="text-[#FC4B01]">{t.productDetail.lens.faq.titleHighlight}</span>
                 </motion.h2>
 
                 {/* Description */}
@@ -1221,7 +1235,7 @@ export default function ProductDetailPage() {
                   transition={{ duration: 0.6, delay: 0.3 }}
                   className="text-base sm:text-lg text-muted-foreground leading-relaxed"
                 >
-                  Choose a solution that fits your business needs and budget. No hidden fees, no surprises—just straightforward pricing for powerful attendance management.
+                  {t.productDetail.lens.faq.description}
                 </motion.p>
           </motion.div>
 
@@ -1233,28 +1247,7 @@ export default function ProductDetailPage() {
                 transition={{ duration: 0.6 }}
                 className="space-y-4"
               >
-                {[
-                  {
-                    question: "What is YaadroLens?",
-                    answer: "YaadroLens is an AI-powered face recognition attendance system designed for retail stores and supermarkets. It provides contactless, automated attendance tracking with offline capabilities, real-time analytics, and enterprise-grade security using DeepFace ML technology."
-                  },
-                  {
-                    question: "How does YaadroLens work?",
-                    answer: "YaadroLens uses advanced DeepFace ML with ArcFace embeddings to identify employees with over 90% accuracy. The system captures employee faces at entry points, matches them against registered profiles, and automatically records attendance. It works offline and syncs data when internet connection is restored."
-                  },
-                  {
-                    question: "Is YaadroLens secure?",
-                    answer: "Yes, YaadroLens employs enterprise-grade security measures including JWT authentication, role-based access control, multi-tenant data isolation, and rate limiting. All face recognition data is encrypted and stored securely with proper access controls."
-                  },
-                  {
-                    question: "Can YaadroLens work without internet?",
-                    answer: "Yes, YaadroLens features an offline-first architecture. The system continues to function and record attendance even without internet connectivity. All data is stored locally and automatically synchronized when the connection is restored."
-                  },
-                  {
-                    question: "What is the accuracy of face recognition?",
-                    answer: "YaadroLens achieves over 90% accuracy in employee identification using DeepFace ML with ArcFace embeddings. The system continuously learns and improves its recognition capabilities through ML performance monitoring."
-                  }
-                ].map((faq, index) => (
+                {t.productDetail.lens.faq.items.map((faq, index) => (
                 <motion.div
                   key={index}
                     initial={{ opacity: 0, y: 20 }}

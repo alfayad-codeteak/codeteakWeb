@@ -142,6 +142,9 @@ export default function ServicesSection({ language, isStandalonePage = false }: 
     { id: "productDesign" as const, label: t.services.productDesign.title },
   ];
 
+  // Reverse tabs order in RTL mode to match visual order
+  const displayTabs = language === "ar" ? [...tabs].reverse() : tabs;
+
   const getActiveServices = () => {
     switch (activeTab) {
       case "cyberSecurity":
@@ -272,7 +275,7 @@ export default function ServicesSection({ language, isStandalonePage = false }: 
               transition={{ duration: 0.6, delay: 0.1 }}
               className="flex justify-center"
             >
-              <div className="relative inline-flex p-1 rounded-full bg-white dark:bg-background/90 border border-white/20 dark:border-white/10 shadow-2xl"
+              <div className="relative inline-flex p-1 rounded-full bg-white dark:bg-background/90 border border-white/20 dark:border-white/10 shadow-2xl" dir="ltr"
                 style={{
                   backdropFilter: 'blur(20px) saturate(180%)',
                   WebkitBackdropFilter: 'blur(20px) saturate(180%)',
@@ -290,12 +293,12 @@ export default function ServicesSection({ language, isStandalonePage = false }: 
                     damping: 30
                   }}
                   style={{
-                    left: `calc(${tabs.findIndex(t => t.id === activeTab) * (100 / tabs.length)}% + 0.25rem)`,
-                    width: `calc(${100 / tabs.length}% - 0.5rem)`,
+                    left: `calc(${displayTabs.findIndex(t => t.id === activeTab) * (100 / displayTabs.length)}% + 0.25rem)`,
+                    width: `calc(${100 / displayTabs.length}% - 0.5rem)`,
                   }}
                 />
 
-                {tabs.map((tab, index) => (
+                {displayTabs.map((tab, index) => (
                   <button
                     key={tab.id}
                     onClick={() => setActiveTab(tab.id)}
@@ -305,7 +308,7 @@ export default function ServicesSection({ language, isStandalonePage = false }: 
                         : "text-muted-foreground hover:text-foreground"
                     }`}
                     style={{
-                      minWidth: `${100 / tabs.length}%`,
+                      minWidth: `${100 / displayTabs.length}%`,
                     }}
                   >
                     <motion.span
@@ -332,7 +335,7 @@ export default function ServicesSection({ language, isStandalonePage = false }: 
             transition={{ duration: 0.6, delay: 0.1 }}
             className="flex justify-center mb-12"
           >
-            <div className="relative inline-flex p-1 rounded-full bg-white dark:bg-background/90 border border-white/20 dark:border-white/10 shadow-2xl"
+            <div className="relative inline-flex p-1 rounded-full bg-white dark:bg-background/90 border border-white/20 dark:border-white/10 shadow-2xl" dir="ltr"
               style={{
                 backdropFilter: 'blur(20px) saturate(180%)',
                 WebkitBackdropFilter: 'blur(20px) saturate(180%)',
@@ -350,12 +353,12 @@ export default function ServicesSection({ language, isStandalonePage = false }: 
                   damping: 30
                 }}
                 style={{
-                  left: `calc(${tabs.findIndex(t => t.id === activeTab) * (100 / tabs.length)}% + 0.25rem)`,
-                  width: `calc(${100 / tabs.length}% - 0.5rem)`,
+                  left: `calc(${displayTabs.findIndex(t => t.id === activeTab) * (100 / displayTabs.length)}% + 0.25rem)`,
+                  width: `calc(${100 / displayTabs.length}% - 0.5rem)`,
                 }}
               />
 
-              {tabs.map((tab, index) => (
+              {displayTabs.map((tab, index) => (
                 <button
                   key={tab.id}
                   onClick={() => setActiveTab(tab.id)}
@@ -365,7 +368,7 @@ export default function ServicesSection({ language, isStandalonePage = false }: 
                       : "text-muted-foreground hover:text-foreground"
                   }`}
                   style={{
-                    minWidth: `${100 / tabs.length}%`,
+                    minWidth: `${100 / displayTabs.length}%`,
                   }}
                 >
                   <motion.span

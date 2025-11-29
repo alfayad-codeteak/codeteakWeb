@@ -181,7 +181,23 @@ export default function Navigation({
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: -10, scale: 0.95 }}
               transition={{ duration: 0.2, ease: "easeOut" }}
-              className="absolute top-full left-1/2 -translate-x-1/2 pt-3 w-96 z-50 hidden md:block"
+              className="absolute top-full pt-3 z-50 hidden md:block"
+              style={{
+                width: '24rem',
+                maxWidth: 'calc(100vw - 2rem)',
+                ...(language === "ar" 
+                  ? {
+                      right: '0',
+                      left: 'auto',
+                      transform: 'none',
+                      marginRight: '1rem'
+                    }
+                  : {
+                      left: '50%',
+                      transform: 'translateX(-50%)'
+                    }
+                )
+              }}
               onMouseEnter={() => setIsProductHovered(true)}
             >
               <div className="bg-card/95 backdrop-blur-lg border border-border/50 rounded-2xl shadow-2xl overflow-hidden"

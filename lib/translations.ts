@@ -362,6 +362,53 @@ export const translations = {
       lens: {
         headline: "Visualize Your Data",
         description: "Lens is a cutting-edge visualization platform that makes complex data accessible and understandable.",
+        heroDescription: "YaadroLens is an innovative AI-powered face recognition system that enables retail stores and supermarkets to track employee attendance contactlessly with over 90% accuracy, even when offline.",
+        mainTask: {
+          title: "01/ MAIN TASK & CHALLENGES",
+          description: "The primary goal of YaadroLens is to provide a seamless solution for contactless employee attendance management through advanced face recognition technology. The platform aims to meet the needs of retail stores, supermarkets, and businesses seeking automated, accurate, and secure attendance tracking with offline capabilities.",
+        },
+        features: {
+          faceRecognition: {
+            title: "FACE RECOGNITION TECHNOLOGY",
+            description: "Advanced DeepFace ML with ArcFace embeddings delivering over 90% accuracy in employee identification, ensuring reliable and precise attendance tracking.",
+          },
+          offlineFirst: {
+            title: "OFFLINE-FIRST ARCHITECTURE",
+            description: "Works seamlessly without internet connectivity, automatically syncing all attendance data when connection is restored. Perfect for locations with unreliable network coverage.",
+          },
+          multiTenant: {
+            title: "MULTI-TENANT SAAS",
+            description: "Secure, isolated data management for multiple shops and locations. Enterprise-grade security with JWT authentication, role-based access control, and rate limiting.",
+          },
+        },
+        faq: {
+          tag: "Frequently asked questions",
+          title: "Frequently asked",
+          titleHighlight: "questions",
+          description: "Choose a solution that fits your business needs and budget. No hidden fees, no surprises—just straightforward pricing for powerful attendance management.",
+          items: [
+            {
+              question: "What is YaadroLens?",
+              answer: "YaadroLens is an AI-powered face recognition attendance system designed for retail stores and supermarkets. It provides contactless, automated attendance tracking with offline capabilities, real-time analytics, and enterprise-grade security using DeepFace ML technology.",
+            },
+            {
+              question: "How does YaadroLens work?",
+              answer: "YaadroLens uses advanced DeepFace ML with ArcFace embeddings to identify employees with over 90% accuracy. The system captures employee faces at entry points, matches them against registered profiles, and automatically records attendance. It works offline and syncs data when internet connection is restored.",
+            },
+            {
+              question: "Is YaadroLens secure?",
+              answer: "Yes, YaadroLens employs enterprise-grade security measures including JWT authentication, role-based access control, multi-tenant data isolation, and rate limiting. All face recognition data is encrypted and stored securely with proper access controls.",
+            },
+            {
+              question: "Can YaadroLens work without internet?",
+              answer: "Yes, YaadroLens features an offline-first architecture. The system continues to function and record attendance even without internet connectivity. All data is stored locally and automatically synchronized when the connection is restored.",
+            },
+            {
+              question: "What is the accuracy of face recognition?",
+              answer: "YaadroLens achieves over 90% accuracy in employee identification using DeepFace ML with ArcFace embeddings. The system continuously learns and improves its recognition capabilities through ML performance monitoring.",
+            },
+          ],
+        },
       },
     },
     // Common
@@ -732,6 +779,53 @@ export const translations = {
       lens: {
         headline: "تصور بياناتك",
         description: "لينز هو منصة تصور متطورة تجعل البيانات المعقدة في متناول اليد وسهلة الفهم.",
+        heroDescription: "YaadroLens هو نظام مبتكر للتعرف على الوجوه يعمل بالذكاء الاصطناعي يتيح لمتاجر التجزئة والمتاجر الكبرى تتبع حضور الموظفين بدون تلامس بدقة تزيد عن 90%، حتى عند عدم الاتصال بالإنترنت.",
+        mainTask: {
+          title: "01/ المهمة الرئيسية والتحديات",
+          description: "الهدف الرئيسي من YaadroLens هو توفير حل سلس لإدارة حضور الموظفين بدون تلامس من خلال تقنية التعرف على الوجوه المتقدمة. تهدف المنصة إلى تلبية احتياجات متاجر التجزئة والمتاجر الكبرى والشركات التي تسعى للحصول على تتبع حضور آلي ودقيق وآمن مع إمكانيات العمل دون اتصال.",
+        },
+        features: {
+          faceRecognition: {
+            title: "تقنية التعرف على الوجوه",
+            description: "DeepFace ML المتقدم مع ArcFace embeddings يوفر دقة تزيد عن 90% في تحديد الموظفين، مما يضمن تتبع حضور موثوق ودقيق.",
+          },
+          offlineFirst: {
+            title: "هندسة معمارية تعمل دون اتصال",
+            description: "يعمل بسلاسة بدون اتصال بالإنترنت، ويقوم بمزامنة جميع بيانات الحضور تلقائياً عند استعادة الاتصال. مثالي للمواقع ذات تغطية الشبكة غير الموثوقة.",
+          },
+          multiTenant: {
+            title: "SaaS متعدد المستأجرين",
+            description: "إدارة بيانات آمنة ومعزولة لعدة متاجر ومواقع. أمان على مستوى المؤسسات مع مصادقة JWT، والتحكم في الوصول المستند إلى الأدوار، والحد من معدل الطلبات.",
+          },
+        },
+        faq: {
+          tag: "الأسئلة الشائعة",
+          title: "الأسئلة",
+          titleHighlight: "الشائعة",
+          description: "اختر حلاً يناسب احتياجات عملك وميزانيتك. لا توجد رسوم مخفية، لا مفاجآت—فقط تسعير مباشر لإدارة حضور قوية.",
+          items: [
+            {
+              question: "ما هو YaadroLens؟",
+              answer: "YaadroLens هو نظام حضور للتعرف على الوجوه يعمل بالذكاء الاصطناعي مصمم لمتاجر التجزئة والمتاجر الكبرى. يوفر تتبع حضور آلي بدون تلامس مع إمكانيات العمل دون اتصال، وتحليلات فورية، وأمان على مستوى المؤسسات باستخدام تقنية DeepFace ML.",
+            },
+            {
+              question: "كيف يعمل YaadroLens؟",
+              answer: "يستخدم YaadroLens DeepFace ML المتقدم مع ArcFace embeddings لتحديد الموظفين بدقة تزيد عن 90%. يلتقط النظام وجوه الموظفين عند نقاط الدخول، ويطابقها مع الملفات الشخصية المسجلة، ويسجل الحضور تلقائياً. يعمل دون اتصال ومزامنة البيانات عند استعادة اتصال الإنترنت.",
+            },
+            {
+              question: "هل YaadroLens آمن؟",
+              answer: "نعم، يستخدم YaadroLens تدابير أمان على مستوى المؤسسات بما في ذلك مصادقة JWT، والتحكم في الوصول المستند إلى الأدوار، وعزل بيانات متعدد المستأجرين، والحد من معدل الطلبات. جميع بيانات التعرف على الوجوه مشفرة ومخزنة بشكل آمن مع ضوابط الوصول المناسبة.",
+            },
+            {
+              question: "هل يمكن لـ YaadroLens العمل بدون إنترنت؟",
+              answer: "نعم، يتميز YaadroLens بهندسة معمارية تعمل دون اتصال. يستمر النظام في العمل وتسجيل الحضور حتى بدون اتصال بالإنترنت. يتم تخزين جميع البيانات محلياً ومزامنتها تلقائياً عند استعادة الاتصال.",
+            },
+            {
+              question: "ما هي دقة التعرف على الوجوه؟",
+              answer: "يحقق YaadroLens دقة تزيد عن 90% في تحديد الموظفين باستخدام DeepFace ML مع ArcFace embeddings. يتعلم النظام باستمرار ويحسن قدراته على التعرف من خلال مراقبة أداء ML.",
+            },
+          ],
+        },
       },
     },
     // Common
