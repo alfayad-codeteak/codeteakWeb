@@ -1,14 +1,12 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { 
-  Eye, 
-  Sparkles, 
   TrendingUp, 
-  Brain, 
   Workflow, 
   Search,
+  Shield,
   Server,
   Layout,
   Cloud,
@@ -29,39 +27,46 @@ interface ServicesSectionProps {
 }
 
 export default function ServicesSection({ language, isStandalonePage = false }: ServicesSectionProps) {
-  const [activeTab, setActiveTab] = useState<"aiMl" | "productEngineering" | "productDesign">("aiMl");
+  const [activeTab, setActiveTab] = useState<"cyberSecurity" | "productEngineering" | "productDesign">("cyberSecurity");
+  const touchStartX = useRef<number | null>(null);
+  const touchEndX = useRef<number | null>(null);
+  const touchStartY = useRef<number | null>(null);
+  const touchEndY = useRef<number | null>(null);
   const t = getTranslations(language);
 
-  const aiMlServices = [
+  // Minimum swipe distance (in pixels) to trigger tab change
+  const minSwipeDistance = 50;
+
+  const cyberSecurityServices = [
     {
-      icon: Eye,
-      title: t.services.aiMl.computerVision.title,
-      description: t.services.aiMl.computerVision.description,
-    },
-    {
-      icon: Sparkles,
-      title: t.services.aiMl.generativeAi.title,
-      description: t.services.aiMl.generativeAi.description,
-    },
-    {
-      icon: TrendingUp,
-      title: t.services.aiMl.predictiveAnalytics.title,
-      description: t.services.aiMl.predictiveAnalytics.description,
-    },
-    {
-      icon: Brain,
-      title: t.services.aiMl.nlp.title,
-      description: t.services.aiMl.nlp.description,
-    },
-    {
-      icon: Workflow,
-      title: t.services.aiMl.aiOps.title,
-      description: t.services.aiMl.aiOps.description,
+      icon: Shield,
+      title: t.services.cyberSecurity.threatDetection.title,
+      description: t.services.cyberSecurity.threatDetection.description,
     },
     {
       icon: Search,
-      title: t.services.aiMl.anomalyDetection.title,
-      description: t.services.aiMl.anomalyDetection.description,
+      title: t.services.cyberSecurity.fraudPrevention.title,
+      description: t.services.cyberSecurity.fraudPrevention.description,
+    },
+    {
+      icon: FileCode,
+      title: t.services.cyberSecurity.securityAudit.title,
+      description: t.services.cyberSecurity.securityAudit.description,
+    },
+    {
+      icon: Server,
+      title: t.services.cyberSecurity.networkSecurity.title,
+      description: t.services.cyberSecurity.networkSecurity.description,
+    },
+    {
+      icon: Workflow,
+      title: t.services.cyberSecurity.dataProtection.title,
+      description: t.services.cyberSecurity.dataProtection.description,
+    },
+    {
+      icon: TrendingUp,
+      title: t.services.cyberSecurity.incidentResponse.title,
+      description: t.services.cyberSecurity.incidentResponse.description,
     },
   ];
 
@@ -132,15 +137,15 @@ export default function ServicesSection({ language, isStandalonePage = false }: 
   ];
 
   const tabs = [
-    { id: "aiMl" as const, label: t.services.aiMl.title },
+    { id: "cyberSecurity" as const, label: t.services.cyberSecurity.title },
     { id: "productEngineering" as const, label: t.services.productEngineering.title },
     { id: "productDesign" as const, label: t.services.productDesign.title },
   ];
 
   const getActiveServices = () => {
     switch (activeTab) {
-      case "aiMl":
-        return aiMlServices;
+      case "cyberSecurity":
+        return cyberSecurityServices;
       case "productEngineering":
         return productEngineeringServices;
       case "productDesign":
@@ -150,13 +155,84 @@ export default function ServicesSection({ language, isStandalonePage = false }: 
 
   const getActiveTagline = () => {
     switch (activeTab) {
-      case "aiMl":
-        return t.services.aiMl.tagline;
+      case "cyberSecurity":
+        return t.services.cyberSecurity.tagline;
       case "productEngineering":
         return t.services.productEngineering.tagline;
       case "productDesign":
         return t.services.productDesign.tagline;
     }
+  };
+
+  // Swipe gesture handlers
+  const onTouchStart = (e: React.TouchEvent) => {
+    touchEndX.current = null;
+    touchEndY.current = null;
+    touchStartX.current = e.targetTouches[0].clientX;
+    touchStartY.current = e.targetTouches[0].clientY;
+  };
+
+  const onTouchMove = (e: React.TouchEvent) => {
+    touchEndX.current = e.targetTouches[0].clientX;
+    touchEndY.current = e.targetTouches[0].clientY;
+  };
+
+  const onTouchEnd = () => {
+    if (!touchStartX.current || !touchEndX.current || !touchStartY.current || !touchEndY.current) {
+      // Reset if incomplete
+      touchStartX.current = null;
+      touchEndX.current = null;
+      touchStartY.current = null;
+      touchEndY.current = null;
+      return;
+    }
+
+    const distanceX = touchStartX.current - touchEndX.current;
+    const distanceY = Math.abs(touchStartY.current - touchEndY.current);
+    const absDistanceX = Math.abs(distanceX);
+
+    // Only trigger swipe if horizontal movement is greater than vertical (to allow scrolling)
+    // Also require minimum horizontal swipe distance
+    if (absDistanceX > minSwipeDistance && absDistanceX > distanceY) {
+      const isLeftSwipe = distanceX > 0;
+      const isRightSwipe = distanceX < 0;
+
+      if (isLeftSwipe) {
+        // Swipe left - go to next tab
+        switch (activeTab) {
+          case "cyberSecurity":
+            setActiveTab("productEngineering");
+            break;
+          case "productEngineering":
+            setActiveTab("productDesign");
+            break;
+          case "productDesign":
+            // Already at last tab, loop to first
+            setActiveTab("cyberSecurity");
+            break;
+        }
+      } else if (isRightSwipe) {
+        // Swipe right - go to previous tab
+        switch (activeTab) {
+          case "cyberSecurity":
+            // Already at first tab, loop to last
+            setActiveTab("productDesign");
+            break;
+          case "productEngineering":
+            setActiveTab("cyberSecurity");
+            break;
+          case "productDesign":
+            setActiveTab("productEngineering");
+            break;
+        }
+      }
+    }
+
+    // Reset touch positions
+    touchStartX.current = null;
+    touchEndX.current = null;
+    touchStartY.current = null;
+    touchEndY.current = null;
   };
 
   return (
@@ -180,66 +256,136 @@ export default function ServicesSection({ language, isStandalonePage = false }: 
           </motion.div>
         )}
 
-        {/* Tab Navigation - Liquid Glass Effect */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.1 }}
-          className="flex justify-center mb-12"
-        >
-          <div className="relative inline-flex p-0.5 rounded-full backdrop-blur-xl bg-gradient-to-r from-white/10 via-white/5 to-white/10 border border-white/20 dark:from-white/10 dark:via-white/5 dark:to-white/10 dark:border-white/20 shadow-2xl"
+        {/* Tab Navigation - Sticky on standalone page */}
+        {isStandalonePage ? (
+          <div 
+            className="sticky top-0 z-40 py-4 mb-12 -mx-4 sm:-mx-6 lg:-mx-8 px-4 sm:px-6 lg:px-8 bg-background/90 dark:bg-background/90"
             style={{
-              background: 'linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 50%, rgba(255,255,255,0.1) 100%)',
               backdropFilter: 'blur(20px) saturate(180%)',
               WebkitBackdropFilter: 'blur(20px) saturate(180%)',
-              boxShadow: '0 8px 32px 0 rgba(0, 0, 0, 0.1), inset 0 1px 0 0 rgba(255, 255, 255, 0.2)'
+              borderBottom: '1px solid rgba(128, 128, 128, 0.1)',
             }}
           >
-            {/* Active Tab Indicator */}
             <motion.div
-              layoutId="activeTab"
-              className="absolute inset-y-0 rounded-full bg-gradient-to-r from-[#FC4B01] via-[#FF6B35] to-[#FC4B01] shadow-lg shadow-[#FC4B01]/50"
-              initial={false}
-              transition={{
-                type: "spring",
-                stiffness: 500,
-                damping: 30
-              }}
-              style={{
-                left: `${tabs.findIndex(t => t.id === activeTab) * (100 / tabs.length)}%`,
-                width: `${100 / tabs.length}%`,
-              }}
-            />
-
-            {tabs.map((tab, index) => (
-              <button
-                key={tab.id}
-                onClick={() => setActiveTab(tab.id)}
-                className={`relative z-10 px-6 py-1.5 rounded-full font-medium transition-all duration-300 text-sm ${
-                  activeTab === tab.id
-                    ? "text-white"
-                    : "text-muted-foreground hover:text-foreground"
-                }`}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="flex justify-center"
+            >
+              <div className="relative inline-flex p-0.5 rounded-full backdrop-blur-xl bg-gradient-to-r from-white/10 via-white/5 to-white/10 border border-white/20 dark:from-white/10 dark:via-white/5 dark:to-white/10 dark:border-white/20 shadow-2xl"
                 style={{
-                  minWidth: `${100 / tabs.length}%`,
+                  background: 'linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 50%, rgba(255,255,255,0.1) 100%)',
+                  backdropFilter: 'blur(20px) saturate(180%)',
+                  WebkitBackdropFilter: 'blur(20px) saturate(180%)',
+                  boxShadow: '0 8px 32px 0 rgba(0, 0, 0, 0.1), inset 0 1px 0 0 rgba(255, 255, 255, 0.2)'
                 }}
               >
-                <motion.span
+                {/* Active Tab Indicator */}
+                <motion.div
+                  layoutId="activeTab"
+                  className="absolute inset-y-0 rounded-full bg-gradient-to-r from-[#FC4B01] via-[#FF6B35] to-[#FC4B01] shadow-lg shadow-[#FC4B01]/50"
                   initial={false}
-                  animate={{
-                    scale: activeTab === tab.id ? 1.05 : 1,
-                    fontWeight: activeTab === tab.id ? 600 : 500,
+                  transition={{
+                    type: "spring",
+                    stiffness: 500,
+                    damping: 30
                   }}
-                  transition={{ duration: 0.2 }}
-                  className="block"
-                >
-                  {tab.label}
-                </motion.span>
-              </button>
-            ))}
+                  style={{
+                    left: `${tabs.findIndex(t => t.id === activeTab) * (100 / tabs.length)}%`,
+                    width: `${100 / tabs.length}%`,
+                  }}
+                />
+
+                {tabs.map((tab, index) => (
+                  <button
+                    key={tab.id}
+                    onClick={() => setActiveTab(tab.id)}
+                    className={`relative z-10 px-6 py-1.5 rounded-full font-medium transition-all duration-300 text-sm ${
+                      activeTab === tab.id
+                        ? "text-white"
+                        : "text-muted-foreground hover:text-foreground"
+                    }`}
+                    style={{
+                      minWidth: `${100 / tabs.length}%`,
+                    }}
+                  >
+                    <motion.span
+                      initial={false}
+                      animate={{
+                        scale: activeTab === tab.id ? 1.05 : 1,
+                        fontWeight: activeTab === tab.id ? 600 : 500,
+                      }}
+                      transition={{ duration: 0.2 }}
+                      className="block"
+                    >
+                      {tab.label}
+                    </motion.span>
+                  </button>
+                ))}
+              </div>
+            </motion.div>
           </div>
-        </motion.div>
+        ) : (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="flex justify-center mb-12"
+          >
+            <div className="relative inline-flex p-0.5 rounded-full backdrop-blur-xl bg-gradient-to-r from-white/10 via-white/5 to-white/10 border border-white/20 dark:from-white/10 dark:via-white/5 dark:to-white/10 dark:border-white/20 shadow-2xl"
+              style={{
+                background: 'linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 50%, rgba(255,255,255,0.1) 100%)',
+                backdropFilter: 'blur(20px) saturate(180%)',
+                WebkitBackdropFilter: 'blur(20px) saturate(180%)',
+                boxShadow: '0 8px 32px 0 rgba(0, 0, 0, 0.1), inset 0 1px 0 0 rgba(255, 255, 255, 0.2)'
+              }}
+            >
+              {/* Active Tab Indicator */}
+              <motion.div
+                layoutId="activeTab"
+                className="absolute inset-y-0 rounded-full bg-gradient-to-r from-[#FC4B01] via-[#FF6B35] to-[#FC4B01] shadow-lg shadow-[#FC4B01]/50"
+                initial={false}
+                transition={{
+                  type: "spring",
+                  stiffness: 500,
+                  damping: 30
+                }}
+                style={{
+                  left: `${tabs.findIndex(t => t.id === activeTab) * (100 / tabs.length)}%`,
+                  width: `${100 / tabs.length}%`,
+                }}
+              />
+
+              {tabs.map((tab, index) => (
+                <button
+                  key={tab.id}
+                  onClick={() => setActiveTab(tab.id)}
+                  className={`relative z-10 px-6 py-1.5 rounded-full font-medium transition-all duration-300 text-sm ${
+                    activeTab === tab.id
+                      ? "text-white"
+                      : "text-muted-foreground hover:text-foreground"
+                  }`}
+                  style={{
+                    minWidth: `${100 / tabs.length}%`,
+                  }}
+                >
+                  <motion.span
+                    initial={false}
+                    animate={{
+                      scale: activeTab === tab.id ? 1.05 : 1,
+                      fontWeight: activeTab === tab.id ? 600 : 500,
+                    }}
+                    transition={{ duration: 0.2 }}
+                    className="block"
+                  >
+                    {tab.label}
+                  </motion.span>
+                </button>
+              ))}
+            </div>
+          </motion.div>
+        )}
 
         {/* Active Tab Content */}
         <AnimatePresence mode="wait">
@@ -253,6 +399,9 @@ export default function ServicesSection({ language, isStandalonePage = false }: 
               ease: [0.4, 0, 0.2, 1]
             }}
             className="mb-12"
+            onTouchStart={onTouchStart}
+            onTouchMove={onTouchMove}
+            onTouchEnd={onTouchEnd}
           >
             {/* Title and Tagline Section */}
             <div className="flex flex-col items-center mb-12">

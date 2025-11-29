@@ -271,20 +271,52 @@ export default function ContactPage() {
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6 }}
-              className="space-y-4"
+              className="space-y-6"
             >
-              <p className="text-foreground font-mono text-sm leading-relaxed">
-                {t.contact.email}: hello@codeteak.com
-              </p>
-              <p className="text-foreground font-mono text-sm leading-relaxed">
-                {t.contact.phone}: (555) 555-5555
-              </p>
-              <p className="text-foreground font-mono text-sm leading-relaxed">
-                {t.contact.address}: 123 Demo Street
-              </p>
-              <p className="text-foreground font-mono text-sm leading-relaxed">
-                New York, NY 12345
-              </p>
+              <div>
+                <p className="text-foreground font-mono text-sm leading-relaxed">
+                  {t.contact.email}: <a href="mailto:info@codeteak.com" className="text-[#FC4B01] hover:underline">info@codeteak.com</a>
+                </p>
+              </div>
+              <div>
+                <p className="text-foreground font-mono text-sm leading-relaxed">
+                  {t.contact.phone}: <a href="tel:+919995203149" className="text-[#FC4B01] hover:underline">+91 99952 03149</a>
+                </p>
+              </div>
+              <div className="space-y-4 pt-2">
+                <div>
+                  <p className="text-foreground font-mono text-sm font-semibold mb-2">Bengaluru Office:</p>
+                  <p className="text-foreground font-mono text-sm leading-relaxed">
+                    Arine Amaryllis, Akshayanagara West,<br />
+                    Akshaya Gardens, Akshayanagar,<br />
+                    Bengaluru, Karnataka 560114
+                  </p>
+                  <a 
+                    href="https://www.google.com/maps?q=12.874395210839836,77.61370881001027"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-[#FC4B01] hover:underline text-xs mt-1 inline-block"
+                  >
+                    View on Google Maps →
+                  </a>
+                </div>
+                <div className="pt-4 border-t border-foreground/10">
+                  <p className="text-foreground font-mono text-sm font-semibold mb-2">Dubai Office:</p>
+                  <p className="text-foreground font-mono text-sm leading-relaxed">
+                    Room No. 4, Index Exchange Building,<br />
+                    Opposite Wimpy Restaurant,<br />
+                    Naif Road, Dubai
+                  </p>
+                  <a 
+                    href="https://www.google.com/maps?q=25.271468639880588,55.302489429935676"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-[#FC4B01] hover:underline text-xs mt-1 inline-block"
+                  >
+                    View on Google Maps →
+                  </a>
+                </div>
+              </div>
             </motion.div>
 
             {/* Right Column - Contact Form */}

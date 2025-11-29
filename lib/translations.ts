@@ -54,33 +54,33 @@ export const translations = {
     services: {
       title: "Our Services",
       subtitle: "Comprehensive solutions to meet all your software development needs",
-      // AI/ML Services
-      aiMl: {
-        title: "AI/ML",
-        tagline: "Illuminating possibilities with cutting edge development and data-driven intelligence",
-        computerVision: {
-          title: "Computer Vision",
-          description: "Interpreting visual data for image recognition, object detection, and more with advanced machine learning algorithms.",
+      // Cyber Security Services
+      cyberSecurity: {
+        title: "Cyber Security",
+        tagline: "Protecting your digital assets with advanced security solutions and AI-powered threat detection",
+        threatDetection: {
+          title: "Threat Detection & Prevention",
+          description: "AI-powered systems that identify and neutralize cyber threats in real-time, protecting your infrastructure from attacks before they cause damage.",
         },
-        generativeAi: {
-          title: "Generative AI",
-          description: "Creating innovative content like images and text through AI-driven creativity and pattern recognition.",
+        fraudPrevention: {
+          title: "Fraud Prevention & Detection",
+          description: "Advanced fraud detection systems that analyze patterns and behaviors to prevent financial fraud, identity theft, and unauthorized access.",
         },
-        predictiveAnalytics: {
-          title: "Predictive Analytics and Business Intelligence",
-          description: "Forecasting future trends by analyzing historical and real-time data for proactive decision-making.",
+        securityAudit: {
+          title: "Security Audit & Compliance",
+          description: "Comprehensive security assessments and compliance checks to ensure your systems meet industry standards and regulatory requirements.",
         },
-        nlp: {
-          title: "NLP & NLU",
-          description: "Enabling computers to comprehend and respond to human language with natural language processing and understanding.",
+        networkSecurity: {
+          title: "Network Security",
+          description: "Robust network security solutions including firewall management, intrusion detection, and secure network architecture design.",
         },
-        aiOps: {
-          title: "AI Ops",
-          description: "Streamlining end-to-end ML processes, ensuring efficient model deployment, monitoring, and management.",
+        dataProtection: {
+          title: "Data Protection & Encryption",
+          description: "End-to-end encryption and data protection services to safeguard sensitive information and ensure secure data storage and transmission.",
         },
-        anomalyDetection: {
-          title: "Anomaly Detection",
-          description: "Identifying unusual patterns in data to detect fraud, errors, and potential issues before they impact your business.",
+        incidentResponse: {
+          title: "Incident Response & Recovery",
+          description: "Rapid response services to mitigate security breaches, investigate incidents, and restore systems to secure operational states.",
         },
       },
       // Product Engineering Services
@@ -424,33 +424,33 @@ export const translations = {
     services: {
       title: "خدماتنا",
       subtitle: "حلول شاملة لتلبية جميع احتياجات تطوير البرمجيات الخاصة بك",
-      // AI/ML Services
-      aiMl: {
-        title: "الذكاء الاصطناعي/التعلم الآلي",
-        tagline: "إضاءة الاحتمالات مع التطوير المتطور والذكاء القائم على البيانات",
-        computerVision: {
-          title: "رؤية الكمبيوتر",
-          description: "تفسير البيانات البصرية للتعرف على الصور وكشف الكائنات والمزيد باستخدام خوارزميات التعلم الآلي المتقدمة.",
+      // Cyber Security Services
+      cyberSecurity: {
+        title: "الأمن السيبراني",
+        tagline: "حماية أصولك الرقمية بحلول أمنية متقدمة وكشف التهديدات المدعومة بالذكاء الاصطناعي",
+        threatDetection: {
+          title: "كشف التهديدات والوقاية",
+          description: "أنظمة مدعومة بالذكاء الاصطناعي تكتشف التهديدات السيبرانية وتحييدها في الوقت الفعلي، لحماية بنيتك التحتية من الهجمات قبل أن تسبب ضررًا.",
         },
-        generativeAi: {
-          title: "الذكاء الاصطناعي التوليدي",
-          description: "إنشاء محتوى مبتكر مثل الصور والنصوص من خلال الإبداع القائم على الذكاء الاصطناعي والتعرف على الأنماط.",
+        fraudPrevention: {
+          title: "منع وكشف الاحتيال",
+          description: "أنظمة متقدمة لكشف الاحتيال تحلل الأنماط والسلوكيات لمنع الاحتيال المالي وسرقة الهوية والوصول غير المصرح به.",
         },
-        predictiveAnalytics: {
-          title: "التحليلات التنبؤية وذكاء الأعمال",
-          description: "التنبؤ بالاتجاهات المستقبلية من خلال تحليل البيانات التاريخية والوقت الحقيقي لاتخاذ قرارات استباقية.",
+        securityAudit: {
+          title: "تدقيق الأمن والامتثال",
+          description: "تقييمات أمنية شاملة وفحوصات الامتثال لضمان أن أنظمتك تلبي المعايير الصناعية والمتطلبات التنظيمية.",
         },
-        nlp: {
-          title: "معالجة اللغة الطبيعية وفهمها",
-          description: "تمكين أجهزة الكمبيوتر من فهم اللغة البشرية والاستجابة لها من خلال معالجة اللغة الطبيعية والفهم.",
+        networkSecurity: {
+          title: "أمان الشبكة",
+          description: "حلول أمنية قوية للشبكة تشمل إدارة جدار الحماية وكشف التسلل وتصميم هندسة شبكة آمنة.",
         },
-        aiOps: {
-          title: "عمليات الذكاء الاصطناعي",
-          description: "تبسيط عمليات التعلم الآلي من البداية إلى النهاية، وضمان نشر ونشر وإدارة النماذج بكفاءة.",
+        dataProtection: {
+          title: "حماية البيانات والتشفير",
+          description: "خدمات التشفير من طرف إلى طرف وحماية البيانات لحماية المعلومات الحساسة وضمان تخزين ونقل البيانات الآمن.",
         },
-        anomalyDetection: {
-          title: "كشف الشذوذ",
-          description: "تحديد الأنماط غير العادية في البيانات للكشف عن الاحتيال والأخطاء والمشكلات المحتملة قبل أن تؤثر على عملك.",
+        incidentResponse: {
+          title: "الاستجابة للحوادث والتعافي",
+          description: "خدمات استجابة سريعة للتخفيف من خروقات الأمن والتحقيق في الحوادث واستعادة الأنظمة إلى حالات تشغيل آمنة.",
         },
       },
       // Product Engineering Services

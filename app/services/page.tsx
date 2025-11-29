@@ -13,6 +13,7 @@ export default function ServicesPage() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [showBackToTop, setShowBackToTop] = useState(false);
   const [language, setLanguage] = useState<"en" | "ar">("en");
+  const [hideHeaderElements, setHideHeaderElements] = useState(false);
 
   const t = getTranslations(language as Language);
 
@@ -47,6 +48,10 @@ export default function ServicesPage() {
       const handleScroll = () => {
         setIsScrolled(window.scrollY > 50);
         setShowBackToTop(window.scrollY > 300);
+        
+        // Hide header elements when tabs become sticky (after scrolling past ~200px)
+        // The sticky tabs appear at top-0, so we hide header when scrolled past initial content
+        setHideHeaderElements(window.scrollY > 200);
       };
 
       window.addEventListener("scroll", handleScroll);
@@ -87,6 +92,7 @@ export default function ServicesPage() {
         isMounted={isMounted}
         isScrolled={isScrolled}
         showBackToTop={showBackToTop}
+        hideHeaderElements={hideHeaderElements}
         onThemeChange={(newTheme) => {
           setTheme(newTheme);
           updateTheme(newTheme);

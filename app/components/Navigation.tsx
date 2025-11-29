@@ -27,6 +27,7 @@ interface NavigationProps {
   isScrolled: boolean;
   showBackToTop: boolean;
   headerLogoOpacity?: any;
+  hideHeaderElements?: boolean; // New prop to hide logo, back to top, and theme button
   onThemeChange: (theme: "light" | "dark") => void;
   onLanguageChange: (lang: "en" | "ar") => void;
   onScrollToTop: () => void;
@@ -39,6 +40,7 @@ export default function Navigation({
   isScrolled,
   showBackToTop,
   headerLogoOpacity,
+  hideHeaderElements = false,
   onThemeChange,
   onLanguageChange,
   onScrollToTop,
@@ -88,16 +90,17 @@ export default function Navigation({
   return (
     <>
       {/* Top Left - Company Logo */}
-      <motion.div
-        initial={{ opacity: 0, x: -20 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.5 }}
-        className="fixed top-4 left-4 md:top-6 md:left-6 z-50"
-        style={isHomePage && headerLogoOpacity ? { 
-          opacity: headerLogoOpacity,
-          pointerEvents: isScrolled ? 'auto' : 'none'
-        } : {}}
-      >
+      {!hideHeaderElements && (
+        <motion.div
+          initial={{ opacity: 0, x: -20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.5 }}
+          className="fixed top-4 left-4 md:top-6 md:left-6 z-50"
+          style={isHomePage && headerLogoOpacity ? { 
+            opacity: headerLogoOpacity,
+            pointerEvents: isScrolled ? 'auto' : 'none'
+          } : {}}
+        >
         <Link href="/" className="block">
           {isMounted && (
             <img
@@ -110,8 +113,10 @@ export default function Navigation({
           )}
         </Link>
       </motion.div>
+      )}
 
       {/* Theme Toggle - Mobile Top Right */}
+      {!hideHeaderElements && (
       <motion.button
         initial={{ opacity: 0, scale: 0.8 }}
         animate={{ opacity: 1, scale: 1 }}
@@ -134,6 +139,7 @@ export default function Navigation({
           <Moon className="w-5 h-5" />
         )}
       </motion.button>
+      )}
 
       {/* Top Right - Navigation Items (Desktop Only) */}
       <motion.div
@@ -321,7 +327,7 @@ export default function Navigation({
       </motion.div>
 
       {/* Top Center - Back to Top Button */}
-      {showBackToTop && (
+      {showBackToTop && !hideHeaderElements && (
         <motion.button
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -374,16 +380,17 @@ export default function Navigation({
         className="hidden md:flex fixed bottom-6 right-6 z-50"
       >
         <a
-          href="mailto:hello@codeteak.com"
+          href="mailto:info@codeteak.com"
           className="text-muted-foreground hover:text-[#FC4B01] transition-colors text-sm flex items-center gap-2"
           style={{ writingMode: 'vertical-rl', textOrientation: 'mixed' }}
         >
           <Mail className="w-4 h-4" />
-          <span>hello@codeteak.com</span>
+          <span>info@codeteak.com</span>
         </a>
       </motion.div>
 
       {/* Bottom Center - Theme Toggle Button (Desktop Only) */}
+      {!hideHeaderElements && (
       <motion.button
         initial={{ opacity: 0, scale: 0.8 }}
         animate={{ opacity: 1, scale: 1 }}
@@ -406,6 +413,7 @@ export default function Navigation({
           <Moon className="w-5 h-5" />
         )}
       </motion.button>
+      )}
 
       {/* Mobile Bottom Navigation Bar */}
       <motion.div

@@ -70,7 +70,7 @@ export async function POST(request: NextRequest) {
       try {
         const emailResult = await resend.emails.send({
           from: process.env.RESEND_FROM_EMAIL || 'onboarding@resend.dev',
-          to: process.env.RESEND_TO_EMAIL || 'hello@codeteak.com',
+          to: process.env.RESEND_TO_EMAIL || 'info@codeteak.com',
           subject: `New Contact Form Submission from ${firstName} ${lastName}`,
           html: `
             <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
@@ -172,7 +172,7 @@ export async function POST(request: NextRequest) {
                           <p style="color: #999999; font-size: 12px; line-height: 1.6; margin: 0; text-align: center;">
                             This is an automated confirmation email. Please do not reply to this message.<br>
                             If you have any urgent inquiries, please contact us directly at 
-                            <a href="mailto:hello@codeteak.com" style="color: #FC4B01; text-decoration: none;">hello@codeteak.com</a>
+                            <a href="mailto:info@codeteak.com" style="color: #FC4B01; text-decoration: none;">info@codeteak.com</a>
                           </p>
                           <p style="color: #999999; font-size: 12px; margin: 15px 0 0 0; text-align: center;">
                             © ${new Date().getFullYear()} CodeTeak. All rights reserved.

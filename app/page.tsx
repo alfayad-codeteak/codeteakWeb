@@ -646,17 +646,23 @@ export default function Home() {
               className="space-y-4"
             >
               <p className="text-foreground font-mono text-sm leading-relaxed">
-                {t.contact.email}: hello@codeteak.com
+                {t.contact.email}: <a href="mailto:info@codeteak.com" className="text-[#FC4B01] hover:underline">info@codeteak.com</a>
               </p>
               <p className="text-foreground font-mono text-sm leading-relaxed">
-                {t.contact.phone}: (555) 555-5555
+                {t.contact.phone}: <a href="tel:+919995203149" className="text-[#FC4B01] hover:underline">+91 99952 03149</a>
               </p>
-              <p className="text-foreground font-mono text-sm leading-relaxed">
-                {t.contact.address}: 123 Demo Street
-              </p>
-              <p className="text-foreground font-mono text-sm leading-relaxed">
-                New York, NY 12345
-              </p>
+              <div className="space-y-2 pt-2">
+                <p className="text-foreground font-mono text-sm font-semibold">Bengaluru Office:</p>
+                <p className="text-foreground font-mono text-xs leading-relaxed">
+                  Arine Amaryllis, Akshayanagara West, Akshaya Gardens,<br />
+                  Akshayanagar, Bengaluru, Karnataka 560114
+                </p>
+                <p className="text-foreground font-mono text-sm font-semibold pt-2">Dubai Office:</p>
+                <p className="text-foreground font-mono text-xs leading-relaxed">
+                  Room No. 4, Index Exchange Building,<br />
+                  Opposite Wimpy Restaurant, Naif Road, Dubai
+                </p>
+              </div>
             </motion.div>
 
             {/* Right Column - Contact Form */}
