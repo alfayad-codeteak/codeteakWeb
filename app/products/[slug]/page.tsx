@@ -32,6 +32,7 @@ export default function ProductDetailPage() {
         root.classList.remove("dark");
       }
       localStorage.setItem("theme", newTheme);
+      setTheme(newTheme); // Update React state immediately
     }
   };
 
@@ -220,7 +221,10 @@ export default function ProductDetailPage() {
           isMounted={isMounted}
           isScrolled={isScrolled}
           showBackToTop={showBackToTop}
-          onThemeChange={updateTheme}
+          onThemeChange={(newTheme) => {
+            setTheme(newTheme);
+            updateTheme(newTheme);
+          }}
           onLanguageChange={changeLanguage}
           onScrollToTop={scrollToTop}
         />
@@ -957,10 +961,13 @@ export default function ProductDetailPage() {
         isMounted={isMounted}
         isScrolled={isScrolled}
         showBackToTop={showBackToTop}
-        onThemeChange={updateTheme}
-        onLanguageChange={changeLanguage}
-        onScrollToTop={scrollToTop}
-      />
+        onThemeChange={(newTheme) => {
+          setTheme(newTheme);
+          updateTheme(newTheme);
+        }}
+          onLanguageChange={changeLanguage}
+          onScrollToTop={scrollToTop}
+        />
 
       {/* Main Content */}
       <main>
@@ -975,7 +982,7 @@ export default function ProductDetailPage() {
             <motion.div
               className="absolute inset-0 flex items-center justify-center pointer-events-none z-0"
             >
-              <h1 className="text-[8rem] sm:text-[12rem] md:text-[16rem] lg:text-[20rem] xl:text-[24rem] 2xl:text-[30rem] font-black text-foreground dark:text-foreground/20 select-none leading-none tracking-tighter flex"
+              <h1 className="text-[16rem] sm:text-[18rem] md:text-[20rem] lg:text-[22rem] xl:text-[24rem] 2xl:text-[30rem] font-black text-foreground dark:text-foreground/20 select-none leading-none tracking-tighter flex"
                 style={{
                   WebkitTextStroke: theme === "dark" ? "1px rgba(255,255,255,0.1)" : "1px rgba(0,0,0,0.1)",
                 } as React.CSSProperties}
@@ -1037,7 +1044,7 @@ export default function ProductDetailPage() {
                   ease: "easeInOut"
                 }
               }}
-              className="relative z-20 max-w-[280px] sm:max-w-sm md:max-w-md mx-auto px-4"
+              className="relative z-20 max-w-[280px] sm:max-w-sm md:max-w-md mx-auto px-4 mt-12 sm:mt-16 md:mt-20"
             >
                 <Image
                   src={product.image}

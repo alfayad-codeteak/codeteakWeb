@@ -47,6 +47,7 @@ export default function TechNewsPage() {
         root.classList.remove("dark");
       }
       localStorage.setItem("theme", newTheme);
+      setTheme(newTheme); // Update React state immediately
     }
   };
 
@@ -133,7 +134,10 @@ export default function TechNewsPage() {
         isMounted={isMounted}
         isScrolled={isScrolled}
         showBackToTop={showBackToTop}
-        onThemeChange={updateTheme}
+        onThemeChange={(newTheme) => {
+          setTheme(newTheme);
+          updateTheme(newTheme);
+        }}
         onLanguageChange={changeLanguage}
         onScrollToTop={scrollToTop}
       />

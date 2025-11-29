@@ -87,7 +87,10 @@ export default function ServicesPage() {
         isMounted={isMounted}
         isScrolled={isScrolled}
         showBackToTop={showBackToTop}
-        onThemeChange={updateTheme}
+        onThemeChange={(newTheme) => {
+          setTheme(newTheme);
+          updateTheme(newTheme);
+        }}
         onLanguageChange={changeLanguage}
         onScrollToTop={handleScrollToTop}
       />

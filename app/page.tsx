@@ -69,6 +69,7 @@ export default function Home() {
         root.classList.remove("dark");
       }
       localStorage.setItem("theme", newTheme);
+      setTheme(newTheme); // Update React state immediately
     }
   };
 
@@ -264,7 +265,10 @@ export default function Home() {
         isScrolled={isScrolled}
         showBackToTop={showBackToTop}
         headerLogoOpacity={headerLogoOpacity}
-        onThemeChange={updateTheme}
+        onThemeChange={(newTheme) => {
+          setTheme(newTheme);
+          updateTheme(newTheme);
+        }}
         onLanguageChange={changeLanguage}
         onScrollToTop={scrollToTop}
       />

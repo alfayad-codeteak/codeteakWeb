@@ -46,7 +46,13 @@ export default function Navigation({
   const [isProductHovered, setIsProductHovered] = useState(false);
   const [isLanguageHovered, setIsLanguageHovered] = useState(false);
   const [isMobileProductOpen, setIsMobileProductOpen] = useState(false);
+  const [logoKey, setLogoKey] = useState(0);
   const pathname = usePathname();
+  
+  // Force logo re-render when theme changes
+  useEffect(() => {
+    setLogoKey(prev => prev + 1);
+  }, [theme]);
   
   const t = getTranslations(language as Language);
 
@@ -94,13 +100,12 @@ export default function Navigation({
       >
         <Link href="/" className="block">
           {isMounted && (
-            <Image
-              src={theme === "dark" ? "/logo/logo-white.svg" : "/logo/logo-black.svg"}
+            <img
+              key={`logo-${theme}-${logoKey}`}
+              src={`${theme === "dark" ? "/logo/logo-white.svg" : "/logo/logo-black.svg"}?v=${logoKey}&theme=${theme}`}
               alt="CodeTeak Logo"
-              width={120}
-              height={40}
-              className="h-6 md:h-8 w-auto"
-              priority
+              className="h-[12px] md:h-8 w-auto"
+              style={{ maxWidth: '40px', height: 'auto' }}
             />
           )}
         </Link>
@@ -407,7 +412,7 @@ export default function Navigation({
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.2 }}
-        className="fixed bottom-0 left-0 right-0 md:hidden z-50 px-4 pt-4 pb-safe pb-3 rounded-t-3xl backdrop-blur-xl border-t border-white/20 dark:border-white/10"
+        className="fixed bottom-0 left-0 right-0 md:hidden z-50 px-4 pt-5 pb-safe pb-5 rounded-t-3xl backdrop-blur-xl border-t border-white/20 dark:border-white/10"
         style={{
           background: theme === "dark" 
             ? 'linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 50%, rgba(255,255,255,0.1) 100%)'
@@ -420,13 +425,13 @@ export default function Navigation({
         <div className="flex items-center justify-around max-w-md mx-auto">
           <Link 
             href="/" 
-            className={`flex flex-col items-center gap-1 px-3 py-1.5 rounded-lg transition-colors ${
+            className={`flex flex-col items-center gap-1.5 px-4 py-3 min-h-[56px] min-w-[56px] rounded-xl transition-colors touch-manipulation ${
               pathname === "/" 
                 ? "text-[#FC4B01]" 
                 : "text-muted-foreground"
             }`}
           >
-            <span className="text-xs font-medium">{t.nav.home}</span>
+            <span className="text-sm font-medium">{t.nav.home}</span>
           </Link>
           
           <div
@@ -436,46 +441,46 @@ export default function Navigation({
               setIsMobileProductOpen(!isMobileProductOpen);
             }}
           >
-            <div className={`flex flex-col items-center gap-1 px-3 py-1.5 rounded-lg transition-colors cursor-pointer ${
+            <div className={`flex flex-col items-center gap-1.5 px-4 py-3 min-h-[56px] min-w-[56px] rounded-xl transition-colors cursor-pointer touch-manipulation ${
               pathname.startsWith("/products") 
                 ? "text-[#FC4B01]" 
                 : "text-muted-foreground"
             }`}>
-              <span className="text-xs font-medium">{t.nav.product}</span>
+              <span className="text-sm font-medium">{t.nav.product}</span>
             </div>
           </div>
           
           <Link 
             href="/services" 
-            className={`flex flex-col items-center gap-1 px-3 py-1.5 rounded-lg transition-colors ${
+            className={`flex flex-col items-center gap-1.5 px-4 py-3 min-h-[56px] min-w-[56px] rounded-xl transition-colors touch-manipulation ${
               pathname === "/services" 
                 ? "text-[#FC4B01]" 
                 : "text-muted-foreground"
             }`}
           >
-            <span className="text-xs font-medium">{t.nav.services}</span>
+            <span className="text-sm font-medium">{t.nav.services}</span>
           </Link>
           
           <Link 
             href="/about" 
-            className={`flex flex-col items-center gap-1 px-3 py-1.5 rounded-lg transition-colors ${
+            className={`flex flex-col items-center gap-1.5 px-4 py-3 min-h-[56px] min-w-[56px] rounded-xl transition-colors touch-manipulation ${
               pathname === "/about" 
                 ? "text-[#FC4B01]" 
                 : "text-muted-foreground"
             }`}
           >
-            <span className="text-xs font-medium">{t.nav.about}</span>
+            <span className="text-sm font-medium">{t.nav.about}</span>
           </Link>
           
           <Link 
             href="/contact" 
-            className={`flex flex-col items-center gap-1 px-3 py-1.5 rounded-lg transition-colors ${
+            className={`flex flex-col items-center gap-1.5 px-4 py-3 min-h-[56px] min-w-[56px] rounded-xl transition-colors touch-manipulation ${
               pathname === "/contact" 
                 ? "text-[#FC4B01]" 
                 : "text-muted-foreground"
             }`}
           >
-            <span className="text-xs font-medium">{t.nav.contact}</span>
+            <span className="text-sm font-medium">{t.nav.contact}</span>
           </Link>
         </div>
       </motion.div>
