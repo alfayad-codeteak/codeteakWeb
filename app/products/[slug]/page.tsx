@@ -277,7 +277,8 @@ export default function ProductDetailPage() {
             </div>
 
             {/* Center - App Mockup with Floating Elements */}
-            <div className="relative mt-8 md:mt-16 flex justify-center items-center gap-4 md:gap-8 overflow-hidden">
+            <div className="relative mt-8 md:mt-16 py-8 md:py-12 overflow-hidden">
+              <div className="relative w-full flex justify-center items-center gap-4 md:gap-8">
               {/* Red Mockup - Left */}
               <motion.div
                 initial={{ opacity: 0, scale: 0.3, x: -150, y: 80, rotate: -10 }}
@@ -299,7 +300,7 @@ export default function ProductDetailPage() {
               >
                 <motion.div
                   animate={{
-                    y: [0, -18, 0],
+                    y: [0, -15, 0],
                   }}
                   transition={{
                     y: {
@@ -310,6 +311,7 @@ export default function ProductDetailPage() {
                     }
                   }}
                   className="w-48 h-[360px] sm:w-64 sm:h-[480px] md:w-80 md:h-[600px] flex items-center justify-center"
+                  style={{ willChange: 'transform' }}
                 >
                   <Image
                     src="/mockup/red.png"
@@ -338,7 +340,7 @@ export default function ProductDetailPage() {
               >
                 <motion.div
                   animate={{
-                    y: [0, -25, 0],
+                    y: [0, -20, 0],
                   }}
                   transition={{
                     y: {
@@ -349,6 +351,7 @@ export default function ProductDetailPage() {
                     }
                   }}
                   className="w-48 h-[360px] sm:w-64 sm:h-[480px] md:w-80 md:h-[600px] flex items-center justify-center"
+                  style={{ willChange: 'transform' }}
                 >
                   <Image
                     src="/mockup/mockup-yaadro.png"
@@ -382,7 +385,7 @@ export default function ProductDetailPage() {
               >
                 <motion.div
                   animate={{
-                    y: [0, -18, 0],
+                    y: [0, -15, 0],
                   }}
                   transition={{
                     y: {
@@ -393,6 +396,7 @@ export default function ProductDetailPage() {
                     }
                   }}
                   className="w-48 h-[360px] sm:w-64 sm:h-[480px] md:w-80 md:h-[600px] flex items-center justify-center"
+                  style={{ willChange: 'transform' }}
                 >
                   <Image
                     src="/mockup/blue.png"
@@ -403,7 +407,7 @@ export default function ProductDetailPage() {
                   />
               </motion.div>
             </motion.div>
-              
+              </div>
             </div>
           </div>
         </section>
@@ -982,7 +986,7 @@ export default function ProductDetailPage() {
             <motion.div
               className="absolute inset-0 flex items-center justify-center pointer-events-none z-0"
             >
-              <h1 className="text-[16rem] sm:text-[18rem] md:text-[20rem] lg:text-[22rem] xl:text-[24rem] 2xl:text-[30rem] font-black text-foreground dark:text-foreground/20 select-none leading-none tracking-tighter flex"
+              <h1 className="text-[16rem] sm:text-[18rem] md:text-[20rem] lg:text-[28rem] xl:text-[32rem] 2xl:text-[38rem] font-black text-foreground dark:text-foreground/20 select-none leading-none tracking-tighter flex"
                 style={{
                   WebkitTextStroke: theme === "dark" ? "1px rgba(255,255,255,0.1)" : "1px rgba(0,0,0,0.1)",
                 } as React.CSSProperties}

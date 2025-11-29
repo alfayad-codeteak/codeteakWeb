@@ -274,17 +274,6 @@ export default function Footer() {
                   <ArrowRight className="w-5 h-5" />
                 </Link>
               </div>
-              <div>
-                <h3 className="text-foreground font-semibold mb-2 text-sm uppercase tracking-wide">{t.footer.courses}</h3>
-                <p className="text-muted-foreground text-sm mb-3">Creative tools</p>
-                <Link
-                  href="/#courses"
-                  className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-foreground text-background hover:opacity-90 transition-opacity"
-                  aria-label={t.footer.courses}
-                >
-                  <ArrowRight className="w-5 h-5" />
-                </Link>
-              </div>
             </div>
           </div>
 

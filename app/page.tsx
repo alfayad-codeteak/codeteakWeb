@@ -52,6 +52,18 @@ export default function Home() {
     email: '',
     message: ''
   });
+  const [formErrors, setFormErrors] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    message: ''
+  });
+  const [touchedFields, setTouchedFields] = useState({
+    firstName: false,
+    lastName: false,
+    email: false,
+    message: false
+  });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<{
     type: 'success' | 'error' | null;
@@ -133,20 +145,128 @@ export default function Home() {
   };
 
   // Contact form handlers
+  // Validation functions
+  const validateField = (name: string, value: string): string => {
+    switch (name) {
+      case 'firstName':
+        if (!value.trim()) {
+          return 'First name is required';
+        }
+        if (value.trim().length < 2) {
+          return 'First name must be at least 2 characters';
+        }
+        if (!/^[a-zA-Z\s'-]+$/.test(value.trim())) {
+          return 'First name can only contain letters, spaces, hyphens, and apostrophes';
+        }
+        return '';
+      
+      case 'lastName':
+        if (!value.trim()) {
+          return 'Last name is required';
+        }
+        if (value.trim().length < 2) {
+          return 'Last name must be at least 2 characters';
+        }
+        if (!/^[a-zA-Z\s'-]+$/.test(value.trim())) {
+          return 'Last name can only contain letters, spaces, hyphens, and apostrophes';
+        }
+        return '';
+      
+      case 'email':
+        if (!value.trim()) {
+          return 'Email address is required';
+        }
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(value.trim())) {
+          return 'Please enter a valid email address (e.g., name@example.com)';
+        }
+        return '';
+      
+      case 'message':
+        if (!value.trim()) {
+          return 'Message is required';
+        }
+        if (value.trim().length < 10) {
+          return 'Message must be at least 10 characters long';
+        }
+        if (value.trim().length > 1000) {
+          return 'Message must be less than 1000 characters';
+        }
+        return '';
+      
+      default:
+        return '';
+    }
+  };
+
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({
       ...prev,
       [name]: value
     }));
+    
+    // Validate field in real-time if it has been touched
+    if (touchedFields[name as keyof typeof touchedFields]) {
+      const error = validateField(name, value);
+      setFormErrors(prev => ({
+        ...prev,
+        [name]: error
+      }));
+    }
+    
     // Clear status message when user starts typing
     if (submitStatus.type) {
       setSubmitStatus({ type: null, message: '' });
     }
   };
 
+  const handleBlur = (e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setTouchedFields(prev => ({
+      ...prev,
+      [name]: true
+    }));
+    
+    // Validate on blur
+    const error = validateField(name, value);
+    setFormErrors(prev => ({
+      ...prev,
+      [name]: error
+    }));
+  };
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    
+    // Mark all fields as touched
+    setTouchedFields({
+      firstName: true,
+      lastName: true,
+      email: true,
+      message: true
+    });
+
+    // Validate all fields
+    const errors = {
+      firstName: validateField('firstName', formData.firstName),
+      lastName: validateField('lastName', formData.lastName),
+      email: validateField('email', formData.email),
+      message: validateField('message', formData.message)
+    };
+
+    setFormErrors(errors);
+
+    // Check if there are any errors
+    const hasErrors = Object.values(errors).some(error => error !== '');
+    if (hasErrors) {
+      setSubmitStatus({
+        type: 'error',
+        message: 'Please fix the errors above before submitting.'
+      });
+      return;
+    }
+
     setIsSubmitting(true);
     setSubmitStatus({ type: null, message: '' });
 
@@ -166,12 +286,24 @@ export default function Home() {
           type: 'success',
           message: data.message || 'Thank you for your message! We will get back to you soon.'
         });
-        // Reset form
+        // Reset form and validation
         setFormData({
           firstName: '',
           lastName: '',
           email: '',
           message: ''
+        });
+        setFormErrors({
+          firstName: '',
+          lastName: '',
+          email: '',
+          message: ''
+        });
+        setTouchedFields({
+          firstName: false,
+          lastName: false,
+          email: false,
+          message: false
         });
       } else {
         setSubmitStatus({
@@ -651,17 +783,24 @@ export default function Home() {
               <p className="text-foreground font-mono text-sm leading-relaxed">
                 {t.contact.phone}: <a href="tel:+919995203149" className="text-[#FC4B01] hover:underline">+91 99952 03149</a>
               </p>
-              <div className="space-y-2 pt-2">
-                <p className="text-foreground font-mono text-sm font-semibold">Bengaluru Office:</p>
-                <p className="text-foreground font-mono text-xs leading-relaxed">
-                  Arine Amaryllis, Akshayanagara West, Akshaya Gardens,<br />
-                  Akshayanagar, Bengaluru, Karnataka 560114
-                </p>
-                <p className="text-foreground font-mono text-sm font-semibold pt-2">Dubai Office:</p>
-                <p className="text-foreground font-mono text-xs leading-relaxed">
-                  Room No. 4, Index Exchange Building,<br />
-                  Opposite Wimpy Restaurant, Naif Road, Dubai
-                </p>
+              <div className="space-y-3 pt-2">
+                <h3 className="text-foreground font-mono text-sm font-semibold uppercase tracking-wide">Offices</h3>
+                <ul className="space-y-3">
+                  <li>
+                    <p className="text-foreground font-mono text-xs font-medium mb-1">Bengaluru</p>
+                    <p className="text-foreground font-mono text-xs leading-relaxed">
+                      Arine Amaryllis, Akshayanagara West, Akshaya Gardens,<br />
+                      Akshayanagar, Bengaluru, Karnataka 560114
+                    </p>
+                  </li>
+                  <li>
+                    <p className="text-foreground font-mono text-xs font-medium mb-1">Dubai</p>
+                    <p className="text-foreground font-mono text-xs leading-relaxed">
+                      Room No. 4, Index Exchange Building,<br />
+                      Opposite Wimpy Restaurant, Naif Road, Dubai
+                    </p>
+                  </li>
+                </ul>
               </div>
             </motion.div>
 
@@ -673,7 +812,7 @@ export default function Home() {
               transition={{ duration: 0.6 }}
               className="space-y-8"
             >
-              <form className="space-y-8" onSubmit={handleSubmit}>
+              <form className="space-y-8" onSubmit={handleSubmit} noValidate>
                 {/* Name Field */}
                 <div>
                   <label className="block text-foreground font-mono text-sm mb-4">
@@ -686,11 +825,18 @@ export default function Home() {
                         name="firstName"
                         value={formData.firstName}
                         onChange={handleInputChange}
+                        onBlur={handleBlur}
                         placeholder={t.contact.form.firstName}
-                        className="w-full bg-transparent text-foreground font-mono text-sm pb-2 border-b border-foreground/30 focus:border-foreground focus:outline-none placeholder:text-foreground/50"
-                        required
+                        className={`w-full bg-transparent text-foreground font-mono text-sm pb-2 border-b focus:outline-none placeholder:text-foreground/50 transition-colors ${
+                          formErrors.firstName && touchedFields.firstName
+                            ? 'border-red-500 focus:border-red-500'
+                            : 'border-foreground/30 focus:border-foreground'
+                        }`}
                         disabled={isSubmitting}
                       />
+                      {formErrors.firstName && touchedFields.firstName && (
+                        <p className="text-red-500 text-xs font-mono mt-1">{formErrors.firstName}</p>
+                      )}
                     </div>
                     <div className="relative">
                       <input
@@ -698,11 +844,18 @@ export default function Home() {
                         name="lastName"
                         value={formData.lastName}
                         onChange={handleInputChange}
+                        onBlur={handleBlur}
                         placeholder={t.contact.form.lastName}
-                        className="w-full bg-transparent text-foreground font-mono text-sm pb-2 border-b border-foreground/30 focus:border-foreground focus:outline-none placeholder:text-foreground/50"
-                        required
+                        className={`w-full bg-transparent text-foreground font-mono text-sm pb-2 border-b focus:outline-none placeholder:text-foreground/50 transition-colors ${
+                          formErrors.lastName && touchedFields.lastName
+                            ? 'border-red-500 focus:border-red-500'
+                            : 'border-foreground/30 focus:border-foreground'
+                        }`}
                         disabled={isSubmitting}
                       />
+                      {formErrors.lastName && touchedFields.lastName && (
+                        <p className="text-red-500 text-xs font-mono mt-1">{formErrors.lastName}</p>
+                      )}
                     </div>
                   </div>
                 </div>
@@ -719,11 +872,18 @@ export default function Home() {
                       name="email"
                       value={formData.email}
                       onChange={handleInputChange}
+                      onBlur={handleBlur}
                       placeholder={t.contact.form.email}
-                      className="w-full bg-transparent text-foreground font-mono text-sm pb-2 border-b border-foreground/30 focus:border-foreground focus:outline-none placeholder:text-foreground/50"
-                      required
+                      className={`w-full bg-transparent text-foreground font-mono text-sm pb-2 border-b focus:outline-none placeholder:text-foreground/50 transition-colors ${
+                        formErrors.email && touchedFields.email
+                          ? 'border-red-500 focus:border-red-500'
+                          : 'border-foreground/30 focus:border-foreground'
+                      }`}
                       disabled={isSubmitting}
                     />
+                    {formErrors.email && touchedFields.email && (
+                      <p className="text-red-500 text-xs font-mono mt-1">{formErrors.email}</p>
+                    )}
                   </div>
                 </div>
 
@@ -737,12 +897,19 @@ export default function Home() {
                       name="message"
                       value={formData.message}
                       onChange={handleInputChange}
+                      onBlur={handleBlur}
                       placeholder={t.contact.form.message}
                       rows={4}
-                      className="w-full bg-transparent text-foreground font-mono text-sm pb-2 border-b border-foreground/30 focus:border-foreground focus:outline-none placeholder:text-foreground/50 resize-none"
-                      required
+                      className={`w-full bg-transparent text-foreground font-mono text-sm pb-2 border-b focus:outline-none placeholder:text-foreground/50 resize-none transition-colors ${
+                        formErrors.message && touchedFields.message
+                          ? 'border-red-500 focus:border-red-500'
+                          : 'border-foreground/30 focus:border-foreground'
+                      }`}
                       disabled={isSubmitting}
                     />
+                    {formErrors.message && touchedFields.message && (
+                      <p className="text-red-500 text-xs font-mono mt-1">{formErrors.message}</p>
+                    )}
                   </div>
                 </div>
 
