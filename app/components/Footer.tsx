@@ -196,7 +196,7 @@ export default function Footer() {
               <h3 className="text-foreground font-semibold mb-4 text-sm uppercase tracking-wide">{t.footer.explore.title}</h3>
               <ul className="space-y-2">
                 <li>
-                  <Link href="/#home" className="text-muted-foreground hover:text-[#FC4B01] transition-colors text-sm">
+                  <Link href="/" className="text-muted-foreground hover:text-[#FC4B01] transition-colors text-sm">
                     {t.footer.explore.home}
                   </Link>
                 </li>
@@ -206,7 +206,7 @@ export default function Footer() {
                   </Link>
                 </li>
                 <li>
-                  <Link href="/#services" className="text-muted-foreground hover:text-[#FC4B01] transition-colors text-sm">
+                  <Link href="/services" className="text-muted-foreground hover:text-[#FC4B01] transition-colors text-sm">
                     {t.footer.explore.services}
                   </Link>
                 </li>
@@ -216,7 +216,7 @@ export default function Footer() {
                   </Link>
                 </li>
                 <li>
-                  <Link href="/#contact" className="text-muted-foreground hover:text-[#FC4B01] transition-colors text-sm">
+                  <Link href="/contact" className="text-muted-foreground hover:text-[#FC4B01] transition-colors text-sm">
                     {t.footer.explore.contact}
                   </Link>
                 </li>
@@ -259,7 +259,7 @@ export default function Footer() {
                 <h3 className="text-[#FC4B01] font-semibold mb-2 text-sm uppercase tracking-wide">{t.footer.call}</h3>
                 <p className="text-muted-foreground text-sm mb-3">Let&apos;s work together</p>
                 <Link
-                  href="/#contact"
+                  href="/contact"
                   className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-[#FC4B01] text-white hover:opacity-90 transition-opacity"
                   aria-label={t.footer.call}
                 >
