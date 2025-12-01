@@ -79,10 +79,9 @@ export default function Navigation({
   }, [isMobileProductOpen]);
 
   const socialLinks = [
-    { icon: Twitter, href: "#", label: "Twitter" },
-    { icon: Linkedin, href: "#", label: "LinkedIn" },
-    { icon: Github, href: "#", label: "GitHub" },
-    { icon: Instagram, href: "#", label: "Instagram" },
+    { icon: X, href: "https://x.com/codeteak?t=iIu80ylAp0skTJhbg7FugQ&s=08", label: "X (Twitter)" },
+    { icon: Linkedin, href: "https://www.linkedin.com/company/codeteak/posts/?feedView=all", label: "LinkedIn" },
+    { icon: Instagram, href: "https://www.instagram.com/codeteaks/?igsh=MXZrYngxYTU2Mzh5Nw%3D%3D#", label: "Instagram" },
   ];
 
   const isHomePage = pathname === "/";
@@ -379,6 +378,8 @@ export default function Navigation({
             <a
               key={social.label}
               href={social.href}
+              target="_blank"
+              rel="noopener noreferrer"
               className="text-muted-foreground hover:text-[#FC4B01] transition-colors"
               aria-label={social.label}
             >
