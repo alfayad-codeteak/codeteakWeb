@@ -27,7 +27,7 @@ interface ServicesSectionProps {
 }
 
 export default function ServicesSection({ language, isStandalonePage = false }: ServicesSectionProps) {
-  const [activeTab, setActiveTab] = useState<"cyberSecurity" | "productEngineering" | "productDesign">("cyberSecurity");
+  const [activeTab, setActiveTab] = useState<"cyberSecurity" | "productEngineering" | "productDesign">("productEngineering");
   const touchStartX = useRef<number | null>(null);
   const touchEndX = useRef<number | null>(null);
   const touchStartY = useRef<number | null>(null);
