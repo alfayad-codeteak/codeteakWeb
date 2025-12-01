@@ -209,7 +209,7 @@ export default function ProductDetailPage() {
       }
     ];
 
-    const partners = ["Loyal City", "Greens Fresh Mart", "Fresh World", "Families", "Mythri", "Dream Mart" , "Milliens" , "Rolla" , "All Season", "BigMart", "Brigade","Season Fresh","FreshCo Hyper", "Market Fresh","Grand Fresh Hyper Mart"
+    const partners = ["Loyal City", "Greens Fresh Mart", "Fresh World", "Families", "Mythri", "Dream Mart" , "Millions" , "Rolla" , "All Season", "BigMart", "Brigade","Season Fresh","FreshCo Hyper", "Market Fresh","Grand Fresh Hyper Mart"
     ];
 
     return (

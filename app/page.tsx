@@ -597,7 +597,7 @@ export default function Home() {
                 {/* Render partners twice for seamless loop */}
               {[...Array(2)].map((_, setIndex) => (
                   <div key={`marquee1-${setIndex}`} className="flex gap-8 md:gap-12 items-center flex-shrink-0">
-                    {["Loyal City", "Greens Fresh Mart", "Fresh World", "Families", "Mythri", "Dream Mart", "Milliens", "Rolla", "All Season", "BigMart", "Brigade", "Season Fresh", "FreshCo Hyper", "Market Fresh", "Grand Fresh Hyper Mart"].map((partner) => (
+                    {["Loyal City", "Greens Fresh Mart", "Fresh World", "Families", "Mythri", "Dream Mart", "Millions", "Rolla", "All Season", "BigMart", "Brigade", "Season Fresh", "FreshCo Hyper", "Market Fresh", "Grand Fresh Hyper Mart"].map((partner) => (
                       <div
                         key={`${setIndex}-${partner}`}
                         className="flex-shrink-0 text-2xl font-semibold text-muted-foreground/60 whitespace-nowrap"
@@ -629,7 +629,7 @@ export default function Home() {
                 {/* Render partners twice for seamless loop */}
                 {[...Array(2)].map((_, setIndex) => (
                   <div key={`marquee2-${setIndex}`} className="flex gap-8 md:gap-12 items-center flex-shrink-0">
-                    {["Loyal City", "Greens Fresh Mart", "Fresh World", "Families", "Mythri", "Dream Mart", "Milliens", "Rolla", "All Season", "BigMart", "Brigade", "Season Fresh", "FreshCo Hyper", "Market Fresh", "Grand Fresh Hyper Mart"].map((partner) => (
+                    {["Loyal City", "Greens Fresh Mart", "Fresh World", "Families", "Mythri", "Dream Mart", "Millions", "Rolla", "All Season", "BigMart", "Brigade", "Season Fresh", "FreshCo Hyper", "Market Fresh", "Grand Fresh Hyper Mart"].map((partner) => (
                       <div
                         key={`${setIndex}-${partner}`}
                         className="flex-shrink-0 text-2xl font-semibold text-muted-foreground/60 whitespace-nowrap"
