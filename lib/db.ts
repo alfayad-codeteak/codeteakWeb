@@ -25,15 +25,18 @@ async function connectDB() {
     throw error;
   }
 
-  // Check if mongoose is already connected
+  // Check if mongoose is already connected (readyState: 0=disconnected, 1=connected)
   if (mongoose.connection.readyState === 1) {
-    console.log('MongoDB already connected (readyState: 1)');
+    console.log('MongoDB already connected');
     return mongoose.connection;
   }
 
-  if (cached.conn && mongoose.connection.readyState === 1) {
-    console.log('Using cached MongoDB connection');
-    return cached.conn;
+  if (cached.conn) {
+    // Check if the cached connection is still valid
+    if ((mongoose.connection as any).readyState === 1) {
+      console.log('Using cached MongoDB connection');
+      return cached.conn;
+    }
   }
 
   if (!cached.promise) {
@@ -65,12 +68,6 @@ async function connectDB() {
 
   try {
     cached.conn = await cached.promise;
-    
-    // Verify connection is ready
-    if (mongoose.connection.readyState !== 1) {
-      console.warn('MongoDB connection readyState is not 1:', mongoose.connection.readyState);
-      console.warn('ReadyState values: 0=disconnected, 1=connected, 2=connecting, 3=disconnecting');
-    }
   } catch (e: any) {
     cached.promise = null;
     console.error('Error in MongoDB connection promise:', e?.message || e);

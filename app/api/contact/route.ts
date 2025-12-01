@@ -235,7 +235,20 @@ export async function GET(request: NextRequest) {
     const limit = parseInt(searchParams.get('limit') || '100', 10);
     const skip = (page - 1) * limit;
 
-    let allSubmissions;
+    // Type for submission response (handles both MongoDB and in-memory store)
+    type SubmissionResponse = {
+      _id?: string | any;
+      id?: string;
+      firstName: string;
+      lastName?: string;
+      email: string;
+      message: string;
+      timestamp: Date | string;
+      createdAt?: Date | string;
+      status?: 'new' | 'solved';
+    };
+
+    let allSubmissions: SubmissionResponse[] = [];
     let totalCount = 0;
     
     // Fetch from database if MongoDB is configured, otherwise use in-memory
@@ -252,7 +265,7 @@ export async function GET(request: NextRequest) {
         
         // Optimized query with indexed fields, efficient sorting, and pagination
         console.log(`Fetching submissions (page: ${page}, limit: ${limit})...`);
-        allSubmissions = await ContactSubmission.find({})
+        const dbSubmissions = await ContactSubmission.find({})
           .sort({ timestamp: -1, createdAt: -1 })
           .skip(skip)
           .limit(limit)
@@ -260,13 +273,19 @@ export async function GET(request: NextRequest) {
           .select('firstName lastName email message timestamp status createdAt')
           .exec();
         
-        console.log(`Successfully fetched ${allSubmissions?.length || 0} submissions`);
+        // Convert MongoDB documents to response format (convert ObjectId to string)
+        allSubmissions = (Array.isArray(dbSubmissions) ? dbSubmissions : []).map((doc: any) => ({
+          _id: doc._id?.toString() || doc._id,
+          firstName: doc.firstName,
+          lastName: doc.lastName || '',
+          email: doc.email,
+          message: doc.message,
+          timestamp: doc.timestamp,
+          createdAt: doc.createdAt,
+          status: doc.status || 'new',
+        }));
         
-        // Ensure allSubmissions is an array
-        if (!Array.isArray(allSubmissions)) {
-          console.error('Error: allSubmissions is not an array:', typeof allSubmissions);
-          allSubmissions = [];
-        }
+        console.log(`Successfully fetched ${allSubmissions?.length || 0} submissions`);
       } catch (dbError: any) {
         console.error('Database error:', dbError);
         console.error('Error details:', {
@@ -293,11 +312,20 @@ export async function GET(request: NextRequest) {
       // Simple pagination for in-memory store
       allSubmissions = all
         .sort((a, b) => {
-          const dateA = new Date(a.timestamp || a.createdAt || 0).getTime();
-          const dateB = new Date(b.timestamp || b.createdAt || 0).getTime();
+          const dateA = new Date(a.timestamp || 0).getTime();
+          const dateB = new Date(b.timestamp || 0).getTime();
           return dateB - dateA;
         })
-        .slice(skip, skip + limit);
+        .slice(skip, skip + limit)
+        .map((sub) => ({
+          id: sub.id,
+          firstName: sub.firstName,
+          lastName: sub.lastName || '',
+          email: sub.email,
+          message: sub.message,
+          timestamp: sub.timestamp,
+          status: sub.status || 'new',
+        }));
     }
 
     // Ensure we always return an array
