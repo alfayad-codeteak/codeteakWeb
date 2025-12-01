@@ -161,13 +161,8 @@ export default function Home() {
         return '';
       
       case 'lastName':
-        if (!value.trim()) {
-          return 'Last name is required';
-        }
-        if (value.trim().length < 2) {
-          return 'Last name must be at least 2 characters';
-        }
-        if (!/^[a-zA-Z\s'-]+$/.test(value.trim())) {
+        // Last name is optional, but if provided, validate format
+        if (value.trim() && !/^[a-zA-Z\s'-]+$/.test(value.trim())) {
           return 'Last name can only contain letters, spaces, hyphens, and apostrophes';
         }
         return '';
@@ -796,7 +791,7 @@ export default function Home() {
                   <li>
                     <p className="text-foreground font-mono text-xs font-medium mb-1">Dubai</p>
                     <p className="text-foreground font-mono text-xs leading-relaxed">
-                      Room No. 4, Index Exchange Building,<br />
+                      Index Exchange Building,<br />
                       Opposite Wimpy Restaurant, Naif Road, Dubai
                     </p>
                   </li>

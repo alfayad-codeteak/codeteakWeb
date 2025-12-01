@@ -2,7 +2,7 @@ import mongoose, { Schema, Document, Model } from 'mongoose';
 
 export interface IContactSubmission extends Document {
   firstName: string;
-  lastName: string;
+  lastName?: string;
   email: string;
   message: string;
   timestamp: Date;
@@ -18,8 +18,9 @@ const ContactSubmissionSchema = new Schema<IContactSubmission>({
   },
   lastName: {
     type: String,
-    required: true,
+    required: false,
     trim: true,
+    default: '',
   },
   email: {
     type: String,
@@ -45,6 +46,14 @@ const ContactSubmissionSchema = new Schema<IContactSubmission>({
 }, {
   timestamps: true, // Adds createdAt and updatedAt automatically
 });
+
+// Create indexes for faster queries
+ContactSubmissionSchema.index({ timestamp: -1 });
+ContactSubmissionSchema.index({ createdAt: -1 });
+ContactSubmissionSchema.index({ status: 1 });
+ContactSubmissionSchema.index({ email: 1 });
+// Compound index for common query patterns
+ContactSubmissionSchema.index({ status: 1, timestamp: -1 });
 
 // Create model only if it doesn't exist
 const ContactSubmission: Model<IContactSubmission> = 

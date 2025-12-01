@@ -7,7 +7,6 @@ import {
   ArrowRight, 
   X,
   Instagram,
-  Youtube,
   Facebook,
   Linkedin as LinkedinIcon,
   Cloud,
@@ -150,37 +149,30 @@ export default function Footer() {
   }> = [
     { 
       icon: X, 
-      href: "#", 
+      href: "https://x.com/codeteak?t=iIu80ylAp0skTJhbg7FugQ&s=08", 
       label: "X", 
       username: "@codeteak",
       color: "#000000"
     },
     { 
       icon: Instagram, 
-      href: "#", 
+      href: "https://www.instagram.com/codeteaks/?igsh=MXZrYngxYTU2Mzh5Nw%3D%3D#", 
       label: "Instagram", 
-      username: "codeteaks",
+      username: "@codeteaks",
       color: "#E4405F"
     },
     { 
       icon: LinkedinIcon, 
-      href: "#", 
+      href: "https://www.linkedin.com/company/codeteak/posts/?feedView=all", 
       label: "Linkedin", 
-      username: "Codeteak",
+      username: "Codeteak Technologies",
       color: "#0077B5"
     },
     { 
-      icon: Youtube, 
-      href: "#", 
-      label: "YouTube", 
-      username: "@codeteak",
-      color: "#FF0000"
-    },
-    { 
       icon: Facebook, 
-      href: "#", 
+      href: "https://www.facebook.com/people/Codeteak-Technologies/61575111071671/?rdid=YzoAuLyGjjnxVISj&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1CcJ4jCFns%2F", 
       label: "Facebook", 
-      username: "@codeteak",
+      username: "Codeteak Technologies",
       color: "#1877F2"
     },
   ];
@@ -231,7 +223,7 @@ export default function Footer() {
               </ul>
             </div>
 
-            {/* Middle-Right Column - Follow Me */}
+            {/* Middle-Right Column - Follow Us */}
             <div>
               <h3 className="text-foreground font-semibold mb-4 text-sm uppercase tracking-wide">{t.footer.follow.title}</h3>
               <ul className="space-y-3">
@@ -348,7 +340,7 @@ export default function Footer() {
                       <div className="bg-foreground text-background text-xs rounded-lg px-3 py-2 shadow-lg max-w-xs whitespace-normal">
                         <p className="font-medium mb-1">Dubai Office</p>
                         <p className="text-background/90">
-                          Room No. 4, Index Exchange Building, Opposite Wimpy Restaurant, Naif Road
+                          Index Exchange Building, Opposite Wimpy Restaurant, Naif Road
                         </p>
                         <div className="absolute top-full left-4 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-foreground"></div>
                       </div>

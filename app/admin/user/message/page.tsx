@@ -66,14 +66,28 @@ export default function AdminMessagesPage() {
 
       if (response.ok) {
         const data = await response.json();
+        console.log("API Response:", {
+          success: data.success,
+          count: data.count,
+          totalCount: data.totalCount,
+          mongoConfigured: data.mongoConfigured,
+          submissionsCount: data.submissions?.length || 0
+        });
         setSubmissions(data.submissions || []);
+        
+        // Show warning if MongoDB is not configured
+        if (data.mongoConfigured === false) {
+          console.warn("MongoDB is not configured. Messages will not persist.");
+        }
       } else {
-        console.error("Failed to fetch messages");
+        console.error("Failed to fetch messages. Status:", response.status);
         const errorData = await response.json();
-        console.error("Error:", errorData);
+        console.error("Error details:", errorData);
+        alert(`Failed to fetch messages: ${errorData.error || 'Unknown error'}`);
       }
-    } catch (error) {
+    } catch (error: any) {
       console.error("Error fetching messages:", error);
+      alert(`Error fetching messages: ${error?.message || 'Network error. Please check your connection and try again.'}`);
     } finally {
       setIsLoadingMessages(false);
     }

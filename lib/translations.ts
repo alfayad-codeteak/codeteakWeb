@@ -252,7 +252,7 @@ export const translations = {
         contact: "Contact",
       },
       follow: {
-        title: "Follow me",
+        title: "Follow Us",
       },
       call: "Call CodeTeak",
       courses: "Courses & Tools",
@@ -669,7 +669,7 @@ export const translations = {
         contact: "اتصل بنا",
       },
       follow: {
-        title: "تابعني",
+        title: "تابعنا",
       },
       call: "اتصل بكودتيك",
       courses: "الدورات والأدوات",

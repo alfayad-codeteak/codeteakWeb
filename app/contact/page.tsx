@@ -120,13 +120,8 @@ export default function ContactPage() {
         return '';
       
       case 'lastName':
-        if (!value.trim()) {
-          return 'Last name is required';
-        }
-        if (value.trim().length < 2) {
-          return 'Last name must be at least 2 characters';
-        }
-        if (!/^[a-zA-Z\s'-]+$/.test(value.trim())) {
+        // Last name is optional, but if provided, validate format
+        if (value.trim() && !/^[a-zA-Z\s'-]+$/.test(value.trim())) {
           return 'Last name can only contain letters, spaces, hyphens, and apostrophes';
         }
         return '';
@@ -300,7 +295,7 @@ export default function ContactPage() {
       />
 
       {/* Contact Section */}
-      <section className="py-12 md:py-20 px-4 sm:px-6 lg:px-8 bg-background min-h-screen flex items-center pb-20 md:pb-20">
+      <section className="pt-24 pb-20 md:py-20 px-4 sm:px-6 lg:px-8 bg-background min-h-screen flex items-center">
         <div className="container mx-auto max-w-7xl w-full">
           {/* Large Title with Animated Letters */}
           <h2 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl 2xl:text-[12rem] font-bold mb-8 md:mb-16 uppercase tracking-tight leading-none flex flex-wrap items-center">
@@ -437,7 +432,7 @@ export default function ContactPage() {
                   <li>
                     <p className="text-foreground font-mono text-sm font-medium mb-2">Dubai</p>
                     <p className="text-foreground font-mono text-sm leading-relaxed mb-2">
-                      Room No. 4, Index Exchange Building,<br />
+                      Index Exchange Building,<br />
                       Opposite Wimpy Restaurant,<br />
                       Naif Road, Dubai
                     </p>
