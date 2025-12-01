@@ -60,9 +60,28 @@ export async function POST(request: NextRequest) {
         submissionsStore.addSubmission(savedSubmission);
         console.log('Submission stored in memory:', submissionId);
       }
-    } catch (dbError) {
+    } catch (dbError: any) {
       console.error('Database storage error:', dbError);
-      // Continue even if database storage fails
+      console.error('Error details:', {
+        message: dbError?.message,
+        name: dbError?.name,
+        code: dbError?.code
+      });
+      
+      // Fall back to in-memory storage if database fails
+      console.warn('Database save failed, storing in memory as fallback');
+      const submissionId = `sub_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+      savedSubmission = {
+        id: submissionId,
+        firstName,
+        lastName: lastName || '',
+        email,
+        message,
+        timestamp: timestamp.toISOString(),
+        status: 'new' as const,
+      };
+      submissionsStore.addSubmission(savedSubmission);
+      console.log('Submission stored in memory as fallback:', submissionId);
     }
 
     // Return response immediately - emails will be sent asynchronously
@@ -295,15 +314,26 @@ export async function GET(request: NextRequest) {
           mongoUri: process.env.MONGODB_URI ? 'MONGODB_URI is set' : 'MONGODB_URI is NOT set'
         });
         
-        // Return error details in development/staging, generic error in production
-        return NextResponse.json(
-          { 
-            error: 'Failed to fetch submissions from database',
-            details: process.env.NODE_ENV === 'development' ? dbError?.message : undefined,
-            mongoConfigured: !!process.env.MONGODB_URI
-          },
-          { status: 500 }
-        );
+        // Fall back to in-memory store if database connection fails
+        console.warn('MongoDB connection failed, falling back to in-memory store');
+        const all = submissionsStore.getSubmissions();
+        totalCount = all.length;
+        allSubmissions = all
+          .sort((a, b) => {
+            const dateA = new Date(a.timestamp || 0).getTime();
+            const dateB = new Date(b.timestamp || 0).getTime();
+            return dateB - dateA;
+          })
+          .slice(skip, skip + limit)
+          .map((sub) => ({
+            id: sub.id,
+            firstName: sub.firstName,
+            lastName: sub.lastName || '',
+            email: sub.email,
+            message: sub.message,
+            timestamp: sub.timestamp,
+            status: sub.status || 'new',
+          }));
       }
     } else {
       console.log('MONGODB_URI not configured, using in-memory store');
