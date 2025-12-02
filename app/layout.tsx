@@ -3,6 +3,9 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import ScrollToTop from "./components/ScrollToTop";
 import Footer from "./components/Footer";
+import { generateSEOMetadata } from "@/lib/metadata";
+import { OrganizationSchema, WebSiteSchema } from "./components/StructuredData";
+import GoogleAnalytics from "./components/GoogleAnalytics";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -14,10 +17,29 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export const metadata: Metadata = {
-  title: "CodeTeak - Innovative Software Solutions",
-  description: "We build cutting-edge software solutions that drive your business forward. Expert development, design, and consulting services.",
-};
+export const metadata: Metadata = generateSEOMetadata({
+  title: "Innovative Software Solutions",
+  description: "We build cutting-edge software solutions that drive your business forward. Expert development, design, and consulting services. Transform your ideas into digital excellence.",
+  keywords: [
+    "CodeTeak",
+    "software development",
+    "web development",
+    "mobile app development",
+    "cyber security",
+    "product engineering",
+    "product design",
+    "cloud infrastructure",
+    "DevOps",
+    "UI/UX design",
+    "software solutions",
+    "technology consulting",
+    "Bengaluru",
+    "Dubai",
+    "UAE",
+    "India",
+  ],
+  path: "/",
+});
 
 export default function RootLayout({
   children,
@@ -29,6 +51,9 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <GoogleAnalytics />
+        <OrganizationSchema />
+        <WebSiteSchema />
         <ScrollToTop />
         {children}
         <Footer />
