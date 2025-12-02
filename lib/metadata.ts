@@ -33,6 +33,13 @@ export function generateSEOMetadata({
 }: GenerateMetadataOptions): Metadata {
   const url = `${baseUrl}${path}`;
   const fullTitle = `${title} | ${siteName}`;
+  
+  // Ensure image URL is absolute for WhatsApp compatibility
+  const ogImageUrl = image.startsWith('http') 
+    ? image 
+    : image.startsWith('/') 
+      ? `${baseUrl}${image}` 
+      : `${baseUrl}/${image}`;
 
   const defaultKeywords = [
     "CodeTeak",
@@ -76,10 +83,11 @@ export function generateSEOMetadata({
       siteName,
       images: [
         {
-          url: image,
+          url: ogImageUrl,
           width: 1200,
           height: 630,
           alt: title,
+          type: "image/jpeg",
         },
       ],
       locale: "en_US",
@@ -89,7 +97,7 @@ export function generateSEOMetadata({
       card: "summary_large_image",
       title: fullTitle,
       description,
-      images: [image],
+      images: [ogImageUrl],
       creator: twitterHandle,
       site: twitterHandle,
     },
@@ -133,10 +141,14 @@ export function generateSEOMetadata({
     };
   }
 
-  // Add JSON-LD structured data hints in description for better SEO
+  // Add additional meta tags for WhatsApp and other platforms
   metadata.other = {
     "og:image:alt": title,
     "twitter:image:alt": title,
+    "og:image:secure_url": ogImageUrl, // WhatsApp requires secure_url
+    "og:image:type": "image/jpeg",
+    "og:image:width": "1200",
+    "og:image:height": "630",
   };
 
   return metadata;
