@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import ScrollToTop from "./components/ScrollToTop";
 import Footer from "./components/Footer";
+import SplashScreen from "./components/SplashScreen";
 import { generateSEOMetadata } from "@/lib/metadata";
 import { OrganizationSchema, WebSiteSchema } from "./components/StructuredData";
 import GoogleAnalytics from "./components/GoogleAnalytics";
@@ -51,6 +52,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <SplashScreen />
         <GoogleAnalytics />
         <OrganizationSchema />
         <WebSiteSchema />
