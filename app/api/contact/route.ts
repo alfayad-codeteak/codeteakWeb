@@ -84,6 +84,22 @@ export async function POST(request: NextRequest) {
       console.log('Submission stored in memory as fallback:', submissionId);
     }
 
+    // Append to Google Sheet via Apps Script web app if configured
+    const webhookUrl = process.env.GOOGLE_APPS_SCRIPT_WEBHOOK_URL;
+    if (webhookUrl) {
+      fetch(webhookUrl, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          firstName,
+          lastName: lastName || '',
+          email,
+          message,
+          timestamp: timestamp.toISOString(),
+        }),
+      }).catch((err) => console.error('Apps Script webhook error:', err));
+    }
+
     // Return response immediately - emails will be sent asynchronously
     const response = NextResponse.json(
       { 
