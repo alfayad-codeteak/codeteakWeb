@@ -497,45 +497,7 @@ export default function Home() {
             </motion.p>
 
             {/* Statistics */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-              className="grid grid-cols-2 sm:grid-cols-4 gap-6 sm:gap-8 mb-12"
-            >
-              <div className="text-center">
-                <div className="text-3xl sm:text-4xl font-bold text-foreground mb-1">
-                  {t.hero.stats.projects}
-                </div>
-                <div className="text-sm sm:text-base text-muted-foreground">
-                  {t.hero.stats.projectsLabel}
-                </div>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl sm:text-4xl font-bold text-foreground mb-1">
-                  {t.hero.stats.clients}
-                </div>
-                <div className="text-sm sm:text-base text-muted-foreground">
-                  {t.hero.stats.clientsLabel}
-                </div>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl sm:text-4xl font-bold text-foreground mb-1">
-                  {t.hero.stats.satisfaction}
-                </div>
-                <div className="text-sm sm:text-base text-muted-foreground">
-                  {t.hero.stats.satisfactionLabel}
-                </div>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl sm:text-4xl font-bold text-foreground mb-1">
-                  {t.hero.stats.partners}
-                </div>
-                <div className="text-sm sm:text-base text-muted-foreground">
-                  {t.hero.stats.partnersLabel}
-                </div>
-              </div>
-            </motion.div>
+            
 
             {/* CTA Button */}
             <motion.div

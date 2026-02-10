@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { RefreshCw, AlertCircle, Newspaper } from "lucide-react";
+import { RefreshCw, Newspaper } from "lucide-react";
 import NewsCard from "../components/NewsCard";
 import Navigation from "../components/Navigation";
 import { getTranslations, type Language } from "@/lib/translations";
@@ -144,24 +144,26 @@ export default function TechNewsPage() {
 
       {/* Main Content */}
       <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 pt-20 md:pt-12">
-        {/* Page Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-12"
-        >
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-muted/50 mb-6">
-            <Newspaper className="w-4 h-4 text-[#FC4B01]" />
-            <span className="text-sm font-medium text-muted-foreground">Tech News</span>
-          </div>
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground mb-4">
-            Latest Technology News
-          </h1>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Stay updated with the latest developments in technology, innovation, and digital trends
-          </p>
-        </motion.div>
+        {/* Page Header – only when not showing coming soon */}
+        {!error && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-12"
+          >
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-muted/50 mb-6">
+              <Newspaper className="w-4 h-4 text-[#FC4B01]" />
+              <span className="text-sm font-medium text-muted-foreground">Tech News</span>
+            </div>
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground mb-4">
+              Latest Technology News
+            </h1>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              Stay updated with the latest developments in technology, innovation, and digital trends
+            </p>
+          </motion.div>
+        )}
 
         {/* Loading State */}
         {loading && (
@@ -171,34 +173,23 @@ export default function TechNewsPage() {
           </div>
         )}
 
-        {/* Error State */}
+        {/* Error / Coming soon – show coming soon instead of API errors */}
         {error && !loading && (
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="max-w-2xl mx-auto bg-card border border-border rounded-xl p-8 text-center"
+            transition={{ duration: 0.5 }}
+            className="min-h-[calc(100vh-6rem)] w-full flex flex-col items-center justify-center text-center py-20"
           >
-            <AlertCircle className="w-12 h-12 text-red-500 mx-auto mb-4" />
-            <h2 className="text-2xl font-bold text-foreground mb-2">Error Loading News</h2>
-            <p className="text-muted-foreground mb-4">{error}</p>
-            {error.includes("API key") || error.includes("Authentication") ? (
-              <div className="bg-muted/50 rounded-lg p-4 mb-6 text-left text-sm">
-                <p className="font-semibold text-foreground mb-2">Setup Instructions:</p>
-                <ol className="list-decimal list-inside space-y-1 text-muted-foreground">
-                  <li>Get a free API key from <a href="https://newsapi.org/" target="_blank" rel="noopener noreferrer" className="text-[#FC4B01] hover:underline">newsapi.org</a></li>
-                  <li>Create a <code className="bg-background px-1 py-0.5 rounded text-xs">.env.local</code> file in your project root</li>
-                  <li>Add: <code className="bg-background px-1 py-0.5 rounded text-xs">NEWS_API_KEY=your_api_key_here</code></li>
-                  <li>Restart your development server</li>
-                </ol>
-              </div>
-            ) : null}
-            <button
-              onClick={fetchNews}
-              className="px-6 py-3 bg-[#FC4B01] text-white rounded-lg font-semibold hover:opacity-90 transition-opacity flex items-center gap-2 mx-auto"
-            >
-              <RefreshCw className="w-4 h-4" />
-              Try Again
-            </button>
+            <div className="max-w-2xl mx-auto">
+              <h2 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-foreground uppercase tracking-tight mb-6">
+                {t.blog.comingSoonPrefix}
+                <span className="text-[#FC4B01]">{t.blog.comingSoonHighlight}</span>
+              </h2>
+              <p className="text-muted-foreground font-mono text-sm sm:text-base leading-relaxed">
+                {t.blog.subtitle}
+              </p>
+            </div>
           </motion.div>
         )}
 

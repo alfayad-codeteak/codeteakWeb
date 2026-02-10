@@ -244,6 +244,18 @@ export const techNewsMetadata: Metadata = generateSEOMetadata({
   type: "article",
 });
 
+export const blogMetadata: Metadata = generateSEOMetadata({
+  title: "Blog",
+  description: "CodeTeak blog – articles, insights, and updates on software development, technology, and industry trends. Coming soon.",
+  path: "/blog",
+  keywords: [
+    "CodeTeak blog",
+    "software development blog",
+    "tech insights",
+    "industry updates",
+  ],
+});
+
 // Product-specific metadata generator
 export function generateProductMetadata(slug: string, title: string, description: string): Metadata {
   const productKeywords = [

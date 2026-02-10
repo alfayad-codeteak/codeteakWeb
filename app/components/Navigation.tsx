@@ -279,7 +279,7 @@ export default function Navigation({
         <Link href="/about" className={pathname === "/about" ? "text-foreground hover:text-[#FC4B01] transition-colors text-sm font-medium" : "text-muted-foreground hover:text-[#FC4B01] transition-colors text-sm"}>
           {t.nav.about}
         </Link>
-        <Link href="/tech-news" className={pathname === "/tech-news" ? "text-foreground hover:text-[#FC4B01] transition-colors text-sm font-medium" : "text-muted-foreground hover:text-[#FC4B01] transition-colors text-sm"}>
+        <Link href="/blog" className={pathname === "/blog" ? "text-foreground hover:text-[#FC4B01] transition-colors text-sm font-medium" : "text-muted-foreground hover:text-[#FC4B01] transition-colors text-sm"}>
           {t.nav.blog}
         </Link>
         <Link href="/contact" className={pathname === "/contact" ? "text-foreground hover:text-[#FC4B01] transition-colors text-sm font-medium" : "text-muted-foreground hover:text-[#FC4B01] transition-colors text-sm"}>
@@ -308,31 +308,37 @@ export default function Navigation({
               className="absolute top-full right-0 pt-3"
               onMouseEnter={() => setIsLanguageHovered(true)}
             >
-              <div className="bg-card/95 backdrop-blur-lg border border-border/50 rounded-xl shadow-2xl overflow-hidden min-w-[120px]"
+              <div className="bg-card/95 backdrop-blur-lg border border-border/50 rounded-xl shadow-2xl overflow-hidden min-w-[140px]"
                 style={{ boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)' }}
               >
                 <div className="p-2">
                   <button
                     onClick={() => onLanguageChange("en")}
-                    className={`w-full text-left px-4 py-2 rounded-lg text-sm transition-colors flex items-center gap-2 ${
+                    className={`w-full text-left px-4 py-2 rounded-lg text-sm transition-colors flex items-center gap-3 ${
                       language === "en" 
                         ? "bg-[#FC4B01]/10 text-[#FC4B01] font-medium" 
                         : "text-foreground hover:bg-muted"
                     }`}
                   >
-                    <span>🇮🇳</span>
-                    <span>{t.common.english}</span>
+                    <span className="text-lg">🇮🇳</span>
+                    <span className="flex flex-col items-start">
+                      <span className="font-medium">{t.common.india}</span>
+                      <span className="text-xs opacity-80">{t.common.english}</span>
+                    </span>
                   </button>
                   <button
                     onClick={() => onLanguageChange("ar")}
-                    className={`w-full text-left px-4 py-2 rounded-lg text-sm transition-colors flex items-center gap-2 ${
+                    className={`w-full text-left px-4 py-2 rounded-lg text-sm transition-colors flex items-center gap-3 ${
                       language === "ar" 
                         ? "bg-[#FC4B01]/10 text-[#FC4B01] font-medium" 
                         : "text-foreground hover:bg-muted"
                     }`}
                   >
-                    <span>🇦🇪</span>
-                    <span>{t.common.uae}</span>
+                    <span className="text-lg">🇦🇪</span>
+                    <span className="flex flex-col items-start">
+                      <span className="font-medium">{t.common.uae}</span>
+                      <span className="text-xs opacity-80">{t.common.arabic}</span>
+                    </span>
                   </button>
                 </div>
               </div>

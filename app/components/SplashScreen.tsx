@@ -32,6 +32,10 @@ export default function SplashScreen() {
     }
   }, []);
 
+  const skipSplash = () => {
+    setShowSplash(false);
+  };
+
   const handleVideoEnd = () => {
     setShowSplash(false);
   };
@@ -70,6 +74,15 @@ export default function SplashScreen() {
           transition={{ duration: 0.5 }}
           className="fixed inset-0 z-[9999] bg-white flex items-center justify-center"
         >
+          {/* Skip button - bottom middle (mobile & desktop) */}
+          <button
+            type="button"
+            onClick={skipSplash}
+            className="absolute bottom-6 left-1/2 -translate-x-1/2 z-10 px-5 py-2.5 text-sm font-medium text-black/70 hover:text-black bg-white/80 hover:bg-white border border-black/20 rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-black/30"
+            aria-label="Skip splash screen"
+          >
+            Skip
+          </button>
           <div className="relative w-full h-full flex items-center justify-center p-4">
             {/* Show loading state while video loads */}
             {!isVideoLoaded && (

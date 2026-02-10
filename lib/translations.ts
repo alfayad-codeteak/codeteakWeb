@@ -237,6 +237,13 @@ export const translations = {
         submit: "Send Message",
       },
     },
+    // Blog (coming soon)
+    blog: {
+      comingSoon: "Coming Soon",
+      comingSoonPrefix: "Coming ",
+      comingSoonHighlight: "Soon",
+      subtitle: "We're working on something great. Check back later for articles, insights, and updates.",
+    },
     // Footer
     footer: {
       brand: {
@@ -414,8 +421,10 @@ export const translations = {
     // Common
     common: {
       top: "Top",
-      english: "English India",
+      india: "India",
+      english: "English",
       uae: "UAE",
+      arabic: "Arabic",
     },
   },
   ar: {
@@ -654,6 +663,13 @@ export const translations = {
         submit: "إرسال الرسالة",
       },
     },
+    // Blog (coming soon)
+    blog: {
+      comingSoon: "قريباً",
+      comingSoonPrefix: "قريب",
+      comingSoonHighlight: "اً",
+      subtitle: "نحن نعمل على شيء رائع. تفضل بالعودة لاحقاً للمقالات والرؤى والتحديثات.",
+    },
     // Footer
     footer: {
       brand: {
@@ -831,8 +847,10 @@ export const translations = {
     // Common
     common: {
       top: "أعلى",
-      english: "الإنجليزية الهند",
+      india: "الهند",
+      english: "الإنجليزية",
       uae: "الإمارات",
+      arabic: "العربية",
     },
   },
 };
