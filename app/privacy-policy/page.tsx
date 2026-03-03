@@ -105,335 +105,151 @@ export default function PrivacyPolicyPage() {
               <span className="text-[#FC4B01]">Policy</span>
             </h1>
             <p className="mt-4 text-sm text-muted-foreground font-mono">
-              Last Updated: March 2, 2026
+              Last Updated: January 10, 2026
             </p>
           </header>
 
           <div className="space-y-8 text-sm md:text-base text-muted-foreground leading-relaxed">
-            <section>
-              <h2 className="font-semibold text-foreground mb-2">
-                Introduction
-              </h2>
-              <p className="mb-3">
-                At CodeTeak Technologies LLC, our mission is to provide
-                world-class IT solutions and power the next generation of
-                commerce through our products like Yaadro.ae. To do this,
-                we collect and use information about:
-              </p>
-              <ul className="list-disc pl-5 space-y-1 mb-3">
-                <li>
-                  <span className="font-semibold text-foreground">
-                    Merchants and Clients:
-                  </span>{" "}
-                  Businesses using CodeTeak services or Yaadro products to
-                  power their operations.
-                </li>
-                <li>
-                  <span className="font-semibold text-foreground">
-                    End Customers:
-                  </span>{" "}
-                  Individuals who shop at a Yaadro-powered business or use
-                  applications developed by CodeTeak.
-                </li>
-                <li>
-                  <span className="font-semibold text-foreground">
-                    Visitors:
-                  </span>{" "}
-                  Anyone visiting CodeTeak.com, Yaadro.ae, or contacting
-                  our support team.
-                </li>
-              </ul>
-              <p className="mb-3">
-                This Privacy Policy helps you understand how we collect,
-                use, and share your personal information. By using our
-                Services or Products, you agree to these practices.
-              </p>
-              <div className="space-y-2">
-                <h3 className="font-semibold text-foreground">
-                  Mandatory UAE Disclosures:
-                </h3>
-                <ul className="list-disc pl-5 space-y-2">
-                  <li>
-                    &quot;All credit/debit cards’ details and personally
-                    identifiable information will NOT be stored, sold,
-                    shared, rented or leased to any third parties.&quot;
-                  </li>
-                  <li>
-                    &quot;https://codeteak.com and its products (including
-                    Yaadro.ae) will not pass any debit/credit card details
-                    to third parties.&quot;
-                  </li>
-                  <li>
-                    &quot;CodeTeak is not responsible for the privacy
-                    policies of websites to which it links. If you provide
-                    any information to such third parties, different rules
-                    regarding the collection and use of your personal
-                    information may apply.&quot;
-                  </li>
-                </ul>
-              </div>
-            </section>
+            <p>
+              CodeTeak Technologies LLC (&quot;CodeTeak&quot;, &quot;we&quot;, &quot;us&quot;, or &quot;our&quot;) is committed to protecting the privacy and security of personal information. This Privacy Policy explains how we collect, use, disclose, transfer, and protect personal data when you interact with our website (codeteak.com), use our Services (including custom software development, IT consultancy, UI/UX design, and related professional services), or access our Products (ready-to-deploy software solutions and platforms available via licensing or subscription models).
+            </p>
+            <p>
+              We operate in multiple regions, including the United Arab Emirates and India, and comply with applicable data protection laws in the jurisdictions where we process personal data, such as the UAE Federal Decree-Law No. 45 of 2021 on the Protection of Personal Data (PDPL) and India&apos;s Digital Personal Data Protection Act, 2023 (DPDP Act), along with other relevant regulations. Depending on your location, specific regional requirements may apply.
+            </p>
+            <p>
+              By using our website, Services, or Products, you consent to the practices described in this Privacy Policy. If you do not agree, please do not use our offerings.
+            </p>
 
             <section>
-              <h2 className="font-semibold text-foreground mb-2">
-                Our Values
-              </h2>
+              <h2 className="font-semibold text-foreground mb-2">1. Information We Collect</h2>
+              <p className="mb-2">We collect personal information in the following categories:</p>
               <ul className="list-disc pl-5 space-y-2">
-                <li>
-                  <span className="font-semibold text-foreground">
-                    Your information belongs to you:
-                  </span>{" "}
-                  We aim to limit the information we collect to only what
-                  is necessary. We delete or anonymize data when it is no
-                  longer needed.
-                </li>
-                <li>
-                  <span className="font-semibold text-foreground">
-                    We protect your information from others:
-                  </span>{" "}
-                  We will refuse requests for your personal information
-                  unless you give us permission or we are legally required
-                  to do so.
-                </li>
-                <li>
-                  <span className="font-semibold text-foreground">
-                    We help you meet privacy obligations:
-                  </span>{" "}
-                  For merchants using Yaadro.ae, we build our products to
-                  be privacy-friendly and provide documentation to help you
-                  comply with your local privacy laws.
-                </li>
+                <li><span className="font-semibold text-foreground">Account and Contact Information:</span> Name, email address, phone number, business name, address, and login credentials when you register for an account, request a consultation, or subscribe to our Products.</li>
+                <li><span className="font-semibold text-foreground">Business and Usage Data:</span> Information related to your business operations, such as project requirements, uploaded content (e.g., logos, product descriptions, data files), transaction details, and usage metrics of our platforms.</li>
+                <li><span className="font-semibold text-foreground">Payment-Related Information:</span> Billing details necessary to process transactions (we do not store full credit/debit card details ourselves; payments are handled through secure third-party processors).</li>
+                <li><span className="font-semibold text-foreground">Support and Communication Data:</span> Information provided in support tickets, emails, chats, or calls.</li>
+                <li><span className="font-semibold text-foreground">Technical and Device Data:</span> IP address, browser type, device information, operating system, pages visited, time spent, referral sources, and cookies or similar technologies.</li>
+                <li><span className="font-semibold text-foreground">End-User Data (as Processor):</span> For merchants or clients using our Products to serve their customers, we may process end-customer personal data (e.g., order details, contact info) solely on behalf of and under the instructions of the merchant/client.</li>
               </ul>
+              <p className="mt-2">We limit collection to what is necessary for providing and improving our Services and Products.</p>
             </section>
 
             <section>
-              <h2 className="font-semibold text-foreground mb-2">
-                Why we process your information
-              </h2>
-              <p className="mb-3">
-                We process your information to fulfill contractual
-                obligations (e.g., managing your Yaadro subscription or
-                developing your custom software) and for &quot;legitimate
-                interests&quot; such as:
-              </p>
+              <h2 className="font-semibold text-foreground mb-2">2. How We Use Your Information</h2>
+              <p className="mb-2">We process personal information for the following purposes:</p>
               <ul className="list-disc pl-5 space-y-2">
-                <li>Preventing risk, fraud, and unauthorized access.</li>
-                <li>
-                  Answering support tickets and providing technical
-                  assistance.
-                </li>
-                <li>
-                  Providing reporting, analytics, and performance insights
-                  for your business.
-                </li>
-                <li>
-                  Improving our AI models and platform features (with your
-                  consent).
-                </li>
-                <li>Assisting with marketing and communications.</li>
+                <li>To provide, maintain, and improve our Services and Products (e.g., managing subscriptions, delivering custom development, offering support).</li>
+                <li>To fulfill contractual obligations and process transactions.</li>
+                <li>For legitimate business interests, such as fraud prevention, security, risk management, analytics, reporting, and platform enhancements.</li>
+                <li>To communicate with you about your account, updates, support requests, or (with consent where required) marketing materials.</li>
+                <li>To comply with legal obligations, respond to lawful requests, or protect our rights.</li>
+                <li>For product improvement, including (with explicit consent) training or enhancing AI features where applicable.</li>
               </ul>
             </section>
 
             <section>
-              <h2 className="font-semibold text-foreground mb-2">
-                Your rights over your information
-              </h2>
-              <p className="mb-3">
-                Whether you are a client of our agency or a vendor on
-                Yaadro, you have the right to:
-              </p>
+              <h2 className="font-semibold text-foreground mb-2">3. Legal Basis for Processing</h2>
+              <p className="mb-2">We rely on:</p>
+              <ul className="list-disc pl-5 space-y-1">
+                <li><span className="font-semibold text-foreground">Contractual necessity</span> — to deliver Services/Products you request.</li>
+                <li><span className="font-semibold text-foreground">Legitimate interests</span> — for security, fraud prevention, analytics, and improvements (balanced against your rights).</li>
+                <li><span className="font-semibold text-foreground">Consent</span> — for certain activities like marketing or optional AI features.</li>
+                <li><span className="font-semibold text-foreground">Legal obligations</span> — where required by law.</li>
+              </ul>
+            </section>
+
+            <section>
+              <h2 className="font-semibold text-foreground mb-2">4. Sharing and Disclosure of Information</h2>
+              <p className="mb-2">We do not sell personal information. We may share data with:</p>
               <ul className="list-disc pl-5 space-y-2 mb-3">
-                <li>
-                  <span className="font-semibold text-foreground">
-                    Access and Portability:
-                  </span>{" "}
-                  Request a copy of the personal information we hold about
-                  you.
-                </li>
-                <li>
-                  <span className="font-semibold text-foreground">
-                    Correction:
-                  </span>{" "}
-                  Request that we amend inaccurate information.
-                </li>
-                <li>
-                  <span className="font-semibold text-foreground">
-                    Deletion:
-                  </span>{" "}
-                  Request that we delete your personal data under certain
-                  conditions.
-                </li>
-                <li>
-                  <span className="font-semibold text-foreground">
-                    Restriction:
-                  </span>{" "}
-                  Object to certain processing (like direct marketing).
-                </li>
+                <li>Service providers (e.g., hosting, payment processors, cloud services, analytics tools) under strict confidentiality and security obligations.</li>
+                <li>Business partners only with your consent or as necessary for contracted services.</li>
+                <li>In the event of a merger, acquisition, or asset sale.</li>
+                <li>To comply with legal requirements, protect safety, or enforce our agreements.</li>
               </ul>
-              <p>
-                <span className="font-semibold text-foreground">
-                  Note for End Customers:
-                </span>{" "}
-                If you are a customer shopping on a store powered by
-                Yaadro.ae, you must contact that merchant directly to
-                exercise your rights. CodeTeak acts as a &quot;Data
-                Processor&quot; on behalf of the merchant and cannot decide
-                how to process your data without their instruction.
-              </p>
+              <p className="font-semibold text-foreground mb-2">Mandatory Disclosures (UAE/India Compliance):</p>
+              <p>All credit/debit card details and personally identifiable information are not stored, sold, shared, rented, or leased to third parties by CodeTeak. We do not pass debit/credit card details to third parties. CodeTeak is not responsible for the privacy practices of linked third-party websites.</p>
             </section>
 
             <section>
-              <h2 className="font-semibold text-foreground mb-2">
-                Where we send your information
-              </h2>
-              <p>
-                CodeTeak is a UAE &amp; INDIA based company. We may work
-                with global partners and process data across borders. When
-                we transfer data outside of your country, we take steps to
-                ensure it is protected according to the highest data
-                protection standards.
-              </p>
+              <h2 className="font-semibold text-foreground mb-2">5. International Data Transfers</h2>
+              <p>As a company operating in the UAE and India with global partners, personal data may be transferred across borders. We implement appropriate safeguards (e.g., standard contractual clauses, adequacy decisions where available, or other approved mechanisms) to ensure your data receives an equivalent level of protection in line with applicable laws.</p>
             </section>
 
             <section>
-              <h2 className="font-semibold text-foreground mb-2">
-                Google OAuth &amp; Integration Data
-              </h2>
-              <p className="mb-3">
-                For users of CodeTeak Connect or integrations involving
-                Google Sheets and WhatsApp:
-              </p>
+              <h2 className="font-semibold text-foreground mb-2">6. Third-Party Integrations (e.g., Google OAuth, APIs)</h2>
+              <p className="mb-2">For integrations such as Google Sheets, WhatsApp, or similar services:</p>
               <ul className="list-disc pl-5 space-y-2">
-                <li>
-                  We strictly adhere to the Google API Services User Data
-                  Policy, including &quot;Limited Use&quot; requirements.
-                </li>
-                <li>
-                  Our app requests only the minimum permissions necessary
-                  to enhance your workflow (e.g., syncing Yaadro orders to
-                  Google Sheets).
-                </li>
-                <li>
-                  We do not transfer or sell this data to third parties,
-                  nor do we allow humans to read your data without explicit
-                  consent.
-                </li>
+                <li>We request only minimum necessary permissions.</li>
+                <li>We comply fully with the Google API Services User Data Policy, including Limited Use restrictions.</li>
+                <li>We do not transfer, sell, or allow unauthorized access to integration data.</li>
+                <li>Human review occurs only with explicit consent or as required for support/security.</li>
               </ul>
             </section>
 
             <section>
-              <h2 className="font-semibold text-foreground mb-2">
-                AI Data Sharing and Third-Party Use
-              </h2>
-              <p className="mb-3">
-                At CodeTeak and Yaadro, we prioritize the security of your
-                business data:
-              </p>
-              <ul className="list-disc pl-5 space-y-2">
-                <li>
-                  <span className="font-semibold text-foreground">
-                    No Forced Sharing:
-                  </span>{" "}
-                  We do not share, sell, or distribute your data to
-                  third-party AI models or services without your explicit
-                  consent.
-                </li>
-                <li>
-                  <span className="font-semibold text-foreground">
-                    Opt-in AI Features:
-                  </span>{" "}
-                  While our platform offers advanced AI features (such as
-                  automated product descriptions or chatbots), your data is
-                  only processed by these models if you choose to activate
-                  these features.
-                </li>
-                <li>
-                  <span className="font-semibold text-foreground">
-                    Transparency:
-                  </span>{" "}
-                  If you use our AI integrations, we ensure that the data
-                  is processed only to the extent necessary to provide the
-                  specific AI functionality you requested.
-                </li>
+              <h2 className="font-semibold text-foreground mb-2">7. AI Features and Data Usage</h2>
+              <p>Optional AI-powered features (e.g., content generation) process data only upon activation and to the extent necessary for the requested functionality. We do not share or use your business data for third-party AI training without explicit opt-in consent.</p>
+            </section>
+
+            <section>
+              <h2 className="font-semibold text-foreground mb-2">8. Cookies and Tracking Technologies</h2>
+              <p>We use cookies, pixels, and similar technologies for session management, preferences, analytics, and essential functionality. You can manage preferences via browser settings, though disabling may affect site performance. Our Cookie Policy (linked where applicable) provides more details.</p>
+            </section>
+
+            <section>
+              <h2 className="font-semibold text-foreground mb-2">9. Data Security</h2>
+              <p>We implement industry-standard technical and organizational measures (e.g., encryption, access controls, regular audits) to protect personal data. However, no internet transmission or storage method is completely secure, and we cannot guarantee absolute security.</p>
+            </section>
+
+            <section>
+              <h2 className="font-semibold text-foreground mb-2">10. Data Retention</h2>
+              <p>We retain personal data only as long as necessary for the purposes outlined, to comply with legal obligations, or to resolve disputes. Data is anonymized or deleted when no longer required.</p>
+            </section>
+
+            <section>
+              <h2 className="font-semibold text-foreground mb-2">11. Your Rights</h2>
+              <p className="mb-2">Depending on applicable law, you may have rights to:</p>
+              <ul className="list-disc pl-5 space-y-1 mb-3">
+                <li>Access, correct, or update your personal data.</li>
+                <li>Request deletion (subject to exceptions).</li>
+                <li>Restrict or object to certain processing.</li>
+                <li>Data portability.</li>
+                <li>Withdraw consent (where processing is consent-based).</li>
+                <li>Lodge a complaint with a supervisory authority.</li>
               </ul>
+              <p className="mb-2">For end-customers of our merchants/clients: Contact the merchant directly, as we act as a data processor and process data per their instructions.</p>
+              <p>To exercise rights, contact us at the details below. We respond in accordance with applicable timelines.</p>
             </section>
 
             <section>
-              <h2 className="font-semibold text-foreground mb-2">
-                How we use “cookies”
-              </h2>
-              <p>
-                We use cookies to maintain your session, remember your
-                preferences, and analyze how users interact with our
-                websites and the Yaadro platform. You can manage your
-                cookie preferences through your browser settings, though
-                some features of our products may not function correctly
-                without them.
-              </p>
+              <h2 className="font-semibold text-foreground mb-2">12. Children&apos;s Privacy</h2>
+              <p>Our Services and Products are not directed to individuals under 18 (or the age of majority). We do not knowingly collect data from children.</p>
             </section>
 
             <section>
-              <h2 className="font-semibold text-foreground mb-2">
-                How we protect your information
-              </h2>
-              <p>
-                Our security teams work tirelessly to protect the integrity
-                of our platforms. We use industry-standard encryption and
-                security protocols. However, no method of transmission over
-                the Internet is 100% secure; therefore, we cannot guarantee
-                absolute security.
-              </p>
+              <h2 className="font-semibold text-foreground mb-2">13. Changes to This Policy</h2>
+              <p>We may update this Privacy Policy. Changes will be posted here with an updated effective date. Continued use constitutes acceptance.</p>
             </section>
 
             <section>
-              <h2 className="font-semibold text-foreground mb-2">
-                Payment Confirmation
-              </h2>
-              <p>
-                Once a payment is made for any CodeTeak service or Yaadro
-                subscription, a confirmation notice will be sent to the
-                client via email within 24 hours of receipt.
-              </p>
-            </section>
-
-            <section>
-              <h2 className="font-semibold text-foreground mb-2">
-                How you can reach us
-              </h2>
+              <h2 className="font-semibold text-foreground mb-2">14. Contact Us</h2>
               <p className="space-y-1">
-                <span className="block">CodeTeak Support</span>
+                <span className="block font-semibold text-foreground">CodeTeak Technologies LLC</span>
                 <span className="block">
                   Email:{" "}
-                  <a
-                    href="mailto:info@codeteak.com"
-                    className="text-[#FC4B01] hover:underline"
-                  >
-                    info@codeteak.com
-                  </a>
+                  <a href="mailto:info@codeteak.com" className="text-[#FC4B01] hover:underline">info@codeteak.com</a>
                 </span>
                 <span className="block">
                   Mobile:{" "}
-                  <a
-                    href="tel:+971525759242"
-                    className="text-[#FC4B01] hover:underline"
-                  >
-                    +971 525759242
-                  </a>
+                  <a href="tel:+971525759242" className="text-[#FC4B01] hover:underline">+971 525759242</a>
                 </span>
                 <span className="block">
                   Website:{" "}
-                  <a
-                    href="https://codeteak.com"
-                    className="text-[#FC4B01] hover:underline"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    codeteak.com
-                  </a>
+                  <a href="https://codeteak.com" className="text-[#FC4B01] hover:underline" target="_blank" rel="noopener noreferrer">codeteak.com</a>
                 </span>
                 <span className="block">
-                  Office: Index Exchange Building, Opposite Wimpy
-                  Restaurant, Naif Road, Dubai
+                  Office: Index Exchange Building, Opposite Wimpy Restaurant, Naif Road, Dubai
                 </span>
               </p>
             </section>
@@ -443,4 +259,3 @@ export default function PrivacyPolicyPage() {
     </div>
   );
 }
-
