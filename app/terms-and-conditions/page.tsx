@@ -429,7 +429,7 @@ export default function TermsAndConditionsPage() {
                 submit a Takedown Notice to our legal team at
                 {" "}
                 <span className="font-mono text-foreground">
-                  [Insert Email]
+                  info@codeteak.com
                 </span>
                 .
               </p>
