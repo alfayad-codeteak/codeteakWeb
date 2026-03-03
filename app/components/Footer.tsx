@@ -220,6 +220,16 @@ export default function Footer() {
                     {t.footer.explore.contact}
                   </Link>
                 </li>
+                <li>
+                  <Link href="/privacy-policy" className="text-muted-foreground hover:text-[#FC4B01] transition-colors text-sm">
+                    {t.footer.privacy}
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/terms-and-conditions" className="text-muted-foreground hover:text-[#FC4B01] transition-colors text-sm">
+                    {t.footer.terms}
+                  </Link>
+                </li>
               </ul>
             </div>
 
@@ -294,9 +304,14 @@ export default function Footer() {
             <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
               <div className="flex flex-col sm:flex-row gap-4 text-sm text-muted-foreground">
                 <span>{t.footer.copyright}</span>
-                <Link href="#privacy" className="hover:text-[#FC4B01] transition-colors">
-                  {t.footer.privacy}
-                </Link>
+                <span className="flex items-center gap-4">
+                  <Link href="/privacy-policy" className="hover:text-[#FC4B01] transition-colors">
+                    {t.footer.privacy}
+                  </Link>
+                  <Link href="/terms-and-conditions" className="hover:text-[#FC4B01] transition-colors">
+                    {t.footer.terms}
+                  </Link>
+                </span>
               </div>
               <div className="flex flex-col gap-4 text-sm text-muted-foreground">
                 {/* Locations */}

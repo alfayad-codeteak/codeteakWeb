@@ -235,6 +235,8 @@ export const translations = {
         email: "Email",
         message: "Message",
         submit: "Send Message",
+        agreeToTerms: "By submitting you agree to our",
+        and: "and",
       },
     },
     // Blog (coming soon)
@@ -266,6 +268,7 @@ export const translations = {
       codeteak: "Codeteak",
       copyright: "© 2024 CodeTeak. All rights reserved.",
       privacy: "Privacy Policy",
+      terms: "Terms and Conditions",
       location: "Location",
       time: "Time",
       weather: "Weather",
@@ -661,6 +664,8 @@ export const translations = {
         email: "البريد الإلكتروني",
         message: "الرسالة",
         submit: "إرسال الرسالة",
+        agreeToTerms: "بإرسالك أنت توافق على",
+        and: "و",
       },
     },
     // Blog (coming soon)
@@ -692,6 +697,7 @@ export const translations = {
       codeteak: "كودتيك",
       copyright: "© 2024 كودتيك. جميع الحقوق محفوظة.",
       privacy: "سياسة الخصوصية",
+      terms: "الشروط والأحكام",
       location: "الموقع",
       time: "الوقت",
       weather: "الطقس",

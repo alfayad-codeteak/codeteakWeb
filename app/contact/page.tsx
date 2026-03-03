@@ -1,6 +1,7 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
+import Link from "next/link";
 import { useState, useEffect } from "react";
 import { Mail } from "lucide-react";
 import { getTranslations, type Language } from "@/lib/translations";
@@ -573,7 +574,7 @@ export default function ContactPage() {
                 )}
 
                 {/* Submit Button */}
-                <div className="pt-4">
+                <div className="pt-4 space-y-3">
                   <button
                     type="submit"
                     disabled={isSubmitting}
@@ -581,6 +582,12 @@ export default function ContactPage() {
                   >
                     {isSubmitting ? 'Submitting...' : t.contact.form.submit}
                   </button>
+                  <p className="text-xs text-muted-foreground font-mono">
+                    {t.contact.form.agreeToTerms}{" "}
+                    <Link href="/privacy-policy" className="text-[#FC4B01] hover:underline">{t.footer.privacy}</Link>
+                    {" "}{t.contact.form.and}{" "}
+                    <Link href="/terms-and-conditions" className="text-[#FC4B01] hover:underline">{t.footer.terms}</Link>.
+                  </p>
                 </div>
               </form>
             </motion.div>
