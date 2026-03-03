@@ -256,6 +256,36 @@ export const blogMetadata: Metadata = generateSEOMetadata({
   ],
 });
 
+export const termsMetadata: Metadata = generateSEOMetadata({
+  title: "Terms and Conditions",
+  description:
+    "Terms and Conditions for using CodeTeak Technologies LLC and Yaadro services and products, including UAE statutory compliance, payments, refunds, intellectual property, and liability.",
+  path: "/terms-and-conditions",
+  keywords: [
+    "CodeTeak terms and conditions",
+    "CodeTeak legal",
+    "CodeTeak UAE compliance",
+    "software services terms",
+    "SaaS terms",
+    "Yaadro terms",
+  ],
+});
+
+export const privacyMetadata: Metadata = generateSEOMetadata({
+  title: "Privacy Policy",
+  description:
+    "Privacy Policy for CodeTeak Technologies LLC and Yaadro, explaining how we collect, use, and protect personal information for merchants, clients, and end customers.",
+  path: "/privacy-policy",
+  keywords: [
+    "CodeTeak privacy policy",
+    "Yaadro privacy policy",
+    "data protection",
+    "UAE privacy",
+    "merchant data",
+    "end customer privacy",
+  ],
+});
+
 // Product-specific metadata generator
 export function generateProductMetadata(slug: string, title: string, description: string): Metadata {
   const productKeywords = [
