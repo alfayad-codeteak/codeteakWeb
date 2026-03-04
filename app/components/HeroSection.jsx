@@ -444,7 +444,7 @@ export default function HeroSection({ theme = "dark", heroRef }) {
               </p>
 
               <div className={`hs-ctas ${mounted ? "hs-anim-ctas" : "hs-pre"}`}>
-                <button className="hs-btn-p">Start a Project</button>
+                <Link href="/contact" className="hs-btn-p">Start a Project</Link>
                 <a href="/services" className="hs-btn-s">View Our Services →</a>
               </div>
             </div>
