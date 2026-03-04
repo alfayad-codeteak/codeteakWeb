@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useState, useEffect, useRef } from "react";
 
 export default function HeroSection({ theme = "dark", heroRef }) {
@@ -445,7 +446,7 @@ export default function HeroSection({ theme = "dark", heroRef }) {
 
               <div className={`hs-ctas ${mounted ? "hs-anim-ctas" : "hs-pre"}`}>
                 <Link href="/contact" className="hs-btn-p">Start a Project</Link>
-                <a href="/services" className="hs-btn-s">View Our Services →</a>
+                <Link href="/services" className="hs-btn-s">View Our Services →</Link>
               </div>
             </div>
           </div>
