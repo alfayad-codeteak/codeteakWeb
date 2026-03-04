@@ -2,6 +2,7 @@
 
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
+import HeroSection from "./components/HeroSection";
 import Link from "next/link";
 import { 
   ArrowRight, 
@@ -356,31 +357,14 @@ export default function Home() {
   const heroRef = useRef<HTMLElement>(null);
   const partnersRef = useRef<HTMLElement>(null);
   const servicesRef = useRef<HTMLElement>(null);
-  const logoRef = useRef<HTMLDivElement>(null);
-  
-  // Scroll progress for hero section
+
+  // Scroll progress for hero section (used to fade in header logo)
   const { scrollYProgress: heroScrollProgress } = useScroll({
     target: heroRef,
-    offset: ["start start", "end start"]
+    offset: ["start start", "end start"],
   });
-  
-  // Parallax transforms
-  // Removed heroY to prevent content from moving when scrolling up
-  const heroOpacity = useTransform(heroScrollProgress, [0, 0.5], [1, 0]);
-  const backgroundY = useTransform(heroScrollProgress, [0, 1], [0, 50]);
-  
-  // Logo animation transforms - from above title to header left
-  // Logo starts above title (centered) and moves to header position (top-left)
-  // Using pixel values for smoother animation
-  const logoScale = useTransform(heroScrollProgress, [0, 0.6], [1, 0.3]);
-  const heroLogoOpacity = useTransform(heroScrollProgress, [0, 0.3, 0.5], [1, 0.5, 0]);
+
   const headerLogoOpacity = useTransform(heroScrollProgress, [0.5, 0.7], [0, 1]);
-  
-  // Calculate position offset - from above title (centered) to top-left header
-  // Transform moves logo from its centered position above title to header position
-  // Ensure hero logo disappears completely before reaching header position to avoid overlap
-  const logoX = useTransform(heroScrollProgress, [0, 0.5], [0, "calc(-50vw + 24px)"]);
-  const logoY = useTransform(heroScrollProgress, [0, 0.5], [0, "calc(-50vh + 24px)"]);
 
   return (
     <div className="min-h-screen bg-background relative pb-20 md:pb-0">
@@ -400,125 +384,8 @@ export default function Home() {
         onScrollToTop={scrollToTop}
       />
 
-      {/* Hero Section */}
-      <section 
-        ref={heroRef}
-        id="home" 
-        className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden"
-      >
-        {/* Top Section with Primary Color Gradient */}
-        <div className="absolute top-0 left-0 right-0 h-[40vh] overflow-hidden pointer-events-none z-0">
-          <div 
-            className="absolute inset-0"
-          style={{
-            background: theme === "dark" 
-                ? "linear-gradient(180deg, rgba(252, 75, 1, 0.15) 0%, rgba(252, 75, 1, 0.08) 50%, transparent 100%)"
-                : "linear-gradient(180deg, rgba(252, 75, 1, 0.2) 0%, rgba(252, 75, 1, 0.1) 50%, rgba(255, 255, 255, 0.1) 100%)"
-            }}
-          />
-
-          {/* Data Stream Effect on Right */}
-          <div className="absolute top-20 right-8 sm:right-16 opacity-20 dark:opacity-10">
-            <div className="flex flex-col gap-2 font-mono text-xs sm:text-sm text-[#FC4B01] dark:text-[#FC4B01]/70">
-              {["101010", "110011", "100101", "011010", "101101", "010110"].map((code, idx) => (
-      <motion.div
-                  key={idx}
-                  initial={{ opacity: 0, x: 20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.5, delay: 0.3 + idx * 0.1 }}
-                >
-                  {code}
-      </motion.div>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        {/* Main Content - Centered */}
-        <motion.div 
-          className="container mx-auto max-w-6xl relative z-10 px-4 sm:px-6 lg:px-8 flex items-center justify-center min-h-screen"
-          style={isMounted ? { opacity: heroOpacity } : {}}
-          suppressHydrationWarning
-        >
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-center max-w-4xl mx-auto"
-          >
-            {/* Hero Logo - Above Title, Animates to Header on Scroll */}
-            <motion.div
-              ref={logoRef}
-              className="flex justify-center mb-8"
-              style={{
-                position: "relative",
-                x: logoX,
-                y: logoY,
-                scale: logoScale,
-                opacity: heroLogoOpacity,
-                zIndex: 50,
-              }}
-            >
-              {isMounted && heroLogoOpacity.get() > 0.01 && (
-                <a href="#home" className="block">
-                  <Image
-                    key={`hero-logo-${theme}`}
-                    src={theme === "dark" ? "/logo/logo-white.svg" : "/logo/logo-black.svg"}
-                    alt="CodeTeak Logo"
-                    width={300}
-                    height={100}
-                    className="h-16 sm:h-20 md:h-24 lg:h-28 w-auto"
-                    priority
-                  />
-                </a>
-              )}
-            </motion.div>
-
-            {/* Main Headline */}
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold mb-6 leading-tight"
-            >
-              <span className="text-foreground">{t.hero.headline}</span>
-              <br />
-              <span className="text-muted-foreground">{t.hero.headlineHighlight}</span>
-            </motion.h1>
-
-            {/* Description */}
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              className="text-base sm:text-lg text-muted-foreground mb-12 max-w-3xl mx-auto"
-            >
-              {t.hero.description}
-            </motion.p>
-
-            {/* Statistics */}
-            
-
-            {/* CTA Button */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.5 }}
-              className="flex justify-center"
-            >
-              <Link
-                href="/contact"
-                className="px-8 py-4 bg-[#FC4B01] hover:bg-[#FC4B01]/90 dark:bg-[#FC4B01] dark:hover:bg-[#FC4B01]/90 text-white rounded-lg font-semibold transition-colors flex items-center gap-2 shadow-lg hover:shadow-xl"
-              >
-                <span>{t.hero.cta}</span>
-                <ArrowRight className="w-5 h-5" />
-              </Link>
-            </motion.div>
-
-          </motion.div>
-        </motion.div>
-      </section>
-
+      {/* Hero Section with left-side image on pure black background */}
+       <HeroSection theme={theme} heroRef={heroRef} />
       {/* Partners/Companies Marquee Section */}
       <section
         ref={partnersRef} 

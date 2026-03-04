@@ -95,10 +95,7 @@ export default function Navigation({
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5 }}
           className="fixed top-4 left-4 md:top-6 md:left-6 z-50"
-          style={isHomePage && headerLogoOpacity ? { 
-            opacity: headerLogoOpacity,
-            pointerEvents: isScrolled ? 'auto' : 'none'
-          } : {}}
+          style={{ pointerEvents: "auto" }}
         >
         <Link href="/" className="block">
           {isMounted && (
