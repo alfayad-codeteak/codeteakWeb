@@ -11,6 +11,7 @@ interface GenerateMetadataOptions {
   description: string;
   path?: string;
   image?: string;
+  additionalImages?: string[];
   keywords?: string[];
   type?: "website" | "article" | "product";
   publishedTime?: string;
@@ -24,6 +25,7 @@ export function generateSEOMetadata({
   description,
   path = "",
   image = defaultImage,
+  additionalImages = [],
   keywords = [],
   type = "website",
   publishedTime,
@@ -33,13 +35,17 @@ export function generateSEOMetadata({
 }: GenerateMetadataOptions): Metadata {
   const url = `${baseUrl}${path}`;
   const fullTitle = `${title} | ${siteName}`;
-  
-  // Ensure image URL is absolute for WhatsApp compatibility
-  const ogImageUrl = image.startsWith('http') 
-    ? image 
-    : image.startsWith('/') 
-      ? `${baseUrl}${image}` 
-      : `${baseUrl}/${image}`;
+
+  // Ensure image URLs are absolute for WhatsApp and social platforms
+  const toAbsoluteImageUrl = (img: string) =>
+    img.startsWith("http")
+      ? img
+      : img.startsWith("/")
+        ? `${baseUrl}${img}`
+        : `${baseUrl}/${img}`;
+
+  const allImageUrls = [image, ...additionalImages].map(toAbsoluteImageUrl);
+  const ogImageUrl = allImageUrls[0];
 
   const defaultKeywords = [
     "CodeTeak",
@@ -82,13 +88,13 @@ export function generateSEOMetadata({
       description,
       siteName,
       images: [
-        {
-          url: ogImageUrl,
+        ...allImageUrls.map((imgUrl) => ({
+          url: imgUrl,
           width: 1200,
           height: 630,
           alt: title,
           type: "image/jpeg",
-        },
+        })),
       ],
       locale: "en_US",
       alternateLocale: ["ar_AE"],
@@ -218,16 +224,33 @@ export const productsMetadata: Metadata = generateSEOMetadata({
 });
 
 export const aboutMetadata: Metadata = generateSEOMetadata({
-  title: "About Us",
-  description: "Learn about CodeTeak - a passionate team of developers, designers, and consultants creating exceptional software solutions. With 100+ projects delivered, we help startups and enterprises build scalable applications.",
+  title: "About Our Core Team",
+  description:
+    "Meet the CodeTeak core team – Alfayad S (Full Stack Developer & UI/UX Designer), Abhinav Aneesh (Full Stack Mobile Application Developer), Binel Biju and Alan Joshy (Backend Developers & Cloud Engineers). A modern, senior engineering team building scalable web, mobile, and cloud products for startups and enterprises.",
   path: "/about",
+  additionalImages: [
+    "/core-team/Alfayad.jpeg",
+    "/core-team/Abhinav.jpeg",
+    "/core-team/Binel.jpeg",
+    "/core-team/Alan.jpeg",
+  ],
   keywords: [
     "about CodeTeak",
     "software development company",
-    "development team",
-    "technology experts",
-    "software consultants",
+    "core development team",
+    "engineering leadership",
+    "full stack developer",
+    "UI UX designer",
+    "mobile app engineer",
+    "backend developer",
+    "cloud engineer",
+    "DevOps specialist",
+    "Alfayad S",
+    "Abhinav Aneesh",
+    "Binel Biju",
+    "Alan Joshy",
   ],
+  authors: ["CodeTeak", "Alfayad S", "Abhinav Aneesh", "Binel Biju", "Alan Joshy"],
 });
 
 export const techNewsMetadata: Metadata = generateSEOMetadata({

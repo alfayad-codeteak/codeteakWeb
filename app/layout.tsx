@@ -4,9 +4,11 @@ import "./globals.css";
 import ScrollToTop from "./components/ScrollToTop";
 import Footer from "./components/Footer";
 import SplashScreen from "./components/SplashScreen";
+import ChatWidget from "./components/ChatWidget";
 import { generateSEOMetadata } from "@/lib/metadata";
 import { OrganizationSchema, WebSiteSchema } from "./components/StructuredData";
 import GoogleAnalytics from "./components/GoogleAnalytics";
+import CodeTeakChatWidget from "./components/ChatWidget";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -58,6 +60,7 @@ export default function RootLayout({
         <WebSiteSchema />
         <ScrollToTop />
         {children}
+       <CodeTeakChatWidget />
         <Footer />
       </body>
     </html>

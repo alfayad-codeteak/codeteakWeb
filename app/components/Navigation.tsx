@@ -440,15 +440,7 @@ export default function Navigation({
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.2 }}
-        className="fixed bottom-0 left-0 right-0 md:hidden z-50 px-4 pt-5 pb-safe pb-5 rounded-t-3xl backdrop-blur-xl border-t border-white/20 dark:border-white/10"
-        style={{
-          background: theme === "dark" 
-            ? 'linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 50%, rgba(255,255,255,0.1) 100%)'
-            : 'linear-gradient(135deg, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0.08) 50%, rgba(255,255,255,0.15) 100%)',
-          backdropFilter: 'blur(20px) saturate(180%)',
-          WebkitBackdropFilter: 'blur(20px) saturate(180%)',
-          boxShadow: '0 -8px 32px 0 rgba(0, 0, 0, 0.1), inset 0 1px 0 0 rgba(255, 255, 255, 0.2)'
-        }}
+        className="fixed bottom-0 left-0 right-0 md:hidden z-40 px-4 pt-3 pb-safe pb-4 border-t border-border bg-black text-foreground"
       >
         <div className="flex items-center justify-around max-w-md mx-auto">
           <Link 

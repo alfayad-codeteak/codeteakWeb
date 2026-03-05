@@ -402,6 +402,7 @@ export default function HeroSection({ theme = "dark", heroRef }) {
                   }}
                 />
                 <div className="hs-fade" style={{ inset: "0 auto 0 0", width: "40%", background: fadeL }} />
+                <div className="hs-fade" style={{ inset: "0 auto 0 0", width: "40%", background: fadeL }} />
                 <div className="hs-fade" style={{ inset: "auto 0 0 0", height: isDark ? "32%" : "26%", background: fadeB }} />
               </div>
             </div>

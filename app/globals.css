@@ -118,8 +118,6 @@
   }
   html {
     scroll-behavior: smooth;
-    scroll-snap-type: y proximity;
-    scroll-padding-top: 0;
   }
   body {
     @apply bg-background text-foreground;
@@ -140,10 +138,6 @@
   }
   html::-webkit-scrollbar {
     display: none;
-  }
-  section {
-    scroll-snap-align: start;
-    scroll-snap-stop: normal;
   }
 }
 
