@@ -312,15 +312,7 @@ export default function TeamSection() {
           </div>
 
           {/* Developer cards */}
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(4, minmax(0, 1fr))",
-              gap: "44px 28px",
-              alignItems: "flex-start",
-              justifyItems: "center",
-            }}
-          >
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-y-11 gap-x-7 items-start justify-items-center">
             {developerMembers.map((m, i) => (
               <GridCard key={m.id} member={m} index={i} />
             ))}
