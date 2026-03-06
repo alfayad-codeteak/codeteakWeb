@@ -473,19 +473,14 @@ export default function Home() {
               </div>
 
               <p className="text-sm sm:text-base leading-relaxed text-muted-foreground">
-                Rizwan founded CodeTeak with a simple belief: modern software should feel
-                effortless for users while being deeply reliable for businesses. With a
-                background in full‑stack engineering and product thinking, he spends his
-                time working closely with clients, shaping problem statements into clear
-                roadmaps, and guiding the team toward shipping pragmatic, high‑impact
-                solutions.
+                {language === "ar"
+                  ? "أسس محمد ريزوان بي شركة CodeTeak انطلاقًا من قناعة بسيطة: يجب أن يكون البرمجيات الحديثة سهلة الاستخدام للمستخدمين وموثوقة للأعمال. بخلفيته في تطوير الأنظمة كاملة الطبقات والتفكير المنتج، يعمل محمد ريزوان بي مباشرة مع العملاء لصياغة المشكلات إلى خرائط طريق واضحة وتوجيه الفريق نحو حلول عملية وعالية التأثير."
+                  : "Muhammed Rizwan P founded CodeTeak with a simple belief: modern software should feel effortless for users while being deeply reliable for businesses. With a background in full‑stack engineering and product thinking, he spends his time working closely with clients, shaping problem statements into clear roadmaps, and guiding the team toward shipping pragmatic, high‑impact solutions."}
               </p>
               <p className="text-sm sm:text-base leading-relaxed text-muted-foreground">
-                As the founder, he sits at the intersection of strategy, design, and
-                engineering—from early discovery workshops, through architecture
-                decisions, to reviewing final builds. His focus is on building long‑term
-                partnerships, not just one‑off projects, so that every product we ship can
-                evolve, scale, and keep creating value over time.
+                {language === "ar"
+                  ? "بصفته مؤسس CodeTeak، يجلس محمد ريزوان بي في نقطة التقاء الإستراتيجية والتصميم والهندسة – من ورش الاكتشاف الأولى، مرورًا بقرارات المعمارية، وصولاً إلى مراجعة النسخ النهائية. تركيزه الدائم هو بناء شراكات طويلة الأمد، حتى تتمكّن المنتجات التي نطلقها من التطور والتوسع والاستمرار في خلق قيمة حقيقية بمرور الوقت."
+                  : "As the founder, Muhammed Rizwan P sits at the intersection of strategy, design, and engineering—from early discovery workshops, through architecture decisions, to reviewing final builds. His focus is on building long‑term partnerships, not just one‑off projects, so that every product we ship can evolve, scale, and keep creating value over time."}
               </p>
             </div>
           </motion.div>
