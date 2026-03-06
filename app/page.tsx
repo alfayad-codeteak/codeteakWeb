@@ -37,6 +37,7 @@ import { useScroll, useTransform } from "framer-motion";
 import { getTranslations, type Language } from "@/lib/translations";
 import Navigation from "./components/Navigation";
 import ServicesSection from "./components/ServicesSection";
+import TeamSection from "./components/TeamSection";
 
 export default function Home() {
   const [theme, setTheme] = useState<"light" | "dark">("dark");
@@ -420,6 +421,79 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* Founder Section */}
+      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-background border-t border-border">
+        <div className="container mx-auto max-w-5xl">
+          <motion.h2
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="mb-8 md:mb-16"
+          >
+            <span className="block text-sm sm:text-base md:text-lg font-mono tracking-[0.25em] uppercase text-muted-foreground">
+              Meet our
+            </span>
+            <span className="block text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold uppercase tracking-tight leading-none text-[#FC4B01] mt-2">
+              Founder
+            </span>
+          </motion.h2>
+
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="flex flex-col md:flex-row items-center md:items-stretch gap-10 md:gap-12"
+          >
+            {/* Founder image */}
+            <div className="w-full md:w-[38%] flex justify-center md:justify-start">
+              <div className="relative w-64 sm:w-72 aspect-[3/4] rounded-full overflow-hidden border border-border/60  bg-gradient-to-b from-muted/40 to-background">
+                <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/25 pointer-events-none" />
+                <div className="absolute inset-[3px] rounded-full overflow-hidden">
+                  <img
+                    src="/core-team/rizwan.png"
+                    alt="Muhammed Rizwan P"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+              </div>
+            </div>
+
+            {/* Founder text */}
+            <div className="w-full md:w-[62%] space-y-4">
+              <div>
+                <p className="text-xs font-mono uppercase tracking-[0.25em] text-muted-foreground mb-2">
+                  Founder & Core Member
+                </p>
+                <h3 className="text-2xl sm:text-3xl font-semibold tracking-tight text-foreground">
+                  Muhammed Rizwan P
+                </h3>
+              </div>
+
+              <p className="text-sm sm:text-base leading-relaxed text-muted-foreground">
+                Rizwan founded CodeTeak with a simple belief: modern software should feel
+                effortless for users while being deeply reliable for businesses. With a
+                background in full‑stack engineering and product thinking, he spends his
+                time working closely with clients, shaping problem statements into clear
+                roadmaps, and guiding the team toward shipping pragmatic, high‑impact
+                solutions.
+              </p>
+              <p className="text-sm sm:text-base leading-relaxed text-muted-foreground">
+                As the founder, he sits at the intersection of strategy, design, and
+                engineering—from early discovery workshops, through architecture
+                decisions, to reviewing final builds. His focus is on building long‑term
+                partnerships, not just one‑off projects, so that every product we ship can
+                evolve, scale, and keep creating value over time.
+              </p>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Team Section */}
+      <TeamSection />
 
       {/* Partners/Companies Marquee Section */}
       <section
