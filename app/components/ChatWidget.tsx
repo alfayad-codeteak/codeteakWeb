@@ -270,7 +270,7 @@ function CoreTeamBubble({
             {
               name: "Muhammed Rizwan P",
               role: "Founder (Core Member)",
-              img: "/logo/logo-white.svg",
+              img: "/core-team/rizwan.png",
               id: "rizwan" as MemberId,
               links: [
                 {
@@ -282,7 +282,7 @@ function CoreTeamBubble({
             {
               name: "Alfayad S",
               role: "Full Stack Developer & UI/UX Designer (Core Member)",
-              img: "/core-team/Alfayad.jpeg",
+              img: "/core-team/Alfayad.png",
               id: "alfayad" as MemberId,
               links: [
                 {
@@ -298,7 +298,7 @@ function CoreTeamBubble({
             {
               name: "Abhinav Aneesh",
               role: "Full Stack Mobile Application Developer (Core Member)",
-              img: "/core-team/Abhinav.jpeg",
+              img: "/core-team/Abhinav.png",
               id: "abhinav" as MemberId,
               links: [
                 {
@@ -346,12 +346,15 @@ function CoreTeamBubble({
               }}
             >
               <div
+                onClick={() => window.open(member.img, "_blank")}
+                title="View full photo"
                 style={{
                   width: 32,
                   height: 32,
                   borderRadius: "999px",
                   overflow: "hidden",
                   border: `1px solid ${C.border}`,
+                  cursor: "pointer",
                 }}
               >
                 <Image
@@ -464,13 +467,13 @@ function SingleMemberBubble({
     rizwan: {
       name: "Muhammed Rizwan P",
       role: "Founder (Core Member)",
-      img: "/logo/logo-white.svg",
+      img: "/core-team/rizwan.png",
       links: [{ label: "LinkedIn", href: "http://linkedin.com/in/muhammedrizwanp/" }],
     },
     alfayad: {
       name: "Alfayad S",
       role: "Full Stack Developer & UI/UX Designer (Core Member)",
-      img: "/core-team/Alfayad.jpeg",
+      img: "/core-team/Alfayad.png",
       links: [
         { label: "Portfolio", href: "https://alfayad.vercel.app" },
         { label: "LinkedIn", href: "https://www.linkedin.com/in/alfayad" },
@@ -479,7 +482,7 @@ function SingleMemberBubble({
     abhinav: {
       name: "Abhinav Aneesh",
       role: "Full Stack Mobile Application Developer (Core Member)",
-      img: "/core-team/Abhinav.jpeg",
+      img: "/core-team/Abhinav.png",
       links: [
         { label: "LinkedIn", href: "https://www.linkedin.com/in/abiinavvv/" },
       ],
@@ -570,6 +573,8 @@ function SingleMemberBubble({
             }}
           >
             <div
+              onClick={() => window.open(member.img, "_blank")}
+              title="View full photo"
               style={{
                 width: 40,
                 height: 40,
@@ -577,6 +582,7 @@ function SingleMemberBubble({
                 overflow: "hidden",
                 border: `1px solid ${C.border}`,
                 flexShrink: 0,
+                cursor: "pointer",
               }}
             >
               <Image
@@ -1078,10 +1084,52 @@ export default function CodeTeakChatWidget() {
               textAlign: "left",
             }}
           >
-            <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 6 }}>
-              <Avatar size={28} />
-              <span style={{ fontFamily: fontDisplay, fontSize: "0.7rem", fontWeight: 700, color: C.text }}>CodeTeak AI</span>
-              <StatusDot />
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "space-between",
+                gap: 8,
+                marginBottom: 6,
+              }}
+            >
+              <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                <Avatar size={28} />
+                <span
+                  style={{
+                    fontFamily: fontDisplay,
+                    fontSize: "0.7rem",
+                    fontWeight: 700,
+                    color: C.text,
+                  }}
+                >
+                  CodeTeak AI
+                </span>
+                <StatusDot />
+              </div>
+              <div
+                role="button"
+                aria-label="Close teaser"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setShowTeaser(false);
+                }}
+                style={{
+                  width: 18,
+                  height: 18,
+                  borderRadius: "999px",
+                  border: `1px solid ${C.border}`,
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  fontSize: "0.7rem",
+                  color: C.textDim,
+                  cursor: "pointer",
+                  flexShrink: 0,
+                }}
+              >
+                ×
+              </div>
             </div>
             <div style={{ fontFamily: fontMono, fontSize: "0.67rem", color: C.textDim, lineHeight: 1.5 }}>
               Curious about CodeTeak? Ask me anything about our services, products, or projects.

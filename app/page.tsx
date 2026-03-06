@@ -385,97 +385,7 @@ export default function Home() {
       />
 
       {/* Hero Section with left-side image on pure black background */}
-       <HeroSection theme={theme} heroRef={heroRef} />
-      {/* Partners/Companies Marquee Section */}
-      <section
-        ref={partnersRef} 
-        className="py-16 px-4 sm:px-6 lg:px-8 border-t border-border rounded-t-[4rem] overflow-hidden bg-white dark:bg-background"
-        suppressHydrationWarning
-      >
-        <div className="container mx-auto max-w-7xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-8"
-          >
-            <h2 className="text-lg sm:text-xl text-muted-foreground font-medium">
-              {t.partners.title}
-            </h2>
-          </motion.div>
-
-          {/* Supermarket Partners List */}
-          <div className="overflow-hidden">
-            {/* First Marquee - Left to Right */}
-            <div className="overflow-hidden mb-8">
-            <motion.div
-                className="flex gap-8 md:gap-12 items-center"
-              animate={{
-                  x: [0, "-50%"],
-              }}
-              transition={{
-                x: {
-                  repeat: Infinity,
-                  repeatType: "loop",
-                  duration: 30,
-                  ease: "linear",
-                },
-              }}
-            >
-                {/* Render partners twice for seamless loop */}
-              {[...Array(2)].map((_, setIndex) => (
-                  <div key={`marquee1-${setIndex}`} className="flex gap-8 md:gap-12 items-center flex-shrink-0">
-                    {["Loyal City", "Greens Fresh Mart", "Fresh World", "Families", "Mythri", "Dream Mart", "Millions", "Rolla", "All Season", "BigMart", "Brigade", "Season Fresh", "FreshCo Hyper", "Market Fresh", "Grand Fresh Hyper Mart"].map((partner) => (
-                      <div
-                        key={`${setIndex}-${partner}`}
-                        className="flex-shrink-0 text-2xl font-semibold text-muted-foreground/60 whitespace-nowrap"
-                      >
-                        {partner}
-                      </div>
-                    ))}
-                  </div>
-                ))}
-              </motion.div>
-            </div>
-
-            {/* Second Marquee - Right to Left */}
-            <div className="overflow-hidden">
-              <motion.div
-                className="flex gap-8 md:gap-12 items-center"
-                animate={{
-                  x: ["-50%", 0],
-                }}
-                transition={{
-                  x: {
-                    repeat: Infinity,
-                    repeatType: "loop",
-                    duration: 30,
-                    ease: "linear",
-                  },
-                }}
-              >
-                {/* Render partners twice for seamless loop */}
-                {[...Array(2)].map((_, setIndex) => (
-                  <div key={`marquee2-${setIndex}`} className="flex gap-8 md:gap-12 items-center flex-shrink-0">
-                    {["Loyal City", "Greens Fresh Mart", "Fresh World", "Families", "Mythri", "Dream Mart", "Millions", "Rolla", "All Season", "BigMart", "Brigade", "Season Fresh", "FreshCo Hyper", "Market Fresh", "Grand Fresh Hyper Mart"].map((partner) => (
-                      <div
-                        key={`${setIndex}-${partner}`}
-                        className="flex-shrink-0 text-2xl font-semibold text-muted-foreground/60 whitespace-nowrap"
-                      >
-                        {partner}
-                        </div>
-                    ))}
-                </div>
-              ))}
-            </motion.div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Services Section */}
-      <ServicesSection language={language as Language} />
+      <HeroSection theme={theme} heroRef={heroRef} />
 
       {/* About Section */}
       <section id="about" className="py-20 px-4 sm:px-6 lg:px-8 bg-muted/30">
@@ -510,6 +420,135 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* Partners/Companies Marquee Section */}
+      <section
+        ref={partnersRef}
+        className="py-16 px-4 sm:px-6 lg:px-8 border-t border-border rounded-t-[4rem] overflow-hidden bg-white dark:bg-background"
+        suppressHydrationWarning
+      >
+        <div className="container mx-auto max-w-7xl">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-8"
+          >
+            <h2 className="text-lg sm:text-xl text-muted-foreground font-medium">
+              {t.partners.title}
+            </h2>
+          </motion.div>
+
+          {/* Supermarket Partners List */}
+          <div className="overflow-hidden">
+            {/* First Marquee - Left to Right */}
+            <div className="overflow-hidden mb-8">
+              <motion.div
+                className="flex gap-8 md:gap-12 items-center"
+                animate={{
+                  x: [0, "-50%"],
+                }}
+                transition={{
+                  x: {
+                    repeat: Infinity,
+                    repeatType: "loop",
+                    duration: 30,
+                    ease: "linear",
+                  },
+                }}
+              >
+                {/* Render partners twice for seamless loop */}
+                {[...Array(2)].map((_, setIndex) => (
+                  <div
+                    key={`marquee1-${setIndex}`}
+                    className="flex gap-8 md:gap-12 items-center flex-shrink-0"
+                  >
+                    {[
+                      "Loyal City",
+                      "Greens Fresh Mart",
+                      "Fresh World",
+                      "Families",
+                      "Mythri",
+                      "Dream Mart",
+                      "Millions",
+                      "Rolla",
+                      "All Season",
+                      "BigMart",
+                      "Brigade",
+                      "Season Fresh",
+                      "FreshCo Hyper",
+                      "Market Fresh",
+                      "Grand Fresh Hyper Mart",
+                    ].map((partner) => (
+                      <div
+                        key={`${setIndex}-${partner}`}
+                        className="flex-shrink-0 text-2xl font-semibold text-muted-foreground/60 whitespace-nowrap"
+                      >
+                        {partner}
+                      </div>
+                    ))}
+                  </div>
+                ))}
+              </motion.div>
+            </div>
+
+            {/* Second Marquee - Right to Left */}
+            <div className="overflow-hidden">
+              <motion.div
+                className="flex gap-8 md:gap-12 items-center"
+                animate={{
+                  x: ["-50%", 0],
+                }}
+                transition={{
+                  x: {
+                    repeat: Infinity,
+                    repeatType: "loop",
+                    duration: 30,
+                    ease: "linear",
+                  },
+                }}
+              >
+                {/* Render partners twice for seamless loop */}
+                {[...Array(2)].map((_, setIndex) => (
+                  <div
+                    key={`marquee2-${setIndex}`}
+                    className="flex gap-8 md:gap-12 items-center flex-shrink-0"
+                  >
+                    {[
+                      "Loyal City",
+                      "Greens Fresh Mart",
+                      "Fresh World",
+                      "Families",
+                      "Mythri",
+                      "Dream Mart",
+                      "Millions",
+                      "Rolla",
+                      "All Season",
+                      "BigMart",
+                      "Brigade",
+                      "Season Fresh",
+                      "FreshCo Hyper",
+                      "Market Fresh",
+                      "Grand Fresh Hyper Mart",
+                    ].map((partner) => (
+                      <div
+                        key={`${setIndex}-${partner}`}
+                        className="flex-shrink-0 text-2xl font-semibold text-muted-foreground/60 whitespace-nowrap"
+                      >
+                        {partner}
+                      </div>
+                    ))}
+                  </div>
+                ))}
+              </motion.div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Services Section */}
+      <ServicesSection language={language as Language} />
 
       {/* FAQ Section */}
       <section id="faq" className="py-20 px-4 sm:px-6 lg:px-8">

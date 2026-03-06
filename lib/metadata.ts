@@ -229,8 +229,8 @@ export const aboutMetadata: Metadata = generateSEOMetadata({
     "Meet the CodeTeak core team – Alfayad S (Full Stack Developer & UI/UX Designer), Abhinav Aneesh (Full Stack Mobile Application Developer), Binel Biju and Alan Joshy (Backend Developers & Cloud Engineers). A modern, senior engineering team building scalable web, mobile, and cloud products for startups and enterprises.",
   path: "/about",
   additionalImages: [
-    "/core-team/Alfayad.jpeg",
-    "/core-team/Abhinav.jpeg",
+    "/core-team/Alfayad.png",
+    "/core-team/Abhinav.png",
     "/core-team/Binel.jpeg",
     "/core-team/Alan.jpeg",
   ],
