@@ -60,6 +60,10 @@ export function generateSEOMetadata({
     "UI/UX design",
     "software solutions",
     "technology consulting",
+    "software development company India",
+    "web development Dubai",
+    "software company Bengaluru",
+    "tech consulting UAE",
     ...keywords,
   ];
 
@@ -109,6 +113,7 @@ export function generateSEOMetadata({
     },
     alternates: {
       canonical: url,
+      languages: { "en": url, "x-default": url },
     },
     metadataBase: new URL(baseUrl),
     applicationName: siteName,
@@ -134,6 +139,11 @@ export function generateSEOMetadata({
       statusBarStyle: "default",
       title: siteName,
     },
+    themeColor: [
+      { media: "(prefers-color-scheme: light)", color: "#ffffff" },
+      { media: "(prefers-color-scheme: dark)", color: "#0a0a0a" },
+    ],
+    category: "technology",
   };
 
   // Add article-specific metadata
@@ -163,7 +173,7 @@ export function generateSEOMetadata({
 // Pre-defined metadata for common pages
 export const homeMetadata: Metadata = generateSEOMetadata({
   title: "Innovative Software Solutions",
-  description: "Transform your ideas into digital excellence. We craft innovative software solutions including web development, mobile apps, cyber security, and AI integration. 100+ projects delivered with 95% client satisfaction.",
+  description: "Transform your ideas into digital excellence. We craft innovative software solutions including web development, mobile apps, cyber security, and AI integration. 100+ projects delivered with 95% client satisfaction. Software development company in Bengaluru and Dubai.",
   path: "/",
   keywords: [
     "software development company",
@@ -173,6 +183,9 @@ export const homeMetadata: Metadata = generateSEOMetadata({
     "product engineering",
     "custom software",
     "technology solutions",
+    "software company Bengaluru",
+    "web development company Dubai",
+    "best software development company",
   ],
 });
 
