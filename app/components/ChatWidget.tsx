@@ -678,20 +678,25 @@ function SingleMemberBubble({
   );
 }
 
+const WHO_BUILT_WEBSITE = /who\s+(?:build|built|made|designed|developed)\s+(?:this\s+)?(?:website|site|app)/i;
+
 function Message({
   role,
   text,
   time,
   isStreaming,
+  prevUserText,
   onViewMember,
 }: {
   role: ChatRole;
   text: string;
   time: string;
   isStreaming?: boolean;
+  prevUserText?: string;
   onViewMember?: (id: MemberId) => void;
 }) {
   const isBot = role === "assistant";
+  const isReplyToWhoBuilt = Boolean(prevUserText && WHO_BUILT_WEBSITE.test(prevUserText));
 
   if (isBot && /\byaadro\b/i.test(text)) {
     return (
@@ -788,6 +793,10 @@ function Message({
         </div>
       </div>
     );
+  }
+
+  if (isBot && isReplyToWhoBuilt) {
+    return <SingleMemberBubble id="alfayad" time={time} text={text} />;
   }
 
   if (isBot) {
@@ -1329,12 +1338,13 @@ export default function CodeTeakChatWidget() {
           backgroundRepeat: "no-repeat",
         }}
       >
-        {messages.map((m) => (
+        {messages.map((m, i) => (
           <Message
             key={m.id}
             role={m.role}
             text={m.text}
             time={m.time}
+            prevUserText={i > 0 && messages[i - 1].role === "user" ? messages[i - 1].text : undefined}
             onViewMember={handleViewMemberDetails}
           />
         ))}
