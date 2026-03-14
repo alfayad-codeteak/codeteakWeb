@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://codeteak.com";
 const siteName = "CodeTeak";
 const defaultDescription = "We build cutting-edge software solutions that drive your business forward. Expert development, design, and consulting services.";
-const defaultImage = `${baseUrl}/og-image.jpg`; // You can create and add this image later
+const defaultImage = `${baseUrl}/og-image.jpg`; // Branded OG image (logo + tagline) in public folder
 const twitterHandle = "@codeteak"; // Update with actual Twitter handle
 
 interface GenerateMetadataOptions {
@@ -158,11 +158,12 @@ export function generateSEOMetadata({
   }
 
   // Add additional meta tags for WhatsApp and other platforms
+  const isPng = /\.png$/i.test(image) || ogImageUrl.toLowerCase().includes(".png");
   metadata.other = {
     "og:image:alt": title,
     "twitter:image:alt": title,
     "og:image:secure_url": ogImageUrl, // WhatsApp requires secure_url
-    "og:image:type": "image/jpeg",
+    "og:image:type": isPng ? "image/png" : "image/jpeg",
     "og:image:width": "1200",
     "og:image:height": "630",
   };
