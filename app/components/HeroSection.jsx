@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 
 export default function HeroSection({ theme = "dark", heroRef }) {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -37,6 +37,14 @@ export default function HeroSection({ theme = "dark", heroRef }) {
     const t = setTimeout(() => setMounted(true), 60);
     return () => clearTimeout(t);
   }, []);
+
+  /*
+   * --- Scroll-driven hero frames (disabled) ---
+   * Previously: fetched `/api/frames` for files in `public/frames`, preloaded images,
+   * pinned wheel/touch until the last frame, RAF-smoothed `frameTargetRef` → `activeFrameIndex`,
+   * and `<Image src={frameSources[activeFrameIndex]} />`. Restore `useRef` import + state/refs
+   * + the removed `useEffect` blocks here if you want that behaviour again.
+   */
 
   // Derived scroll values
   const parallaxImg   = scrollY * 0.28;

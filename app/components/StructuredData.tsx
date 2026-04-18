@@ -26,10 +26,11 @@ export function OrganizationSchema({
   phone = "+91 99952 03149",
   address = [
     {
-      streetAddress: "Arine Amaryllis, Akshayanagara West, Akshaya Gardens, Akshayanagar",
+      streetAddress:
+        "4th floor, 1190 Desk NO-FD 78, Eva Info Marketing Solution Pvt Ltd, 22nd Cross Road, HSR Layout, Bengaluru Urban",
       addressLocality: "Bengaluru",
       addressRegion: "Karnataka",
-      postalCode: "560114",
+      postalCode: "560102",
       addressCountry: "IN",
     },
     {

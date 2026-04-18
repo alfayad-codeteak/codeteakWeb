@@ -68,7 +68,7 @@ CodeTeak (Codeteak Technologies Pvt. Ltd.) is a dynamic software studio founded 
 Our core services include custom web and mobile app development, SaaS product engineering, UI/UX design, cloud and DevOps consulting, analytics solutions, backend and frontend development, microservices architecture, API development, cyber security, product design, performance optimization, security and compliance, and team augmentation. Engagement models are flexible: project-based fixed-price, monthly retainers for ongoing support, and SaaS subscriptions for our in-house products. Keywords: full-stack development, web applications, product engineering, backend development, frontend development, cloud infrastructure, DevOps CI/CD, microservices, API development, cyber security, UI/UX design, custom software, performance optimization, security compliance, team augmentation, scalable solutions, digital transformation, innovative software, enterprise apps, startup tech.
 
 Locations and Contact:
-- India (Bengaluru Office): Arine Amaryllis, Akshayanagara West, Akshaya Gardens, Akshayanagar, Bengaluru, Karnataka 560114 | Phone: +91 99952 03149
+- India (Bengaluru Office): 4th floor, 1190 Desk NO-FD 78, Eva Info Marketing Solution Pvt Ltd, 22nd Cross Road, HSR Layout, Bengaluru, Bengaluru Urban, Karnataka 560102 | Phone: +91 99952 03149
 - UAE (Dubai Office): Index Exchange Building, Opposite Wimpy Restaurant, Naif Road, Dubai | Phone: +91 99952 03149 (international inquiries) or email for local support
 - General Email: info@codeteak.com
 - Website: codeteak.com | Help Center: codeteak.com/help-center

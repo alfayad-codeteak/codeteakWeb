@@ -721,8 +721,10 @@ export default function Home() {
                   <li>
                     <p className="text-foreground font-mono text-xs font-medium mb-1">Bengaluru</p>
                     <p className="text-foreground font-mono text-xs leading-relaxed">
-                      Arine Amaryllis, Akshayanagara West, Akshaya Gardens,<br />
-                      Akshayanagar, Bengaluru, Karnataka 560114
+                      4th floor, 1190 Desk NO-FD 78,<br />
+                      Eva Info Marketing Solution Pvt Ltd,<br />
+                      22nd Cross Road, HSR Layout, Bengaluru,<br />
+                      Bengaluru Urban, Karnataka 560102
                     </p>
                   </li>
                   <li>

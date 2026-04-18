@@ -319,7 +319,7 @@ export default function Footer() {
                   {/* Bengaluru Location */}
                   <div className="relative group">
                     <a
-                      href="https://www.google.com/maps?q=12.874395210839836,77.61370881001027"
+                      href="https://www.google.com/maps/search/?api=1&query=22nd+Cross+Road%2C+HSR+Layout%2C+Bengaluru+560102"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="flex items-center gap-2 hover:text-[#FC4B01] transition-colors"
@@ -332,7 +332,7 @@ export default function Footer() {
                       <div className="bg-foreground text-background text-xs rounded-lg px-3 py-2 shadow-lg max-w-xs whitespace-normal">
                         <p className="font-medium mb-1">Bengaluru Office</p>
                         <p className="text-background/90">
-                          Arine Amaryllis, Akshayanagara West, Akshaya Gardens, Akshayanagar, Bengaluru, Karnataka 560114
+                          4th floor, 1190 Desk NO-FD 78, Eva Info Marketing Solution Pvt Ltd, 22nd Cross Road, HSR Layout, Bengaluru, Bengaluru Urban, Karnataka 560102
                         </p>
                         <div className="absolute top-full left-4 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-foreground"></div>
                       </div>

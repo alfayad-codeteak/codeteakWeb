@@ -417,12 +417,13 @@ export default function ContactPage() {
                   <li>
                     <p className="text-foreground font-mono text-sm font-medium mb-2">Bengaluru</p>
                     <p className="text-foreground font-mono text-sm leading-relaxed mb-2">
-                      Arine Amaryllis, Akshayanagara West,<br />
-                      Akshaya Gardens, Akshayanagar,<br />
-                      Bengaluru, Karnataka 560114
+                      4th floor, 1190 Desk NO-FD 78,<br />
+                      Eva Info Marketing Solution Pvt Ltd,<br />
+                      22nd Cross Road, HSR Layout, Bengaluru,<br />
+                      Bengaluru Urban, Karnataka 560102
                     </p>
                     <a 
-                      href="https://www.google.com/maps?q=12.874395210839836,77.61370881001027"
+                      href="https://www.google.com/maps/search/?api=1&query=22nd+Cross+Road%2C+HSR+Layout%2C+Bengaluru+560102"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-[#FC4B01] hover:underline text-xs inline-block"
