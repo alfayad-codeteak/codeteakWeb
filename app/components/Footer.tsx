@@ -36,49 +36,32 @@ interface WeatherData {
 
 export default function Footer() {
   const [hoveredSocial, setHoveredSocial] = useState<string | null>(null);
-  const [language, setLanguage] = useState<"en" | "ar">(() => {
-    if (typeof window !== 'undefined') {
-      return (localStorage.getItem("language") as "en" | "ar") || "en";
-    }
-    return "en";
-  });
+  // IMPORTANT: keep initial render deterministic to avoid hydration mismatch.
+  // We read localStorage only after mount.
+  const [language, setLanguage] = useState<"en" | "ar">("en");
   const [weather, setWeather] = useState<WeatherData | null>(null);
   const [weatherLoading, setWeatherLoading] = useState(true);
   const [batteryLevel, setBatteryLevel] = useState<number | null>(null);
   const [isCharging, setIsCharging] = useState<boolean>(false);
-  const intervalRef = useRef<NodeJS.Timeout | null>(null);
   
   useEffect(() => {
-    if (typeof window !== 'undefined') {
-      // Listen to storage events (for cross-tab updates)
-      const handleStorageChange = (e: StorageEvent) => {
-        if (e.key === "language" && e.newValue) {
-          setLanguage(e.newValue as "en" | "ar");
-        }
-      };
+    if (typeof window === "undefined") return;
 
-      window.addEventListener("storage", handleStorageChange);
+    // Load saved language after mount (avoids hydration mismatch).
+    const saved = localStorage.getItem("language") as "en" | "ar" | null;
+    if (saved === "en" || saved === "ar") setLanguage(saved);
 
-      // Check for language changes periodically
-      intervalRef.current = setInterval(() => {
-        const currentLanguage = localStorage.getItem("language") as "en" | "ar" | null;
-        if (currentLanguage) {
-          setLanguage(prev => {
-            if (prev !== currentLanguage) {
-              return currentLanguage;
-            }
-            return prev;
-          });
-        }
-      }, 500);
+    // Listen to storage events (cross-tab updates).
+    const handleStorageChange = (e: StorageEvent) => {
+      if (e.key === "language" && (e.newValue === "en" || e.newValue === "ar")) {
+        setLanguage(e.newValue);
+      }
+    };
+    window.addEventListener("storage", handleStorageChange);
 
-      return () => {
-        window.removeEventListener("storage", handleStorageChange);
-        if (intervalRef.current) {
-          clearInterval(intervalRef.current);
-        }
-      };
-    }
+    return () => {
+      window.removeEventListener("storage", handleStorageChange);
+    };
   }, []);
 
   // Fetch weather data

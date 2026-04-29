@@ -264,6 +264,41 @@ export default function Navigation({
                       </div>
                     </div>
                   </motion.div>
+
+                  {/* Ecommerce Section */}
+                  <motion.div
+                    initial={{ opacity: 0, x: -10 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.2 }}
+                    className="mt-6 pt-6 border-t border-border/50"
+                  >
+                    <div className="flex items-start gap-4">
+                      <div className="flex-shrink-0 w-16 h-16 rounded-lg overflow-hidden">
+                        <Image
+                          src="/mockup/yaadro.png"
+                          alt="Yaadro Ecommerce"
+                          width={64}
+                          height={64}
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <h3 className="text-foreground font-bold text-base mb-3 uppercase tracking-wider">
+                          {t.product.ecommerce.title}
+                        </h3>
+                        <p className="text-muted-foreground text-xs mb-4 leading-relaxed">
+                          {t.product.ecommerce.description}
+                        </p>
+                        <Link
+                          href="/products/ecommerce"
+                          className="inline-flex items-center gap-2 text-[#FC4B01] hover:text-[#FC4B01]/80 transition-colors text-sm font-medium group"
+                        >
+                          {t.product.learnMore}
+                          <ArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
+                        </Link>
+                      </div>
+                    </div>
+                  </motion.div>
                 </div>
               </div>
             </motion.div>
@@ -590,6 +625,30 @@ export default function Navigation({
                       <div className="flex-1">
                         <h4 className="text-base font-bold text-foreground mb-1">{t.product.lens.title}</h4>
                         <p className="text-sm text-muted-foreground line-clamp-2">{t.product.lens.description}</p>
+                      </div>
+                    </div>
+                  </Link>
+
+                  <Link
+                    href="/products/ecommerce"
+                    className="block p-4 rounded-xl hover:bg-muted/50 transition-colors border border-border/50"
+                    onClick={() => setIsMobileProductOpen(false)}
+                  >
+                    <div className="flex items-center gap-3">
+                      <Image
+                        src="/mockup/yaadro.png"
+                        alt="Yaadro Ecommerce"
+                        width={48}
+                        height={48}
+                        className="w-12 h-12 object-cover rounded-lg"
+                      />
+                      <div className="flex-1 min-w-0">
+                        <h4 className="text-base font-bold text-foreground mb-1">
+                          {t.product.ecommerce.title}
+                        </h4>
+                        <p className="text-sm text-muted-foreground line-clamp-2">
+                          {t.product.ecommerce.description}
+                        </p>
                       </div>
                     </div>
                   </Link>

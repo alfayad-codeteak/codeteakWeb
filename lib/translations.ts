@@ -23,6 +23,10 @@ export const translations = {
         title: "Lens",
         description: "Visual data insights",
       },
+      ecommerce: {
+        title: "Ecommerce",
+        description: "Online ordering for supermarkets (COD)",
+      },
       learnMore: "Learn more",
     },
     // Hero section
@@ -302,6 +306,19 @@ export const translations = {
           "Scalable architecture supporting multiple locations",
         ],
       },
+      ecommerce: {
+        name: "Yaadro Ecommerce",
+        description:
+          "A supermarket ecommerce experience powered by Yaadro. Customers can browse products and place online orders from your shop with Cash on Delivery (COD) only.",
+        features: [
+          "Separate product catalog for each shop",
+          "Customer web ordering experience from your website",
+          "Cash on Delivery (COD) checkout (no online payments)",
+          "Order management for shop staff",
+          "Real-time order status updates for customers",
+          "Built on Yaadro and maintained by CodeTeak",
+        ],
+      },
       viewDetails: "View Details",
     },
     // Product detail page
@@ -451,6 +468,10 @@ export const translations = {
       lens: {
         title: "لينز",
         description: "رؤى البيانات المرئية",
+      },
+      ecommerce: {
+        title: "التجارة الإلكترونية",
+        description: "طلب عبر الإنترنت للسوبرماركت (الدفع عند الاستلام)",
       },
       learnMore: "اعرف المزيد",
     },
@@ -729,6 +750,19 @@ export const translations = {
           "لوحات تحليلات فورية وتقارير شاملة",
           "أمان على مستوى المؤسسات مع مصادقة JWT",
           "هندسة معمارية قابلة للتوسع تدعم مواقع متعددة",
+        ],
+      },
+      ecommerce: {
+        name: "يادرو للتجارة الإلكترونية",
+        description:
+          "تجربة تجارة إلكترونية للسوبرماركت مدعومة بواسطة يادرو. يمكن للعملاء تصفح المنتجات وطلبها عبر الإنترنت من متجرك مع الدفع عند الاستلام فقط.",
+        features: [
+          "كتالوج منتجات منفصل لكل متجر",
+          "تجربة طلب للعميل عبر موقعك الإلكتروني",
+          "الدفع عند الاستلام فقط (بدون دفع إلكتروني)",
+          "إدارة الطلبات لموظفي المتجر",
+          "تحديثات حالة الطلب للعميل بشكل فوري",
+          "مبني على يادرو ويتم صيانته بواسطة كودتيك",
         ],
       },
       viewDetails: "عرض التفاصيل",

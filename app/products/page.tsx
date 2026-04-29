@@ -92,7 +92,14 @@ export default function ProductsPage() {
       description: t.products.lens.description,
       image: "/mockup/lens.png",
       features: t.products.lens.features
-    }
+    },
+    {
+      id: "ecommerce",
+      name: t.products.ecommerce.name,
+      description: t.products.ecommerce.description,
+      image: "/mockup/yaadro.png",
+      features: t.products.ecommerce.features
+    },
   ];
 
   return (

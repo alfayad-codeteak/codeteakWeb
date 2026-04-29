@@ -151,6 +151,28 @@ export default function ProductDetailPage() {
         "Production-ready solution built on FastAPI, PostgreSQL, and Redis"
       ]
     }
+    ,
+    ecommerce: {
+      name: "Yaadro Ecommerce",
+      description: "Supermarket ecommerce ordering (COD only)",
+      longDescription:
+        "Yaadro Ecommerce is a customer ordering experience powered by Yaadro. Each supermarket can maintain a separate product catalog in the application, and customers can access the shop ecommerce from the website to place orders online with Cash on Delivery (COD) only. Built on Yaadro and maintained by CodeTeak.",
+      image: "/mockup/yaadro.png",
+      features: [
+        "Separate product catalog for each shop",
+        "Customer ordering experience accessible from the website",
+        "Cash on Delivery (COD) checkout only",
+        "Order management for staff with clear statuses",
+        "Notifications and status updates for customers",
+        "Reliable operations, monitoring, and maintenance by CodeTeak",
+      ],
+      benefits: [
+        "Launch online ordering quickly without building from scratch",
+        "Keep each shop’s products, pricing, and availability separate",
+        "Reduce payment complexity with COD-only flow",
+        "Increase repeat orders with a simple customer experience",
+      ],
+    },
   };
 
   const product = products[slug];
@@ -951,6 +973,317 @@ export default function ProductDetailPage() {
             </div>
           </div>
         </section>
+      </div>
+    );
+  }
+
+  // Special design for Yaadro Ecommerce
+  if (slug === "ecommerce") {
+    const faqItems =
+      language === "ar"
+        ? [
+            {
+              question: "هل يدعم الدفع الإلكتروني؟",
+              answer:
+                "حالياً التجربة مصممة لتكون الدفع عند الاستلام فقط (COD) لتبسيط التشغيل وتقليل التعقيد. يمكن إضافة الدفع الإلكتروني لاحقاً حسب المتطلبات.",
+            },
+            {
+              question: "هل لكل متجر منتجاته الخاصة؟",
+              answer:
+                "نعم. كل متجر لديه كتالوج منفصل (المنتجات، الأسعار، التوفر) داخل التطبيق لضمان تجربة دقيقة لكل فرع/متجر.",
+            },
+            {
+              question: "كيف يصل العميل إلى متجر التجارة الإلكترونية؟",
+              answer:
+                "يمكن فتح متجر الطلبات من موقعك (زر/رابط) بحيث يصل العميل مباشرة لتصفح المنتجات وطلبها عبر الإنترنت.",
+            },
+            {
+              question: "من يقوم بالصيانة والتحديثات؟",
+              answer:
+                "المنصة مبنية على Yaadro ويتم تشغيلها وصيانتها بواسطة CodeTeak، بما يشمل التحديثات، التحسينات، والدعم.",
+            },
+          ]
+        : [
+            {
+              question: "Does it support online payments?",
+              answer:
+                "Right now it’s designed as COD-only (Cash on Delivery) to keep operations simple. Online payments can be added later if needed.",
+            },
+            {
+              question: "Can each shop have its own products?",
+              answer:
+                "Yes. Every shop maintains a separate catalog (products, pricing, availability) inside the application.",
+            },
+            {
+              question: "How do customers access the ecommerce shop?",
+              answer:
+                "Customers open the shop from your website (a button/link) to browse items and place orders online.",
+            },
+            {
+              question: "Who maintains it?",
+              answer:
+                "It’s powered by Yaadro and maintained by CodeTeak, including updates, improvements, and support.",
+            },
+          ];
+
+    const highlights =
+      language === "ar"
+        ? [
+            { title: "تجربة عميل", desc: "تصفح المنتجات، إضافة للسلة، وإرسال الطلب بسهولة." },
+            { title: "COD فقط", desc: "الدفع عند الاستلام لتقليل الاحتكاك وتعقيد الدفع." },
+            { title: "لكل متجر كتالوج", desc: "فصل المنتجات والأسعار والتوفر لكل متجر." },
+            { title: "إدارة الطلبات", desc: "لوحة/تطبيق للموظفين لمتابعة الطلبات وتحديث الحالة." },
+          ]
+        : [
+            { title: "Customer App Experience", desc: "Browse, add to cart, and place orders online." },
+            { title: "COD Only", desc: "Cash on Delivery checkout to keep it simple." },
+            { title: "Per-Shop Catalog", desc: "Separate products, pricing, and availability for each shop." },
+            { title: "Order Management", desc: "Staff workflow to manage orders and update statuses." },
+          ];
+
+    return (
+      <div className="min-h-screen bg-background relative pb-20 md:pb-0">
+        <Navigation
+          theme={theme}
+          language={language}
+          isMounted={isMounted}
+          isScrolled={isScrolled}
+          showBackToTop={showBackToTop}
+          onThemeChange={(newTheme) => {
+            setTheme(newTheme);
+            updateTheme(newTheme);
+          }}
+          onLanguageChange={changeLanguage}
+          onScrollToTop={scrollToTop}
+        />
+
+        <main className="pt-20 md:pt-28 pb-16 px-4 sm:px-6 lg:px-8">
+          <div className="container mx-auto max-w-7xl">
+            <div className="mb-8">
+              <Link href="/products" className="inline-flex items-center gap-2 text-muted-foreground hover:text-[#FC4B01] transition-colors">
+                <ArrowLeft className="w-4 h-4" />
+                {t.productDetail.backToProducts}
+              </Link>
+            </div>
+
+            {/* Hero */}
+            <section className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                className="space-y-6"
+              >
+                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-muted/50 border border-border">
+                  <ShoppingCart className="w-4 h-4 text-[#FC4B01]" />
+                  <span className="text-sm text-muted-foreground">
+                    {language === "ar"
+                      ? "مدعوم بواسطة Yaadro • صيانة كودتيك"
+                      : "Powered by Yaadro • Maintained by CodeTeak"}
+                  </span>
+                </div>
+
+                <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground leading-tight">
+                  {language === "ar" ? (
+                    <>
+                      متجر سوبرماركت{" "}
+                      <span className="text-[#FC4B01]">أونلاين</span>
+                      <br />
+                      الدفع عند الاستلام فقط
+                    </>
+                  ) : (
+                    <>
+                      Supermarket{" "}
+                      <span className="text-[#FC4B01]">Ecommerce</span>
+                      <br />
+                      COD-only online ordering
+                    </>
+                  )}
+                </h1>
+
+                <p className="text-base sm:text-lg text-muted-foreground leading-relaxed max-w-xl">
+                  {language === "ar"
+                    ? "تمكّن Yaadro Ecommerce متجرك من عرض المنتجات عبر الإنترنت مع فصل كتالوج كل متجر داخل التطبيق. يمكن للعميل الطلب من موقعك والدفع عند الاستلام فقط."
+                    : "Yaadro Ecommerce lets your shop sell online with a per-shop catalog inside the application. Customers order from your website and pay with Cash on Delivery (COD) only."}
+                </p>
+
+                <div className="flex flex-wrap gap-3">
+                  <Link
+                    href="/contact"
+                    className="inline-flex items-center gap-2 px-6 py-3 bg-[#FC4B01] text-white rounded-full font-semibold hover:opacity-90 transition-opacity"
+                  >
+                    {language === "ar" ? "اطلب عرضاً" : "Request a demo"}
+                    <ArrowRight className="w-4 h-4" />
+                  </Link>
+                  <Link
+                    href="/products/yaadro"
+                    className="inline-flex items-center gap-2 px-6 py-3 border border-border rounded-full text-foreground hover:border-[#FC4B01]/40 transition-colors"
+                  >
+                    {language === "ar" ? "تعرف على Yaadro" : "Explore Yaadro"}
+                  </Link>
+                </div>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.1 }}
+                className="relative"
+              >
+                <div className="bg-card border border-border rounded-3xl p-8 overflow-hidden">
+                  <div className="absolute inset-0 bg-gradient-to-br from-[#FC4B01]/10 via-transparent to-transparent" />
+                  <div className="relative">
+                    <Image
+                      src={product.image}
+                      alt={product.name}
+                      width={700}
+                      height={500}
+                      className="w-full h-auto object-contain"
+                      priority
+                    />
+                  </div>
+                </div>
+              </motion.div>
+            </section>
+
+            {/* Highlights */}
+            <section className="mt-14">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                {highlights.map((h, idx) => (
+                  <motion.div
+                    key={h.title}
+                    initial={{ opacity: 0, y: 16 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: idx * 0.05 }}
+                    className="bg-card border border-border rounded-2xl p-5"
+                  >
+                    <div className="text-sm font-semibold text-foreground mb-2">{h.title}</div>
+                    <div className="text-sm text-muted-foreground leading-relaxed">{h.desc}</div>
+                  </motion.div>
+                ))}
+              </div>
+            </section>
+
+            {/* Features + Benefits */}
+            <section className="mt-14 grid grid-cols-1 lg:grid-cols-2 gap-10">
+              <div className="bg-card border border-border rounded-3xl p-8">
+                <h2 className="text-2xl sm:text-3xl font-bold text-foreground mb-5">
+                  {language === "ar" ? "الميزات" : "Key Features"}
+                </h2>
+                <ul className="space-y-3">
+                  {product.features.map((f, idx) => (
+                    <li key={idx} className="flex items-start gap-3 text-muted-foreground">
+                      <CheckCircle2 className="w-5 h-5 text-[#FC4B01] mt-0.5 flex-shrink-0" />
+                      <span className="leading-relaxed">{f}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div className="bg-card border border-border rounded-3xl p-8">
+                <h2 className="text-2xl sm:text-3xl font-bold text-foreground mb-5">
+                  {language === "ar" ? "الفوائد" : "Business Benefits"}
+                </h2>
+                <ul className="space-y-3">
+                  {product.benefits.map((b, idx) => (
+                    <li key={idx} className="flex items-start gap-3 text-muted-foreground">
+                      <Zap className="w-5 h-5 text-[#FC4B01] mt-0.5 flex-shrink-0" />
+                      <span className="leading-relaxed">{b}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </section>
+
+            {/* FAQ */}
+            <section className="mt-16">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
+                <div>
+                  <div className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-muted/50 mb-6">
+                    <HelpCircle className="w-4 h-4 text-[#FC4B01]" />
+                    <span className="text-sm font-medium text-muted-foreground">
+                      {language === "ar" ? "الأسئلة الشائعة" : "FAQ"}
+                    </span>
+                  </div>
+                  <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4 leading-tight">
+                    {language === "ar" ? (
+                      <>
+                        كل ما تحتاجه
+                        <br />
+                        <span className="text-[#FC4B01]">قبل البدء</span>
+                      </>
+                    ) : (
+                      <>
+                        Everything you need
+                        <br />
+                        <span className="text-[#FC4B01]">to get started</span>
+                      </>
+                    )}
+                  </h2>
+                  <p className="text-muted-foreground leading-relaxed">
+                    {language === "ar"
+                      ? "إجابات سريعة حول الكتالوج، تجربة العميل، والدفع عند الاستلام."
+                      : "Quick answers about catalog separation, customer ordering, and COD-only checkout."}
+                  </p>
+                </div>
+
+                <div className="space-y-4">
+                  {faqItems.map((faq, index) => (
+                    <motion.div
+                      key={index}
+                      initial={{ opacity: 0, y: 14 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.45, delay: index * 0.06 }}
+                      className="bg-card border border-border rounded-xl p-4 md:p-6 hover:border-[#FC4B01]/30 transition-colors"
+                      onClick={() => setOpenFaqIndex(openFaqIndex === index ? null : index)}
+                      role="button"
+                      tabIndex={0}
+                    >
+                      <div className="flex items-start justify-between gap-4">
+                        <h3 className="text-base md:text-lg font-bold text-foreground flex-1">
+                          {faq.question}
+                        </h3>
+                        <motion.div
+                          className="w-8 h-8 rounded-full bg-[#FC4B01]/10 flex items-center justify-center flex-shrink-0"
+                          animate={{ rotate: openFaqIndex === index ? 180 : 0 }}
+                          transition={{ duration: 0.25, ease: "easeInOut" }}
+                        >
+                          {openFaqIndex === index ? (
+                            <ChevronUp className="w-5 h-5 text-[#FC4B01]" />
+                          ) : (
+                            <ChevronDown className="w-5 h-5 text-[#FC4B01]" />
+                          )}
+                        </motion.div>
+                      </div>
+                      <AnimatePresence>
+                        {openFaqIndex === index && (
+                          <motion.div
+                            initial={{ opacity: 0, height: 0 }}
+                            animate={{ opacity: 1, height: "auto" }}
+                            exit={{ opacity: 0, height: 0 }}
+                            transition={{ duration: 0.35, ease: [0.4, 0, 0.2, 1] }}
+                            style={{ overflow: "hidden" }}
+                          >
+                            <motion.p
+                              initial={{ opacity: 0, y: -8 }}
+                              animate={{ opacity: 1, y: 0 }}
+                              exit={{ opacity: 0, y: -8 }}
+                              transition={{ duration: 0.25, delay: 0.08 }}
+                              className="text-muted-foreground leading-relaxed mt-4"
+                            >
+                              {faq.answer}
+                            </motion.p>
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
+            </section>
+          </div>
+        </main>
       </div>
     );
   }

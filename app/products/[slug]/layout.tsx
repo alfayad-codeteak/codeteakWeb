@@ -23,6 +23,11 @@ export async function generateMetadata({
       description:
         "Lens is an AI-powered face recognition attendance system for retail stores and supermarkets. It provides contactless, automated attendance tracking with offline capabilities, real-time analytics, and enterprise-grade security. Features DeepFace ML with 90%+ accuracy in employee identification.",
     },
+    ecommerce: {
+      title: "Yaadro Ecommerce - Online Ordering for Supermarkets",
+      description:
+        "Yaadro Ecommerce enables supermarkets to run a dedicated online store where customers can browse products, place orders, and pay via Cash on Delivery (COD). Built on Yaadro and maintained by CodeTeak for reliable operations.",
+    },
   };
 
   const product = productInfo[slug] || {
