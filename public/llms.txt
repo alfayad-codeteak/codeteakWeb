@@ -1,0 +1,89 @@
+# CodeTeak
+
+> CodeTeak (Codeteak Technologies) is a software studio founded in 2025, building innovative web and mobile applications, SaaS products, and end-to-end IT solutions for startups and enterprises. Headquartered in Bengaluru, India with a presence in Dubai, UAE.
+
+CodeTeak transforms ideas into scalable digital products across retail, e-commerce, logistics, supermarkets, and growth-stage startups. The team delivers custom software engineering, product design, cyber security, cloud infrastructure, and in-house SaaS products including Yaadro (delivery management) and Lens (AI face-recognition attendance).
+
+**Contact:** info@codeteak.com | **Phone:** +91 99952 03149 | **Website:** https://codeteak.com
+
+**Stats:** 100+ projects delivered · 50+ active clients · 95% client satisfaction · 25+ partners
+
+**Technologies:** React, Next.js, Node.js, TypeScript, Python, React Native, Flutter, AWS, Azure, Docker, Kubernetes, CI/CD, REST/GraphQL APIs, microservices
+
+## Main Pages
+
+- [Home](https://codeteak.com/): Company homepage with services overview, features, stats, and contact information
+- [Services](https://codeteak.com/services): Cyber Security, Product Engineering, and Product Design service offerings
+- [Products](https://codeteak.com/products): Overview of Yaadro, Lens, and Yaadro Ecommerce products
+- [About](https://codeteak.com/about): Company story, founder profile, core engineering team, and FAQs
+- [Contact](https://codeteak.com/contact): Contact form, email, phone, and office locations in Bengaluru and Dubai
+- [Tech News](https://codeteak.com/tech-news): Curated technology news and industry updates
+- [Blog](https://codeteak.com/blog): Articles and insights (coming soon)
+
+## Products
+
+- [Yaadro](https://codeteak.com/products/yaadro): Delivery management system connecting supermarkets, delivery partners, and customers with mobile apps and web dashboard
+- [Lens (YaadroLens)](https://codeteak.com/products/lens): AI-powered face recognition attendance system for retail stores with 90%+ accuracy and offline-first architecture
+- [Yaadro Ecommerce](https://codeteak.com/products/ecommerce): Supermarket ecommerce platform with online ordering and Cash on Delivery (COD) checkout
+
+## Services
+
+### Cyber Security
+- Threat Detection & Prevention: AI-powered real-time cyber threat identification and neutralization
+- Fraud Prevention & Detection: Pattern analysis to prevent financial fraud and unauthorized access
+- Security Audit & Compliance: Security assessments and regulatory compliance checks
+- Network Security: Firewall management, intrusion detection, and secure network architecture
+- Data Protection & Encryption: End-to-end encryption and secure data storage and transmission
+- Incident Response & Recovery: Rapid breach mitigation, investigation, and system restoration
+
+### Product Engineering
+- Backend Development: Scalable server-side architecture and APIs
+- Frontend Development: Responsive, intuitive user interfaces across all devices
+- Cloud Infrastructure: Scalable cloud solutions on AWS, Azure, and similar platforms
+- DevOps & CI/CD: Automated workflows and deployment pipelines
+- Microservices Architecture: Modular, maintainable independent services
+- API Development: Secure, well-documented REST and GraphQL APIs
+
+### Product Design
+- UI Design: Visually cohesive interfaces aligned with brand identity
+- UX Design: User-centered, accessible experience design
+- Prototyping: Interactive prototypes for concept validation
+- Design Systems: Comprehensive design systems for team consistency
+- User Research: Data-driven design decisions from user behavior research
+- Accessibility Design: WCAG-compliant design for all users
+
+### Additional Capabilities
+- Web Development: Modern, responsive, scalable web applications
+- Mobile App Development: Native and cross-platform iOS and Android apps
+- AI Integration Systems: Machine learning and AI capabilities for existing workflows
+- Team Augmentation: Seamless integration with client development teams
+- Performance Optimization: Application speed and efficiency improvements
+- Security & Compliance: Enterprise-grade security solutions
+
+## Core Team
+
+- Muhammed Rizwan P — Founder: Visionary leader focused on product strategy and business outcomes. [LinkedIn](https://linkedin.com/in/muhammedrizwanp/)
+- Alfayad S — Full Stack Developer & UI/UX Designer: Scalable backends, elegant interfaces, and design-to-code workflows. [Portfolio](https://alfayad.vercel.app) · [LinkedIn](https://www.linkedin.com/in/alfayad)
+- Abhinav Aneesh — Mobile Application Developer: Full stack mobile development for iOS and Android. [LinkedIn](https://www.linkedin.com/in/abiinavvv/)
+- Binel Biju — Backend Developer & Cloud Engineer: Cloud architecture and scalable backend systems. [LinkedIn](https://www.linkedin.com/in/binel-biju/)
+- Alan Joshy — Backend Developer & Cloud Engineer: Robust backend systems, APIs, and DevOps. [LinkedIn](https://www.linkedin.com/in/alan--joshy/)
+
+## Locations
+
+- **India (Bengaluru):** 4th floor, 1190 Desk NO-FD 78, Eva Info Marketing Solution Pvt Ltd, 22nd Cross Road, HSR Layout, Bengaluru Urban, Karnataka 560102
+- **UAE (Dubai):** Index Exchange Building, Opposite Wimpy Restaurant, Naif Road, Dubai
+
+## Social & Resources
+
+- [LinkedIn](https://www.linkedin.com/company/codeteak): Company updates and professional network
+- [Instagram](https://www.instagram.com/codeteaks/): Visual updates and behind-the-scenes content
+- [X (Twitter)](https://x.com/codeteak): News and announcements
+- [Facebook](https://www.facebook.com/people/Codeteak-Technologies/61575111071671/): Company page
+- [Sitemap](https://codeteak.com/sitemap.xml): Full site URL index for crawlers
+- [Full Content (llms-full.txt)](https://codeteak.com/llms-full.txt): Complete expanded site content in Markdown
+
+## Optional
+
+- [Privacy Policy](https://codeteak.com/privacy-policy): How CodeTeak and Yaadro collect, use, and protect personal data
+- [Terms and Conditions](https://codeteak.com/terms-and-conditions): Terms of use for CodeTeak Technologies LLC and Yaadro services
+- [Robots.txt](https://codeteak.com/robots.txt): Crawler access rules

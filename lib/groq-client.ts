@@ -5,18 +5,25 @@ import type {
   ChatCompletionMessageParam,
 } from "groq-sdk/resources/chat/completions";
 
-const apiKeys = (process.env.GROQ_API_KEYS || "")
-  .split(",")
-  .map((k) => k.trim())
-  .filter(Boolean);
-
-if (apiKeys.length === 0) {
-  throw new Error("No Groq API keys configured");
-}
-
-const clients = apiKeys.map((key) => new Groq({ apiKey: key }));
-
+let clients: Groq[] | null = null;
+let apiKeys: string[] | null = null;
 let currentKeyIndex = 0;
+
+function getClients(): Groq[] {
+  if (clients) return clients;
+
+  apiKeys = (process.env.GROQ_API_KEYS || "")
+    .split(",")
+    .map((k) => k.trim())
+    .filter(Boolean);
+
+  if (apiKeys.length === 0) {
+    throw new Error("No Groq API keys configured");
+  }
+
+  clients = apiKeys.map((key) => new Groq({ apiKey: key }));
+  return clients;
+}
 
 const delay = (ms: number) => new Promise<void>((resolve) => setTimeout(resolve, ms));
 
@@ -29,6 +36,9 @@ export async function getGroqCompletion(
     [key: string]: unknown;
   },
 ): Promise<ChatCompletion> {
+  const groqClients = getClients();
+  const keys = apiKeys!;
+
   const params: ChatCompletionCreateParams = {
     model,
     messages,
@@ -37,11 +47,11 @@ export async function getGroqCompletion(
     ...options,
   };
 
-  for (let attempt = 0; attempt < apiKeys.length; attempt++) {
-    const idx = (currentKeyIndex + attempt) % apiKeys.length;
+  for (let attempt = 0; attempt < keys.length; attempt++) {
+    const idx = (currentKeyIndex + attempt) % keys.length;
 
     try {
-      const completion = await clients[idx].chat.completions.create(params);
+      const completion = await groqClients[idx].chat.completions.create(params);
       currentKeyIndex = idx;
       return completion;
     } catch (err: any) {
@@ -49,7 +59,7 @@ export async function getGroqCompletion(
 
       if (status === 429) {
         console.warn(`429 on key #${idx + 1}`);
-        currentKeyIndex = (idx + 1) % apiKeys.length;
+        currentKeyIndex = (idx + 1) % keys.length;
         await delay(800);
         continue;
       }
@@ -58,6 +68,5 @@ export async function getGroqCompletion(
     }
   }
 
-  throw new Error(`All ${apiKeys.length} Groq keys exhausted (rate limited)`);
+  throw new Error(`All ${keys.length} Groq keys exhausted (rate limited)`);
 }
-

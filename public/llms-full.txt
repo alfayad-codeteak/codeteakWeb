@@ -1,0 +1,284 @@
+# CodeTeak — Full Site Content
+
+> Complete reference content for AI systems. Index version available at https://codeteak.com/llms.txt
+
+---
+
+## Company Overview
+
+**Name:** CodeTeak (Codeteak Technologies Pvt. Ltd.)
+**Founded:** 2025
+**Website:** https://codeteak.com
+**Email:** info@codeteak.com
+**Phone:** +91 99952 03149
+
+CodeTeak is a dynamic software studio specializing in crafting innovative, scalable digital products and end-to-end IT solutions for startups and enterprises worldwide. With a focus on full-stack development, CodeTeak transforms ideas into high-performance web and mobile applications that drive business growth.
+
+The team of experienced developers, designers, and consultants collaborates closely with clients to deliver clean, maintainable code and seamless user experiences. Headquartered in Bengaluru, India, with a strategic presence in Dubai, UAE, CodeTeak serves diverse industries including retail, e-commerce, logistics, supermarkets, restaurants, and growth-stage startups.
+
+### Key Metrics
+- 100+ Projects Delivered
+- 50+ Active Clients
+- 95% Client Satisfaction
+- 25+ Partners
+
+### Why Choose CodeTeak
+- Modern tech stack
+- Agile methodology
+- 24/7 support
+- Scalable architecture
+- Code quality assurance
+- Fast delivery
+
+### Engagement Models
+- Project-based fixed-price engagements
+- Monthly retainers for ongoing support
+- SaaS subscriptions for in-house products
+
+---
+
+## Locations
+
+### Bengaluru, India
+4th floor, 1190 Desk NO-FD 78, Eva Info Marketing Solution Pvt Ltd, 22nd Cross Road, HSR Layout, Bengaluru Urban, Karnataka 560102
+
+### Dubai, UAE
+Index Exchange Building, Opposite Wimpy Restaurant, Naif Road, Dubai
+
+---
+
+## Core Team
+
+### Muhammed Rizwan P — Founder
+Visionary leader with a passion for building products that make a real difference in people's lives and businesses. Leads company vision, partnerships, and long-term product value.
+- LinkedIn: https://linkedin.com/in/muhammedrizwanp/
+
+### Alfayad S — Full Stack Developer & UI/UX Designer
+Specialist in building scalable backends and elegant interfaces, delivering seamless software solutions. Leads the intersection of design and engineering — taking ideas from rough concepts into polished interfaces, design systems, and production-ready frontends.
+- Portfolio: https://alfayad.vercel.app
+- GitHub: https://github.com/Alfayad-s
+- LinkedIn: https://www.linkedin.com/in/alfayad
+- X: https://x.com/alfayad_shameer
+
+### Abhinav Aneesh — Mobile Application Developer
+Full stack mobile developer focused on creating smooth, engaging app experiences for both iOS and Android. Ensures features feel consistent across platforms even with complex backends.
+- GitHub: https://github.com/abiinavvv
+- LinkedIn: https://www.linkedin.com/in/abiinavvv/
+- X: http://x.com/abiinavvv
+
+### Binel Biju — Backend Developer & Cloud Engineer
+Driving scalable growth through cloud architecture and delivering innovative solutions for business expansion. Specializes in API design, databases, performance, and DevOps.
+- GitHub: https://github.com/binelbpe
+- LinkedIn: https://www.linkedin.com/in/binel-biju/
+
+### Alan Joshy — Backend Developer & Cloud Engineer
+Building robust backend systems and cloud infrastructure that power reliable, high-performance applications. Focuses on monitoring, observability, and security best practices.
+- GitHub: https://github.com/alanjoshy
+- LinkedIn: https://www.linkedin.com/in/alan--joshy/
+- X: https://x.com/a1an_j0
+
+---
+
+## Services
+
+URL: https://codeteak.com/services
+
+CodeTeak offers comprehensive software development services across three main categories:
+
+### Cyber Security
+Protecting digital assets with advanced security solutions and AI-powered threat detection.
+
+1. **Threat Detection & Prevention** — AI-powered systems that identify and neutralize cyber threats in real-time, protecting infrastructure from attacks before they cause damage.
+2. **Fraud Prevention & Detection** — Advanced fraud detection systems that analyze patterns and behaviors to prevent financial fraud, identity theft, and unauthorized access.
+3. **Security Audit & Compliance** — Comprehensive security assessments and compliance checks to ensure systems meet industry standards and regulatory requirements.
+4. **Network Security** — Robust network security solutions including firewall management, intrusion detection, and secure network architecture design.
+5. **Data Protection & Encryption** — End-to-end encryption and data protection services to safeguard sensitive information and ensure secure data storage and transmission.
+6. **Incident Response & Recovery** — Rapid response services to mitigate security breaches, investigate incidents, and restore systems to secure operational states.
+
+### Product Engineering
+Building scalable and innovative products from concept to market.
+
+1. **Backend Development** — Robust server-side architecture and APIs that power applications with scalability and reliability.
+2. **Frontend Development** — Creating intuitive, responsive user interfaces that deliver exceptional user experiences across all devices.
+3. **Cloud Infrastructure** — Designing and deploying scalable cloud solutions that adapt to growing business needs.
+4. **DevOps & CI/CD** — Automating workflows and deployment pipelines for faster, more reliable software delivery.
+5. **Microservices Architecture** — Building modular, independent services that work together to create flexible and maintainable systems.
+6. **API Development** — Creating secure, well-documented APIs that enable seamless integration and communication between systems.
+
+### Product Design
+Crafting beautiful, intuitive experiences that users love.
+
+1. **UI Design** — Creating visually stunning and cohesive interfaces that align with brand and engage users.
+2. **UX Design** — Designing user-centered experiences that are intuitive, accessible, and solve real user problems.
+3. **Prototyping** — Building interactive prototypes to test concepts and validate ideas before development begins.
+4. **Design Systems** — Establishing comprehensive design systems that ensure consistency and accelerate development across teams.
+5. **User Research** — Understanding user needs and behaviors through research to inform data-driven design decisions.
+6. **Accessibility Design** — Ensuring products are usable by everyone, including users with disabilities, following WCAG guidelines.
+
+### Legacy / Additional Services
+- **Web Development** — Modern, responsive, scalable web applications using latest technologies and frameworks.
+- **Mobile App Development** — Native and cross-platform mobile applications for iOS and Android.
+- **Software Development** — Custom software solutions tailored to business needs, from concept to deployment.
+- **AI Integration Systems** — Integrating artificial intelligence and machine learning into existing systems and workflows.
+- **Security & Protection Systems** — Enterprise-grade security solutions to protect data, applications, and infrastructure.
+
+---
+
+## Products
+
+URL: https://codeteak.com/products
+
+### Yaadro — Delivery Management System
+URL: https://codeteak.com/products/yaadro
+
+**Tagline:** Deliver Smarter, Connect Effortlessly
+
+Yaadro is a comprehensive delivery management system designed to seamlessly connect supermarkets, delivery partners, and customers. With dedicated mobile apps for supermarkets and delivery partners, plus a powerful web dashboard, Yaadro streamlines the entire delivery process from order placement to doorstep delivery.
+
+**Key Features:**
+- Real-time order tracking and management
+- Dedicated mobile apps for supermarkets and delivery partners
+- Comprehensive web dashboard for supermarket management
+- Seamless communication between all parties
+- Automated delivery assignment and routing
+- Real-time notifications and updates
+
+**Smart Features:**
+- **Supermarket App** — Manage orders, inventory, and deliveries from mobile devices on the go
+- **Delivery Partner App** — Receive orders, navigate routes, and update delivery status in real-time
+- **Web Dashboard** — Comprehensive management platform for supermarkets to oversee all operations
+- **Real-Time Tracking** — Track deliveries live with GPS integration and instant status updates
+- **Smart Communication** — Seamless messaging between supermarkets, partners, and customers
+- **Order Management** — Automated order processing, assignment, and delivery scheduling
+
+**Integration:** Yaadro seamlessly integrates with Task billing software. Supermarkets create home delivery orders in Task, which automatically flow into Yaadro for management and tracking from placement to delivery.
+
+**Process:**
+1. Create home delivery order through supermarket system — order syncs to Yaadro
+2. System assigns order to best available delivery partner based on location and availability
+3. Track delivery in real-time and complete with instant notifications throughout
+
+---
+
+### Lens (YaadroLens) — AI Face Recognition Attendance
+URL: https://codeteak.com/products/lens
+
+**Tagline:** Visualize Your Data / Contactless Attendance
+
+YaadroLens is an innovative AI-powered face recognition system that enables retail stores and supermarkets to track employee attendance contactlessly with over 90% accuracy, even when offline.
+
+**Key Features:**
+- DeepFace ML with 90%+ accuracy in employee identification
+- Offline-first architecture — works without internet
+- Multi-tenant SaaS platform with secure data isolation
+- Real-time analytics dashboards and comprehensive reports
+- Enterprise-grade security with JWT authentication
+- Scalable architecture supporting multiple locations
+
+**Core Capabilities:**
+1. **Face Recognition Technology** — Advanced DeepFace ML with ArcFace embeddings delivering over 90% accuracy in employee identification
+2. **Offline-First Architecture** — Works seamlessly without internet connectivity, automatically syncing attendance data when connection is restored
+3. **Multi-Tenant SaaS** — Secure, isolated data management for multiple shops and locations with JWT authentication, role-based access control, and rate limiting
+
+**FAQ:**
+- **What is YaadroLens?** AI-powered face recognition attendance system for retail stores and supermarkets with offline capabilities and enterprise-grade security.
+- **How does it work?** Uses DeepFace ML with ArcFace embeddings to identify employees at entry points and automatically record attendance. Works offline and syncs when connected.
+- **Is it secure?** Yes — JWT authentication, role-based access control, multi-tenant data isolation, rate limiting, and encrypted face recognition data.
+- **Works without internet?** Yes — offline-first architecture stores data locally and syncs automatically when connection is restored.
+- **Accuracy?** Over 90% accuracy using DeepFace ML with ArcFace embeddings, with continuous ML performance monitoring.
+
+---
+
+### Yaadro Ecommerce — Supermarket Online Ordering
+URL: https://codeteak.com/products/ecommerce
+
+A supermarket ecommerce experience powered by Yaadro. Customers can browse products and place online orders from shops with Cash on Delivery (COD) only.
+
+**Key Features:**
+- Separate product catalog for each shop
+- Customer web ordering experience from shop websites
+- Cash on Delivery (COD) checkout (no online payments)
+- Order management for shop staff
+- Real-time order status updates for customers
+- Built on Yaadro and maintained by CodeTeak
+
+---
+
+## Frequently Asked Questions
+
+**What services does CodeTeak offer?**
+CodeTeak offers comprehensive software development services including custom development, performance optimization, security & compliance, and team augmentation. Services span cyber security, product engineering, product design, web/mobile development, AI integration, and cloud/DevOps.
+
+**How long does a typical project take?**
+Project timelines vary based on complexity and scope. Simple applications can be completed in weeks, while enterprise solutions may take several months. CodeTeak works closely with clients to establish realistic timelines.
+
+**What technologies do you work with?**
+Modern tech stacks including React, Next.js, Node.js, Python, TypeScript, React Native, Flutter, and cloud platforms like AWS and Azure.
+
+**Do you provide ongoing support?**
+Yes — 24/7 support and maintenance services including updates and enhancements to ensure applications continue to perform optimally after launch.
+
+**Can you work with our existing team?**
+Yes — team augmentation services allow seamless integration with existing development teams to provide additional expertise and accelerate projects.
+
+**How do you ensure code quality?**
+Industry best practices including code reviews, automated testing, continuous integration, and quality assurance processes for clean, maintainable, well-documented code.
+
+---
+
+## About CodeTeak
+
+URL: https://codeteak.com/about
+
+At CodeTeak, the team is passionate about creating exceptional software solutions that solve real-world problems. Experienced developers, designers, and consultants work together to bring visions to life.
+
+With years of experience in the industry, CodeTeak has helped startups and enterprises alike build scalable, secure, and high-performance applications that stand the test of time.
+
+The core team brings end-to-end product capability: discovery, UX, frontend and mobile engineering, backend systems, and cloud infrastructure. They are hands-on with clients — joining workshops, proposing architectures, reviewing code, and staying close to production metrics.
+
+---
+
+## Contact
+
+URL: https://codeteak.com/contact
+
+- **Email:** info@codeteak.com
+- **Phone:** +91 99952 03149
+- **Bengaluru Office:** 4th floor, 1190 Desk NO-FD 78, Eva Info Marketing Solution Pvt Ltd, 22nd Cross Road, HSR Layout, Bengaluru Urban, Karnataka 560102
+- **Dubai Office:** Index Exchange Building, Opposite Wimpy Restaurant, Naif Road, Dubai
+
+Contact form available on the website for project enquiries, quotes, and general inquiries.
+
+---
+
+## Social Media
+
+- LinkedIn: https://www.linkedin.com/company/codeteak
+- Instagram: https://www.instagram.com/codeteaks/
+- X (Twitter): https://x.com/codeteak
+- Facebook: https://www.facebook.com/people/Codeteak-Technologies/61575111071671/
+
+---
+
+## Legal
+
+### Privacy Policy
+URL: https://codeteak.com/privacy-policy
+Privacy Policy for CodeTeak Technologies LLC and Yaadro, explaining how personal information is collected, used, and protected for merchants, clients, and end customers.
+
+### Terms and Conditions
+URL: https://codeteak.com/terms-and-conditions
+Terms and Conditions for using CodeTeak Technologies LLC and Yaadro services and products, including UAE statutory compliance, payments, refunds, intellectual property, and liability.
+
+---
+
+## Additional Pages
+
+- **Tech News:** https://codeteak.com/tech-news — Curated technology news, trends, and insights from the software development world
+- **Blog:** https://codeteak.com/blog — Articles, insights, and updates (coming soon)
+- **Sitemap:** https://codeteak.com/sitemap.xml
+- **Robots:** https://codeteak.com/robots.txt
+
+---
+
+*Last updated: July 2026*

@@ -19,7 +19,7 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export const metadata: Metadata = generateSEOMetadata({
+const baseMetadata = generateSEOMetadata({
   title: "Innovative Software Solutions",
   description: "We build cutting-edge software solutions that drive your business forward. Expert development, design, and consulting services. Transform your ideas into digital excellence.",
   keywords: [
@@ -42,6 +42,15 @@ export const metadata: Metadata = generateSEOMetadata({
   ],
   path: "/",
 });
+
+export const metadata: Metadata = {
+  ...baseMetadata,
+  verification: {
+    other: {
+      "facebook-domain-verification": "0skxahz5dp7eu1r75x25i3af72rtac",
+    },
+  },
+};
 
 export default function RootLayout({
   children,
