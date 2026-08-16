@@ -485,7 +485,7 @@ export default function Home() {
               </div>
             </motion.div>
 
-            {/* Muhammed Aslam */}
+            {/* Mohammed Aslam */}
             <motion.div
               initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -499,7 +499,7 @@ export default function Home() {
                   <div className="absolute inset-[3px] rounded-full overflow-hidden">
                     <img
                       src="/core-team/aslam.png"
-                      alt="Muhammed Aslam"
+                      alt="Mohammed Aslam"
                       className="w-full h-full object-cover object-center"
                     />
                   </div>
@@ -509,22 +509,22 @@ export default function Home() {
               <div className="w-full md:w-[62%] space-y-4">
                 <div>
                   <p className="text-xs font-mono uppercase tracking-[0.25em] text-muted-foreground mb-2">
-                    Co-Founder & Head of Operations
+                    Co-Founder & COO
                   </p>
                   <h3 className="text-2xl sm:text-3xl font-semibold tracking-tight text-foreground">
-                    Muhammed Aslam
+                    Mohammed Aslam
                   </h3>
                 </div>
 
                 <p className="text-sm sm:text-base leading-relaxed text-muted-foreground">
                   {language === "ar"
                     ? "يشارك محمد أسلم في تأسيس CodeTeak ويقود العمليات في الشركة — من إعداد العملاء وإدارة المشاريع إلى العمليات الداخلية وتنسيق الفريق. يضمن أن كل مشروع يسير بسلاسة، وأن الجداول الزمنية تُلتزم بها، وأن العملاء يحصلون على خدمة متسقة وعالية الجودة من البداية وحتى الإطلاق وما بعده."
-                    : "Muhammed Aslam co-founded CodeTeak and leads operations across the company—from client onboarding and project delivery to internal processes and team coordination. He ensures every engagement runs smoothly, timelines stay on track, and clients receive consistent, high-quality service from kickoff through launch and beyond."}
+                    : "Mohammed Aslam co-founded CodeTeak and leads operations across the company—from client onboarding and project delivery to internal processes and team coordination. He ensures every engagement runs smoothly, timelines stay on track, and clients receive consistent, high-quality service from kickoff through launch and beyond."}
                 </p>
                 <p className="text-sm sm:text-base leading-relaxed text-muted-foreground">
                   {language === "ar"
                     ? "مع تركيزه على التميز التشغيلي، يربط محمد أسلم بين الاستراتيجية والتنفيذ. يعمل عن كثب مع محمد ريزوان والفريق الهندسي لمواءمة الموارد، وتبسيط سير العمل، وإبقاء المشاريع تتقدم بكفاءة — حتى تتمكن CodeTeak من التسليم بموثوقية وعلى نطاق واسع."
-                    : "With a focus on operational excellence, Muhammed Aslam bridges strategy and execution. He works closely with Rizwan and the engineering team to align resources, streamline workflows, and keep projects moving efficiently—so CodeTeak can deliver reliably at scale."}
+                    : "With a focus on operational excellence, Mohammed Aslam bridges strategy and execution. He works closely with Rizwan and the engineering team to align resources, streamline workflows, and keep projects moving efficiently—so CodeTeak can deliver reliably at scale."}
                 </p>
               </div>
             </motion.div>
