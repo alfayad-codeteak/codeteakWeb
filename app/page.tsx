@@ -422,7 +422,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Founder Section */}
+      {/* Founders Section */}
       <section className="py-16 px-4 sm:px-6 lg:px-8 bg-background border-t border-border">
         <div className="container mx-auto max-w-5xl">
           <motion.h2
@@ -436,54 +436,99 @@ export default function Home() {
               Meet our
             </span>
             <span className="block text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold uppercase tracking-tight leading-none text-[#FC4B01] mt-2">
-              Founder
+              Founders
             </span>
           </motion.h2>
 
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="flex flex-col md:flex-row items-center md:items-stretch gap-10 md:gap-12"
-          >
-            {/* Founder image */}
-            <div className="w-full md:w-[38%] flex justify-center md:justify-start">
-              <div className="relative w-64 sm:w-72 aspect-[3/4] rounded-full overflow-hidden border border-border/60  bg-gradient-to-b from-muted/40 to-background">
-                <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/25 pointer-events-none" />
-                <div className="absolute inset-[3px] rounded-full overflow-hidden">
-                  <img
-                    src="/core-team/rizwan.png"
-                    alt="Muhammed Rizwan P"
-                    className="w-full h-full object-cover"
-                  />
+          <div className="space-y-16 md:space-y-20">
+            {/* Muhammed Rizwan P */}
+            <motion.div
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="flex flex-col md:flex-row items-center md:items-stretch gap-10 md:gap-12"
+            >
+              <div className="w-full md:w-[38%] flex justify-center md:justify-start">
+                <div className="relative w-64 sm:w-72 aspect-[3/4] rounded-full overflow-hidden border border-border/60 bg-gradient-to-b from-muted/40 to-background">
+                  <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/25 pointer-events-none" />
+                  <div className="absolute inset-[3px] rounded-full overflow-hidden">
+                    <img
+                      src="/core-team/rizwan.png"
+                      alt="Muhammed Rizwan P"
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
                 </div>
               </div>
-            </div>
 
-            {/* Founder text */}
-            <div className="w-full md:w-[62%] space-y-4">
-              <div>
-                <p className="text-xs font-mono uppercase tracking-[0.25em] text-muted-foreground mb-2">
-                  Founder & Core Member
+              <div className="w-full md:w-[62%] space-y-4">
+                <div>
+                  <p className="text-xs font-mono uppercase tracking-[0.25em] text-muted-foreground mb-2">
+                    Founder & CEO
+                  </p>
+                  <h3 className="text-2xl sm:text-3xl font-semibold tracking-tight text-foreground">
+                    Muhammed Rizwan P
+                  </h3>
+                </div>
+
+                <p className="text-sm sm:text-base leading-relaxed text-muted-foreground">
+                  {language === "ar"
+                    ? "أسس محمد ريزوان بي شركة CodeTeak انطلاقًا من قناعة بسيطة: يجب أن يكون البرمجيات الحديثة سهلة الاستخدام للمستخدمين وموثوقة للأعمال. بخلفيته في تطوير الأنظمة كاملة الطبقات والتفكير المنتج، يعمل محمد ريزوان بي مباشرة مع العملاء لصياغة المشكلات إلى خرائط طريق واضحة وتوجيه الفريق نحو حلول عملية وعالية التأثير."
+                    : "Muhammed Rizwan P founded CodeTeak with a simple belief: modern software should feel effortless for users while being deeply reliable for businesses. With a background in full‑stack engineering and product thinking, he spends his time working closely with clients, shaping problem statements into clear roadmaps, and guiding the team toward shipping pragmatic, high‑impact solutions."}
                 </p>
-                <h3 className="text-2xl sm:text-3xl font-semibold tracking-tight text-foreground">
-                  Muhammed Rizwan P
-                </h3>
+                <p className="text-sm sm:text-base leading-relaxed text-muted-foreground">
+                  {language === "ar"
+                    ? "بصفته مؤسس CodeTeak، يجلس محمد ريزوان بي في نقطة التقاء الإستراتيجية والتصميم والهندسة – من ورش الاكتشاف الأولى، مرورًا بقرارات المعمارية، وصولاً إلى مراجعة النسخ النهائية. تركيزه الدائم هو بناء شراكات طويلة الأمد، حتى تتمكّن المنتجات التي نطلقها من التطور والتوسع والاستمرار في خلق قيمة حقيقية بمرور الوقت."
+                    : "As the founder, Muhammed Rizwan P sits at the intersection of strategy, design, and engineering—from early discovery workshops, through architecture decisions, to reviewing final builds. His focus is on building long‑term partnerships, not just one‑off projects, so that every product we ship can evolve, scale, and keep creating value over time."}
+                </p>
+              </div>
+            </motion.div>
+
+            {/* Muhammed Aslam */}
+            <motion.div
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.15 }}
+              className="flex flex-col md:flex-row-reverse items-center md:items-stretch gap-10 md:gap-12 pt-16 md:pt-20 border-t border-border"
+            >
+              <div className="w-full md:w-[38%] flex justify-center md:justify-end">
+                <div className="relative w-64 sm:w-72 aspect-[3/4] rounded-full overflow-hidden border border-border/60 bg-gradient-to-b from-muted/40 to-background">
+                  <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/25 pointer-events-none" />
+                  <div className="absolute inset-[3px] rounded-full overflow-hidden">
+                    <img
+                      src="/core-team/aslam.png"
+                      alt="Muhammed Aslam"
+                      className="w-full h-full object-cover object-center"
+                    />
+                  </div>
+                </div>
               </div>
 
-              <p className="text-sm sm:text-base leading-relaxed text-muted-foreground">
-                {language === "ar"
-                  ? "أسس محمد ريزوان بي شركة CodeTeak انطلاقًا من قناعة بسيطة: يجب أن يكون البرمجيات الحديثة سهلة الاستخدام للمستخدمين وموثوقة للأعمال. بخلفيته في تطوير الأنظمة كاملة الطبقات والتفكير المنتج، يعمل محمد ريزوان بي مباشرة مع العملاء لصياغة المشكلات إلى خرائط طريق واضحة وتوجيه الفريق نحو حلول عملية وعالية التأثير."
-                  : "Muhammed Rizwan P founded CodeTeak with a simple belief: modern software should feel effortless for users while being deeply reliable for businesses. With a background in full‑stack engineering and product thinking, he spends his time working closely with clients, shaping problem statements into clear roadmaps, and guiding the team toward shipping pragmatic, high‑impact solutions."}
-              </p>
-              <p className="text-sm sm:text-base leading-relaxed text-muted-foreground">
-                {language === "ar"
-                  ? "بصفته مؤسس CodeTeak، يجلس محمد ريزوان بي في نقطة التقاء الإستراتيجية والتصميم والهندسة – من ورش الاكتشاف الأولى، مرورًا بقرارات المعمارية، وصولاً إلى مراجعة النسخ النهائية. تركيزه الدائم هو بناء شراكات طويلة الأمد، حتى تتمكّن المنتجات التي نطلقها من التطور والتوسع والاستمرار في خلق قيمة حقيقية بمرور الوقت."
-                  : "As the founder, Muhammed Rizwan P sits at the intersection of strategy, design, and engineering—from early discovery workshops, through architecture decisions, to reviewing final builds. His focus is on building long‑term partnerships, not just one‑off projects, so that every product we ship can evolve, scale, and keep creating value over time."}
-              </p>
-            </div>
-          </motion.div>
+              <div className="w-full md:w-[62%] space-y-4">
+                <div>
+                  <p className="text-xs font-mono uppercase tracking-[0.25em] text-muted-foreground mb-2">
+                    Co-Founder & Head of Operations
+                  </p>
+                  <h3 className="text-2xl sm:text-3xl font-semibold tracking-tight text-foreground">
+                    Muhammed Aslam
+                  </h3>
+                </div>
+
+                <p className="text-sm sm:text-base leading-relaxed text-muted-foreground">
+                  {language === "ar"
+                    ? "يشارك محمد أسلم في تأسيس CodeTeak ويقود العمليات في الشركة — من إعداد العملاء وإدارة المشاريع إلى العمليات الداخلية وتنسيق الفريق. يضمن أن كل مشروع يسير بسلاسة، وأن الجداول الزمنية تُلتزم بها، وأن العملاء يحصلون على خدمة متسقة وعالية الجودة من البداية وحتى الإطلاق وما بعده."
+                    : "Muhammed Aslam co-founded CodeTeak and leads operations across the company—from client onboarding and project delivery to internal processes and team coordination. He ensures every engagement runs smoothly, timelines stay on track, and clients receive consistent, high-quality service from kickoff through launch and beyond."}
+                </p>
+                <p className="text-sm sm:text-base leading-relaxed text-muted-foreground">
+                  {language === "ar"
+                    ? "مع تركيزه على التميز التشغيلي، يربط محمد أسلم بين الاستراتيجية والتنفيذ. يعمل عن كثب مع محمد ريزوان والفريق الهندسي لمواءمة الموارد، وتبسيط سير العمل، وإبقاء المشاريع تتقدم بكفاءة — حتى تتمكن CodeTeak من التسليم بموثوقية وعلى نطاق واسع."
+                    : "With a focus on operational excellence, Muhammed Aslam bridges strategy and execution. He works closely with Rizwan and the engineering team to align resources, streamline workflows, and keep projects moving efficiently—so CodeTeak can deliver reliably at scale."}
+                </p>
+              </div>
+            </motion.div>
+          </div>
         </div>
       </section>
 
