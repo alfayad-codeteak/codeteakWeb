@@ -37,6 +37,7 @@ import { useScroll, useTransform } from "framer-motion";
 import { getTranslations, type Language } from "@/lib/translations";
 import Navigation from "./components/Navigation";
 import ServicesSection from "./components/ServicesSection";
+import FeaturedProducts from "./components/FeaturedProducts";
 import TeamSection from "./components/TeamSection";
 
 export default function Home() {
@@ -368,7 +369,7 @@ export default function Home() {
   const headerLogoOpacity = useTransform(heroScrollProgress, [0.5, 0.7], [0, 1]);
 
   return (
-    <div className="min-h-screen bg-background relative pb-20 md:pb-0">
+    <main className="min-h-screen bg-background relative pb-20 md:pb-0">
       {/* Navigation Component */}
       <Navigation
         theme={theme}
@@ -387,6 +388,8 @@ export default function Home() {
 
       {/* Hero Section with left-side image on pure black background */}
       <HeroSection theme={theme} heroRef={heroRef} />
+
+      <FeaturedProducts language={language as Language} />
 
       {/* About Section */}
       <section id="about" className="py-20 px-4 sm:px-6 lg:px-8 bg-muted/30">
@@ -453,10 +456,12 @@ export default function Home() {
                 <div className="relative w-64 sm:w-72 aspect-[3/4] rounded-full overflow-hidden border border-border/60 bg-gradient-to-b from-muted/40 to-background">
                   <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/25 pointer-events-none" />
                   <div className="absolute inset-[3px] rounded-full overflow-hidden">
-                    <img
+                    <Image
                       src="/core-team/rizwan.png"
                       alt="Muhammed Rizwan P"
-                      className="w-full h-full object-cover"
+                      fill
+                      sizes="288px"
+                      className="object-cover"
                     />
                   </div>
                 </div>
@@ -497,10 +502,12 @@ export default function Home() {
                 <div className="relative w-64 sm:w-72 aspect-[3/4] rounded-full overflow-hidden border border-border/60 bg-gradient-to-b from-muted/40 to-background">
                   <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/25 pointer-events-none" />
                   <div className="absolute inset-[3px] rounded-full overflow-hidden">
-                    <img
+                    <Image
                       src="/core-team/aslam.png"
                       alt="Mohammed Aslam"
-                      className="w-full h-full object-cover object-center"
+                      fill
+                      sizes="288px"
+                      className="object-cover object-center"
                     />
                   </div>
                 </div>
@@ -597,7 +604,7 @@ export default function Home() {
                     ].map((partner) => (
                       <div
                         key={`${setIndex}-${partner}`}
-                        className="flex-shrink-0 text-2xl font-semibold text-muted-foreground/60 whitespace-nowrap"
+                        className="flex-shrink-0 text-2xl font-semibold text-muted-foreground whitespace-nowrap"
                       >
                         {partner}
                       </div>
@@ -648,7 +655,7 @@ export default function Home() {
                     ].map((partner) => (
                       <div
                         key={`${setIndex}-${partner}`}
-                        className="flex-shrink-0 text-2xl font-semibold text-muted-foreground/60 whitespace-nowrap"
+                        className="flex-shrink-0 text-2xl font-semibold text-muted-foreground whitespace-nowrap"
                       >
                         {partner}
                       </div>
@@ -918,9 +925,9 @@ export default function Home() {
                   </button>
                   <p className="text-xs text-muted-foreground font-mono">
                     {t.contact.form.agreeToTerms}{" "}
-                    <Link href="/privacy-policy" className="text-[#FC4B01] hover:underline">{t.footer.privacy}</Link>
+                    <Link href="/privacy-policy" className="text-brand-text underline underline-offset-2">{t.footer.privacy}</Link>
                     {" "}{t.contact.form.and}{" "}
-                    <Link href="/terms-and-conditions" className="text-[#FC4B01] hover:underline">{t.footer.terms}</Link>.
+                    <Link href="/terms-and-conditions" className="text-brand-text underline underline-offset-2">{t.footer.terms}</Link>.
                   </p>
                 </div>
               </form>
@@ -928,7 +935,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
-              </div>
+    </main>
   );
 }

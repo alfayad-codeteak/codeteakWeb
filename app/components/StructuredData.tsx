@@ -1,4 +1,15 @@
+import { siteDescription } from "@/lib/metadata";
+
 const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://codeteak.com";
+
+function JsonLd({ data }: { data: Record<string, unknown> }) {
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(data).replace(/</g, "\\u003c") }}
+    />
+  );
+}
 
 interface OrganizationSchemaProps {
   name?: string;
@@ -20,8 +31,8 @@ interface OrganizationSchemaProps {
 export function OrganizationSchema({
   name = "CodeTeak",
   url = baseUrl,
-  logo = `${baseUrl}/logo.png`,
-  description = "We build cutting-edge software solutions that drive your business forward. Expert development, design, and consulting services.",
+  logo = `${baseUrl}/icon-512.png`,
+  description = siteDescription,
   email = "info@codeteak.com",
   phone = "+91 99952 03149",
   address = [
@@ -40,20 +51,29 @@ export function OrganizationSchema({
     },
   ],
   sameAs = [
-    "https://twitter.com/codeteak",
-    "https://linkedin.com/company/codeteak",
-    "https://instagram.com/codeteak",
+    "https://x.com/codeteak",
+    "https://www.linkedin.com/company/codeteak",
+    "https://www.instagram.com/codeteaks/",
+    "https://www.facebook.com/people/Codeteak-Technologies/61575111071671/",
   ],
 }: OrganizationSchemaProps) {
   const schema = {
     "@context": "https://schema.org",
     "@type": "Organization",
+    "@id": `${baseUrl}/#organization`,
     name,
+    legalName: "Codeteak Technologies",
     url,
-    logo: logo,
+    logo,
+    image: `${baseUrl}/og-image.jpg`,
     description,
     email,
     telephone: phone,
+    foundingDate: "2025",
+    founder: [
+      { "@type": "Person", name: "Muhammed Rizwan P", jobTitle: "Founder & CEO" },
+      { "@type": "Person", name: "Mohammed Aslam", jobTitle: "Co-Founder & COO" },
+    ],
     address: address.map((addr) => ({
       "@type": "PostalAddress",
       streetAddress: addr.streetAddress,
@@ -62,53 +82,69 @@ export function OrganizationSchema({
       postalCode: addr.postalCode,
       addressCountry: addr.addressCountry,
     })),
+    areaServed: ["IN", "AE", "Worldwide"],
+    brand: [
+      {
+        "@type": "Brand",
+        name: "Yaadro",
+        description: "Delivery management system (DMS) and ecommerce platform for shops",
+        url: `${baseUrl}/products/yaadro`,
+      },
+      {
+        "@type": "Brand",
+        name: "Lens",
+        description: "Simple camera attendance for any business",
+        url: `${baseUrl}/products/lens`,
+      },
+    ],
+    knowsAbout: [
+      "Delivery management system",
+      "Ecommerce for shops",
+      "Home delivery management",
+      "Online ordering",
+      "Staff attendance",
+      "Web development",
+      "Mobile app development",
+      "Product design",
+      "Cyber security",
+      "Cloud infrastructure",
+    ],
+    contactPoint: {
+      "@type": "ContactPoint",
+      contactType: "sales",
+      email,
+      telephone: phone,
+      availableLanguage: ["English", "Arabic"],
+    },
     sameAs,
   };
 
-  return (
-    <script
-      type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
-    />
-  );
+  return <JsonLd data={schema} />;
 }
 
 interface WebSiteSchemaProps {
   name?: string;
   url?: string;
   description?: string;
-  potentialAction?: {
-    "@type": string;
-    target: string;
-    "query-input": string;
-  };
 }
 
 export function WebSiteSchema({
   name = "CodeTeak",
   url = baseUrl,
-  description = "We build cutting-edge software solutions that drive your business forward.",
-  potentialAction = {
-    "@type": "SearchAction",
-    target: `${baseUrl}/search?q={search_term_string}`,
-    "query-input": "required name=search_term_string",
-  },
+  description = siteDescription,
 }: WebSiteSchemaProps) {
   const schema = {
     "@context": "https://schema.org",
     "@type": "WebSite",
+    "@id": `${baseUrl}/#website`,
     name,
     url,
     description,
-    potentialAction,
+    inLanguage: ["en", "ar"],
+    publisher: { "@id": `${baseUrl}/#organization` },
   };
 
-  return (
-    <script
-      type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
-    />
-  );
+  return <JsonLd data={schema} />;
 }
 
 interface BreadcrumbSchemaProps {
@@ -130,115 +166,137 @@ export function BreadcrumbSchema({ items }: BreadcrumbSchemaProps) {
     })),
   };
 
-  return (
-    <script
-      type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
-    />
-  );
+  return <JsonLd data={schema} />;
 }
 
 interface ProductSchemaProps {
   name: string;
+  alternateName?: string;
   description: string;
   url: string;
   image?: string;
-  brand?: string;
-  offers?: {
-    price?: string;
-    priceCurrency?: string;
-    availability?: string;
-  };
+  applicationCategory?: string;
+  applicationSubCategory?: string;
+  operatingSystem?: string;
+  featureList?: string[];
+  audience?: string;
 }
 
 export function ProductSchema({
   name,
+  alternateName,
   description,
   url,
   image,
-  brand = "CodeTeak",
-  offers,
+  applicationCategory = "BusinessApplication",
+  applicationSubCategory,
+  operatingSystem = "Web, Android, iOS",
+  featureList,
+  audience,
 }: ProductSchemaProps) {
-  const schema: any = {
+  const schema: Record<string, unknown> = {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
+    "@id": `${baseUrl}${url}#software`,
     name,
+    alternateName,
     description,
     url: `${baseUrl}${url}`,
-    applicationCategory: "BusinessApplication",
-    operatingSystem: "Web, iOS, Android",
-    offers: offers
-      ? {
-          "@type": "Offer",
-          price: offers.price || "0",
-          priceCurrency: offers.priceCurrency || "USD",
-          availability: offers.availability || "https://schema.org/InStock",
-        }
-      : undefined,
+    image: image ? `${baseUrl}${image}` : undefined,
+    applicationCategory,
+    applicationSubCategory,
+    operatingSystem,
+    featureList,
+    audience: audience ? { "@type": "BusinessAudience", audienceType: audience } : undefined,
+    publisher: { "@id": `${baseUrl}/#organization` },
+    provider: { "@id": `${baseUrl}/#organization` },
   };
 
-  if (image) {
-    schema.image = `${baseUrl}${image}`;
-  }
-
-  if (brand) {
-    schema.brand = {
-      "@type": "Brand",
-      name: brand,
-    };
-  }
-
-  // Remove undefined fields
   Object.keys(schema).forEach((key) => {
-    if (schema[key] === undefined) {
-      delete schema[key];
-    }
+    if (schema[key] === undefined) delete schema[key];
   });
 
-  return (
-    <script
-      type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
-    />
-  );
+  return <JsonLd data={schema} />;
 }
 
 interface ServiceSchemaProps {
   name: string;
   description: string;
-  provider?: string;
-  areaServed?: string[];
+  url?: string;
   serviceType?: string;
+  areaServed?: string[];
+  offers?: Array<{ name: string; description: string }>;
 }
 
 export function ServiceSchema({
   name,
   description,
-  provider = "CodeTeak",
-  areaServed = ["Worldwide"],
+  url = "/services",
   serviceType = "Software Development",
+  areaServed = ["India", "United Arab Emirates", "Worldwide"],
+  offers = [],
 }: ServiceSchemaProps) {
-  const schema = {
+  const schema: Record<string, unknown> = {
     "@context": "https://schema.org",
     "@type": "Service",
     name,
     description,
-    provider: {
-      "@type": "Organization",
-      name: provider,
-    },
-    areaServed: areaServed.map((area) => ({
-      "@type": "Country",
-      name: area,
-    })),
+    url: `${baseUrl}${url}`,
     serviceType,
+    provider: { "@id": `${baseUrl}/#organization` },
+    areaServed: areaServed.map((area) => ({ "@type": "Place", name: area })),
   };
 
-  return (
-    <script
-      type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
-    />
-  );
+  if (offers.length > 0) {
+    schema.hasOfferCatalog = {
+      "@type": "OfferCatalog",
+      name,
+      itemListElement: offers.map((offer) => ({
+        "@type": "Offer",
+        itemOffered: { "@type": "Service", name: offer.name, description: offer.description },
+      })),
+    };
+  }
+
+  return <JsonLd data={schema} />;
+}
+
+export function FAQSchema({ items }: { items: Array<{ question: string; answer: string }> }) {
+  if (items.length === 0) return null;
+
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: items.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: { "@type": "Answer", text: item.answer },
+    })),
+  };
+
+  return <JsonLd data={schema} />;
+}
+
+export function ItemListSchema({
+  name,
+  items,
+}: {
+  name: string;
+  items: Array<{ name: string; url: string; description?: string }>;
+}) {
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name,
+    itemListElement: items.map((item, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      name: item.name,
+      url: `${baseUrl}${item.url}`,
+      description: item.description,
+    })),
+  };
+
+  return <JsonLd data={schema} />;
 }
 

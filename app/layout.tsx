@@ -1,13 +1,16 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import ScrollToTop from "./components/ScrollToTop";
 import Footer from "./components/Footer";
 import SplashScreen from "./components/SplashScreen";
-import { generateSEOMetadata } from "@/lib/metadata";
+import { homeMetadata, siteViewport } from "@/lib/metadata";
 import { OrganizationSchema, WebSiteSchema } from "./components/StructuredData";
 import GoogleAnalytics from "./components/GoogleAnalytics";
 import ChatWidget from "./components/ChatWidget";
+
+// Set to true to show the AI chat widget again
+const SHOW_CHAT_WIDGET = false;
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -19,32 +22,10 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-const baseMetadata = generateSEOMetadata({
-  title: "Innovative Software Solutions",
-  description: "We build cutting-edge software solutions that drive your business forward. Expert development, design, and consulting services. Transform your ideas into digital excellence.",
-  keywords: [
-    "CodeTeak",
-    "software development",
-    "web development",
-    "mobile app development",
-    "cyber security",
-    "product engineering",
-    "product design",
-    "cloud infrastructure",
-    "DevOps",
-    "UI/UX design",
-    "software solutions",
-    "technology consulting",
-    "Bengaluru",
-    "Dubai",
-    "UAE",
-    "India",
-  ],
-  path: "/",
-});
+export const viewport: Viewport = siteViewport;
 
 export const metadata: Metadata = {
-  ...baseMetadata,
+  ...homeMetadata,
   verification: {
     other: {
       "facebook-domain-verification": "0skxahz5dp7eu1r75x25i3af72rtac",
@@ -68,7 +49,7 @@ export default function RootLayout({
         <WebSiteSchema />
         <ScrollToTop />
         {children}
-       <ChatWidget />
+        {SHOW_CHAT_WIDGET && <ChatWidget />}
         <Footer />
       </body>
     </html>

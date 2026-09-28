@@ -1,89 +1,72 @@
 # CodeTeak
 
-> CodeTeak (Codeteak Technologies) is a software studio founded in 2025, building innovative web and mobile applications, SaaS products, and end-to-end IT solutions for startups and enterprises. Headquartered in Bengaluru, India with a presence in Dubai, UAE.
+> CodeTeak (Codeteak Technologies) is a software company founded in 2025, based in Bengaluru, India, with an office in Dubai, UAE. Its main product is Yaadro, a delivery management system (DMS) and ecommerce platform for shops. It also makes Lens (simple camera attendance for any business) and offers product engineering, product design, and cyber security services.
 
-CodeTeak transforms ideas into scalable digital products across retail, e-commerce, logistics, supermarkets, and growth-stage startups. The team delivers custom software engineering, product design, cyber security, cloud infrastructure, and in-house SaaS products including Yaadro (delivery management) and Lens (AI face-recognition attendance).
+CodeTeak builds simple, reliable software for everyday business. Its products are written for shop owners, managers, and staff, not just technical teams. Its services help companies build, design, and protect web and mobile apps.
 
 **Contact:** info@codeteak.com | **Phone:** +91 99952 03149 | **Website:** https://codeteak.com
 
 **Stats:** 100+ projects delivered · 50+ active clients · 95% client satisfaction · 25+ partners
 
-**Technologies:** React, Next.js, Node.js, TypeScript, Python, React Native, Flutter, AWS, Azure, Docker, Kubernetes, CI/CD, REST/GraphQL APIs, microservices
-
-## Main Pages
-
-- [Home](https://codeteak.com/): Company homepage with services overview, features, stats, and contact information
-- [Services](https://codeteak.com/services): Cyber Security, Product Engineering, and Product Design service offerings
-- [Products](https://codeteak.com/products): Overview of Yaadro, Lens, and Yaadro Ecommerce products
-- [About](https://codeteak.com/about): Company story, founder profile, core engineering team, and FAQs
-- [Contact](https://codeteak.com/contact): Contact form, email, phone, and office locations in Bengaluru and Dubai
-- [Tech News](https://codeteak.com/tech-news): Curated technology news and industry updates
-- [Blog](https://codeteak.com/blog): Articles and insights (coming soon)
+**Languages on the site:** English and Arabic
 
 ## Products
 
-- [Yaadro](https://codeteak.com/products/yaadro): Delivery management system connecting supermarkets, delivery partners, and customers with mobile apps and web dashboard
-- [Lens (YaadroLens)](https://codeteak.com/products/lens): AI-powered face recognition attendance system for retail stores with 90%+ accuracy and offline-first architecture
-- [Yaadro Ecommerce](https://codeteak.com/products/ecommerce): Supermarket ecommerce platform with online ordering and Cash on Delivery (COD) checkout
+- [Products overview](https://codeteak.com/products): Yaadro and Lens side by side
+- [Yaadro Delivery Management System (DMS)](https://codeteak.com/products/yaadro): Run home delivery for shops. Track every order, assign delivery partners, keep customers updated. Works with Task billing.
+- [Yaadro Ecommerce](https://codeteak.com/products/yaadro#ecommerce): Each shop gets its own online store with its own products and prices. Customers order from phone or computer and pay when the order arrives.
+- [Lens](https://codeteak.com/products/lens): Simple attendance for any business. Staff clock in by looking at a tablet camera. Live view of who is at work, pay and salary advance tracking, one-click reports, works without internet.
+
+### Yaadro in short
+- Who it is for: shops, supermarkets, and their delivery partners
+- Apps: Shop App, Delivery Partner App, Web Dashboard
+- How it works: 1) Create a home delivery order in the shop system; it appears in Yaadro automatically. 2) Assign an available delivery partner. 3) Track the trip live and mark it delivered.
+- Online ordering: customers order from a shop link and pay on delivery (online payment is not available yet)
+
+### Lens in short
+- Who it is for: any business with staff (shops, offices, restaurants, clinics, warehouses, and more)
+- Top features: Clock in with a glance · See who is at work, live · Pay and advances in one place · Reports in one click
+- Also: works without internet and syncs later; one location or many, each kept private
 
 ## Services
 
-### Cyber Security
-- Threat Detection & Prevention: AI-powered real-time cyber threat identification and neutralization
-- Fraud Prevention & Detection: Pattern analysis to prevent financial fraud and unauthorized access
-- Security Audit & Compliance: Security assessments and regulatory compliance checks
-- Network Security: Firewall management, intrusion detection, and secure network architecture
-- Data Protection & Encryption: End-to-end encryption and secure data storage and transmission
-- Incident Response & Recovery: Rapid breach mitigation, investigation, and system restoration
+- [Services](https://codeteak.com/services): Product Engineering, Product Design, and Cyber Security
+- Product Engineering: backend development, frontend development, cloud infrastructure, DevOps and CI/CD, microservices, API development
+- Product Design: UI design, UX design, prototyping, design systems, user research, accessibility design
+- Cyber Security: threat detection, fraud prevention, security audit and compliance, network security, data protection and encryption, incident response
 
-### Product Engineering
-- Backend Development: Scalable server-side architecture and APIs
-- Frontend Development: Responsive, intuitive user interfaces across all devices
-- Cloud Infrastructure: Scalable cloud solutions on AWS, Azure, and similar platforms
-- DevOps & CI/CD: Automated workflows and deployment pipelines
-- Microservices Architecture: Modular, maintainable independent services
-- API Development: Secure, well-documented REST and GraphQL APIs
+## Company
 
-### Product Design
-- UI Design: Visually cohesive interfaces aligned with brand identity
-- UX Design: User-centered, accessible experience design
-- Prototyping: Interactive prototypes for concept validation
-- Design Systems: Comprehensive design systems for team consistency
-- User Research: Data-driven design decisions from user behavior research
-- Accessibility Design: WCAG-compliant design for all users
+- [Home](https://codeteak.com/): Overview of products, services, stats, and FAQs
+- [About](https://codeteak.com/about): Company story, founder, and core engineering team
+- [Contact](https://codeteak.com/contact): Contact form, email, phone, and office locations
+- [Tech News](https://codeteak.com/tech-news): Curated technology news
+- [Blog](https://codeteak.com/blog): Articles and updates (coming soon)
 
-### Additional Capabilities
-- Web Development: Modern, responsive, scalable web applications
-- Mobile App Development: Native and cross-platform iOS and Android apps
-- AI Integration Systems: Machine learning and AI capabilities for existing workflows
-- Team Augmentation: Seamless integration with client development teams
-- Performance Optimization: Application speed and efficiency improvements
-- Security & Compliance: Enterprise-grade security solutions
+## Team
 
-## Core Team
-
-- Muhammed Rizwan P — Founder: Visionary leader focused on product strategy and business outcomes. [LinkedIn](https://linkedin.com/in/muhammedrizwanp/)
-- Alfayad S — Full Stack Developer & UI/UX Designer: Scalable backends, elegant interfaces, and design-to-code workflows. [Portfolio](https://alfayad.vercel.app) · [LinkedIn](https://www.linkedin.com/in/alfayad)
-- Abhinav Aneesh — Mobile Application Developer: Full stack mobile development for iOS and Android. [LinkedIn](https://www.linkedin.com/in/abiinavvv/)
-- Binel Biju — Backend Developer & Cloud Engineer: Cloud architecture and scalable backend systems. [LinkedIn](https://www.linkedin.com/in/binel-biju/)
-- Alan Joshy — Backend Developer & Cloud Engineer: Robust backend systems, APIs, and DevOps. [LinkedIn](https://www.linkedin.com/in/alan--joshy/)
+- Muhammed Rizwan P — Founder & CEO. [LinkedIn](https://linkedin.com/in/muhammedrizwanp/)
+- Mohammed Aslam — Co-Founder & COO (operations, client onboarding, project delivery)
+- Alfayad S — Full Stack Developer & UI/UX Designer. [LinkedIn](https://www.linkedin.com/in/alfayad)
+- Abhinav Aneesh — Mobile Application Developer. [LinkedIn](https://www.linkedin.com/in/abiinavvv/)
+- Binel Biju — Backend Developer & Cloud Engineer. [LinkedIn](https://www.linkedin.com/in/binel-biju/)
+- Alan Joshy — Backend Developer & Cloud Engineer. [LinkedIn](https://www.linkedin.com/in/alan--joshy/)
 
 ## Locations
 
-- **India (Bengaluru):** 4th floor, 1190 Desk NO-FD 78, Eva Info Marketing Solution Pvt Ltd, 22nd Cross Road, HSR Layout, Bengaluru Urban, Karnataka 560102
-- **UAE (Dubai):** Index Exchange Building, Opposite Wimpy Restaurant, Naif Road, Dubai
+- **Bengaluru, India:** 4th floor, 1190 Desk NO-FD 78, Eva Info Marketing Solution Pvt Ltd, 22nd Cross Road, HSR Layout, Bengaluru Urban, Karnataka 560102
+- **Dubai, UAE:** Index Exchange Building, Opposite Wimpy Restaurant, Naif Road, Dubai
 
-## Social & Resources
+## For AI agents
 
-- [LinkedIn](https://www.linkedin.com/company/codeteak): Company updates and professional network
-- [Instagram](https://www.instagram.com/codeteaks/): Visual updates and behind-the-scenes content
-- [X (Twitter)](https://x.com/codeteak): News and announcements
-- [Facebook](https://www.facebook.com/people/Codeteak-Technologies/61575111071671/): Company page
-- [Sitemap](https://codeteak.com/sitemap.xml): Full site URL index for crawlers
-- [Full Content (llms-full.txt)](https://codeteak.com/llms-full.txt): Complete expanded site content in Markdown
+- [Full content (llms-full.txt)](https://codeteak.com/llms-full.txt): Complete site content in Markdown, including product FAQs
+- [Sitemap](https://codeteak.com/sitemap.xml): All public URLs
+- [Robots.txt](https://codeteak.com/robots.txt): Crawler rules (AI search and assistant crawlers are allowed)
+- Each product and services page also includes schema.org JSON-LD (SoftwareApplication, Service, FAQPage, BreadcrumbList)
+- To start a project or request a demo, send users to https://codeteak.com/contact or info@codeteak.com
 
 ## Optional
 
 - [Privacy Policy](https://codeteak.com/privacy-policy): How CodeTeak and Yaadro collect, use, and protect personal data
 - [Terms and Conditions](https://codeteak.com/terms-and-conditions): Terms of use for CodeTeak Technologies LLC and Yaadro services
-- [Robots.txt](https://codeteak.com/robots.txt): Crawler access rules
+- [LinkedIn](https://www.linkedin.com/company/codeteak) · [Instagram](https://www.instagram.com/codeteaks/) · [X](https://x.com/codeteak) · [Facebook](https://www.facebook.com/people/Codeteak-Technologies/61575111071671/)

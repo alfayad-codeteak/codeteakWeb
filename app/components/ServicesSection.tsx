@@ -1,24 +1,10 @@
 "use client";
 
+import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { useState, useRef } from "react";
-import { 
-  TrendingUp, 
-  Workflow, 
-  Search,
-  Shield,
-  Server,
-  Layout,
-  Cloud,
-  GitBranch,
-  Code,
-  Palette,
-  UserCheck,
-  FileCode,
-  Layers,
-  Users,
-  Accessibility
-} from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 import { getTranslations, type Language } from "@/lib/translations";
 
 interface ServicesSectionProps {
@@ -26,443 +12,323 @@ interface ServicesSectionProps {
   isStandalonePage?: boolean;
 }
 
-export default function ServicesSection({ language, isStandalonePage = false }: ServicesSectionProps) {
-  const [activeTab, setActiveTab] = useState<"cyberSecurity" | "productEngineering" | "productDesign">("productEngineering");
-  const touchStartX = useRef<number | null>(null);
-  const touchEndX = useRef<number | null>(null);
-  const touchStartY = useRef<number | null>(null);
-  const touchEndY = useRef<number | null>(null);
+type ServiceItem = {
+  title: string;
+  description: string;
+  image: string;
+};
+
+type Category = {
+  id: "cyberSecurity" | "productEngineering" | "productDesign";
+  title: string;
+  tagline: string;
+  image: string;
+  items: ServiceItem[];
+};
+
+export default function ServicesSection({
+  language,
+  isStandalonePage = false,
+}: ServicesSectionProps) {
   const t = getTranslations(language);
+  const [activeTab, setActiveTab] = useState<Category["id"]>("productEngineering");
 
-  // Minimum swipe distance (in pixels) to trigger tab change
-  const minSwipeDistance = 50;
-
-  const cyberSecurityServices = [
+  const categories: Category[] = [
     {
-      icon: Shield,
-      title: t.services.cyberSecurity.threatDetection.title,
-      description: t.services.cyberSecurity.threatDetection.description,
+      id: "cyberSecurity",
+      title: t.services.cyberSecurity.title,
+      tagline: t.services.cyberSecurity.tagline,
+      image: "/services-image/cyber-security.png",
+      items: [
+        { ...t.services.cyberSecurity.threatDetection, image: "/services-image/threat-detection.png" },
+        { ...t.services.cyberSecurity.fraudPrevention, image: "/services-image/fraud-prevention.png" },
+        { ...t.services.cyberSecurity.securityAudit, image: "/services-image/security-audit.png" },
+        { ...t.services.cyberSecurity.networkSecurity, image: "/services-image/network-security.png" },
+        { ...t.services.cyberSecurity.dataProtection, image: "/services-image/data-protection.png" },
+        { ...t.services.cyberSecurity.incidentResponse, image: "/services-image/incident-response.png" },
+      ],
     },
     {
-      icon: Search,
-      title: t.services.cyberSecurity.fraudPrevention.title,
-      description: t.services.cyberSecurity.fraudPrevention.description,
+      id: "productEngineering",
+      title: t.services.productEngineering.title,
+      tagline: t.services.productEngineering.tagline,
+      image: "/services-image/product-engineering.png",
+      items: [
+        { ...t.services.productEngineering.backendDevelopment, image: "/services-image/backend-development.png" },
+        { ...t.services.productEngineering.frontendDevelopment, image: "/services-image/frontend-development.png" },
+        { ...t.services.productEngineering.cloudInfrastructure, image: "/services-image/cloud-infrastructure.png" },
+        { ...t.services.productEngineering.devOps, image: "/services-image/devops.png" },
+        { ...t.services.productEngineering.microservices, image: "/services-image/microservices.png" },
+        { ...t.services.productEngineering.apiDevelopment, image: "/services-image/api-development.png" },
+      ],
     },
     {
-      icon: FileCode,
-      title: t.services.cyberSecurity.securityAudit.title,
-      description: t.services.cyberSecurity.securityAudit.description,
-    },
-    {
-      icon: Server,
-      title: t.services.cyberSecurity.networkSecurity.title,
-      description: t.services.cyberSecurity.networkSecurity.description,
-    },
-    {
-      icon: Workflow,
-      title: t.services.cyberSecurity.dataProtection.title,
-      description: t.services.cyberSecurity.dataProtection.description,
-    },
-    {
-      icon: TrendingUp,
-      title: t.services.cyberSecurity.incidentResponse.title,
-      description: t.services.cyberSecurity.incidentResponse.description,
+      id: "productDesign",
+      title: t.services.productDesign.title,
+      tagline: t.services.productDesign.tagline,
+      image: "/services-image/product-design.png",
+      items: [
+        { ...t.services.productDesign.uiDesign, image: "/services-image/ui-design.png" },
+        { ...t.services.productDesign.uxDesign, image: "/services-image/ux-design.png" },
+        { ...t.services.productDesign.prototyping, image: "/services-image/prototyping.png" },
+        { ...t.services.productDesign.designSystems, image: "/services-image/design-systems.png" },
+        { ...t.services.productDesign.userResearch, image: "/services-image/user-research.png" },
+        { ...t.services.productDesign.accessibility, image: "/services-image/accessibility.png" },
+      ],
     },
   ];
 
-  const productEngineeringServices = [
-    {
-      icon: Server,
-      title: t.services.productEngineering.backendDevelopment.title,
-      description: t.services.productEngineering.backendDevelopment.description,
-    },
-    {
-      icon: Layout,
-      title: t.services.productEngineering.frontendDevelopment.title,
-      description: t.services.productEngineering.frontendDevelopment.description,
-    },
-    {
-      icon: Cloud,
-      title: t.services.productEngineering.cloudInfrastructure.title,
-      description: t.services.productEngineering.cloudInfrastructure.description,
-    },
-    {
-      icon: GitBranch,
-      title: t.services.productEngineering.devOps.title,
-      description: t.services.productEngineering.devOps.description,
-    },
-    {
-      icon: Code,
-      title: t.services.productEngineering.microservices.title,
-      description: t.services.productEngineering.microservices.description,
-    },
-    {
-      icon: FileCode,
-      title: t.services.productEngineering.apiDevelopment.title,
-      description: t.services.productEngineering.apiDevelopment.description,
-    },
-  ];
+  const activeCategory = categories.find((c) => c.id === activeTab) ?? categories[1];
 
-  const productDesignServices = [
-    {
-      icon: Palette,
-      title: t.services.productDesign.uiDesign.title,
-      description: t.services.productDesign.uiDesign.description,
-    },
-    {
-      icon: UserCheck,
-      title: t.services.productDesign.uxDesign.title,
-      description: t.services.productDesign.uxDesign.description,
-    },
-    {
-      icon: FileCode,
-      title: t.services.productDesign.prototyping.title,
-      description: t.services.productDesign.prototyping.description,
-    },
-    {
-      icon: Layers,
-      title: t.services.productDesign.designSystems.title,
-      description: t.services.productDesign.designSystems.description,
-    },
-    {
-      icon: Users,
-      title: t.services.productDesign.userResearch.title,
-      description: t.services.productDesign.userResearch.description,
-    },
-    {
-      icon: Accessibility,
-      title: t.services.productDesign.accessibility.title,
-      description: t.services.productDesign.accessibility.description,
-    },
-  ];
+  const ServiceCard = ({ item, index }: { item: ServiceItem; index: number }) => (
+    <motion.article
+      initial={{ opacity: 0, y: 16 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.4, delay: index * 0.05 }}
+      className="group relative overflow-hidden rounded-2xl bg-muted/40 border border-border/60 hover:border-[#FC4B01]/35 transition-colors duration-300"
+    >
+      <div className="pointer-events-none absolute -top-1 -end-1 w-24 h-24 sm:w-28 sm:h-28 opacity-90 group-hover:opacity-100 transition-opacity duration-300">
+        <Image
+          src={item.image}
+          alt=""
+          fill
+          className="object-contain object-right-top rtl:object-left-top drop-shadow-sm"
+          sizes="112px"
+        />
+      </div>
+      <div className="relative z-10 p-5 sm:p-6 flex flex-col min-h-[180px]">
+        <span className="text-[11px] font-mono tracking-[0.2em] uppercase mb-3 text-brand-text">
+          {String(index + 1).padStart(2, "0")}
+        </span>
+        <h3 className="text-lg sm:text-xl font-bold text-foreground mb-2.5 leading-snug pe-20 sm:pe-24">
+          {item.title}
+        </h3>
+        <p className="text-sm text-muted-foreground leading-relaxed flex-1">
+          {item.description}
+        </p>
+      </div>
+    </motion.article>
+  );
 
-  const tabs = [
-    { id: "cyberSecurity" as const, label: t.services.cyberSecurity.title },
-    { id: "productEngineering" as const, label: t.services.productEngineering.title },
-    { id: "productDesign" as const, label: t.services.productDesign.title },
-  ];
-
-  // Reverse tabs order in RTL mode to match visual order
-  const displayTabs = language === "ar" ? [...tabs].reverse() : tabs;
-
-  const getActiveServices = () => {
-    switch (activeTab) {
-      case "cyberSecurity":
-        return cyberSecurityServices;
-      case "productEngineering":
-        return productEngineeringServices;
-      case "productDesign":
-        return productDesignServices;
-    }
-  };
-
-  const getActiveTagline = () => {
-    switch (activeTab) {
-      case "cyberSecurity":
-        return t.services.cyberSecurity.tagline;
-      case "productEngineering":
-        return t.services.productEngineering.tagline;
-      case "productDesign":
-        return t.services.productDesign.tagline;
-    }
-  };
-
-  // Swipe gesture handlers
-  const onTouchStart = (e: React.TouchEvent) => {
-    touchEndX.current = null;
-    touchEndY.current = null;
-    touchStartX.current = e.targetTouches[0].clientX;
-    touchStartY.current = e.targetTouches[0].clientY;
-  };
-
-  const onTouchMove = (e: React.TouchEvent) => {
-    touchEndX.current = e.targetTouches[0].clientX;
-    touchEndY.current = e.targetTouches[0].clientY;
-  };
-
-  const onTouchEnd = () => {
-    if (!touchStartX.current || !touchEndX.current || !touchStartY.current || !touchEndY.current) {
-      // Reset if incomplete
-      touchStartX.current = null;
-      touchEndX.current = null;
-      touchStartY.current = null;
-      touchEndY.current = null;
-      return;
-    }
-
-    const distanceX = touchStartX.current - touchEndX.current;
-    const distanceY = Math.abs(touchStartY.current - touchEndY.current);
-    const absDistanceX = Math.abs(distanceX);
-
-    // Only trigger swipe if horizontal movement is greater than vertical (to allow scrolling)
-    // Also require minimum horizontal swipe distance
-    if (absDistanceX > minSwipeDistance && absDistanceX > distanceY) {
-      const isLeftSwipe = distanceX > 0;
-      const isRightSwipe = distanceX < 0;
-
-      if (isLeftSwipe) {
-        // Swipe left - go to next tab
-        switch (activeTab) {
-          case "cyberSecurity":
-            setActiveTab("productEngineering");
-            break;
-          case "productEngineering":
-            setActiveTab("productDesign");
-            break;
-          case "productDesign":
-            // Already at last tab, loop to first
-            setActiveTab("cyberSecurity");
-            break;
-        }
-      } else if (isRightSwipe) {
-        // Swipe right - go to previous tab
-        switch (activeTab) {
-          case "cyberSecurity":
-            // Already at first tab, loop to last
-            setActiveTab("productDesign");
-            break;
-          case "productEngineering":
-            setActiveTab("cyberSecurity");
-            break;
-          case "productDesign":
-            setActiveTab("productEngineering");
-            break;
-        }
-      }
-    }
-
-    // Reset touch positions
-    touchStartX.current = null;
-    touchEndX.current = null;
-    touchStartY.current = null;
-    touchEndY.current = null;
-  };
-
-  return (
-    <section id="services" className={`${isStandalonePage ? 'min-h-screen' : ''} py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-background via-muted/30 to-background`}>
-      <div className="container mx-auto max-w-7xl">
-        {/* Title Section */}
-        {!isStandalonePage && (
+  // ——— Homepage: compact tabbed section ———
+  if (!isStandalonePage) {
+    return (
+      <section id="services" className="py-20 md:py-28 px-4 sm:px-6 lg:px-8">
+        <div className="container mx-auto max-w-7xl">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.6 }}
-            className="text-center mb-16"
+            className="text-center max-w-2xl mx-auto mb-10 md:mb-12"
           >
-            <h2 className="text-4xl sm:text-5xl font-bold text-foreground mb-4">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-4 tracking-tight">
               {t.services.title}
             </h2>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+            <p className="text-base sm:text-lg text-muted-foreground leading-relaxed">
               {t.services.subtitle}
             </p>
           </motion.div>
-        )}
 
-        {/* Tab Navigation - Sticky on standalone page */}
-        {isStandalonePage ? (
-          <div 
-            className="sticky top-0 z-40 py-4 mb-12 -mx-4 sm:-mx-6 lg:-mx-8 px-4 sm:px-6 lg:px-8 bg-background/90 dark:bg-background/90"
-            style={{
-              backdropFilter: 'blur(20px) saturate(180%)',
-              WebkitBackdropFilter: 'blur(20px) saturate(180%)',
-              borderBottom: '1px solid rgba(128, 128, 128, 0.1)',
-            }}
-          >
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              className="flex justify-center"
-            >
-              <div className="relative inline-flex p-1 rounded-full bg-white dark:bg-background/90 border border-white/20 dark:border-white/10 shadow-2xl" dir="ltr"
-                style={{
-                  backdropFilter: 'blur(20px) saturate(180%)',
-                  WebkitBackdropFilter: 'blur(20px) saturate(180%)',
-                  boxShadow: '0 8px 32px 0 rgba(0, 0, 0, 0.1), inset 0 1px 0 0 rgba(255, 255, 255, 0.2)'
-                }}
-              >
-                {/* Active Tab Indicator */}
-                <motion.div
-                  layoutId="activeTab"
-                  className="absolute top-1 bottom-1 rounded-full bg-gradient-to-r from-[#FC4B01] via-[#FF6B35] to-[#FC4B01] shadow-lg shadow-[#FC4B01]/50"
-                  initial={false}
-                  transition={{
-                    type: "spring",
-                    stiffness: 500,
-                    damping: 30
-                  }}
-                  style={{
-                    left: `calc(${displayTabs.findIndex(t => t.id === activeTab) * (100 / displayTabs.length)}% + 0.25rem)`,
-                    width: `calc(${100 / displayTabs.length}% - 0.5rem)`,
-                  }}
-                />
-
-                {displayTabs.map((tab, index) => (
+          {/* Tabs */}
+          <div className="flex justify-center mb-10" dir="ltr">
+            <div className="inline-flex flex-wrap justify-center gap-2 p-1.5 rounded-full bg-muted/50 border border-border">
+              {categories.map((tab) => {
+                const isActive = activeTab === tab.id;
+                return (
                   <button
                     key={tab.id}
+                    type="button"
                     onClick={() => setActiveTab(tab.id)}
-                    className={`relative z-10 px-6 py-1.5 rounded-full font-medium transition-all duration-300 text-sm ${
-                      activeTab === tab.id
-                        ? "text-white"
+                    aria-pressed={isActive}
+                    className={`px-4 sm:px-5 py-2 rounded-full text-sm font-medium transition-colors ${
+                      isActive
+                        ? "text-white bg-brand-strong"
                         : "text-muted-foreground hover:text-foreground"
                     }`}
-                    style={{
-                      minWidth: `${100 / displayTabs.length}%`,
-                    }}
                   >
-                    <motion.span
-                      initial={false}
-                      animate={{
-                        scale: activeTab === tab.id ? 1.05 : 1,
-                        fontWeight: activeTab === tab.id ? 600 : 500,
-                      }}
-                      transition={{ duration: 0.2 }}
-                      className="block"
-                    >
-                      {tab.label}
-                    </motion.span>
+                    {tab.title}
                   </button>
-                ))}
-              </div>
-            </motion.div>
-          </div>
-        ) : (
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="flex justify-center mb-12"
-          >
-            <div className="relative inline-flex p-1 rounded-full bg-white dark:bg-background/90 border border-white/20 dark:border-white/10 shadow-2xl" dir="ltr"
-              style={{
-                backdropFilter: 'blur(20px) saturate(180%)',
-                WebkitBackdropFilter: 'blur(20px) saturate(180%)',
-                boxShadow: '0 8px 32px 0 rgba(0, 0, 0, 0.1), inset 0 1px 0 0 rgba(255, 255, 255, 0.2)'
-              }}
-            >
-              {/* Active Tab Indicator */}
-              <motion.div
-                layoutId="activeTab"
-                className="absolute top-1 bottom-1 rounded-full bg-gradient-to-r from-[#FC4B01] via-[#FF6B35] to-[#FC4B01] shadow-lg shadow-[#FC4B01]/50"
-                initial={false}
-                transition={{
-                  type: "spring",
-                  stiffness: 500,
-                  damping: 30
-                }}
-                style={{
-                  left: `calc(${displayTabs.findIndex(t => t.id === activeTab) * (100 / displayTabs.length)}% + 0.25rem)`,
-                  width: `calc(${100 / displayTabs.length}% - 0.5rem)`,
-                }}
-              />
-
-              {displayTabs.map((tab, index) => (
-                <button
-                  key={tab.id}
-                  onClick={() => setActiveTab(tab.id)}
-                  className={`relative z-10 px-6 py-1.5 rounded-full font-medium transition-all duration-300 text-sm ${
-                    activeTab === tab.id
-                      ? "text-white"
-                      : "text-muted-foreground hover:text-foreground"
-                  }`}
-                  style={{
-                    minWidth: `${100 / displayTabs.length}%`,
-                  }}
-                >
-                  <motion.span
-                    initial={false}
-                    animate={{
-                      scale: activeTab === tab.id ? 1.05 : 1,
-                      fontWeight: activeTab === tab.id ? 600 : 500,
-                    }}
-                    transition={{ duration: 0.2 }}
-                    className="block"
-                  >
-                    {tab.label}
-                  </motion.span>
-                </button>
-              ))}
-            </div>
-          </motion.div>
-        )}
-
-        {/* Active Tab Content */}
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={activeTab}
-            initial={{ opacity: 0, y: 30, scale: 0.95 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: -30, scale: 0.95 }}
-            transition={{ 
-              duration: 0.5,
-              ease: [0.4, 0, 0.2, 1]
-            }}
-            className="mb-12"
-            onTouchStart={onTouchStart}
-            onTouchMove={onTouchMove}
-            onTouchEnd={onTouchEnd}
-          >
-            {/* Title and Tagline Section */}
-            <div className="flex flex-col items-center mb-12">
-              <motion.h3
-                key={`title-${activeTab}`}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.2, duration: 0.4 }}
-                className="text-3xl sm:text-4xl font-bold text-foreground mb-4"
-              >
-                {tabs.find(t => t.id === activeTab)?.label}
-              </motion.h3>
-              <motion.p
-                key={`tagline-${activeTab}`}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.3, duration: 0.4 }}
-                className="text-lg text-muted-foreground text-center max-w-2xl"
-              >
-                {getActiveTagline()}
-              </motion.p>
-            </div>
-
-            {/* Services Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {getActiveServices().map((service, index) => {
-                const Icon = service.icon;
-                return (
-                  <motion.div
-                    key={`${activeTab}-${service.title}`}
-                    initial={{ opacity: 0, y: 30, scale: 0.9 }}
-                    animate={{ opacity: 1, y: 0, scale: 1 }}
-                    transition={{ 
-                      duration: 0.5, 
-                      delay: 0.5 + (index * 0.08),
-                      ease: [0.4, 0, 0.2, 1]
-                    }}
-                    whileHover={{ y: -5, scale: 1.02 }}
-                    className="p-6 bg-card rounded-xl border-2 border-border hover:border-[#FC4B01]/50 transition-all duration-300 group relative overflow-hidden shadow-sm hover:shadow-lg"
-                  >
-                    <div className="absolute inset-0 bg-gradient-to-br from-[#FC4B01]/5 via-transparent to-[#9D4EDD]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl" />
-                    <div className="relative z-10">
-                      <div className="w-12 h-12 bg-[#FC4B01]/10 rounded-lg flex items-center justify-center mb-4 group-hover:bg-[#FC4B01]/20 transition-colors">
-                        <Icon className="w-6 h-6 text-[#FC4B01]" />
-                      </div>
-                      <h4 className="text-xl font-bold text-foreground mb-3 group-hover:text-[#FC4B01] transition-colors">
-                        {service.title}
-                      </h4>
-                      <p className="text-sm text-muted-foreground leading-relaxed">
-                        {service.description}
-                      </p>
-                    </div>
-                  </motion.div>
                 );
               })}
             </div>
+          </div>
+
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={activeTab}
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -12 }}
+              transition={{ duration: 0.35 }}
+            >
+              <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-12 mb-10">
+                <div className="relative w-44 h-44 sm:w-56 sm:h-56 shrink-0">
+                  <Image
+                    src={activeCategory.image}
+                    alt={activeCategory.title}
+                    fill
+                    className="object-contain"
+                    sizes="224px"
+                  />
+                </div>
+                <div className="text-center lg:text-start max-w-xl">
+                  <h3 className="text-2xl sm:text-3xl font-bold text-foreground mb-3 tracking-tight">
+                    {activeCategory.title}
+                  </h3>
+                  <p className="text-muted-foreground leading-relaxed">
+                    {activeCategory.tagline}
+                  </p>
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5">
+                {activeCategory.items.map((item, index) => (
+                  <ServiceCard key={item.title} item={item} index={index} />
+                ))}
+              </div>
+            </motion.div>
+          </AnimatePresence>
+
+          <div className="mt-12 flex justify-center">
+            <Link
+              href="/services"
+              className="inline-flex items-center gap-2 font-semibold text-sm sm:text-base hover:gap-3 transition-all text-brand-text"
+            >
+              {language === "ar" ? "عرض كل الخدمات" : "View all services"}
+              <ArrowRight className="w-4 h-4 rtl:rotate-180" />
+            </Link>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  // ——— Standalone /services page: full stacked layout ———
+  return (
+    <section id="services" className="min-h-screen" style={{ backgroundColor: "#fff" }}>
+      <div className="pt-28 md:pt-32 pb-12 md:pb-16 px-4 sm:px-6 lg:px-8">
+        <div className="container mx-auto max-w-7xl">
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="max-w-3xl"
+          >
+            <p className="text-xs sm:text-sm font-mono uppercase tracking-[0.25em] mb-3 text-brand-text">
+              {language === "ar" ? "ما نقدمه" : "What we offer"}
+            </p>
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-foreground mb-5">
+              {t.services.title}
+            </h1>
+            <p className="text-base sm:text-lg text-muted-foreground leading-relaxed max-w-2xl">
+              {t.services.subtitle}
+            </p>
           </motion.div>
-        </AnimatePresence>
+        </div>
+      </div>
+
+      {categories.map((category, catIndex) => {
+        const imageOnRight = catIndex % 2 === 1;
+
+        return (
+          <section
+            key={category.id}
+            id={category.id}
+            className="py-14 md:py-24 px-4 sm:px-6 lg:px-8"
+            style={{ backgroundColor: "#fff" }}
+          >
+            <div className="container mx-auto max-w-7xl">
+              <div
+                className={`flex flex-col items-center gap-10 md:gap-14 lg:gap-16 mb-12 md:mb-16 ${
+                  imageOnRight ? "lg:flex-row-reverse" : "lg:flex-row"
+                }`}
+              >
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.2 }}
+                  transition={{ duration: 0.6 }}
+                  className="w-full lg:w-[42%] flex justify-center"
+                >
+                  <div className="relative w-full max-w-[380px] aspect-square">
+                    <Image
+                      src={category.image}
+                      alt={category.title}
+                      fill
+                      className="object-contain drop-shadow-sm"
+                      sizes="(max-width: 1024px) 380px, 42vw"
+                      priority={catIndex === 0}
+                    />
+                  </div>
+                </motion.div>
+
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.2 }}
+                  transition={{ duration: 0.6, delay: 0.08 }}
+                  className="w-full lg:w-[58%] space-y-4 md:space-y-5"
+                >
+                  <p className="text-xs sm:text-sm font-mono uppercase tracking-[0.25em] text-brand-text">
+                    {String(catIndex + 1).padStart(2, "0")}
+                  </p>
+                  <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground tracking-tight">
+                    {category.title}
+                  </h2>
+                  <p className="text-base sm:text-lg text-muted-foreground leading-relaxed max-w-xl">
+                    {category.tagline}
+                  </p>
+                </motion.div>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5">
+                {category.items.map((item, index) => (
+                  <motion.div
+                    key={`${category.id}-${item.title}`}
+                    initial={{ opacity: 0, y: 16 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, amount: 0.15 }}
+                    transition={{ duration: 0.4, delay: index * 0.04 }}
+                  >
+                    <ServiceCard item={item} index={index} />
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          </section>
+        );
+      })}
+
+      <div className="py-16 md:py-24 px-4 sm:px-6 lg:px-8" style={{ backgroundColor: "#fff" }}>
+        <div className="container mx-auto max-w-7xl">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.6 }}
+            className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6 max-w-4xl"
+          >
+            <div>
+              <h2 className="text-2xl sm:text-3xl font-bold text-foreground mb-2 tracking-tight">
+                {language === "ar" ? "هل لديك مشروع؟" : "Have a project in mind?"}
+              </h2>
+              <p className="text-muted-foreground">
+                {language === "ar"
+                  ? "تحدث معنا وسنساعدك على اختيار الحل المناسب."
+                  : "Talk to us and we will help you pick the right approach."}
+              </p>
+            </div>
+            <Link
+              href="/contact"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-white bg-brand-strong font-semibold hover:opacity-90 transition-opacity shrink-0"
+            >
+              {language === "ar" ? "تواصل معنا" : "Talk to us"}
+              <ArrowRight className="w-4 h-4 rtl:rotate-180" />
+            </Link>
+          </motion.div>
+        </div>
       </div>
     </section>
   );
 }
-

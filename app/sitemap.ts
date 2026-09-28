@@ -21,30 +21,36 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: lastMod,
       changeFrequency: "monthly",
       priority: 0.9,
+      images: [
+        `${baseUrl}/services-image/product-engineering.png`,
+        `${baseUrl}/services-image/product-design.png`,
+        `${baseUrl}/services-image/cyber-security.png`,
+      ],
     },
     {
       url: `${baseUrl}/products`,
       lastModified: lastMod,
       changeFrequency: "weekly",
       priority: 0.9,
+      images: [`${baseUrl}/products-image/yaadro.png`, `${baseUrl}/products-image/lens.png`],
     },
     {
       url: `${baseUrl}/products/yaadro`,
       lastModified: lastMod,
-      changeFrequency: "monthly",
-      priority: 0.9,
+      changeFrequency: "weekly",
+      priority: 0.95,
+      images: [
+        `${baseUrl}/products-image/yaadro.png`,
+        `${baseUrl}/products-image/yaadro-ecommerce-hero.jpg`,
+        `${baseUrl}/task-integration-image.png`,
+      ],
     },
     {
       url: `${baseUrl}/products/lens`,
       lastModified: lastMod,
       changeFrequency: "monthly",
-      priority: 0.9,
-    },
-    {
-      url: `${baseUrl}/products/ecommerce`,
-      lastModified: lastMod,
-      changeFrequency: "monthly",
-      priority: 0.9,
+      priority: 0.7,
+      images: [`${baseUrl}/products-image/lens.png`],
     },
     {
       url: `${baseUrl}/about`,
@@ -74,13 +80,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: `${baseUrl}/tech-news`,
       lastModified: lastMod,
       changeFrequency: "daily",
-      priority: 0.7,
+      priority: 0.3,
     },
     {
       url: `${baseUrl}/blog`,
       lastModified: lastMod,
       changeFrequency: "weekly",
-      priority: 0.7,
+      priority: 0.3,
     },
   ];
 

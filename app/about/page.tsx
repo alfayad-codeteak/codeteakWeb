@@ -1,6 +1,7 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
 import { useState, useEffect } from "react";
 import { ChevronDown } from "lucide-react";
 import { getTranslations, type Language } from "@/lib/translations";
@@ -82,7 +83,7 @@ export default function AboutPage() {
   };
 
   return (
-    <div className="min-h-screen bg-background relative">
+    <main className="min-h-screen bg-background relative">
       {/* Navigation Component */}
       <Navigation
         theme={theme}
@@ -161,10 +162,12 @@ export default function AboutPage() {
                 <div className="relative w-64 sm:w-72 aspect-[3/4] rounded-full overflow-hidden border border-border/60 bg-gradient-to-b from-muted/40 to-background">
                   <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/25 pointer-events-none" />
                   <div className="absolute inset-[3px] rounded-full overflow-hidden">
-                    <img
+                    <Image
                       src="/core-team/rizwan.png"
                       alt="Muhammed Rizwan P"
-                      className="w-full h-full object-cover"
+                      fill
+                      sizes="288px"
+                      className="object-cover"
                     />
                   </div>
                 </div>
@@ -205,10 +208,12 @@ export default function AboutPage() {
                 <div className="relative w-64 sm:w-72 aspect-[3/4] rounded-full overflow-hidden border border-border/60 bg-gradient-to-b from-muted/40 to-background">
                   <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/25 pointer-events-none" />
                   <div className="absolute inset-[3px] rounded-full overflow-hidden">
-                    <img
+                    <Image
                       src="/core-team/aslam.png"
                       alt="Mohammed Aslam"
-                      className="w-full h-full object-cover object-center"
+                      fill
+                      sizes="288px"
+                      className="object-cover object-center"
                     />
                   </div>
                 </div>
@@ -309,7 +314,7 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
-    </div>
+    </main>
   );
 }
 

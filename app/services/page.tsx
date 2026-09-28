@@ -1,111 +1,92 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
-import { Sun, Moon, ArrowUp, Mail, Twitter, Linkedin, Github, Instagram } from "lucide-react";
 import Navigation from "../components/Navigation";
 import ServicesSection from "../components/ServicesSection";
-import { getTranslations, type Language } from "@/lib/translations";
+import type { Language } from "@/lib/translations";
 
 export default function ServicesPage() {
-  const [theme, setTheme] = useState<"light" | "dark">("dark");
   const [isMounted, setIsMounted] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [showBackToTop, setShowBackToTop] = useState(false);
   const [language, setLanguage] = useState<"en" | "ar">("en");
-  const [hideHeaderElements, setHideHeaderElements] = useState(false);
 
-  const t = getTranslations(language as Language);
-
-  const updateTheme = (newTheme: "light" | "dark") => {
-    if (typeof window !== 'undefined') {
-      const root = document.documentElement;
-      if (newTheme === "dark") {
-        root.classList.add("dark");
-      } else {
-        root.classList.remove("dark");
-      }
-      localStorage.setItem("theme", newTheme);
-    }
-  };
-
+  // Force light theme on this page; restore previous theme when leaving
   useEffect(() => {
     setIsMounted(true);
-    if (typeof window !== 'undefined') {
-      window.scrollTo(0, 0);
-      const savedTheme = localStorage.getItem("theme") as "light" | "dark" | null;
-      const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-      const initialTheme = savedTheme || (prefersDark ? "dark" : "light");
-      setTheme(initialTheme);
-      updateTheme(initialTheme);
+    if (typeof window === "undefined") return;
 
-      const savedLanguage = localStorage.getItem("language") as "en" | "ar" | null;
-      if (savedLanguage) {
-        setLanguage(savedLanguage);
-      }
+    window.scrollTo(0, 0);
 
-      // Scroll listener
-      const handleScroll = () => {
-        setIsScrolled(window.scrollY > 50);
-        setShowBackToTop(window.scrollY > 300);
-        
-        // Hide header elements when tabs become sticky (after scrolling past ~200px)
-        // The sticky tabs appear at top-0, so we hide header when scrolled past initial content
-        setHideHeaderElements(window.scrollY > 200);
-      };
+    const savedTheme = localStorage.getItem("theme") as "light" | "dark" | null;
+    const root = document.documentElement;
+    const wasDark = root.classList.contains("dark");
 
-      window.addEventListener("scroll", handleScroll);
-      return () => window.removeEventListener("scroll", handleScroll);
+    root.classList.remove("dark");
+
+    const savedLanguage = localStorage.getItem("language") as "en" | "ar" | null;
+    if (savedLanguage) {
+      setLanguage(savedLanguage);
+      document.documentElement.dir = savedLanguage === "ar" ? "rtl" : "ltr";
+      document.documentElement.lang = savedLanguage;
     }
+
+    return () => {
+      const restore = savedTheme || (wasDark ? "dark" : "light");
+      if (restore === "dark") {
+        document.documentElement.classList.add("dark");
+      } else {
+        document.documentElement.classList.remove("dark");
+      }
+    };
   }, []);
 
   const changeLanguage = (lang: "en" | "ar") => {
     setLanguage(lang);
-    if (typeof window !== 'undefined') {
+    if (typeof window !== "undefined") {
       localStorage.setItem("language", lang);
-      const root = document.documentElement;
-      if (lang === "ar") {
-        root.setAttribute("dir", "rtl");
-      } else {
-        root.setAttribute("dir", "ltr");
-      }
+      document.documentElement.dir = lang === "ar" ? "rtl" : "ltr";
+      document.documentElement.lang = lang;
     }
   };
 
-  const handleScrollToTop = () => {
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    const handleScroll = () => {
+      setShowBackToTop(window.scrollY > 300);
+      setIsScrolled(window.scrollY > 50);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
-  const socialLinks = [
-    { icon: Twitter, href: "#", label: "Twitter" },
-    { icon: Linkedin, href: "#", label: "LinkedIn" },
-    { icon: Github, href: "#", label: "GitHub" },
-    { icon: Instagram, href: "#", label: "Instagram" },
-  ];
-
   return (
-    <div className="min-h-screen bg-background relative pb-20 md:pb-0">
-      {/* Navigation */}
+    <div className="min-h-screen relative" style={{ backgroundColor: "#fff" }}>
       <Navigation
-        theme={theme}
+        theme="light"
         language={language}
         isMounted={isMounted}
         isScrolled={isScrolled}
         showBackToTop={showBackToTop}
-        hideHeaderElements={hideHeaderElements}
-        onThemeChange={(newTheme) => {
-          setTheme(newTheme);
-          updateTheme(newTheme);
+        hideThemeToggle
+        onThemeChange={() => {
+          // Theme locked to light on this page
         }}
         onLanguageChange={changeLanguage}
-        onScrollToTop={handleScrollToTop}
+        onScrollToTop={scrollToTop}
       />
 
-      {/* Main Content */}
-      <main className="pt-20">
+      <main>
         <ServicesSection language={language as Language} isStandalonePage={true} />
       </main>
+
+      <div className="pb-20 md:pb-8" style={{ backgroundColor: "#fff" }} />
     </div>
   );
 }
-

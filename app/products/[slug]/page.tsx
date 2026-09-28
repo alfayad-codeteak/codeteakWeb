@@ -4,14 +4,15 @@ import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowLeft, CheckCircle2, ArrowRight, TrendingUp, BarChart3, PieChart, Shield, Zap, Activity, ArrowUp, Sun, Moon, Mail, Twitter, Linkedin, Github, Instagram, Truck, ShoppingCart, Users, MessageSquare, Package, MapPin, Clock, Bell, ChevronDown, ChevronUp, HelpCircle } from "lucide-react";
-import { useState, useEffect } from "react";
-import { useParams } from "next/navigation";
+import { useState, useEffect, useRef } from "react";
+import { useParams, useRouter } from "next/navigation";
 import { getTranslations, type Language } from "@/lib/translations";
 import Navigation from "../../components/Navigation";
 
 export default function ProductDetailPage() {
   const params = useParams();
   const slug = params?.slug as string;
+  const router = useRouter();
   const [theme, setTheme] = useState<"light" | "dark">("dark");
   const [isMounted, setIsMounted] = useState(false);
   const [isProductHovered, setIsProductHovered] = useState(false);
@@ -20,6 +21,8 @@ export default function ProductDetailPage() {
   const [language, setLanguage] = useState<"en" | "ar">("en");
   const [isLanguageHovered, setIsLanguageHovered] = useState(false);
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(0); // First FAQ open by default
+  const yaadroVideoRef = useRef<HTMLVideoElement>(null);
+  const yaadroVideoWrapRef = useRef<HTMLDivElement>(null);
   
   const t = getTranslations(language as Language);
 
@@ -56,6 +59,25 @@ export default function ProductDetailPage() {
     }
   }, []);
 
+  // Old /products/ecommerce URL → Yaadro page ecommerce section
+  useEffect(() => {
+    if (slug === "ecommerce") {
+      router.replace("/products/yaadro#ecommerce");
+    }
+  }, [slug, router]);
+
+  // Scroll to ecommerce section when hash is present
+  useEffect(() => {
+    if (slug !== "yaadro" || typeof window === "undefined") return;
+    if (window.location.hash !== "#ecommerce") return;
+
+    const timer = window.setTimeout(() => {
+      document.getElementById("ecommerce")?.scrollIntoView({ behavior: "smooth", block: "start" });
+    }, 400);
+
+    return () => window.clearTimeout(timer);
+  }, [slug]);
+
   const changeLanguage = (lang: "en" | "ar") => {
     setLanguage(lang);
     if (typeof window !== 'undefined') {
@@ -66,8 +88,8 @@ export default function ProductDetailPage() {
   };
 
   useEffect(() => {
-    if (typeof window === 'undefined') return;
-    
+    if (typeof window === "undefined") return;
+
     const handleScroll = () => {
       setShowBackToTop(window.scrollY > 300);
       setIsScrolled(window.scrollY > 50);
@@ -76,6 +98,88 @@ export default function ProductDetailPage() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  // Autoplay Yaadro hero video when scrolled into view
+  useEffect(() => {
+    if (slug !== "yaadro") return;
+
+    let observer: IntersectionObserver | null = null;
+    let cancelled = false;
+
+    const setup = () => {
+      const wrap = yaadroVideoWrapRef.current;
+      const video = yaadroVideoRef.current;
+      if (!wrap || !video || cancelled) return false;
+
+      // Browsers only allow reliable autoplay when muted
+      video.muted = true;
+      video.playsInline = true;
+      video.loop = true;
+
+      const playVideo = () => {
+        const playPromise = video.play();
+        if (playPromise !== undefined) {
+          playPromise
+            .then(() => {
+              // Try enabling sound after playback starts (works if user already interacted with the site)
+              try {
+                video.muted = false;
+                video.volume = 1;
+              } catch {
+                // keep muted if browser blocks unmute
+              }
+            })
+            .catch(() => {
+              // Retry muted play
+              video.muted = true;
+              void video.play().catch(() => {});
+            });
+        }
+      };
+
+      const pauseVideo = () => {
+        if (!video.paused) video.pause();
+      };
+
+      observer = new IntersectionObserver(
+        (entries) => {
+          const entry = entries[0];
+          if (!entry) return;
+          if (entry.isIntersecting) {
+            playVideo();
+          } else {
+            pauseVideo();
+          }
+        },
+        { threshold: 0.35, rootMargin: "0px 0px -10% 0px" },
+      );
+
+      observer.observe(wrap);
+
+      // If already in view on load
+      const rect = wrap.getBoundingClientRect();
+      const inView =
+        rect.top < window.innerHeight * 0.75 &&
+        rect.bottom > window.innerHeight * 0.25;
+      if (inView) playVideo();
+
+      return true;
+    };
+
+    // Refs may not be ready on the first tick
+    let attempts = 0;
+    const trySetup = () => {
+      if (setup() || cancelled) return;
+      attempts += 1;
+      if (attempts < 20) requestAnimationFrame(trySetup);
+    };
+    trySetup();
+
+    return () => {
+      cancelled = true;
+      observer?.disconnect();
+    };
+  }, [slug]);
 
   const toggleTheme = () => {
     const newTheme = theme === "dark" ? "light" : "dark";
@@ -107,82 +211,65 @@ export default function ProductDetailPage() {
   }> = {
     yaadro: {
       name: "Yaadro",
-      description: "Delivery management system for supermarkets",
-      longDescription: "Yaadro is a comprehensive delivery management system designed to seamlessly connect supermarkets, delivery partners, and customers. With dedicated mobile apps for supermarkets and delivery partners, plus a powerful web dashboard, Yaadro streamlines the entire delivery process from order placement to doorstep delivery.",
+      description: "Home delivery for shops",
+      longDescription:
+        "Yaadro helps shops manage home delivery from start to finish. Shops, delivery partners, and customers stay connected with simple apps and a clear dashboard.",
       image: "/mockup/yaadro.png",
       features: [
-        "Real-time order tracking and management",
-        "Dedicated mobile apps for supermarkets and delivery partners",
-        "Comprehensive web dashboard for supermarket management",
-        "Seamless communication between all parties",
-        "Automated delivery assignment and routing",
-        "Real-time notifications and updates",
-        "Inventory management integration",
-        "Payment processing and order history"
+        "See where every order is",
+        "Apps for shops and delivery partners",
+        "Simple dashboard for managers",
+        "Online orders with pay on delivery",
+        "Clear updates for everyone",
+        "Works with Task billing",
       ],
       benefits: [
-        "Streamline delivery operations effortlessly",
-        "Improve communication between all stakeholders",
-        "Enhance customer satisfaction with real-time updates",
-        "Increase delivery efficiency and reduce costs"
-      ]
+        "Faster home deliveries",
+        "Less confusion between teams",
+        "Customers stay updated",
+        "Easy day to day control",
+      ],
     },
     lens: {
       name: "Lens",
-      description: "AI-Powered Face Recognition Attendance System",
-      longDescription: "YaadroLens is an AI-powered face recognition attendance system for retail stores and supermarkets. It provides contactless, automated attendance tracking with offline capabilities, real-time analytics, and enterprise-grade security.",
+      description: "Simple camera attendance for your team",
+      longDescription:
+        "Lens helps any business mark attendance quickly. Staff check in by looking at the camera, no cards or fingerprints needed. It stays accurate and keeps working even when the internet is down.",
       image: "/mockup/lens.png",
       features: [
-        "DeepFace ML with 90%+ accuracy in employee identification",
-        "Offline-first architecture - works without internet, auto-syncs when online",
-        "Multi-tenant SaaS platform with secure, isolated data for multiple shops",
-        "Real-time analytics dashboards and comprehensive reports",
-        "Enterprise-grade security with JWT authentication and role-based access",
-        "Employee management and attendance tracking",
-        "ML performance monitoring and system health checks",
-        "Scalable architecture supporting multiple locations and growing teams"
+        "Quick check in with a camera look",
+        "Works even without internet, then syncs later",
+        "Safe records for one location or many",
+        "Clear attendance reports for managers",
+        "Only authorized people can view staff data",
+        "Easy employee and attendance management",
+        "Reliable day to day for busy teams",
+        "Grows with your locations and staff",
       ],
       benefits: [
-        "Contactless attendance tracking - no physical check-ins required",
-        "Works offline - automatically syncs when connection is restored",
-        "90%+ accuracy in employee identification using advanced AI",
-        "Real-time insights and analytics for better workforce management",
-        "Enterprise security with multi-tenant data isolation",
-        "Production-ready solution built on FastAPI, PostgreSQL, and Redis"
-      ]
-    }
-    ,
-    ecommerce: {
-      name: "Yaadro Ecommerce",
-      description: "Supermarket ecommerce ordering (COD only)",
-      longDescription:
-        "Yaadro Ecommerce is a customer ordering experience powered by Yaadro. Each supermarket can maintain a separate product catalog in the application, and customers can access the shop ecommerce from the website to place orders online with Cash on Delivery (COD) only. Built on Yaadro and maintained by CodeTeak.",
-      image: "/mockup/yaadro.png",
-      features: [
-        "Separate product catalog for each shop",
-        "Customer ordering experience accessible from the website",
-        "Cash on Delivery (COD) checkout only",
-        "Order management for staff with clear statuses",
-        "Notifications and status updates for customers",
-        "Reliable operations, monitoring, and maintenance by CodeTeak",
-      ],
-      benefits: [
-        "Launch online ordering quickly without building from scratch",
-        "Keep each shop’s products, pricing, and availability separate",
-        "Reduce payment complexity with COD-only flow",
-        "Increase repeat orders with a simple customer experience",
+        "No cards, PINs, or fingerprint machines",
+        "Keeps recording attendance offline",
+        "Recognizes the right person every time",
+        "Helps managers see who is present quickly",
+        "Each location's data stays private",
+        "Ready for real workplace use from day one",
       ],
     },
   };
 
   const product = products[slug];
 
+  // Redirect handled in useEffect — avoid flashing "not found"
+  if (slug === "ecommerce") {
+    return null;
+  }
+
   if (!product) {
     return (
       <div className="min-h-screen bg-background flex items-center justify-center pb-20 md:pb-0">
         <div className="text-center">
           <h1 className="text-4xl font-bold text-foreground mb-4">{t.productDetail.notFound}</h1>
-          <Link href="/products" className="text-[#FC4B01] hover:underline">
+          <Link href="/products" className="text-[#6C3CE0] hover:underline">
             {t.productDetail.backToProducts}
           </Link>
         </div>
@@ -254,183 +341,92 @@ export default function ProductDetailPage() {
         {/* Hero Section */}
         <section className="pt-20 md:pt-32 pb-12 md:pb-20 px-4 sm:px-6 lg:px-8 min-h-screen flex items-center">
           <div className="container mx-auto max-w-7xl">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 items-center mb-8 md:mb-0">
-              {/* Left Side - Headline */}
-              <motion.div
-                initial={{ opacity: 0, x: -30 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6 }}
-                className="space-y-4 md:space-y-6"
-              >
-                <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-foreground leading-tight">
-                  {language === "en" ? (
-                    <>
-                      Deliver Smarter,
-                      <br />
-                      <span className="text-[#FC4B01]">Connect Effortlessly</span>
-                    </>
-                  ) : (
-                    <>
-                      <span className="text-[#FC4B01]">تسليم</span> أذكى،
-                      <br />
-                      اتصال سلس
-                    </>
-                  )}
-                </h1>
-              </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className="flex flex-col items-center text-center gap-5 md:gap-7 mb-8 md:mb-12 max-w-4xl mx-auto"
+            >
+              <p className="inline-flex items-center gap-2 rounded-full border border-[#6C3CE0]/25 bg-[#6C3CE0]/5 px-4 py-1.5 text-xs sm:text-sm font-medium text-[#6C3CE0]">
+                {language === "ar"
+                  ? "يادرو · نظام إدارة التوصيل + متجر إلكتروني"
+                  : "Yaadro · Delivery Management System + Ecommerce"}
+              </p>
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-foreground leading-tight">
+                {language === "en" ? (
+                  <>
+                    <span className="block whitespace-nowrap">Deliver faster.</span>
+                    <span className="block whitespace-nowrap text-[#6C3CE0]">Stay connected.</span>
+                  </>
+                ) : (
+                  <>
+                    <span className="block whitespace-nowrap">
+                      <span className="text-[#6C3CE0]">توصيل</span> أسرع.
+                    </span>
+                    <span className="block whitespace-nowrap">اتصال أوضح.</span>
+                  </>
+                )}
+              </h1>
 
-              {/* Right Side - Description & CTA */}
-              <motion.div
-                initial={{ opacity: 0, x: 30 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-                className="space-y-4 md:space-y-6 flex flex-col items-start lg:items-end"
-              >
-                <p className="text-base sm:text-lg text-muted-foreground max-w-md text-left lg:text-right leading-relaxed">
-                  {t.productDetail.yaadro.description}
-                </p>
-                <Link
-                  href="/contact"
-                  className="px-6 py-3 md:px-8 md:py-4 bg-[#FC4B01] text-white rounded-full font-semibold hover:opacity-90 transition-opacity text-sm md:text-base"
-                >
-                  Get Started
-                </Link>
-              </motion.div>
-            </div>
+              <p className="text-base sm:text-lg text-muted-foreground max-w-2xl leading-relaxed">
+                {t.productDetail.yaadro.description}
+              </p>
 
-            {/* Center - App Mockup with Floating Elements */}
-            <div className="relative mt-8 md:mt-16 py-8 md:py-12 overflow-hidden">
-              <div className="relative w-full flex justify-center items-center gap-4 md:gap-8">
-              {/* Red Mockup - Left */}
-              <motion.div
-                initial={{ opacity: 0, scale: 0.3, x: -150, y: 80, rotate: -10 }}
-                animate={{ 
-                  opacity: 1, 
-                  scale: 1, 
-                  x: 0,
-                  y: 0,
-                  rotate: 0
-                }}
-                transition={{ 
-                  opacity: { duration: 1, delay: 0.5 },
-                  scale: { duration: 1, delay: 0.5, type: "spring", stiffness: 120, damping: 15 },
-                  x: { duration: 1, delay: 0.5, type: "spring", stiffness: 100, damping: 12 },
-                  y: { duration: 1, delay: 0.5, type: "spring", stiffness: 100, damping: 12 },
-                  rotate: { duration: 1, delay: 0.5, type: "spring", stiffness: 80 }
-                }}
-                className="relative z-0"
+              <Link
+                href="/contact"
+                className="px-6 py-3 md:px-8 md:py-4 bg-[#6C3CE0] text-white rounded-full font-semibold hover:opacity-90 transition-opacity text-sm md:text-base"
               >
-                <motion.div
-                  animate={{
-                    y: [0, -15, 0],
-                  }}
-                  transition={{
-                    y: {
-                      duration: 3.5,
-                      repeat: Infinity,
-                      ease: "easeInOut",
-                      delay: 1.5
-                    }
-                  }}
-                  className="w-48 h-[360px] sm:w-64 sm:h-[480px] md:w-80 md:h-[600px] flex items-center justify-center"
-                  style={{ willChange: 'transform' }}
-                >
-                  <Image
-                    src="/mockup/red.png"
-                    alt="Yaadro Red Mockup"
-                    width={320}
-                    height={640}
-                    className="w-full h-full object-contain drop-shadow-2xl"
-                  />
-                </motion.div>
-              </motion.div>
-
-              {/* Main App Mockup - Center */}
-              <motion.div
-                initial={{ opacity: 0, scale: 0.3, y: 100 }}
-                animate={{ 
-                  opacity: 1, 
-                  scale: 1,
-                  y: 0
-                }}
-                transition={{ 
-                  opacity: { duration: 1, delay: 0.8 },
-                  scale: { duration: 1, delay: 0.8, type: "spring", stiffness: 120, damping: 15 },
-                  y: { duration: 1, delay: 0.8, type: "spring", stiffness: 100, damping: 12 }
-                }}
-                className="relative z-10"
-              >
-                <motion.div
-                  animate={{
-                    y: [0, -20, 0],
-                  }}
-                  transition={{
-                    y: {
-                      duration: 4,
-                      repeat: Infinity,
-                      ease: "easeInOut",
-                      delay: 1.8
-                    }
-                  }}
-                  className="w-48 h-[360px] sm:w-64 sm:h-[480px] md:w-80 md:h-[600px] flex items-center justify-center"
-                  style={{ willChange: 'transform' }}
-                >
-                  <Image
-                    src="/mockup/mockup-yaadro.png"
-                    alt="Yaadro App Mockup"
-                    width={320}
-                    height={640}
-                    className="w-full h-full object-contain drop-shadow-2xl"
-                    priority
-                  />
-                </motion.div>
-              </motion.div>
-
-              {/* Blue Mockup - Right */}
-              <motion.div
-                initial={{ opacity: 0, scale: 0.3, x: 150, y: 80, rotate: 10 }}
-                animate={{ 
-                  opacity: 1, 
-                  scale: 1,
-                  x: 0,
-                  y: 0,
-                  rotate: 0
-                }}
-                transition={{ 
-                  opacity: { duration: 1, delay: 1.1 },
-                  scale: { duration: 1, delay: 1.1, type: "spring", stiffness: 120, damping: 15 },
-                  x: { duration: 1, delay: 1.1, type: "spring", stiffness: 100, damping: 12 },
-                  y: { duration: 1, delay: 1.1, type: "spring", stiffness: 100, damping: 12 },
-                  rotate: { duration: 1, delay: 1.1, type: "spring", stiffness: 80 }
-                }}
-                className="relative z-0"
-              >
-                <motion.div
-                  animate={{
-                    y: [0, -15, 0],
-                  }}
-                  transition={{
-                    y: {
-                      duration: 3.5,
-                      repeat: Infinity,
-                      ease: "easeInOut",
-                      delay: 2.1
-                    }
-                  }}
-                  className="w-48 h-[360px] sm:w-64 sm:h-[480px] md:w-80 md:h-[600px] flex items-center justify-center"
-                  style={{ willChange: 'transform' }}
-                >
-                  <Image
-                    src="/mockup/blue.png"
-                    alt="Yaadro Blue Mockup"
-                    width={320}
-                    height={640}
-                    className="w-full h-full object-contain drop-shadow-2xl"
-                  />
-              </motion.div>
+                {language === "ar" ? "ابدأ الآن" : "Get started"}
+              </Link>
             </motion.div>
+
+            {/* Hero video */}
+            <motion.div
+              initial={{ opacity: 0, y: 40 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.35 }}
+              className="relative mt-10 md:mt-20 w-full max-w-6xl mx-auto px-4 sm:px-6 overflow-visible"
+            >
+              <div
+                ref={yaadroVideoWrapRef}
+                className="relative w-full overflow-visible"
+              >
+                <div className="relative w-full overflow-hidden rounded-2xl md:rounded-3xl bg-black aspect-[16/9] min-h-[240px] sm:min-h-[360px] md:min-h-[480px] lg:min-h-[560px]">
+                  <video
+                    ref={yaadroVideoRef}
+                    className="w-full h-full object-cover cursor-pointer"
+                    muted
+                    autoPlay
+                    loop
+                    playsInline
+                    preload="auto"
+                    controls={false}
+                    aria-label="Yaadro delivery management demo"
+                    onClick={(e) => {
+                      const video = e.currentTarget;
+                      video.muted = !video.muted;
+                      if (video.paused) void video.play();
+                    }}
+                  >
+                    <source
+                      src="/videos/yaadro-delivery-management.mp4"
+                      type="video/mp4"
+                    />
+                  </video>
+                </div>
+
+                {/* Bottom-right Yaadro logo */}
+                <div className="pointer-events-none absolute -bottom-5 -right-3 sm:-bottom-6 sm:-right-4 md:-bottom-8 md:-right-5 z-20 -rotate-[10deg]">
+                  <Image
+                    src="/products-image/logo-3d.png"
+                    alt="Yaadro"
+                    width={280}
+                    height={280}
+                    className="w-28 h-28 sm:w-32 sm:h-32 md:w-40 md:h-40 lg:w-48 lg:h-48 object-contain rounded-2xl"
+                  />
+                </div>
               </div>
-            </div>
+            </motion.div>
           </div>
         </section>
 
@@ -469,7 +465,7 @@ export default function ProductDetailPage() {
                     {partners.map((partner) => (
                       <div
                         key={`${setIndex}-${partner}`}
-                        className="flex-shrink-0 text-2xl font-semibold text-muted-foreground/60 whitespace-nowrap"
+                        className="flex-shrink-0 text-2xl font-semibold text-muted-foreground whitespace-nowrap"
                       >
                         {partner}
                       </div>
@@ -501,7 +497,7 @@ export default function ProductDetailPage() {
                     {partners.map((partner) => (
                       <div
                         key={`${setIndex}-${partner}`}
-                        className="flex-shrink-0 text-2xl font-semibold text-muted-foreground/60 whitespace-nowrap"
+                        className="flex-shrink-0 text-2xl font-semibold text-muted-foreground whitespace-nowrap"
                       >
                         {partner}
                       </div>
@@ -532,7 +528,7 @@ export default function ProductDetailPage() {
                 className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-3 md:mb-4"
               >
                 {t.productDetail.yaadro.integration.title}{" "}
-                <span className="text-[#FC4B01]">Task</span>
+                <span className="text-[#6C3CE0]">Task</span>
               </motion.h2>
               <motion.p
                 initial={{ opacity: 0, y: 20 }}
@@ -553,201 +549,28 @@ export default function ProductDetailPage() {
               transition={{ duration: 0.8, delay: 0.3 }}
               className="relative"
             >
-              {/* Main Container */}
-              <div className="p-4 sm:p-8 lg:p-12 xl:p-16">
-                {/* Integration Flow - Desktop */}
-                <div className="hidden md:flex items-center justify-center gap-8 lg:gap-16 mb-12">
-                  {/* Task Logo */}
-                  <motion.div
-                    initial={{ opacity: 0, x: -50 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.7, delay: 0.4 }}
-                    className="flex-shrink-0"
-                  >
-                    <Image
-                      src="/logo/task-logo.png"
-                      alt="Task Logo"
-                      width={240}
-                      height={240}
-                      className="w-40 h-40 md:w-60 md:h-60 object-contain"
-                    />
-                  </motion.div>
-
-                  {/* Animated Divider */}
-                  <motion.div
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.8, delay: 0.5 }}
-                    className="flex items-center justify-center gap-3"
-                  >
-                    {[0, 1, 2].map((index) => (
-                      <motion.div
-                        key={index}
-                        className="w-3 h-3 rounded-full"
-                        animate={{
-                          backgroundColor: [
-                            "#FC4B01", // Orange
-                            "#DC2626", // Red
-                            "#2563EB", // Blue
-                            "#FC4B01", // Back to Orange
-                          ],
-                          scale: [1, 1.2, 1],
-                        }}
-                        transition={{
-                          duration: 2,
-                          repeat: Infinity,
-                          delay: index * 0.3,
-                          ease: "easeInOut",
-                        }}
-                      />
-                    ))}
-                  </motion.div>
-
-                  {/* Yaadro Logos */}
-                  <motion.div
-                    initial={{ opacity: 0, x: 50 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.7, delay: 0.4 }}
-                    className="flex gap-6 items-center"
-                  >
-                    {/* Yaadro Red */}
-                    <motion.div
-                      initial={{ opacity: 0, y: 20 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.5, delay: 0.5 }}
-                      className="relative"
-                    >
-                      <div className="bg-card border border-border rounded-full p-6">
-                        <Image
-                          src="/logo/yaadro-red.png"
-                          alt="Yaadro Red"
-                          width={120}
-                          height={120}
-                          className="w-28 h-28 object-contain"
-                        />
-                      </div>
-                    </motion.div>
-
-                    {/* Yaadro Blue */}
-                    <motion.div
-                      initial={{ opacity: 0, y: 20 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.5, delay: 0.6 }}
-                      className="relative"
-                    >
-                      <div className="bg-card border border-border rounded-full p-6">
-                        <Image
-                          src="/logo/yaadro-blue.png"
-                          alt="Yaadro Blue"
-                          width={120}
-                          height={120}
-                          className="w-28 h-28 object-contain"
-                        />
-                      </div>
-                    </motion.div>
-                  </motion.div>
-                </div>
-
-                {/* Integration Flow - Mobile */}
-                <div className="md:hidden flex flex-col items-center gap-8 mb-12">
-                  {/* Task Logo */}
-                  <motion.div
-                    initial={{ opacity: 0, y: -30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6, delay: 0.4 }}
-                    className="relative"
-                  >
-                    <Image
-                      src="/logo/task-logo.png"
-                      alt="Task Logo"
-                      width={200}
-                      height={200}
-                      className="w-32 h-32 md:w-48 md:h-48 object-contain"
-                    />
-                  </motion.div>
-
-                  {/* Animated Divider */}
-                  <motion.div
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6, delay: 0.5 }}
-                    className="flex items-center justify-center gap-3"
-                  >
-                    {[0, 1, 2].map((index) => (
-                      <motion.div
-                        key={index}
-                        className="w-3 h-3 rounded-full"
-                        animate={{
-                          backgroundColor: [
-                            "#FC4B01", // Orange
-                            "#DC2626", // Red
-                            "#2563EB", // Blue
-                            "#FC4B01", // Back to Orange
-                          ],
-                          scale: [1, 1.2, 1],
-                        }}
-                        transition={{
-                          duration: 2,
-                          repeat: Infinity,
-                          delay: index * 0.3,
-                          ease: "easeInOut",
-                        }}
-                      />
-                    ))}
-                  </motion.div>
-
-                  {/* Yaadro Logos */}
-                  <motion.div
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6, delay: 0.4 }}
-                    className="flex gap-6 items-center"
-                  >
-                    {/* Yaadro Red */}
-                    <div className="bg-card border border-border rounded-full p-5">
-                      <Image
-                        src="/logo/yaadro-red.png"
-                        alt="Yaadro Red"
-                        width={100}
-                        height={100}
-                        className="w-24 h-24 object-contain"
-                      />
-                    </div>
-
-                    {/* Yaadro Blue */}
-                    <div className="bg-card border border-border rounded-full p-5">
-                      <Image
-                        src="/logo/yaadro-blue.png"
-                        alt="Yaadro Blue"
-                        width={100}
-                        height={100}
-                        className="w-24 h-24 object-contain"
-                      />
-                    </div>
-                  </motion.div>
-                </div>
-
-                {/* Description */}
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: 0.7 }}
-                  className="text-center"
-                >
-                  <p className="text-muted-foreground max-w-3xl mx-auto leading-relaxed text-lg">
-                    {t.productDetail.yaadro.integration.description}
-                  </p>
-                </motion.div>
+              <div className="px-2 sm:px-4 lg:px-8 mb-10 md:mb-12 flex justify-center">
+                <Image
+                  src="/task-integration-image.png"
+                  alt="Yaadro integrated with Task"
+                  width={1200}
+                  height={480}
+                  className="w-full max-w-4xl h-auto object-contain"
+                  priority={false}
+                />
               </div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.5 }}
+                className="text-center px-4"
+              >
+                <p className="text-muted-foreground max-w-3xl mx-auto leading-relaxed text-lg">
+                  {t.productDetail.yaadro.integration.description}
+                </p>
+              </motion.div>
             </motion.div>
           </div>
         </section>
@@ -790,7 +613,7 @@ export default function ProductDetailPage() {
                 <div className="w-full h-full border-t-2 border-dashed border-muted-foreground/30 dark:border-muted-foreground/50 absolute top-1/2 -translate-y-1/2" />
                 {/* Animated Traveling Dot */}
                 <motion.div
-                  className="absolute top-1/2 w-3 h-3 rounded-full bg-[#FC4B01] shadow-lg z-0"
+                  className="absolute top-1/2 w-3 h-3 rounded-full bg-[#6C3CE0] shadow-lg z-0"
                   style={{
                     transform: "translateY(-50%) translateX(-50%)",
                   }}
@@ -814,14 +637,14 @@ export default function ProductDetailPage() {
                 className="relative flex flex-col items-center text-center z-20"
               >
                 {/* Step Number */}
-                <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-8 h-8 rounded-full bg-[#FC4B01] flex items-center justify-center text-white font-bold text-sm z-30">
+                <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-8 h-8 rounded-full bg-[#6C3CE0] flex items-center justify-center text-white font-bold text-sm z-30">
                   1
                 </div>
                 
                 {/* Icon Circle */}
                 <div className="w-24 h-24 md:w-32 md:h-32 rounded-full bg-card border border-border flex items-center justify-center mb-4 md:mb-6 relative">
-                  <div className="absolute inset-0 rounded-full bg-gradient-to-br from-[#FC4B01]/10 to-transparent" />
-                  <ShoppingCart className="w-8 h-8 md:w-12 md:h-12 text-[#FC4B01]" />
+                  <div className="absolute inset-0 rounded-full bg-gradient-to-br from-[#6C3CE0]/10 to-transparent" />
+                  <ShoppingCart className="w-8 h-8 md:w-12 md:h-12 text-[#6C3CE0]" />
                 </div>
                 
                 {/* Title */}
@@ -844,14 +667,14 @@ export default function ProductDetailPage() {
                 className="relative flex flex-col items-center text-center z-20"
               >
                 {/* Step Number */}
-                <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-8 h-8 rounded-full bg-[#FC4B01] flex items-center justify-center text-white font-bold text-sm z-30">
+                <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-8 h-8 rounded-full bg-[#6C3CE0] flex items-center justify-center text-white font-bold text-sm z-30">
                   2
                 </div>
                 
                 {/* Icon Circle */}
                 <div className="w-24 h-24 md:w-32 md:h-32 rounded-full bg-card border border-border flex items-center justify-center mb-4 md:mb-6 relative">
-                  <div className="absolute inset-0 rounded-full bg-gradient-to-br from-[#FC4B01]/10 to-transparent" />
-                  <Truck className="w-8 h-8 md:w-12 md:h-12 text-[#FC4B01]" />
+                  <div className="absolute inset-0 rounded-full bg-gradient-to-br from-[#6C3CE0]/10 to-transparent" />
+                  <Truck className="w-8 h-8 md:w-12 md:h-12 text-[#6C3CE0]" />
                 </div>
                 
                 {/* Title */}
@@ -874,14 +697,14 @@ export default function ProductDetailPage() {
                 className="relative flex flex-col items-center text-center z-20"
               >
                 {/* Step Number */}
-                <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-8 h-8 rounded-full bg-[#FC4B01] flex items-center justify-center text-white font-bold text-sm z-30">
+                <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-8 h-8 rounded-full bg-[#6C3CE0] flex items-center justify-center text-white font-bold text-sm z-30">
                   3
                 </div>
                 
                 {/* Icon Circle */}
                 <div className="w-24 h-24 md:w-32 md:h-32 rounded-full bg-card border border-border flex items-center justify-center mb-4 md:mb-6 relative">
-                  <div className="absolute inset-0 rounded-full bg-gradient-to-br from-[#FC4B01]/10 to-transparent" />
-                  <CheckCircle2 className="w-12 h-12 text-[#FC4B01]" />
+                  <div className="absolute inset-0 rounded-full bg-gradient-to-br from-[#6C3CE0]/10 to-transparent" />
+                  <CheckCircle2 className="w-12 h-12 text-[#6C3CE0]" />
                 </div>
                 
                 {/* Title */}
@@ -918,7 +741,7 @@ export default function ProductDetailPage() {
                 transition={{ duration: 0.6 }}
                 className="px-4 py-2 bg-foreground text-background rounded-full text-sm font-medium hover:opacity-90 transition-opacity"
               >
-                Get Started
+                Get started
               </motion.button>
             </div>
 
@@ -937,32 +760,32 @@ export default function ProductDetailPage() {
                   >
                     <div className="mb-4">
                       {feature.visual === "chart" && (
-                        <div className="w-20 h-20 rounded-full border-8 border-[#FC4B01] border-t-transparent flex items-center justify-center">
-                          <ShoppingCart className="w-8 h-8 text-[#FC4B01]" />
+                        <div className="w-20 h-20 rounded-full border-8 border-[#6C3CE0] border-t-transparent flex items-center justify-center">
+                          <ShoppingCart className="w-8 h-8 text-[#6C3CE0]" />
                         </div>
                       )}
                       {feature.visual === "line" && (
-                        <div className="w-20 h-20 rounded-full border-8 border-[#FC4B01] border-t-transparent flex items-center justify-center">
-                          <Truck className="w-8 h-8 text-[#FC4B01]" />
+                        <div className="w-20 h-20 rounded-full border-8 border-[#6C3CE0] border-t-transparent flex items-center justify-center">
+                          <Truck className="w-8 h-8 text-[#6C3CE0]" />
                         </div>
                       )}
                       {feature.visual === "donut" && (
-                        <div className="w-20 h-20 rounded-full border-8 border-[#FC4B01] border-t-transparent flex items-center justify-center">
-                          <Activity className="w-8 h-8 text-[#FC4B01]" />
+                        <div className="w-20 h-20 rounded-full border-8 border-[#6C3CE0] border-t-transparent flex items-center justify-center">
+                          <Activity className="w-8 h-8 text-[#6C3CE0]" />
                         </div>
                       )}
                       {feature.visual === "gauge" && (
-                        <div className="w-20 h-20 rounded-full border-8 border-[#FC4B01] border-t-transparent flex items-center justify-center">
-                          <MapPin className="w-8 h-8 text-[#FC4B01]" />
+                        <div className="w-20 h-20 rounded-full border-8 border-[#6C3CE0] border-t-transparent flex items-center justify-center">
+                          <MapPin className="w-8 h-8 text-[#6C3CE0]" />
                         </div>
                       )}
                       {feature.visual === "score" && (
-                        <div className="w-20 h-20 rounded-full border-8 border-[#FC4B01] border-t-transparent flex items-center justify-center">
-                          <MessageSquare className="w-8 h-8 text-[#FC4B01]" />
+                        <div className="w-20 h-20 rounded-full border-8 border-[#6C3CE0] border-t-transparent flex items-center justify-center">
+                          <MessageSquare className="w-8 h-8 text-[#6C3CE0]" />
                         </div>
                       )}
                       {feature.visual === "insights" && (
-                        <Icon className="w-12 h-12 text-[#FC4B01]" />
+                        <Icon className="w-12 h-12 text-[#6C3CE0]" />
                       )}
                     </div>
                     <h3 className="text-lg md:text-xl font-bold text-foreground mb-2">{feature.title}</h3>
@@ -973,317 +796,286 @@ export default function ProductDetailPage() {
             </div>
           </div>
         </section>
-      </div>
-    );
-  }
 
-  // Special design for Yaadro Ecommerce
-  if (slug === "ecommerce") {
-    const faqItems =
-      language === "ar"
-        ? [
-            {
-              question: "هل يدعم الدفع الإلكتروني؟",
-              answer:
-                "حالياً التجربة مصممة لتكون الدفع عند الاستلام فقط (COD) لتبسيط التشغيل وتقليل التعقيد. يمكن إضافة الدفع الإلكتروني لاحقاً حسب المتطلبات.",
-            },
-            {
-              question: "هل لكل متجر منتجاته الخاصة؟",
-              answer:
-                "نعم. كل متجر لديه كتالوج منفصل (المنتجات، الأسعار، التوفر) داخل التطبيق لضمان تجربة دقيقة لكل فرع/متجر.",
-            },
-            {
-              question: "كيف يصل العميل إلى متجر التجارة الإلكترونية؟",
-              answer:
-                "يمكن فتح متجر الطلبات من موقعك (زر/رابط) بحيث يصل العميل مباشرة لتصفح المنتجات وطلبها عبر الإنترنت.",
-            },
-            {
-              question: "من يقوم بالصيانة والتحديثات؟",
-              answer:
-                "المنصة مبنية على Yaadro ويتم تشغيلها وصيانتها بواسطة CodeTeak، بما يشمل التحديثات، التحسينات، والدعم.",
-            },
-          ]
-        : [
-            {
-              question: "Does it support online payments?",
-              answer:
-                "Right now it’s designed as COD-only (Cash on Delivery) to keep operations simple. Online payments can be added later if needed.",
-            },
-            {
-              question: "Can each shop have its own products?",
-              answer:
-                "Yes. Every shop maintains a separate catalog (products, pricing, availability) inside the application.",
-            },
-            {
-              question: "How do customers access the ecommerce shop?",
-              answer:
-                "Customers open the shop from your website (a button/link) to browse items and place orders online.",
-            },
-            {
-              question: "Who maintains it?",
-              answer:
-                "It’s powered by Yaadro and maintained by CodeTeak, including updates, improvements, and support.",
-            },
-          ];
-
-    const highlights =
-      language === "ar"
-        ? [
-            { title: "تجربة عميل", desc: "تصفح المنتجات، إضافة للسلة، وإرسال الطلب بسهولة." },
-            { title: "COD فقط", desc: "الدفع عند الاستلام لتقليل الاحتكاك وتعقيد الدفع." },
-            { title: "لكل متجر كتالوج", desc: "فصل المنتجات والأسعار والتوفر لكل متجر." },
-            { title: "إدارة الطلبات", desc: "لوحة/تطبيق للموظفين لمتابعة الطلبات وتحديث الحالة." },
-          ]
-        : [
-            { title: "Customer App Experience", desc: "Browse, add to cart, and place orders online." },
-            { title: "COD Only", desc: "Cash on Delivery checkout to keep it simple." },
-            { title: "Per-Shop Catalog", desc: "Separate products, pricing, and availability for each shop." },
-            { title: "Order Management", desc: "Staff workflow to manage orders and update statuses." },
-          ];
-
-    return (
-      <div className="min-h-screen bg-background relative pb-20 md:pb-0">
-        <Navigation
-          theme={theme}
-          language={language}
-          isMounted={isMounted}
-          isScrolled={isScrolled}
-          showBackToTop={showBackToTop}
-          onThemeChange={(newTheme) => {
-            setTheme(newTheme);
-            updateTheme(newTheme);
-          }}
-          onLanguageChange={changeLanguage}
-          onScrollToTop={scrollToTop}
-        />
-
-        <main className="pt-20 md:pt-28 pb-16 px-4 sm:px-6 lg:px-8">
+        {/* Ecommerce platform — part of Yaadro */}
+        <section id="ecommerce" className="py-20 px-4 sm:px-6 lg:px-8">
           <div className="container mx-auto max-w-7xl">
-            <div className="mb-8">
-              <Link href="/products" className="inline-flex items-center gap-2 text-muted-foreground hover:text-[#FC4B01] transition-colors">
-                <ArrowLeft className="w-4 h-4" />
-                {t.productDetail.backToProducts}
-              </Link>
-            </div>
-
-            {/* Hero */}
-            <section className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center mb-14">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
                 transition={{ duration: 0.6 }}
                 className="space-y-6"
               >
                 <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-muted/50 border border-border">
-                  <ShoppingCart className="w-4 h-4 text-[#FC4B01]" />
+                  <ShoppingCart className="w-4 h-4 text-[#6C3CE0]" />
                   <span className="text-sm text-muted-foreground">
-                    {language === "ar"
-                      ? "مدعوم بواسطة Yaadro • صيانة كودتيك"
-                      : "Powered by Yaadro • Maintained by CodeTeak"}
+                    {language === "ar" ? "متجر أونلاين لسوبرماركتك" : "Online shop for your supermarket"}
                   </span>
                 </div>
 
-                <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground leading-tight">
+                <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground leading-tight">
                   {language === "ar" ? (
                     <>
-                      متجر سوبرماركت{" "}
-                      <span className="text-[#FC4B01]">أونلاين</span>
+                      اطلب{" "}
+                      <span className="text-[#6C3CE0]">أونلاين</span>
                       <br />
-                      الدفع عند الاستلام فقط
+                      وادفع عند الاستلام
                     </>
                   ) : (
                     <>
-                      Supermarket{" "}
-                      <span className="text-[#FC4B01]">Ecommerce</span>
+                      Order{" "}
+                      <span className="text-[#6C3CE0]">online</span>
                       <br />
-                      COD-only online ordering
+                      Pay on delivery
                     </>
                   )}
-                </h1>
+                </h2>
 
                 <p className="text-base sm:text-lg text-muted-foreground leading-relaxed max-w-xl">
                   {language === "ar"
-                    ? "تمكّن Yaadro Ecommerce متجرك من عرض المنتجات عبر الإنترنت مع فصل كتالوج كل متجر داخل التطبيق. يمكن للعميل الطلب من موقعك والدفع عند الاستلام فقط."
-                    : "Yaadro Ecommerce lets your shop sell online with a per-shop catalog inside the application. Customers order from your website and pay with Cash on Delivery (COD) only."}
+                    ? "عملاؤك يختارون المنتجات من موقعك ويطلبون بسهولة. كل متجر له منتجاته. الدفع نقداً عند وصول الطلب."
+                    : "Customers pick products from your website and order with ease. Each shop has its own products. They pay cash when the order arrives."}
                 </p>
 
-                <div className="flex flex-wrap gap-3">
-                  <Link
-                    href="/contact"
-                    className="inline-flex items-center gap-2 px-6 py-3 bg-[#FC4B01] text-white rounded-full font-semibold hover:opacity-90 transition-opacity"
-                  >
-                    {language === "ar" ? "اطلب عرضاً" : "Request a demo"}
-                    <ArrowRight className="w-4 h-4" />
-                  </Link>
-                  <Link
-                    href="/products/yaadro"
-                    className="inline-flex items-center gap-2 px-6 py-3 border border-border rounded-full text-foreground hover:border-[#FC4B01]/40 transition-colors"
-                  >
-                    {language === "ar" ? "تعرف على Yaadro" : "Explore Yaadro"}
-                  </Link>
-                </div>
+                <Link
+                  href="/contact"
+                  className="inline-flex items-center gap-2 px-6 py-3 bg-[#6C3CE0] text-white rounded-full font-semibold hover:opacity-90 transition-opacity"
+                >
+                  {language === "ar" ? "تواصل معنا" : "Talk to us"}
+                  <ArrowRight className="w-4 h-4" />
+                </Link>
               </motion.div>
 
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.1 }}
                 className="relative"
               >
-                <div className="bg-card border border-border rounded-3xl p-8 overflow-hidden">
-                  <div className="absolute inset-0 bg-gradient-to-br from-[#FC4B01]/10 via-transparent to-transparent" />
-                  <div className="relative">
-                    <Image
-                      src={product.image}
-                      alt={product.name}
-                      width={700}
-                      height={500}
-                      className="w-full h-auto object-contain"
-                      priority
-                    />
-                  </div>
-                </div>
+                <Image
+                  src="/products-image/yaadro-ecommerce-hero.jpg"
+                  alt={language === "ar" ? "يادرو للتجارة الإلكترونية" : "Yaadro Ecommerce"}
+                  width={900}
+                  height={700}
+                  className="w-full h-auto object-contain"
+                />
               </motion.div>
-            </section>
+            </div>
 
-            {/* Highlights */}
-            <section className="mt-14">
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                {highlights.map((h, idx) => (
-                  <motion.div
-                    key={h.title}
-                    initial={{ opacity: 0, y: 16 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: idx * 0.05 }}
-                    className="bg-card border border-border rounded-2xl p-5"
-                  >
-                    <div className="text-sm font-semibold text-foreground mb-2">{h.title}</div>
-                    <div className="text-sm text-muted-foreground leading-relaxed">{h.desc}</div>
-                  </motion.div>
-                ))}
-              </div>
-            </section>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-14">
+              {(language === "ar"
+                ? [
+                    { title: "اطلب بسهولة", desc: "اختر المنتجات واطلب بسرعة." },
+                    { title: "ادفع عند الاستلام", desc: "لا بطاقات. ادفع نقداً عند الوصول." },
+                    { title: "منتجات لكل متجر", desc: "كل متجر يعرض منتجاته وأسعاره." },
+                    { title: "تابع الطلبات", desc: "الموظفون يحدّثون حالة كل طلب." },
+                  ]
+                : [
+                    { title: "Easy to order", desc: "Pick products and order fast." },
+                    { title: "Pay on delivery", desc: "No cards. Pay cash when it arrives." },
+                    { title: "Your shop products", desc: "Each shop shows its own items and prices." },
+                    { title: "Track orders", desc: "Staff can update every order status." },
+                  ]
+              ).map((h, idx) => (
+                <motion.div
+                  key={h.title}
+                  initial={{ opacity: 0, y: 16 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: idx * 0.05 }}
+                  className="bg-card border border-border rounded-2xl p-5"
+                >
+                  <div className="text-sm font-semibold text-foreground mb-2">{h.title}</div>
+                  <div className="text-sm text-muted-foreground leading-relaxed">{h.desc}</div>
+                </motion.div>
+              ))}
+            </div>
 
-            {/* Features + Benefits */}
-            <section className="mt-14 grid grid-cols-1 lg:grid-cols-2 gap-10">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 mb-16">
               <div className="bg-card border border-border rounded-3xl p-8">
-                <h2 className="text-2xl sm:text-3xl font-bold text-foreground mb-5">
-                  {language === "ar" ? "الميزات" : "Key Features"}
-                </h2>
+                <h3 className="text-2xl sm:text-3xl font-bold text-foreground mb-5">
+                  {language === "ar" ? "الميزات" : "What you get"}
+                </h3>
                 <ul className="space-y-3">
-                  {product.features.map((f, idx) => (
+                  {(language === "ar"
+                    ? [
+                        "منتجاتك وأسعارك الخاصة",
+                        "اطلب من موقعك",
+                        "ادفع عند وصول الطلب",
+                        "الموظفون يديرون الطلبات",
+                        "العملاء يحصلون على تحديثات",
+                        "مدعوم من كودتيك",
+                      ]
+                    : [
+                        "Your own products and prices",
+                        "Order from your website",
+                        "Pay when the order arrives",
+                        "Staff can manage orders",
+                        "Customers get order updates",
+                        "Supported by CodeTeak",
+                      ]
+                  ).map((f, idx) => (
                     <li key={idx} className="flex items-start gap-3 text-muted-foreground">
-                      <CheckCircle2 className="w-5 h-5 text-[#FC4B01] mt-0.5 flex-shrink-0" />
+                      <CheckCircle2 className="w-5 h-5 text-[#6C3CE0] mt-0.5 flex-shrink-0" />
                       <span className="leading-relaxed">{f}</span>
                     </li>
                   ))}
                 </ul>
               </div>
               <div className="bg-card border border-border rounded-3xl p-8">
-                <h2 className="text-2xl sm:text-3xl font-bold text-foreground mb-5">
-                  {language === "ar" ? "الفوائد" : "Business Benefits"}
-                </h2>
+                <h3 className="text-2xl sm:text-3xl font-bold text-foreground mb-5">
+                  {language === "ar" ? "لماذا يناسبك" : "Why it helps"}
+                </h3>
                 <ul className="space-y-3">
-                  {product.benefits.map((b, idx) => (
+                  {(language === "ar"
+                    ? [
+                        "بع أونلاين بدون تعقيد",
+                        "كل متجر منفصل",
+                        "الدفع نقداً عند الاستلام",
+                        "سهل للعملاء أن يطلبوا مرة أخرى",
+                      ]
+                    : [
+                        "Sell online with no extra setup",
+                        "Each shop stays separate",
+                        "Cash on delivery only",
+                        "Easy for customers to order again",
+                      ]
+                  ).map((b, idx) => (
                     <li key={idx} className="flex items-start gap-3 text-muted-foreground">
-                      <Zap className="w-5 h-5 text-[#FC4B01] mt-0.5 flex-shrink-0" />
+                      <Zap className="w-5 h-5 text-[#6C3CE0] mt-0.5 flex-shrink-0" />
                       <span className="leading-relaxed">{b}</span>
                     </li>
                   ))}
                 </ul>
               </div>
-            </section>
+            </div>
 
-            {/* FAQ */}
-            <section className="mt-16">
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
-                <div>
-                  <div className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-muted/50 mb-6">
-                    <HelpCircle className="w-4 h-4 text-[#FC4B01]" />
-                    <span className="text-sm font-medium text-muted-foreground">
-                      {language === "ar" ? "الأسئلة الشائعة" : "FAQ"}
-                    </span>
-                  </div>
-                  <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4 leading-tight">
-                    {language === "ar" ? (
-                      <>
-                        كل ما تحتاجه
-                        <br />
-                        <span className="text-[#FC4B01]">قبل البدء</span>
-                      </>
-                    ) : (
-                      <>
-                        Everything you need
-                        <br />
-                        <span className="text-[#FC4B01]">to get started</span>
-                      </>
-                    )}
-                  </h2>
-                  <p className="text-muted-foreground leading-relaxed">
-                    {language === "ar"
-                      ? "إجابات سريعة حول الكتالوج، تجربة العميل، والدفع عند الاستلام."
-                      : "Quick answers about catalog separation, customer ordering, and COD-only checkout."}
-                  </p>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
+              <div>
+                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-muted/50 mb-6">
+                  <HelpCircle className="w-4 h-4 text-[#6C3CE0]" />
+                  <span className="text-sm font-medium text-muted-foreground">
+                    {language === "ar" ? "أسئلة شائعة" : "Common questions"}
+                  </span>
                 </div>
-
-                <div className="space-y-4">
-                  {faqItems.map((faq, index) => (
-                    <motion.div
-                      key={index}
-                      initial={{ opacity: 0, y: 14 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.45, delay: index * 0.06 }}
-                      className="bg-card border border-border rounded-xl p-4 md:p-6 hover:border-[#FC4B01]/30 transition-colors"
-                      onClick={() => setOpenFaqIndex(openFaqIndex === index ? null : index)}
-                      role="button"
-                      tabIndex={0}
-                    >
-                      <div className="flex items-start justify-between gap-4">
-                        <h3 className="text-base md:text-lg font-bold text-foreground flex-1">
-                          {faq.question}
-                        </h3>
-                        <motion.div
-                          className="w-8 h-8 rounded-full bg-[#FC4B01]/10 flex items-center justify-center flex-shrink-0"
-                          animate={{ rotate: openFaqIndex === index ? 180 : 0 }}
-                          transition={{ duration: 0.25, ease: "easeInOut" }}
-                        >
-                          {openFaqIndex === index ? (
-                            <ChevronUp className="w-5 h-5 text-[#FC4B01]" />
-                          ) : (
-                            <ChevronDown className="w-5 h-5 text-[#FC4B01]" />
-                          )}
-                        </motion.div>
-                      </div>
-                      <AnimatePresence>
-                        {openFaqIndex === index && (
-                          <motion.div
-                            initial={{ opacity: 0, height: 0 }}
-                            animate={{ opacity: 1, height: "auto" }}
-                            exit={{ opacity: 0, height: 0 }}
-                            transition={{ duration: 0.35, ease: [0.4, 0, 0.2, 1] }}
-                            style={{ overflow: "hidden" }}
-                          >
-                            <motion.p
-                              initial={{ opacity: 0, y: -8 }}
-                              animate={{ opacity: 1, y: 0 }}
-                              exit={{ opacity: 0, y: -8 }}
-                              transition={{ duration: 0.25, delay: 0.08 }}
-                              className="text-muted-foreground leading-relaxed mt-4"
-                            >
-                              {faq.answer}
-                            </motion.p>
-                          </motion.div>
-                        )}
-                      </AnimatePresence>
-                    </motion.div>
-                  ))}
-                </div>
+                <h3 className="text-3xl sm:text-4xl font-bold text-foreground mb-4 leading-tight">
+                  {language === "ar" ? (
+                    <>
+                      أسئلة بسيطة
+                      <br />
+                      <span className="text-[#6C3CE0]">قبل أن تبدأ</span>
+                    </>
+                  ) : (
+                    <>
+                      Simple answers
+                      <br />
+                      <span className="text-[#6C3CE0]">before you start</span>
+                    </>
+                  )}
+                </h3>
+                <p className="text-muted-foreground leading-relaxed">
+                  {language === "ar"
+                    ? "عن الطلبات والمنتجات والدفع عند الاستلام."
+                    : "About orders, products, and pay on delivery."}
+                </p>
               </div>
-            </section>
+
+              <div className="space-y-4">
+                {(language === "ar"
+                  ? [
+                      {
+                        question: "هل يمكن الدفع أونلاين؟",
+                        answer: "لا. الدفع عند الاستلام فقط. يمكن إضافة الدفع أونلاين لاحقاً.",
+                      },
+                      {
+                        question: "هل لكل متجر منتجاته؟",
+                        answer: "نعم. كل متجر له منتجاته وأسعاره الخاصة.",
+                      },
+                      {
+                        question: "كيف يطلب العميل؟",
+                        answer: "يفتح رابط متجرك، يختار المنتجات، ويطلب من الهاتف أو الكمبيوتر.",
+                      },
+                      {
+                        question: "من يدعم النظام؟",
+                        answer: "كودتيك تدير النظام وتحدّثه وتساعد عند الحاجة.",
+                      },
+                    ]
+                  : [
+                      {
+                        question: "Can customers pay online?",
+                        answer: "No. They pay when the order arrives. Online pay can be added later.",
+                      },
+                      {
+                        question: "Can each shop have its own products?",
+                        answer: "Yes. Every shop has its own products and prices.",
+                      },
+                      {
+                        question: "How do customers order?",
+                        answer: "They open your shop link, pick products, and order from phone or computer.",
+                      },
+                      {
+                        question: "Who supports the system?",
+                        answer: "CodeTeak runs it, updates it, and helps when you need.",
+                      },
+                    ]
+                ).map((faq, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, y: 14 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.45, delay: index * 0.06 }}
+                    className="bg-card border border-border rounded-xl p-4 md:p-6 hover:border-[#6C3CE0]/30 transition-colors"
+                    onClick={() => setOpenFaqIndex(openFaqIndex === index ? null : index)}
+                    role="button"
+                    tabIndex={0}
+                  >
+                    <div className="flex items-start justify-between gap-4">
+                      <h4 className="text-base md:text-lg font-bold text-foreground flex-1">
+                        {faq.question}
+                      </h4>
+                      <motion.div
+                        className="w-8 h-8 rounded-full bg-[#6C3CE0]/10 flex items-center justify-center flex-shrink-0"
+                        animate={{ rotate: openFaqIndex === index ? 180 : 0 }}
+                        transition={{ duration: 0.25, ease: "easeInOut" }}
+                      >
+                        {openFaqIndex === index ? (
+                          <ChevronUp className="w-5 h-5 text-[#6C3CE0]" />
+                        ) : (
+                          <ChevronDown className="w-5 h-5 text-[#6C3CE0]" />
+                        )}
+                      </motion.div>
+                    </div>
+                    <AnimatePresence>
+                      {openFaqIndex === index && (
+                        <motion.div
+                          initial={{ opacity: 0, height: 0 }}
+                          animate={{ opacity: 1, height: "auto" }}
+                          exit={{ opacity: 0, height: 0 }}
+                          transition={{ duration: 0.35, ease: [0.4, 0, 0.2, 1] }}
+                          style={{ overflow: "hidden" }}
+                        >
+                          <motion.p
+                            initial={{ opacity: 0, y: -8 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: -8 }}
+                            transition={{ duration: 0.25, delay: 0.08 }}
+                            className="text-muted-foreground leading-relaxed mt-4"
+                          >
+                            {faq.answer}
+                          </motion.p>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
           </div>
-        </main>
+        </section>
       </div>
     );
   }
@@ -1404,7 +1196,7 @@ export default function ProductDetailPage() {
             >
                         <Link
                 href="/contact"
-                className="inline-flex items-center gap-2 px-6 py-3 md:px-8 md:py-4 bg-[#FC4B01] text-white rounded-lg font-semibold hover:opacity-90 transition-opacity shadow-lg text-sm md:text-base"
+                className="inline-flex items-center gap-2 px-6 py-3 md:px-8 md:py-4 bg-brand-strong text-white rounded-lg font-semibold hover:opacity-90 transition-opacity shadow-lg text-sm md:text-base"
                         >
                 Get Started
                 <ArrowRight className="w-5 h-5" />
@@ -1442,6 +1234,65 @@ export default function ProductDetailPage() {
         </div>
         </section>
 
+        {/* Top Features */}
+        <section className="py-16 md:py-24 px-4 sm:px-6 lg:px-8">
+          <div className="container mx-auto max-w-7xl">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="mb-10 md:mb-14 max-w-2xl"
+            >
+              <p className="text-xs sm:text-sm font-mono uppercase tracking-[0.25em] text-[#FC4B01] mb-3">
+                {t.productDetail.lens.topFeatures.title}
+              </p>
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground tracking-tight mb-3">
+                {t.productDetail.lens.topFeatures.subtitle}
+              </h2>
+            </motion.div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+              {t.productDetail.lens.topFeatures.items.map((feature, index) => (
+                <motion.article
+                  key={feature.title}
+                  initial={{ opacity: 0, y: 24 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: index * 0.08 }}
+                  className={`rounded-2xl border p-6 md:p-8 ${
+                    index === 1
+                      ? "bg-brand-strong border-brand-strong text-white"
+                      : "bg-card border-border"
+                  }`}
+                >
+                  <span
+                    className={`text-[11px] font-mono tracking-[0.2em] uppercase mb-4 block ${
+                      index === 1 ? "text-white/80" : "text-[#FC4B01]"
+                    }`}
+                  >
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+                  <h3
+                    className={`text-xl md:text-2xl font-bold mb-3 leading-snug ${
+                      index === 1 ? "text-white" : "text-foreground"
+                    }`}
+                  >
+                    {feature.title}
+                  </h3>
+                  <p
+                    className={`text-sm md:text-base leading-relaxed ${
+                      index === 1 ? "text-white/90" : "text-muted-foreground"
+                    }`}
+                  >
+                    {feature.description}
+                  </p>
+                </motion.article>
+              ))}
+            </div>
+          </div>
+        </section>
+
         {/* Main Task & Challenges Section */}
         <section className="py-20 px-4 sm:px-6 lg:px-8 bg-muted/30">
           <div className="container mx-auto max-w-7xl">
@@ -1474,54 +1325,87 @@ export default function ProductDetailPage() {
 
             {/* Feature Cards */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
-              {/* Card 1: Face Recognition Technology */}
+              {/* Card 1: Face Recognition */}
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.1 }}
-                className="bg-card border border-border rounded-2xl p-6 md:p-8"
+                className="relative bg-card border border-border rounded-2xl p-6 md:p-8 overflow-hidden min-h-[200px]"
               >
-                <h3 className="text-lg md:text-xl font-bold text-foreground mb-3 md:mb-4">
-                  {t.productDetail.lens.features.faceRecognition.title}
-                </h3>
-                <p className="text-sm md:text-base text-muted-foreground leading-relaxed">
-                  {t.productDetail.lens.features.faceRecognition.description}
-                </p>
-          </motion.div>
+                <div className="pointer-events-none absolute -bottom-2 -right-2 w-28 h-28 md:w-36 md:h-36 opacity-90">
+                  <Image
+                    src="/lens-product/face-recognition.png"
+                    alt=""
+                    fill
+                    sizes="144px"
+                    className="object-contain"
+                  />
+                </div>
+                <div className="relative z-10 max-w-[70%]">
+                  <h3 className="text-lg md:text-xl font-bold text-foreground mb-3 md:mb-4">
+                    {t.productDetail.lens.features.faceRecognition.title}
+                  </h3>
+                  <p className="text-sm md:text-base text-muted-foreground leading-relaxed">
+                    {t.productDetail.lens.features.faceRecognition.description}
+                  </p>
+                </div>
+              </motion.div>
 
-              {/* Card 2: Offline-First Architecture - Highlighted */}
-      <motion.div
+              {/* Card 2: Works without internet */}
+              <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.2 }}
-                className="bg-[#FC4B01] text-white rounded-2xl p-6 md:p-8"
+                className="relative bg-brand-strong text-white rounded-2xl p-6 md:p-8 overflow-hidden min-h-[200px]"
               >
-                <h3 className="text-lg md:text-xl font-bold mb-3 md:mb-4">
-                  {t.productDetail.lens.features.offlineFirst.title}
-                </h3>
-                <p className="text-sm md:text-base leading-relaxed">
-                  {t.productDetail.lens.features.offlineFirst.description}
-                </p>
-      </motion.div>
+                <div className="pointer-events-none absolute -bottom-2 -right-2 w-28 h-28 md:w-36 md:h-36 opacity-95">
+                  <Image
+                    src="/lens-product/offline-mode.png"
+                    alt=""
+                    fill
+                    sizes="144px"
+                    className="object-contain"
+                  />
+                </div>
+                <div className="relative z-10 max-w-[70%]">
+                  <h3 className="text-lg md:text-xl font-bold mb-3 md:mb-4">
+                    {t.productDetail.lens.features.offlineFirst.title}
+                  </h3>
+                  <p className="text-sm md:text-base leading-relaxed text-white/95">
+                    {t.productDetail.lens.features.offlineFirst.description}
+                  </p>
+                </div>
+              </motion.div>
 
-              {/* Card 3: Multi-Tenant SaaS */}
-      <motion.div
+              {/* Card 3: Built for many stores */}
+              <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.3 }}
-            className="bg-card border border-border rounded-2xl p-8"
-          >
-                <h3 className="text-lg md:text-xl font-bold text-foreground mb-3 md:mb-4">
-                  {t.productDetail.lens.features.multiTenant.title}
-                </h3>
-                <p className="text-sm md:text-base text-muted-foreground leading-relaxed">
-                  {t.productDetail.lens.features.multiTenant.description}
-                </p>
-      </motion.div>
+                className="relative bg-card border border-border rounded-2xl p-6 md:p-8 overflow-hidden min-h-[200px]"
+              >
+                <div className="pointer-events-none absolute -bottom-2 -right-2 w-28 h-28 md:w-36 md:h-36 opacity-90">
+                  <Image
+                    src="/lens-product/multiple-shop-manage.png"
+                    alt=""
+                    fill
+                    sizes="144px"
+                    className="object-contain"
+                  />
                 </div>
+                <div className="relative z-10 max-w-[70%]">
+                  <h3 className="text-lg md:text-xl font-bold text-foreground mb-3 md:mb-4">
+                    {t.productDetail.lens.features.multiTenant.title}
+                  </h3>
+                  <p className="text-sm md:text-base text-muted-foreground leading-relaxed">
+                    {t.productDetail.lens.features.multiTenant.description}
+                  </p>
+                </div>
+              </motion.div>
+            </div>
             </div>
         </section>
 

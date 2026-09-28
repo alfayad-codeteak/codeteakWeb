@@ -37,6 +37,8 @@
   --color-popover: var(--popover);
   --color-card-foreground: var(--card-foreground);
   --color-card: var(--card);
+  --color-brand-text: var(--brand-accent-text);
+  --color-brand-strong: var(--brand-accent-strong);
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -45,6 +47,10 @@
 
 :root {
   --radius: 0.625rem;
+  --brand-accent: #FC4B01;
+  /* #FC4B01 is only 3.4:1 on white; these keep small orange text and white-on-orange buttons at WCAG AA (4.5:1). */
+  --brand-accent-text: #D03D00;
+  --brand-accent-strong: #D03D00;
   --background: oklch(0.99 0 0);
   --foreground: oklch(0.15 0 0);
   --card: oklch(1 0 0);
@@ -79,6 +85,7 @@
 }
 
 .dark {
+  --brand-accent-text: #FC4B01;
   --background: oklch(0.08 0 0);
   --foreground: oklch(0.98 0 0);
   --card: oklch(0.12 0 0);

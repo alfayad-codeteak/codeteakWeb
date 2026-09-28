@@ -82,7 +82,7 @@ export default function TermsAndConditionsPage() {
   };
 
   return (
-    <div className="min-h-screen bg-background relative pb-20 md:pb-0">
+    <main className="min-h-screen bg-background relative pb-20 md:pb-0">
       <Navigation
         theme={theme}
         language={language}
@@ -297,7 +297,7 @@ export default function TermsAndConditionsPage() {
           </div>
         </div>
       </section>
-    </div>
+    </main>
   );
 }
 

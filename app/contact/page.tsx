@@ -279,7 +279,7 @@ export default function ContactPage() {
   };
 
   return (
-    <div className="min-h-screen bg-background relative pb-20 md:pb-0">
+    <main className="min-h-screen bg-background relative pb-20 md:pb-0">
       {/* Navigation Component */}
       <Navigation
         theme={theme}
@@ -585,9 +585,9 @@ export default function ContactPage() {
                   </button>
                   <p className="text-xs text-muted-foreground font-mono">
                     {t.contact.form.agreeToTerms}{" "}
-                    <Link href="/privacy-policy" className="text-[#FC4B01] hover:underline">{t.footer.privacy}</Link>
+                    <Link href="/privacy-policy" className="text-brand-text underline underline-offset-2">{t.footer.privacy}</Link>
                     {" "}{t.contact.form.and}{" "}
-                    <Link href="/terms-and-conditions" className="text-[#FC4B01] hover:underline">{t.footer.terms}</Link>.
+                    <Link href="/terms-and-conditions" className="text-brand-text underline underline-offset-2">{t.footer.terms}</Link>.
                   </p>
                 </div>
               </form>
@@ -595,7 +595,7 @@ export default function ContactPage() {
           </div>
         </div>
       </section>
-    </div>
+    </main>
   );
 }
 

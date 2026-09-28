@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
+import Image from "next/image";
 
 // ─── DATA ────────────────────────────────────────────────────────────────────
 
@@ -156,10 +157,12 @@ function GridCard({ member, index }) {
         marginBottom: 16,
         position: "relative",
       }}>
-        <img
+        <Image
           src={member.src}
           alt={member.name}
-          style={{ width: "100%", height: "100%", objectFit: "cover" }}
+          fill
+          sizes="260px"
+          style={{ objectFit: "cover" }}
           onError={e => { e.target.style.display = "none"; }}
         />
       </div>

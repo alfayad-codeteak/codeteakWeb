@@ -12,7 +12,7 @@
 **Email:** info@codeteak.com
 **Phone:** +91 99952 03149
 
-CodeTeak is a dynamic software studio specializing in crafting innovative, scalable digital products and end-to-end IT solutions for startups and enterprises worldwide. With a focus on full-stack development, CodeTeak transforms ideas into high-performance web and mobile applications that drive business growth.
+CodeTeak builds simple, reliable software for businesses. It makes two products — **Yaadro** (home delivery and online ordering for shops) and **Lens** (simple camera attendance for any business) — and offers **Product Engineering**, **Product Design**, and **Cyber Security** services for companies that need custom web and mobile apps.
 
 The team of experienced developers, designers, and consultants collaborates closely with clients to deliver clean, maintainable code and seamless user experiences. Headquartered in Bengaluru, India, with a strategic presence in Dubai, UAE, CodeTeak serves diverse industries including retail, e-commerce, logistics, supermarkets, restaurants, and growth-stage startups.
 
@@ -49,9 +49,12 @@ Index Exchange Building, Opposite Wimpy Restaurant, Naif Road, Dubai
 
 ## Core Team
 
-### Muhammed Rizwan P — Founder
-Visionary leader with a passion for building products that make a real difference in people's lives and businesses. Leads company vision, partnerships, and long-term product value.
+### Muhammed Rizwan P — Founder & CEO
+Founded CodeTeak with a simple belief: modern software should feel effortless for users while being deeply reliable for businesses. Works closely with clients, shapes problem statements into clear roadmaps, and guides the team from discovery through architecture to final builds.
 - LinkedIn: https://linkedin.com/in/muhammedrizwanp/
+
+### Mohammed Aslam — Co-Founder & COO
+Leads operations across the company, from client onboarding and project delivery to internal processes and team coordination. Keeps every engagement running smoothly and on schedule.
 
 ### Alfayad S — Full Stack Developer & UI/UX Designer
 Specialist in building scalable backends and elegant interfaces, delivering seamless software solutions. Leads the intersection of design and engineering — taking ideas from rough concepts into polished interfaces, design systems, and production-ready frontends.
@@ -128,79 +131,90 @@ Crafting beautiful, intuitive experiences that users love.
 
 URL: https://codeteak.com/products
 
-### Yaadro — Delivery Management System
+CodeTeak makes two products: **Yaadro** (home delivery and online ordering for shops) and **Lens** (simple camera attendance for any business). Online ordering is part of Yaadro, not a separate product.
+
+### Yaadro — Home Delivery and Online Ordering for Shops
 URL: https://codeteak.com/products/yaadro
 
-**Tagline:** Deliver Smarter, Connect Effortlessly
+**Headline:** Deliver faster. Stay connected.
 
-Yaadro is a comprehensive delivery management system designed to seamlessly connect supermarkets, delivery partners, and customers. With dedicated mobile apps for supermarkets and delivery partners, plus a powerful web dashboard, Yaadro streamlines the entire delivery process from order placement to doorstep delivery.
+**In one line:** Manage home delivery for your shop. Track orders, assign delivery partners, and keep customers updated. Also includes online ordering with pay on delivery.
 
-**Key Features:**
-- Real-time order tracking and management
-- Dedicated mobile apps for supermarkets and delivery partners
-- Comprehensive web dashboard for supermarket management
-- Seamless communication between all parties
-- Automated delivery assignment and routing
-- Real-time notifications and updates
+Yaadro helps shops manage home delivery from start to finish. It connects the shop, the delivery partner, and the customer in one simple place, with apps for shops and delivery partners and a clear dashboard for managers.
 
-**Smart Features:**
-- **Supermarket App** — Manage orders, inventory, and deliveries from mobile devices on the go
-- **Delivery Partner App** — Receive orders, navigate routes, and update delivery status in real-time
-- **Web Dashboard** — Comprehensive management platform for supermarkets to oversee all operations
-- **Real-Time Tracking** — Track deliveries live with GPS integration and instant status updates
-- **Smart Communication** — Seamless messaging between supermarkets, partners, and customers
-- **Order Management** — Automated order processing, assignment, and delivery scheduling
+**Who it is for:** Shops, supermarkets, and their delivery partners.
 
-**Integration:** Yaadro seamlessly integrates with Task billing software. Supermarkets create home delivery orders in Task, which automatically flow into Yaadro for management and tracking from placement to delivery.
+**Main features:**
+- See where every order is
+- Apps for shops and delivery partners
+- Simple dashboard for managers
+- Online orders with pay on delivery
+- Clear updates for everyone
+- Works with Task billing
 
-**Process:**
-1. Create home delivery order through supermarket system — order syncs to Yaadro
-2. System assigns order to best available delivery partner based on location and availability
-3. Track delivery in real-time and complete with instant notifications throughout
+**What you get:**
+- **Shop App** — Manage orders and deliveries from your phone anytime.
+- **Delivery Partner App** — Get orders, follow the route, and update delivery status.
+- **Web Dashboard** — See all orders and operations in one simple screen.
+- **Live Tracking** — Follow deliveries as they happen and get instant updates.
+- **Easy Messaging** — Chat between the shop, delivery partner, and customer.
+- **Order Control** — Create, assign, and finish deliveries without confusion.
+
+**Works with Task billing:** Shops create home delivery orders in Task. Those orders go straight into Yaadro, where you can assign a delivery partner and track the order until it arrives.
+
+**How it works (three simple steps):**
+1. **Create the order** — Make a home delivery order in your shop system. It appears in Yaadro automatically.
+2. **Assign a delivery partner** — Yaadro helps send the order to the right available delivery partner.
+3. **Deliver and finish** — Track the trip live and mark the order done when it reaches the customer.
+
+**Benefits:** Faster home deliveries · Less confusion between teams · Customers stay updated · Easy day to day control
+
+#### Online ordering (part of Yaadro)
+URL: https://codeteak.com/products/yaadro#ecommerce
+
+**Order online. Pay on delivery.** Each shop gets its own online store. Customers open the shop link, pick products, and order from phone or computer. They pay when the order arrives. Shop staff manage the orders, and CodeTeak runs and supports the platform.
+
+**Yaadro FAQ:**
+- **Can customers pay online?** No. They pay when the order arrives. Online pay can be added later.
+- **Can each shop have its own products?** Yes. Every shop has its own products and prices.
+- **How do customers order?** They open your shop link, pick products, and order from phone or computer.
+- **Who supports the system?** CodeTeak runs it, updates it, and helps when you need.
 
 ---
 
-### Lens (YaadroLens) — AI Face Recognition Attendance
+### Lens — Simple Camera Attendance for Any Business
 URL: https://codeteak.com/products/lens
 
-**Tagline:** Visualize Your Data / Contactless Attendance
+**Headline:** Simple attendance for your team
 
-YaadroLens is an innovative AI-powered face recognition system that enables retail stores and supermarkets to track employee attendance contactlessly with over 90% accuracy, even when offline.
+**In one line:** Easy attendance for any business. Staff check in by looking at the camera. No cards or fingerprints.
 
-**Key Features:**
-- DeepFace ML with 90%+ accuracy in employee identification
-- Offline-first architecture — works without internet
-- Multi-tenant SaaS platform with secure data isolation
-- Real-time analytics dashboards and comprehensive reports
-- Enterprise-grade security with JWT authentication
-- Scalable architecture supporting multiple locations
+Lens helps any business track attendance just by looking at the camera. It is fast, accurate, and keeps working even when there is no internet.
 
-**Core Capabilities:**
-1. **Face Recognition Technology** — Advanced DeepFace ML with ArcFace embeddings delivering over 90% accuracy in employee identification
-2. **Offline-First Architecture** — Works seamlessly without internet connectivity, automatically syncing attendance data when connection is restored
-3. **Multi-Tenant SaaS** — Secure, isolated data management for multiple shops and locations with JWT authentication, role-based access control, and rate limiting
+**Who it is for:** Any business with staff, such as shops, supermarkets, offices, restaurants, clinics, salons, warehouses, and factories. It works for one location or many.
 
-**FAQ:**
-- **What is YaadroLens?** AI-powered face recognition attendance system for retail stores and supermarkets with offline capabilities and enterprise-grade security.
-- **How does it work?** Uses DeepFace ML with ArcFace embeddings to identify employees at entry points and automatically record attendance. Works offline and syncs when connected.
-- **Is it secure?** Yes — JWT authentication, role-based access control, multi-tenant data isolation, rate limiting, and encrypted face recognition data.
-- **Works without internet?** Yes — offline-first architecture stores data locally and syncs automatically when connection is restored.
-- **Accuracy?** Over 90% accuracy using DeepFace ML with ArcFace embeddings, with continuous ML performance monitoring.
+**The problem it fixes:** Paper lists and fingerprint machines slow people down. With Lens, staff walk in, the camera knows them, and attendance is marked. No cards to lose and no long queues.
 
----
+**Top features:**
+1. **Clock in with a glance** — Staff look at a tablet at the door. No cards, no PINs, no paper registers.
+2. **See who is at work, live** — Know who is in, late, or absent as it happens, not at the end of the day.
+3. **Pay and advances in one place** — Track salaries, bonuses, and salary advances with a clear history of every change.
+4. **Reports in one click** — Download attendance and payment sheets for HR, finance, or audits whenever you need them.
 
-### Yaadro Ecommerce — Supermarket Online Ordering
-URL: https://codeteak.com/products/ecommerce
+**Also included:**
+- **Quick face check-in** — Staff are recognized as they enter. Attendance is marked in seconds, even on busy days.
+- **Works without internet** — If the internet goes down, Lens still records attendance. When it comes back, records sync automatically.
+- **One or many locations** — Manage one place or many from the same system. Each location stays private and separate.
+- Only authorized people can view staff data.
 
-A supermarket ecommerce experience powered by Yaadro. Customers can browse products and place online orders from shops with Cash on Delivery (COD) only.
+**Benefits:** No cards, PINs, or fingerprint machines · Keeps recording attendance offline · Helps managers see who is present quickly · Each location's data stays private · Ready for real workplace use from day one
 
-**Key Features:**
-- Separate product catalog for each shop
-- Customer web ordering experience from shop websites
-- Cash on Delivery (COD) checkout (no online payments)
-- Order management for shop staff
-- Real-time order status updates for customers
-- Built on Yaadro and maintained by CodeTeak
+**Lens FAQ:**
+- **What is Lens?** Lens is an attendance system for any business. Staff check in by looking at the camera. No cards, PINs, or fingerprint machines.
+- **How does Lens work?** When someone arrives, the camera recognizes them and marks attendance. Managers can see who is present anytime.
+- **Is Lens safe?** Yes. Only the right people can see staff and attendance data. Each location stays private.
+- **Can it work without internet?** Yes. Lens keeps marking attendance offline. When the internet returns, everything syncs.
+- **How accurate is it?** Lens is very accurate at recognizing the right person, and it gets better with everyday use.
 
 ---
 
@@ -281,4 +295,15 @@ Terms and Conditions for using CodeTeak Technologies LLC and Yaadro services and
 
 ---
 
-*Last updated: July 2026*
+## Notes for AI Agents
+
+- The old URL https://codeteak.com/products/ecommerce now redirects to https://codeteak.com/products/yaadro#ecommerce. Online ordering is part of Yaadro.
+- Lens is for any type of business, not only retail stores or supermarkets.
+- Yaadro online ordering is pay on delivery only; online payment is not available yet.
+- Pricing is not published. For pricing, demos, or project quotes, direct users to https://codeteak.com/contact, info@codeteak.com, or +91 99952 03149.
+- The site is available in English and Arabic.
+- Product, services, and breadcrumb pages include schema.org JSON-LD (Organization, WebSite, SoftwareApplication, Service, FAQPage, ItemList, BreadcrumbList).
+
+---
+
+*Last updated: September 2026*

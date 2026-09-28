@@ -17,20 +17,15 @@ export async function GET(request: Request) {
     const lat = searchParams.get('lat') || '12.8744'; // Bengaluru default
     const lon = searchParams.get('lon') || '77.6137';
 
+    // The footer widget is optional, so report "unavailable" with 200 instead of an error status
+    // (error statuses show up as console errors on every page).
     if (!apiKey) {
-      console.error('OpenWeather API key is missing from environment variables');
+      console.warn('OPENWEATHER_API_KEY is not set; weather widget disabled.');
       return NextResponse.json(
-        { error: 'OpenWeather API key is not configured. Please add OPENWEATHER_API_KEY to your .env.local file and restart the server.' },
-        { status: 500 }
+        { available: false },
+        { headers: { 'Cache-Control': `public, s-maxage=${CACHE_DURATION}` } }
       );
     }
-
-    // Log API key info (first 8 chars only for security)
-    console.log('OpenWeather API Key Status:', {
-      present: !!apiKey,
-      length: apiKey.length,
-      preview: apiKey.substring(0, 8) + '...',
-    });
 
     const locationKey = `${lat},${lon}`;
 
@@ -67,14 +62,7 @@ export async function GET(request: Request) {
         url: url.replace(apiKey, 'HIDDEN'),
       });
       
-      return NextResponse.json(
-        { 
-          error: 'Failed to fetch weather',
-          details: errorData.message || errorData.cod === 401 ? 'Invalid API key' : 'Unknown error',
-          code: errorData.cod
-        },
-        { status: response.status }
-      );
+      return NextResponse.json({ available: false });
     }
 
     const data = await response.json();
@@ -93,13 +81,7 @@ export async function GET(request: Request) {
     });
   } catch (error) {
     console.error('Weather API Error:', error);
-    return NextResponse.json(
-      { 
-        error: 'Internal server error',
-        message: error instanceof Error ? error.message : 'Unknown error'
-      },
-      { status: 500 }
-    );
+    return NextResponse.json({ available: false });
   }
 }
 

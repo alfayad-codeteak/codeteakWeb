@@ -43,6 +43,18 @@ export default function Footer() {
   const [weatherLoading, setWeatherLoading] = useState(true);
   const [batteryLevel, setBatteryLevel] = useState<number | null>(null);
   const [isCharging, setIsCharging] = useState<boolean>(false);
+  // Time is client-only: static pages are prerendered at build time, so a server-rendered clock never matches.
+  const [now, setNow] = useState<Date | null>(null);
+
+  useEffect(() => {
+    const tick = () => setNow(new Date());
+    const first = setTimeout(tick, 0);
+    const clock = setInterval(tick, 30 * 1000);
+    return () => {
+      clearTimeout(first);
+      clearInterval(clock);
+    };
+  }, []);
   
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -73,7 +85,7 @@ export default function Footer() {
         const response = await fetch('/api/weather?lat=12.874395210839836&lon=77.61370881001027');
         if (response.ok) {
           const data = await response.json();
-          setWeather(data);
+          setWeather(data?.main ? data : null);
         }
       } catch (error) {
         console.error('Failed to fetch weather:', error);
@@ -172,6 +184,24 @@ export default function Footer() {
               <p className="text-foreground text-sm leading-relaxed">
                 {t.footer.brand.description}
               </p>
+              <h3 className="text-foreground font-semibold mt-6 mb-3 text-sm uppercase tracking-wide">{t.footer.brand.products}</h3>
+              <ul className="space-y-2">
+                <li>
+                  <Link href="/products/yaadro" className="text-muted-foreground hover:text-[#6C3CE0] transition-colors text-sm">
+                    {t.footer.brand.yaadroDms}
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/products/yaadro#ecommerce" className="text-muted-foreground hover:text-[#6C3CE0] transition-colors text-sm">
+                    {t.footer.brand.yaadroEcommerce}
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/products/lens" className="text-muted-foreground hover:text-[#FC4B01] transition-colors text-sm">
+                    {t.footer.brand.lens}
+                  </Link>
+                </li>
+              </ul>
             </div>
 
             {/* Middle-Left Column - Explore */}
@@ -249,7 +279,7 @@ export default function Footer() {
             {/* Right Column - Call to Action */}
             <div className="space-y-6">
               <div>
-                <h3 className="text-[#FC4B01] font-semibold mb-2 text-sm uppercase tracking-wide">{t.footer.call}</h3>
+                <h3 className="text-brand-text font-semibold mb-2 text-sm uppercase tracking-wide">{t.footer.call}</h3>
                 <p className="text-muted-foreground text-sm mb-3">Let&apos;s work together</p>
                 <Link
                   href="/contact"
@@ -348,7 +378,11 @@ export default function Footer() {
                 
                 {/* Time, Weather, and Battery */}
                 <div className="flex flex-wrap items-center gap-4">
-                  <span>{new Date().toLocaleTimeString(language === 'ar' ? 'ar-AE' : 'en-US', { hour: 'numeric', minute: '2-digit', hour12: true })}</span>
+                  <span className="min-w-[4.5rem]">
+                    {now
+                      ? now.toLocaleTimeString(language === 'ar' ? 'ar-AE' : 'en-US', { hour: 'numeric', minute: '2-digit', hour12: true })
+                      : "\u00A0"}
+                  </span>
                   {weatherLoading ? (
                     <div className="flex items-center gap-1 text-muted-foreground">
                       <Cloud className="w-4 h-4 animate-pulse" />

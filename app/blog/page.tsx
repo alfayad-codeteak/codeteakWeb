@@ -71,7 +71,7 @@ export default function BlogPage() {
   if (!isMounted) return null;
 
   return (
-    <div className="min-h-screen bg-background relative pb-20 md:pb-0">
+    <main className="min-h-screen bg-background relative pb-20 md:pb-0">
       <Navigation
         theme={theme}
         language={language}
@@ -104,6 +104,6 @@ export default function BlogPage() {
           </motion.div>
         </div>
       </section>
-    </div>
+    </main>
   );
 }

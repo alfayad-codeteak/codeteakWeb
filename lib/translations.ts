@@ -5,7 +5,7 @@ export const translations = {
     // Navigation
     nav: {
       home: "Home",
-      product: "Product",
+      product: "Products",
       services: "Services",
       solution: "Solution",
       pricing: "Pricing",
@@ -17,15 +17,11 @@ export const translations = {
     product: {
       yaadro: {
         title: "Yaadro",
-        description: "Advanced analytics platform",
+        description: "Delivery and online ordering",
       },
       lens: {
         title: "Lens",
-        description: "Visual data insights",
-      },
-      ecommerce: {
-        title: "Ecommerce",
-        description: "Online ordering for supermarkets (COD)",
+        description: "Simple staff attendance",
       },
       learnMore: "Learn more",
     },
@@ -254,7 +250,11 @@ export const translations = {
     footer: {
       brand: {
         title: "CodeTeak",
-        description: "We build cutting-edge software solutions that drive your business forward. Expert development, design, and consulting services.",
+        description: "CodeTeak makes Yaadro, a delivery management system and online store for shops, and Lens, simple camera attendance. We also build custom software for businesses.",
+        products: "Our products",
+        yaadroDms: "Yaadro Delivery Management",
+        yaadroEcommerce: "Yaadro Ecommerce",
+        lens: "Lens Attendance",
       },
       explore: {
         title: "Explore",
@@ -282,41 +282,44 @@ export const translations = {
       title: "Our Products",
       subtitle: "Discover our innovative solutions designed to transform your business",
       backToHome: "Back to Home",
+      welcome: {
+        eyebrow: "Yaadro Platform",
+        welcomeTo: "Welcome to",
+        brand: "Yaadro",
+        description:
+          "Help shops deliver orders and sell online. Built for shops, delivery partners, and customers.",
+      },
+      aboutYaadro: {
+        eyebrow: "About Us",
+        title: "About Yaadro",
+        paragraph1:
+          "Yaadro helps shops send home delivery orders. It connects the shop, the delivery person, and the customer in one simple place.",
+        paragraph2:
+          "You can track orders live, use apps for shops and delivery partners, and let customers order online and pay when the order arrives. Lens is our simple attendance tool for any business.",
+      },
       yaadro: {
         name: "Yaadro",
-        description: "Comprehensive delivery management system designed to seamlessly connect supermarkets, delivery partners, and customers. Streamline the entire delivery process from order placement to doorstep delivery.",
+        description:
+          "Manage home delivery for your shop. Track orders, assign delivery partners, and keep customers updated. Also includes online ordering with pay on delivery.",
         features: [
-          "Real-time order tracking and management",
-          "Dedicated mobile apps for supermarkets and delivery partners",
-          "Comprehensive web dashboard for supermarket management",
-          "Seamless communication between all parties",
-          "Automated delivery assignment and routing",
-          "Real-time notifications and updates",
+          "See where every order is",
+          "Apps for shops and delivery partners",
+          "Simple dashboard for managers",
+          "Online orders with pay on delivery",
+          "Clear updates for everyone",
         ],
       },
       lens: {
         name: "Lens",
-        description: "AI-powered face recognition attendance system for retail stores and supermarkets. Provides contactless, automated attendance tracking with offline capabilities and enterprise-grade security.",
-        features: [
-          "DeepFace ML with 90%+ accuracy in employee identification",
-          "Offline-first architecture - works without internet",
-          "Multi-tenant SaaS platform with secure data isolation",
-          "Real-time analytics dashboards and comprehensive reports",
-          "Enterprise-grade security with JWT authentication",
-          "Scalable architecture supporting multiple locations",
-        ],
-      },
-      ecommerce: {
-        name: "Yaadro Ecommerce",
         description:
-          "A supermarket ecommerce experience powered by Yaadro. Customers can browse products and place online orders from your shop with Cash on Delivery (COD) only.",
+          "Easy attendance for any business. Staff check in by looking at the camera. No cards or fingerprints.",
         features: [
-          "Separate product catalog for each shop",
-          "Customer web ordering experience from your website",
-          "Cash on Delivery (COD) checkout (no online payments)",
-          "Order management for shop staff",
-          "Real-time order status updates for customers",
-          "Built on Yaadro and maintained by CodeTeak",
+          "Check in with a quick camera look",
+          "Works even without internet",
+          "One place or many locations",
+          "Clear reports for managers",
+          "Private and safe staff records",
+          "Grows with your team",
         ],
       },
       viewDetails: "View Details",
@@ -326,58 +329,60 @@ export const translations = {
       backToProducts: "Back to Products",
       notFound: "Product Not Found",
       yaadro: {
-        headline: "Deliver Smarter, Connect Effortlessly",
-        description: "Yaadro is a comprehensive delivery management system designed to seamlessly connect supermarkets, delivery partners, and customers. With dedicated mobile apps for supermarkets and delivery partners, plus a powerful web dashboard, Yaadro streamlines the entire delivery process from order placement to doorstep delivery.",
+        headline: "Deliver faster. Stay connected.",
+        description:
+          "Yaadro helps shops manage home delivery from start to finish. Shops, delivery partners, and customers stay connected with simple apps and a clear dashboard.",
         smartFeatures: {
-          title: "Smart Features",
+          title: "What you get",
           supermarketApp: {
-            title: "Supermarket App",
-            description: "Manage orders, inventory, and deliveries from your mobile device on the go.",
+            title: "Shop App",
+            description: "Manage orders and deliveries from your phone anytime.",
           },
           deliveryPartnerApp: {
             title: "Delivery Partner App",
-            description: "Receive orders, navigate routes, and update delivery status in real-time.",
+            description: "Get orders, follow the route, and update delivery status.",
           },
           webDashboard: {
             title: "Web Dashboard",
-            description: "Comprehensive management platform for supermarkets to oversee all operations.",
+            description: "See all orders and operations in one simple screen.",
           },
           realTimeTracking: {
-            title: "Real-Time Tracking",
-            description: "Track deliveries live with GPS integration and instant status updates.",
+            title: "Live Tracking",
+            description: "Follow deliveries as they happen and get instant updates.",
           },
           smartCommunication: {
-            title: "Smart Communication",
-            description: "Seamless messaging between supermarkets, partners, and customers.",
+            title: "Easy Messaging",
+            description: "Chat between the shop, delivery partner, and customer.",
           },
           orderManagement: {
-            title: "Order Management",
-            description: "Automated order processing, assignment, and delivery scheduling.",
+            title: "Order Control",
+            description: "Create, assign, and finish deliveries without confusion.",
           },
         },
         partners: {
-          title: "Trusted by Leading Supermarkets",
+          title: "Trusted by shops",
         },
         integration: {
-          title: "Integrated with",
-          subtitle: "Yaadro seamlessly integrates with Task billing software to streamline your delivery workflow",
-          description: "Task is the billing software where supermarkets create home delivery orders. When an order is placed, it automatically flows into the Yaadro application, where you can manage and track the order simply and effectively from placement to delivery.",
+          title: "Works with",
+          subtitle: "Yaadro connects with Task billing so delivery orders move smoothly",
+          description:
+            "Shops create home delivery orders in Task. Those orders go straight into Yaadro, where you can assign a delivery partner and track the order until it arrives.",
         },
         process: {
-          title: "Learn More About Process",
-          subtitle: "Simple steps to manage your delivery operations efficiently",
+          title: "How it works",
+          subtitle: "Three simple steps",
           steps: {
             createOrder: {
-              title: "Create Home Delivery Order",
-              description: "Start by creating a home delivery order through your supermarket system. The order automatically syncs to Yaadro for seamless management.",
+              title: "Create the order",
+              description: "Make a home delivery order in your shop system. It appears in Yaadro automatically.",
             },
             assignPartner: {
-              title: "Assign to Delivery Partner",
-              description: "The system intelligently assigns your order to the best available delivery partner based on location and availability.",
+              title: "Assign a delivery partner",
+              description: "Yaadro helps send the order to the right available delivery partner.",
             },
             completeOrder: {
-              title: "Complete the Order Easily",
-              description: "Track the delivery in real-time and complete the order with ease. Get instant notifications and updates throughout the process.",
+              title: "Deliver and finish",
+              description: "Track the trip live and mark the order done when it reaches the customer.",
             },
           },
         },
@@ -387,52 +392,89 @@ export const translations = {
         },
       },
       lens: {
-        headline: "Visualize Your Data",
-        description: "Lens is a cutting-edge visualization platform that makes complex data accessible and understandable.",
-        heroDescription: "YaadroLens is an innovative AI-powered face recognition system that enables retail stores and supermarkets to track employee attendance contactlessly with over 90% accuracy, even when offline.",
+        headline: "Simple attendance for your team",
+        description:
+          "Lens helps any business mark attendance quickly. No cards. No fingerprints. Just a camera look.",
+        heroDescription:
+          "Lens helps any business track attendance just by looking at the camera. It is fast, accurate, and keeps working even when there is no internet.",
+        topFeatures: {
+          title: "Top features",
+          subtitle: "What Lens helps you do every day",
+          items: [
+            {
+              title: "Clock in with a glance",
+              description:
+                "Staff look at a tablet at the door. No cards, no PINs, no paper registers.",
+            },
+            {
+              title: "See who is at work, live",
+              description:
+                "Know who is in, late, or absent as it happens, not at the end of the day.",
+            },
+            {
+              title: "Pay and advances in one place",
+              description:
+                "Track salaries, bonuses, and salary advances with a clear history of every change.",
+            },
+            {
+              title: "Reports in one click",
+              description:
+                "Download attendance and payment sheets for HR, finance, or audits whenever you need them.",
+            },
+          ],
+        },
         mainTask: {
-          title: "01/ MAIN TASK & CHALLENGES",
-          description: "The primary goal of YaadroLens is to provide a seamless solution for contactless employee attendance management through advanced face recognition technology. The platform aims to meet the needs of retail stores, supermarkets, and businesses seeking automated, accurate, and secure attendance tracking with offline capabilities.",
+          title: "01/ THE PROBLEM WE FIXED",
+          description:
+            "Paper lists and fingerprint machines slow people down. With Lens, staff walk in, the camera knows them, and attendance is marked. No cards to lose and no long queues.",
         },
         features: {
           faceRecognition: {
-            title: "FACE RECOGNITION TECHNOLOGY",
-            description: "Advanced DeepFace ML with ArcFace embeddings delivering over 90% accuracy in employee identification, ensuring reliable and precise attendance tracking.",
+            title: "QUICK FACE CHECK IN",
+            description:
+              "Staff are recognized as they enter. Attendance is marked in seconds, even on busy days.",
           },
           offlineFirst: {
-            title: "OFFLINE-FIRST ARCHITECTURE",
-            description: "Works seamlessly without internet connectivity, automatically syncing all attendance data when connection is restored. Perfect for locations with unreliable network coverage.",
+            title: "WORKS WITHOUT INTERNET",
+            description:
+              "If the internet goes down, Lens still records attendance. When it comes back, records sync automatically.",
           },
           multiTenant: {
-            title: "MULTI-TENANT SAAS",
-            description: "Secure, isolated data management for multiple shops and locations. Enterprise-grade security with JWT authentication, role-based access control, and rate limiting.",
+            title: "ONE OR MANY LOCATIONS",
+            description:
+              "Manage one place or many from the same system. Each location stays private and separate.",
           },
         },
         faq: {
-          tag: "Frequently asked questions",
-          title: "Frequently asked",
-          titleHighlight: "questions",
-          description: "Choose a solution that fits your business needs and budget. No hidden fees, no surprises—just straightforward pricing for powerful attendance management.",
+          tag: "Common questions",
+          title: "Simple",
+          titleHighlight: "answers",
+          description: "Clear answers for owners and managers. Easy words only.",
           items: [
             {
-              question: "What is YaadroLens?",
-              answer: "YaadroLens is an AI-powered face recognition attendance system designed for retail stores and supermarkets. It provides contactless, automated attendance tracking with offline capabilities, real-time analytics, and enterprise-grade security using DeepFace ML technology.",
+              question: "What is Lens?",
+              answer:
+                "Lens is an attendance system for any business. Staff check in by looking at the camera. No cards, PINs, or fingerprint machines.",
             },
             {
-              question: "How does YaadroLens work?",
-              answer: "YaadroLens uses advanced DeepFace ML with ArcFace embeddings to identify employees with over 90% accuracy. The system captures employee faces at entry points, matches them against registered profiles, and automatically records attendance. It works offline and syncs data when internet connection is restored.",
+              question: "How does Lens work?",
+              answer:
+                "When someone arrives, the camera recognizes them and marks attendance. Managers can see who is present anytime.",
             },
             {
-              question: "Is YaadroLens secure?",
-              answer: "Yes, YaadroLens employs enterprise-grade security measures including JWT authentication, role-based access control, multi-tenant data isolation, and rate limiting. All face recognition data is encrypted and stored securely with proper access controls.",
+              question: "Is Lens safe?",
+              answer:
+                "Yes. Only the right people can see staff and attendance data. Each location stays private.",
             },
             {
-              question: "Can YaadroLens work without internet?",
-              answer: "Yes, YaadroLens features an offline-first architecture. The system continues to function and record attendance even without internet connectivity. All data is stored locally and automatically synchronized when the connection is restored.",
+              question: "Can it work without internet?",
+              answer:
+                "Yes. Lens keeps marking attendance offline. When the internet returns, everything syncs.",
             },
             {
-              question: "What is the accuracy of face recognition?",
-              answer: "YaadroLens achieves over 90% accuracy in employee identification using DeepFace ML with ArcFace embeddings. The system continuously learns and improves its recognition capabilities through ML performance monitoring.",
+              question: "How accurate is it?",
+              answer:
+                "Lens is very accurate at recognizing the right person, and it gets better with everyday use.",
             },
           ],
         },
@@ -463,15 +505,11 @@ export const translations = {
     product: {
       yaadro: {
         title: "يادرو",
-        description: "منصة تحليلات متقدمة",
+        description: "التوصيل والطلب أونلاين",
       },
       lens: {
         title: "لينز",
-        description: "رؤى البيانات المرئية",
-      },
-      ecommerce: {
-        title: "التجارة الإلكترونية",
-        description: "طلب عبر الإنترنت للسوبرماركت (الدفع عند الاستلام)",
+        description: "حضور الموظفين بسهولة",
       },
       learnMore: "اعرف المزيد",
     },
@@ -700,7 +738,11 @@ export const translations = {
     footer: {
       brand: {
         title: "كودتيك",
-        description: "نبني حلول برمجيات متطورة تدفع عملك إلى الأمام. خدمات تطوير وتصميم واستشارات خبيرة.",
+        description: "تصنع كودتيك يادرو، نظام إدارة التوصيل ومتجر إلكتروني للمتاجر، ولينز للحضور البسيط بالكاميرا. ونبني أيضًا برمجيات مخصصة للشركات.",
+        products: "منتجاتنا",
+        yaadroDms: "يادرو لإدارة التوصيل",
+        yaadroEcommerce: "يادرو للتجارة الإلكترونية",
+        lens: "لينز للحضور",
       },
       explore: {
         title: "استكشف",
@@ -728,41 +770,44 @@ export const translations = {
       title: "منتجاتنا",
       subtitle: "اكتشف حلولنا المبتكرة المصممة لتحويل عملك",
       backToHome: "العودة إلى الرئيسية",
+      welcome: {
+        eyebrow: "منصة يادرو",
+        welcomeTo: "مرحباً بكم في",
+        brand: "يادرو",
+        description:
+          "ساعد المتاجر على توصيل الطلبات والبيع أونلاين. مصمم للمتاجر وشركاء التوصيل والعملاء.",
+      },
+      aboutYaadro: {
+        eyebrow: "من نحن",
+        title: "عن يادرو",
+        paragraph1:
+          "يساعد يادرو المتاجر على إدارة التوصيل المنزلي. يربط المتجر وموظف التوصيل والعميل في مكان واحد بسيط.",
+        paragraph2:
+          "يمكنك تتبع الطلبات مباشرة، واستخدام تطبيقات للمتاجر وشركاء التوصيل، والسماح للعملاء بالطلب أونلاين والدفع عند الاستلام. لينز هو أداة حضور بسيطة لأي نوع من الأعمال.",
+      },
       yaadro: {
         name: "يادرو",
-        description: "نظام شامل لإدارة التوصيل مصمم للربط بسلاسة بين المتاجر الكبرى وشركاء التوصيل والعملاء. يبسط عملية التوصيل بأكملها من وضع الطلب إلى التسليم على الباب.",
+        description:
+          "أدِر التوصيل المنزلي لمتجرك. تتبع الطلبات وعيّن شركاء التوصيل وأبقِ العملاء على اطلاع. ويشمل أيضاً الطلب أونلاين مع الدفع عند الاستلام.",
         features: [
-          "تتبع وإدارة الطلبات في الوقت الفعلي",
-          "تطبيقات الهاتف المحمول المخصصة للمتاجر وشركاء التوصيل",
-          "لوحة تحكم ويب شاملة لإدارة المتاجر الكبرى",
-          "اتصال سلس بين جميع الأطراف",
-          "تعيين وتوجيه التوصيلات تلقائياً",
-          "إشعارات وتحديثات فورية",
+          "اعرف مكان كل طلب",
+          "تطبيقات للمتاجر وشركاء التوصيل",
+          "لوحة تحكم بسيطة للمديرين",
+          "طلبات أونلاين مع الدفع عند الاستلام",
+          "تحديثات واضحة للجميع",
         ],
       },
       lens: {
         name: "لينز",
-        description: "نظام حضور بذكاء اصطناعي للتعرف على الوجوه لمتاجر التجزئة والمتاجر الكبرى. يوفر تتبع حضور تلقائي بدون تلامس مع إمكانيات العمل دون اتصال وأمان على مستوى المؤسسات.",
-        features: [
-          "DeepFace ML بدقة تزيد عن 90% في تحديد الموظفين",
-          "هندسة معمارية تعمل دون اتصال - تعمل بدون إنترنت",
-          "منصة SaaS متعددة المستأجرين مع عزل بيانات آمن",
-          "لوحات تحليلات فورية وتقارير شاملة",
-          "أمان على مستوى المؤسسات مع مصادقة JWT",
-          "هندسة معمارية قابلة للتوسع تدعم مواقع متعددة",
-        ],
-      },
-      ecommerce: {
-        name: "يادرو للتجارة الإلكترونية",
         description:
-          "تجربة تجارة إلكترونية للسوبرماركت مدعومة بواسطة يادرو. يمكن للعملاء تصفح المنتجات وطلبها عبر الإنترنت من متجرك مع الدفع عند الاستلام فقط.",
+          "حضور سهل لأي نوع من الأعمال. يسجّل الموظفون حضورهم بالنظر إلى الكاميرا. بدون بطاقات أو بصمات.",
         features: [
-          "كتالوج منتجات منفصل لكل متجر",
-          "تجربة طلب للعميل عبر موقعك الإلكتروني",
-          "الدفع عند الاستلام فقط (بدون دفع إلكتروني)",
-          "إدارة الطلبات لموظفي المتجر",
-          "تحديثات حالة الطلب للعميل بشكل فوري",
-          "مبني على يادرو ويتم صيانته بواسطة كودتيك",
+          "تسجيل حضور سريع بالنظر إلى الكاميرا",
+          "يعمل حتى بدون إنترنت",
+          "موقع واحد أو عدة مواقع",
+          "تقارير واضحة للمديرين",
+          "سجلات موظفين خاصة وآمنة",
+          "ينمو مع فريقك",
         ],
       },
       viewDetails: "عرض التفاصيل",
@@ -772,58 +817,60 @@ export const translations = {
       backToProducts: "العودة إلى المنتجات",
       notFound: "المنتج غير موجود",
       yaadro: {
-        headline: "تسليم أذكى، اتصال سلس",
-        description: "يادرو هو نظام شامل لإدارة التوصيل مصمم للربط بسلاسة بين المتاجر الكبرى وشركاء التوصيل والعملاء. مع تطبيقات الهاتف المحمول المخصصة للمتاجر الكبرى وشركاء التوصيل، بالإضافة إلى لوحة تحكم ويب قوية، يبسط يادرو عملية التوصيل بأكملها من وضع الطلب إلى التسليم على الباب.",
+        headline: "توصيل أسرع. اتصال أوضح.",
+        description:
+          "يساعد يادرو المتاجر على إدارة التوصيل المنزلي من البداية إلى النهاية. المتجر وشريك التوصيل والعميل يبقون متصلين عبر تطبيقات بسيطة ولوحة تحكم واضحة.",
         smartFeatures: {
-          title: "الميزات الذكية",
+          title: "ماذا تحصل",
           supermarketApp: {
-            title: "تطبيق المتجر الكبير",
-            description: "إدارة الطلبات والمخزون والتوصيلات من جهازك المحمول أثناء التنقل.",
+            title: "تطبيق المتجر",
+            description: "أدِر الطلبات والتوصيلات من هاتفك في أي وقت.",
           },
           deliveryPartnerApp: {
             title: "تطبيق شريك التوصيل",
-            description: "استقبل الطلبات وانتقل عبر الطرق وقم بتحديث حالة التوصيل في الوقت الفعلي.",
+            description: "استقبل الطلبات واتبع الطريق وحدّث حالة التوصيل.",
           },
           webDashboard: {
-            title: "لوحة تحكم الويب",
-            description: "منصة إدارة شاملة للمتاجر الكبرى للإشراف على جميع العمليات.",
+            title: "لوحة التحكم",
+            description: "شاهد كل الطلبات والعمليات في شاشة واحدة بسيطة.",
           },
           realTimeTracking: {
-            title: "التتبع في الوقت الفعلي",
-            description: "تتبع التوصيلات مباشرة مع تكامل GPS وتحديثات الحالة الفورية.",
+            title: "تتبع مباشر",
+            description: "تابع التوصيلات أثناء حدوثها واحصل على تحديثات فورية.",
           },
           smartCommunication: {
-            title: "التواصل الذكي",
-            description: "رسائل سلسة بين المتاجر الكبرى والشركاء والعملاء.",
+            title: "رسائل سهلة",
+            description: "تواصل بين المتجر وشريك التوصيل والعميل.",
           },
           orderManagement: {
             title: "إدارة الطلبات",
-            description: "معالجة الطلبات الآلية والتعيين وجدولة التوصيل.",
+            description: "أنشئ الطلب وعيّنه وأكمله بدون تعقيد.",
           },
         },
         partners: {
-          title: "موثوق به من قبل المتاجر الكبرى الرائدة",
+          title: "موثوق به من المتاجر",
         },
         integration: {
-          title: "متكامل مع",
-          subtitle: "يتكامل يادرو بسلاسة مع برنامج الفوترة تاسك لتبسيط سير عمل التوصيل",
-          description: "تاسك هو برنامج الفوترة حيث تقوم المتاجر الكبرى بإنشاء طلبات التوصيل للمنازل. عند تقديم الطلب، يتدفق تلقائيًا إلى تطبيق يادرو، حيث يمكنك إدارة وتتبع الطلب ببساطة وفعالية من التقديم إلى التسليم.",
+          title: "يعمل مع",
+          subtitle: "يادرو يتصل مع تاسك للفوترة حتى تتحرك طلبات التوصيل بسهولة",
+          description:
+            "ينشئ المتجر طلبات التوصيل المنزلي في تاسك. تنتقل هذه الطلبات مباشرة إلى يادرو، حيث يمكنك تعيين شريك توصيل وتتبع الطلب حتى يصل.",
         },
         process: {
-          title: "تعرف على العملية",
-          subtitle: "خطوات بسيطة لإدارة عمليات التوصيل بكفاءة",
+          title: "كيف يعمل",
+          subtitle: "ثلاث خطوات بسيطة",
           steps: {
             createOrder: {
-              title: "إنشاء طلب توصيل منزلي",
-              description: "ابدأ بإنشاء طلب توصيل منزلي من خلال نظام المتجر الكبير الخاص بك. يتم مزامنة الطلب تلقائيًا مع يادرو للإدارة السلسة.",
+              title: "أنشئ الطلب",
+              description: "أنشئ طلب توصيل منزلي في نظام المتجر. يظهر تلقائياً في يادرو.",
             },
             assignPartner: {
-              title: "تعيين شريك التوصيل",
-              description: "يقوم النظام بتعيين طلبك تلقائيًا لأفضل شريك توصيل متاح بناءً على الموقع والتوفر.",
+              title: "عيّن شريك التوصيل",
+              description: "يساعد يادرو على إرسال الطلب لشريك التوصيل المتاح المناسب.",
             },
             completeOrder: {
-              title: "إكمال الطلب بسهولة",
-              description: "تتبع التوصيل في الوقت الفعلي وأكمل الطلب بسهولة. احصل على إشعارات وتحديثات فورية طوال العملية.",
+              title: "وصّل وأكمل",
+              description: "تتبع الرحلة مباشرة وعلّم الطلب مكتملاً عند وصوله للعميل.",
             },
           },
         },
@@ -833,52 +880,89 @@ export const translations = {
         },
       },
       lens: {
-        headline: "تصور بياناتك",
-        description: "لينز هو منصة تصور متطورة تجعل البيانات المعقدة في متناول اليد وسهلة الفهم.",
-        heroDescription: "YaadroLens هو نظام مبتكر للتعرف على الوجوه يعمل بالذكاء الاصطناعي يتيح لمتاجر التجزئة والمتاجر الكبرى تتبع حضور الموظفين بدون تلامس بدقة تزيد عن 90%، حتى عند عدم الاتصال بالإنترنت.",
+        headline: "حضور بسيط لفريقك",
+        description:
+          "يساعد لينز أي نوع من الأعمال على تسجيل الحضور بسرعة. بدون بطاقات. بدون بصمات. فقط نظرة إلى الكاميرا.",
+        heroDescription:
+          "يساعد Lens أي نوع من الأعمال على تتبع الحضور بمجرد النظر إلى الكاميرا. سريع ودقيق ويستمر في العمل حتى بدون إنترنت.",
+        topFeatures: {
+          title: "أهم الميزات",
+          subtitle: "ماذا يساعدك لينز على فعله كل يوم",
+          items: [
+            {
+              title: "تسجيل حضور بنظرة",
+              description:
+                "الموظفون ينظرون إلى جهاز عند الباب. بدون بطاقات، بدون أرقام سرية، بدون سجلات ورقية.",
+            },
+            {
+              title: "اعرف من في العمل مباشرة",
+              description:
+                "اعرف من حاضر أو متأخر أو غائب أثناء حدوث ذلك، وليس في نهاية اليوم.",
+            },
+            {
+              title: "الرواتب والسلف في مكان واحد",
+              description:
+                "تابع الرواتب والمكافآت وسلف الراتب مع سجل واضح لكل تغيير.",
+            },
+            {
+              title: "تقارير بنقرة واحدة",
+              description:
+                "حمّل كشوف الحضور والدفع للموارد البشرية أو المالية أو التدقيق متى احتجت.",
+            },
+          ],
+        },
         mainTask: {
-          title: "01/ المهمة الرئيسية والتحديات",
-          description: "الهدف الرئيسي من YaadroLens هو توفير حل سلس لإدارة حضور الموظفين بدون تلامس من خلال تقنية التعرف على الوجوه المتقدمة. تهدف المنصة إلى تلبية احتياجات متاجر التجزئة والمتاجر الكبرى والشركات التي تسعى للحصول على تتبع حضور آلي ودقيق وآمن مع إمكانيات العمل دون اتصال.",
+          title: "01/ المشكلة التي حللناها",
+          description:
+            "القوائم الورقية وأجهزة البصمة تبطئ الناس. مع لينز يدخل الموظف، تتعرف الكاميرا عليه، ويُسجَّل الحضور. لا بطاقات تضيع ولا طوابير طويلة.",
         },
         features: {
           faceRecognition: {
-            title: "تقنية التعرف على الوجوه",
-            description: "DeepFace ML المتقدم مع ArcFace embeddings يوفر دقة تزيد عن 90% في تحديد الموظفين، مما يضمن تتبع حضور موثوق ودقيق.",
+            title: "تسجيل حضور سريع بالوجه",
+            description:
+              "يُتعرَّف على الموظفين عند الدخول. يُسجَّل الحضور خلال ثوانٍ حتى في الأيام المزدحمة.",
           },
           offlineFirst: {
-            title: "هندسة معمارية تعمل دون اتصال",
-            description: "يعمل بسلاسة بدون اتصال بالإنترنت، ويقوم بمزامنة جميع بيانات الحضور تلقائياً عند استعادة الاتصال. مثالي للمواقع ذات تغطية الشبكة غير الموثوقة.",
+            title: "يعمل بدون إنترنت",
+            description:
+              "إذا انقطع الإنترنت يستمر لينز في تسجيل الحضور. وعند عودة الاتصال تتم المزامنة تلقائياً.",
           },
           multiTenant: {
-            title: "SaaS متعدد المستأجرين",
-            description: "إدارة بيانات آمنة ومعزولة لعدة متاجر ومواقع. أمان على مستوى المؤسسات مع مصادقة JWT، والتحكم في الوصول المستند إلى الأدوار، والحد من معدل الطلبات.",
+            title: "موقع واحد أو عدة مواقع",
+            description:
+              "أدِر مكاناً واحداً أو عدة أماكن من نفس النظام. كل موقع يبقى خاصاً ومنفصلاً.",
           },
         },
         faq: {
-          tag: "الأسئلة الشائعة",
-          title: "الأسئلة",
-          titleHighlight: "الشائعة",
-          description: "اختر حلاً يناسب احتياجات عملك وميزانيتك. لا توجد رسوم مخفية، لا مفاجآت—فقط تسعير مباشر لإدارة حضور قوية.",
+          tag: "أسئلة شائعة",
+          title: "إجابات",
+          titleHighlight: "بسيطة",
+          description: "إجابات واضحة للملاك والمديرين. كلمات سهلة فقط.",
           items: [
             {
-              question: "ما هو YaadroLens؟",
-              answer: "YaadroLens هو نظام حضور للتعرف على الوجوه يعمل بالذكاء الاصطناعي مصمم لمتاجر التجزئة والمتاجر الكبرى. يوفر تتبع حضور آلي بدون تلامس مع إمكانيات العمل دون اتصال، وتحليلات فورية، وأمان على مستوى المؤسسات باستخدام تقنية DeepFace ML.",
+              question: "ما هو Lens؟",
+              answer:
+                "لينز نظام حضور لأي نوع من الأعمال. يسجّل الموظفون حضورهم بالنظر إلى الكاميرا. بدون بطاقات أو أرقام سرية أو أجهزة بصمة.",
             },
             {
-              question: "كيف يعمل YaadroLens؟",
-              answer: "يستخدم YaadroLens DeepFace ML المتقدم مع ArcFace embeddings لتحديد الموظفين بدقة تزيد عن 90%. يلتقط النظام وجوه الموظفين عند نقاط الدخول، ويطابقها مع الملفات الشخصية المسجلة، ويسجل الحضور تلقائياً. يعمل دون اتصال ومزامنة البيانات عند استعادة اتصال الإنترنت.",
+              question: "كيف يعمل Lens؟",
+              answer:
+                "عند وصول الشخص تتعرف الكاميرا عليه وتسجّل الحضور. ويمكن للمديرين معرفة من الحاضر في أي وقت.",
             },
             {
-              question: "هل YaadroLens آمن؟",
-              answer: "نعم، يستخدم YaadroLens تدابير أمان على مستوى المؤسسات بما في ذلك مصادقة JWT، والتحكم في الوصول المستند إلى الأدوار، وعزل بيانات متعدد المستأجرين، والحد من معدل الطلبات. جميع بيانات التعرف على الوجوه مشفرة ومخزنة بشكل آمن مع ضوابط الوصول المناسبة.",
+              question: "هل Lens آمن؟",
+              answer:
+                "نعم. فقط الأشخاص المصرح لهم يرون بيانات الموظفين والحضور. وكل موقع يبقى خاصاً.",
             },
             {
-              question: "هل يمكن لـ YaadroLens العمل بدون إنترنت؟",
-              answer: "نعم، يتميز YaadroLens بهندسة معمارية تعمل دون اتصال. يستمر النظام في العمل وتسجيل الحضور حتى بدون اتصال بالإنترنت. يتم تخزين جميع البيانات محلياً ومزامنتها تلقائياً عند استعادة الاتصال.",
+              question: "هل يعمل بدون إنترنت؟",
+              answer:
+                "نعم. يستمر لينز في تسجيل الحضور بدون إنترنت. وعند عودة الاتصال تتم المزامنة.",
             },
             {
-              question: "ما هي دقة التعرف على الوجوه؟",
-              answer: "يحقق YaadroLens دقة تزيد عن 90% في تحديد الموظفين باستخدام DeepFace ML مع ArcFace embeddings. يتعلم النظام باستمرار ويحسن قدراته على التعرف من خلال مراقبة أداء ML.",
+              question: "ما مدى دقته؟",
+              answer:
+                "لينز دقيق جداً في التعرف على الشخص الصحيح، ويتحسن مع الاستخدام اليومي.",
             },
           ],
         },

@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { generateProductMetadata } from "@/lib/metadata";
+import { productSeo } from "@/lib/productSeo";
+import { BreadcrumbSchema, FAQSchema, ProductSchema } from "@/app/components/StructuredData";
 
 export async function generateMetadata({
   params,
@@ -7,42 +9,54 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
+  const product = productSeo[slug];
 
-  // Product information based on slug
-  const productInfo: Record<
-    string,
-    { title: string; description: string }
-  > = {
-    yaadro: {
-      title: "Yaadro - Delivery Management System",
-      description:
-        "Yaadro is a comprehensive delivery management system designed to seamlessly connect supermarkets, delivery partners, and customers. With dedicated mobile apps for supermarkets and delivery partners, plus a powerful web dashboard, Yaadro streamlines the entire delivery process from order placement to doorstep delivery.",
-    },
-    lens: {
-      title: "Lens - AI-Powered Face Recognition Attendance System",
-      description:
-        "Lens is an AI-powered face recognition attendance system for retail stores and supermarkets. It provides contactless, automated attendance tracking with offline capabilities, real-time analytics, and enterprise-grade security. Features DeepFace ML with 90%+ accuracy in employee identification.",
-    },
-    ecommerce: {
-      title: "Yaadro Ecommerce - Online Ordering for Supermarkets",
-      description:
-        "Yaadro Ecommerce enables supermarkets to run a dedicated online store where customers can browse products, place orders, and pay via Cash on Delivery (COD). Built on Yaadro and maintained by CodeTeak for reliable operations.",
-    },
-  };
+  if (!product) {
+    return generateProductMetadata(
+      slug,
+      "Product",
+      "Simple software products from CodeTeak: Yaadro for shop home delivery and Lens for camera attendance."
+    );
+  }
 
-  const product = productInfo[slug] || {
-    title: "Product",
-    description: "Discover our innovative software products designed to solve real-world business challenges.",
-  };
-
-  return generateProductMetadata(slug, product.title, product.description);
+  return generateProductMetadata(slug, product.title, product.description, product.keywords);
 }
 
-export default function ProductDetailLayout({
+export default async function ProductDetailLayout({
   children,
+  params,
 }: {
   children: React.ReactNode;
+  params: Promise<{ slug: string }>;
 }) {
-  return <>{children}</>;
-}
+  const { slug } = await params;
+  const product = productSeo[slug];
 
+  return (
+    <>
+      {product && (
+        <>
+          <BreadcrumbSchema
+            items={[
+              { name: "Home", url: "/" },
+              { name: "Products", url: "/products" },
+              { name: product.name, url: `/products/${product.slug}` },
+            ]}
+          />
+          <ProductSchema
+            name={product.name}
+            alternateName={product.title}
+            description={product.description}
+            url={`/products/${product.slug}`}
+            image={product.image}
+            applicationSubCategory={product.category}
+            featureList={product.features}
+            audience={product.audience}
+          />
+          <FAQSchema items={product.faq} />
+        </>
+      )}
+      {children}
+    </>
+  );
+}

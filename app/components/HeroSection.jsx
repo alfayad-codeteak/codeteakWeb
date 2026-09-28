@@ -3,6 +3,11 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect } from "react";
+import { Bebas_Neue, DM_Sans, Space_Mono } from "next/font/google";
+
+const bebasNeue = Bebas_Neue({ weight: "400", subsets: ["latin"], variable: "--font-bebas-neue" });
+const dmSans = DM_Sans({ weight: ["300", "400", "500"], subsets: ["latin"], variable: "--font-dm-sans" });
+const spaceMono = Space_Mono({ weight: "400", subsets: ["latin"], variable: "--font-space-mono" });
 
 export default function HeroSection({ theme = "dark", heroRef }) {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -53,8 +58,6 @@ export default function HeroSection({ theme = "dark", heroRef }) {
   const scaleContent  = 1 - scrollY * 0.00012;
 
   const css = `
-    @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500&family=Space+Mono&display=swap');
-
     .hs *, .hs *::before, .hs *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     /* ── Entrance keyframes ── */
@@ -98,7 +101,7 @@ export default function HeroSection({ theme = "dark", heroRef }) {
 
     /* ── Wordmark ── */
     .hs-wm {
-      font-family: 'Bebas Neue', sans-serif;
+      font-family: var(--font-bebas-neue), sans-serif;
       font-size: clamp(150px, 20vw, 320px);
       line-height: 1;
       letter-spacing: -0.01em;
@@ -129,7 +132,7 @@ export default function HeroSection({ theme = "dark", heroRef }) {
     @media(max-width:640px){ .hs-nav { padding: 0 20px; } }
 
     .hs-logo {
-      font-family: 'Space Mono', monospace;
+      font-family: var(--font-space-mono), monospace;
       font-size: 11px; letter-spacing: 0.32em;
       text-transform: uppercase; color: ${muted};
     }
@@ -138,7 +141,7 @@ export default function HeroSection({ theme = "dark", heroRef }) {
     .hs-link {
       font-size: 12px; letter-spacing: 0.09em; text-transform: uppercase;
       color: ${muted}; background: none; border: none; cursor: pointer;
-      font-family: 'DM Sans', sans-serif; transition: color .2s;
+      font-family: var(--font-dm-sans), sans-serif; transition: color .2s;
     }
     .hs-link:hover { color: ${fg}; }
 
@@ -146,7 +149,7 @@ export default function HeroSection({ theme = "dark", heroRef }) {
       display: inline-flex; align-items: center; gap: 7px;
       background: ${cardBg}; border: 1px solid ${border};
       border-radius: 100px; padding: 5px 13px;
-      font-size: 11px; font-family: 'Space Mono', monospace;
+      font-size: 11px; font-family: var(--font-space-mono), monospace;
       color: ${muted}; letter-spacing: 0.04em; white-space: nowrap;
     }
     @media(max-width:500px){ .hs-badge { display: none; } }
@@ -182,7 +185,7 @@ export default function HeroSection({ theme = "dark", heroRef }) {
       font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase;
       color: ${muted}; background: none; border: none; cursor: pointer;
       padding: 10px 0; border-bottom: 1px solid ${border};
-      text-align: left; font-family: 'DM Sans', sans-serif; transition: color .2s;
+      text-align: left; font-family: var(--font-dm-sans), sans-serif; transition: color .2s;
     }
     .hs-mlink:last-child { border-bottom: none; }
     .hs-mlink:hover { color: ${fg}; }
@@ -238,12 +241,12 @@ export default function HeroSection({ theme = "dark", heroRef }) {
       background: ${accent}; border-radius: 2px; flex-shrink: 0;
     }
     .hs-etext {
-      font-family: 'Space Mono', monospace; font-size: 10px;
+      font-family: var(--font-space-mono), monospace; font-size: 10px;
       letter-spacing: 0.14em; text-transform: uppercase; color: ${accent};
     }
 
     .hs-h1 {
-      font-family: 'Bebas Neue', sans-serif;
+      font-family: var(--font-bebas-neue), sans-serif;
       font-size: clamp(54px, 7.5vw, 96px);
       line-height: 0.95; letter-spacing: 0.01em;
       color: ${fg}; margin-bottom: 22px;
@@ -276,7 +279,7 @@ export default function HeroSection({ theme = "dark", heroRef }) {
     .hs-btn-p {
       background: ${fg}; color: ${bg}; border: none;
       padding: 13px 30px; border-radius: 100px;
-      font-family: 'DM Sans', sans-serif; font-weight: 500;
+      font-family: var(--font-dm-sans), sans-serif; font-weight: 500;
       font-size: 14px; letter-spacing: 0.02em; cursor: pointer;
       transition: opacity .2s, transform .2s; white-space: nowrap;
     }
@@ -284,7 +287,7 @@ export default function HeroSection({ theme = "dark", heroRef }) {
     .hs-btn-s {
       background: transparent; color: ${fg};
       border: 1px solid ${border}; padding: 12px 26px; border-radius: 100px;
-      font-family: 'DM Sans', sans-serif; font-weight: 400;
+      font-family: var(--font-dm-sans), sans-serif; font-weight: 400;
       font-size: 14px; letter-spacing: 0.02em; cursor: pointer;
       transition: border-color .2s, transform .2s; white-space: nowrap;
     }
@@ -310,7 +313,7 @@ export default function HeroSection({ theme = "dark", heroRef }) {
       100%{ transform:scaleY(1); transform-origin:bottom; opacity:0; }
     }
     .hs-stxt {
-      font-family: 'Space Mono', monospace; font-size: 9px;
+      font-family: var(--font-space-mono), monospace; font-size: 9px;
       letter-spacing: 0.18em; color: ${muted}; text-transform: uppercase;
     }
 
@@ -356,7 +359,7 @@ export default function HeroSection({ theme = "dark", heroRef }) {
       <section
         ref={heroRef}
         id="home"
-        className="hs"
+        className={`hs ${bebasNeue.variable} ${dmSans.variable} ${spaceMono.variable}`}
         style={{
           position: "relative",
           minHeight: "100svh",

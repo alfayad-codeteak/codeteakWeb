@@ -228,7 +228,7 @@ export default function TechNewsPage() {
             </p>
             <button
               onClick={fetchNews}
-              className="px-6 py-3 bg-[#FC4B01] text-white rounded-lg font-semibold hover:opacity-90 transition-opacity"
+              className="px-6 py-3 bg-brand-strong text-white rounded-lg font-semibold hover:opacity-90 transition-opacity"
             >
               Refresh
             </button>

@@ -1,10 +1,20 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 
 const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://codeteak.com";
 const siteName = "CodeTeak";
-const defaultDescription = "We build cutting-edge software solutions that drive your business forward. Expert development, design, and consulting services.";
-const defaultImage = `${baseUrl}/og-image.jpg`; // Branded OG image (logo + tagline) in public folder
-const twitterHandle = "@codeteak"; // Update with actual Twitter handle
+export const siteDescription =
+  "CodeTeak makes Yaadro, a delivery management system (DMS) and ecommerce platform for shops: track home deliveries, assign delivery partners, and sell online with pay on delivery. We also make Lens for simple camera attendance, and build custom software.";
+const defaultImage = `${baseUrl}/og-image.jpg`;
+const twitterHandle = "@codeteak";
+
+export const siteViewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
+    { media: "(prefers-color-scheme: dark)", color: "#0a0a0a" },
+  ],
+};
 
 interface GenerateMetadataOptions {
   title: string;
@@ -47,25 +57,22 @@ export function generateSEOMetadata({
   const allImageUrls = [image, ...additionalImages].map(toAbsoluteImageUrl);
   const ogImageUrl = allImageUrls[0];
 
-  const defaultKeywords = [
-    "CodeTeak",
-    "software development",
-    "web development",
-    "mobile app development",
-    "cyber security",
-    "product engineering",
-    "product design",
-    "cloud infrastructure",
-    "DevOps",
-    "UI/UX design",
-    "software solutions",
-    "technology consulting",
-    "software development company India",
-    "web development Dubai",
-    "software company Bengaluru",
-    "tech consulting UAE",
-    ...keywords,
-  ];
+  const defaultKeywords = Array.from(
+    new Set([
+      "CodeTeak",
+      "Yaadro",
+      "delivery management system",
+      "ecommerce for shops",
+      "Lens attendance",
+      "software company Bengaluru",
+      "software company Dubai",
+      "software development",
+      "product engineering",
+      "product design",
+      "cyber security",
+      ...keywords,
+    ])
+  );
 
   const metadata: Metadata = {
     title: fullTitle,
@@ -139,10 +146,6 @@ export function generateSEOMetadata({
       statusBarStyle: "default",
       title: siteName,
     },
-    themeColor: [
-      { media: "(prefers-color-scheme: light)", color: "#ffffff" },
-      { media: "(prefers-color-scheme: dark)", color: "#0a0a0a" },
-    ],
     category: "technology",
   };
 
@@ -173,39 +176,44 @@ export function generateSEOMetadata({
 
 // Pre-defined metadata for common pages
 export const homeMetadata: Metadata = generateSEOMetadata({
-  title: "Innovative Software Solutions",
-  description: "Transform your ideas into digital excellence. We craft innovative software solutions including web development, mobile apps, cyber security, and AI integration. 100+ projects delivered with 95% client satisfaction. Software development company in Bengaluru and Dubai.",
+  title: "Yaadro Delivery Management & Ecommerce for Shops",
+  description:
+    "Yaadro by CodeTeak is a delivery management system (DMS) and online store for shops. Track every home delivery, assign delivery partners, and take online orders with pay on delivery. Also from CodeTeak: Lens camera attendance.",
   path: "/",
   keywords: [
+    "delivery management system",
+    "DMS for shops",
+    "home delivery software",
+    "ecommerce platform for shops",
+    "online store pay on delivery",
+    "supermarket delivery app",
     "software development company",
-    "web development services",
-    "mobile app development",
-    "cyber security solutions",
-    "product engineering",
-    "custom software",
-    "technology solutions",
-    "software company Bengaluru",
-    "web development company Dubai",
-    "best software development company",
+    "software company India",
+    "software company UAE",
   ],
 });
 
 export const servicesMetadata: Metadata = generateSEOMetadata({
-  title: "Our Services",
-  description: "Comprehensive software development services including Cyber Security, Product Engineering, and Product Design. From threat detection to scalable cloud infrastructure, we deliver cutting-edge solutions for your business.",
+  title: "Services - Build, Design, and Secure Your Software",
+  description:
+    "CodeTeak helps you build, design, and protect your software. Product engineering (web, mobile, backend, cloud, DevOps, APIs), product design (UI, UX, prototypes, design systems), and cyber security (audits, threat detection, data protection).",
   path: "/services",
   keywords: [
-    "cyber security services",
-    "threat detection",
-    "fraud prevention",
-    "product engineering",
+    "software development services",
+    "web app development",
+    "mobile app development",
     "backend development",
     "frontend development",
     "cloud infrastructure",
-    "DevOps services",
-    "UI design",
-    "UX design",
-    "product design",
+    "DevOps and CI/CD",
+    "API development",
+    "UI UX design",
+    "prototyping",
+    "design systems",
+    "cyber security services",
+    "security audit",
+    "threat detection",
+    "data protection",
   ],
 });
 
@@ -224,25 +232,32 @@ export const contactMetadata: Metadata = generateSEOMetadata({
 });
 
 export const productsMetadata: Metadata = generateSEOMetadata({
-  title: "Our Products",
-  description: "Discover CodeTeak's innovative products including Yaadro analytics platform and Lens visual data insights. Built with cutting-edge technology to solve real-world business challenges.",
+  title: "Products - Yaadro DMS & Ecommerce, Lens Attendance",
+  description:
+    "Yaadro is our delivery management system and ecommerce platform for shops: manage home deliveries and sell online with pay on delivery. Lens lets any business mark staff attendance with a quick camera look.",
   path: "/products",
   keywords: [
     "Yaadro",
+    "delivery management system",
+    "DMS",
+    "ecommerce platform for shops",
+    "home delivery app for shops",
+    "online ordering pay on delivery",
     "Lens",
-    "analytics platform",
-    "data insights",
-    "business intelligence",
-    "data visualization",
+    "face attendance system",
+    "staff attendance app",
+    "business software products",
   ],
 });
 
 export const aboutMetadata: Metadata = generateSEOMetadata({
-  title: "About Our Core Team",
+  title: "About CodeTeak - Founders and Core Team",
   description:
-    "Meet the CodeTeak core team – Alfayad S (Full Stack Developer & UI/UX Designer), Abhinav Aneesh (Full Stack Mobile Application Developer), Binel Biju and Alan Joshy (Backend Developers & Cloud Engineers). A modern, senior engineering team building scalable web, mobile, and cloud products for startups and enterprises.",
+    "Meet the people behind CodeTeak, the team that builds Yaadro and Lens. Founded by Muhammed Rizwan P (Founder & CEO) and Mohammed Aslam (Co-Founder & COO), with core engineers Alfayad S, Abhinav Aneesh, Binel Biju, and Alan Joshy. Offices in Bengaluru and Dubai.",
   path: "/about",
   additionalImages: [
+    "/core-team/rizwan.png",
+    "/core-team/aslam.png",
     "/core-team/Alfayad.png",
     "/core-team/Abhinav.png",
     "/core-team/Binel.jpeg",
@@ -259,12 +274,14 @@ export const aboutMetadata: Metadata = generateSEOMetadata({
     "backend developer",
     "cloud engineer",
     "DevOps specialist",
+    "Muhammed Rizwan P",
+    "Mohammed Aslam",
     "Alfayad S",
     "Abhinav Aneesh",
     "Binel Biju",
     "Alan Joshy",
   ],
-  authors: ["CodeTeak", "Alfayad S", "Abhinav Aneesh", "Binel Biju", "Alan Joshy"],
+  authors: ["CodeTeak", "Muhammed Rizwan P", "Mohammed Aslam", "Alfayad S", "Abhinav Aneesh", "Binel Biju", "Alan Joshy"],
 });
 
 export const techNewsMetadata: Metadata = generateSEOMetadata({
@@ -323,22 +340,17 @@ export const privacyMetadata: Metadata = generateSEOMetadata({
   ],
 });
 
-// Product-specific metadata generator
-export function generateProductMetadata(slug: string, title: string, description: string): Metadata {
-  const productKeywords = [
-    slug.toLowerCase(),
-    title,
-    "analytics",
-    "data insights",
-    "business intelligence",
-    "software product",
-  ];
-
+export function generateProductMetadata(
+  slug: string,
+  title: string,
+  description: string,
+  keywords: string[] = []
+): Metadata {
   return generateSEOMetadata({
     title,
     description,
     path: `/products/${slug}`,
-    keywords: productKeywords,
+    keywords: [slug.toLowerCase(), ...keywords],
     type: "product",
   });
 }
