@@ -15,11 +15,13 @@ export async function generateMetadata({
     return generateProductMetadata(
       slug,
       "Product",
-      "Simple software products from CodeTeak: Yaadro for shop home delivery and Lens for camera attendance."
+      "Simple software products from CodeTeak, including Yaadro for shop home delivery."
     );
   }
 
-  return generateProductMetadata(slug, product.title, product.description, product.keywords);
+  return generateProductMetadata(slug, product.title, product.description, product.keywords, {
+    noIndex: product.noIndex,
+  });
 }
 
 export default async function ProductDetailLayout({
@@ -32,9 +34,11 @@ export default async function ProductDetailLayout({
   const { slug } = await params;
   const product = productSeo[slug];
 
+  const pushSeo = product && !product.noIndex;
+
   return (
     <>
-      {product && (
+      {pushSeo && (
         <>
           <BreadcrumbSchema
             items={[
@@ -53,7 +57,7 @@ export default async function ProductDetailLayout({
             featureList={product.features}
             audience={product.audience}
           />
-          <FAQSchema items={product.faq} />
+          {product.faq.length > 0 && <FAQSchema items={product.faq} />}
         </>
       )}
       {children}

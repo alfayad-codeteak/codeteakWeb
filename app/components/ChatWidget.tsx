@@ -287,7 +287,7 @@ function CoreTeamBubble({
               links: [
                 {
                   label: "Portfolio",
-                  href: "https://alfayad.vercel.app",
+                  href: "https://alfayad.clawdage.com",
                 },
                 {
                   label: "LinkedIn",
@@ -475,7 +475,7 @@ function SingleMemberBubble({
       role: "Full Stack Developer & UI/UX Designer (Core Member)",
       img: "/core-team/Alfayad.png",
       links: [
-        { label: "Portfolio", href: "https://alfayad.vercel.app" },
+        { label: "Portfolio", href: "https://alfayad.clawdage.com" },
         { label: "LinkedIn", href: "https://www.linkedin.com/in/alfayad" },
       ],
     },

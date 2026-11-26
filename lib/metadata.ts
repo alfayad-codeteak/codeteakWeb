@@ -3,7 +3,7 @@ import type { Metadata, Viewport } from "next";
 const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://codeteak.com";
 const siteName = "CodeTeak";
 export const siteDescription =
-  "CodeTeak makes Yaadro, a delivery management system (DMS) and ecommerce platform for shops: track home deliveries, assign delivery partners, and sell online with pay on delivery. We also make Lens for simple camera attendance, and build custom software.";
+  "CodeTeak is a software company based in Bengaluru and Dubai. We build custom web and mobile apps, and our product Yaadro is a delivery management system (DMS) and ecommerce platform for shops.";
 const defaultImage = `${baseUrl}/og-image.jpg`;
 const twitterHandle = "@codeteak";
 
@@ -44,7 +44,7 @@ export function generateSEOMetadata({
   noIndex = false,
 }: GenerateMetadataOptions): Metadata {
   const url = `${baseUrl}${path}`;
-  const fullTitle = `${title} | ${siteName}`;
+  const fullTitle = title.includes(siteName) ? title : `${title} | ${siteName}`;
 
   // Ensure image URLs are absolute for WhatsApp and social platforms
   const toAbsoluteImageUrl = (img: string) =>
@@ -63,7 +63,6 @@ export function generateSEOMetadata({
       "Yaadro",
       "delivery management system",
       "ecommerce for shops",
-      "Lens attendance",
       "software company Bengaluru",
       "software company Dubai",
       "software development",
@@ -176,20 +175,20 @@ export function generateSEOMetadata({
 
 // Pre-defined metadata for common pages
 export const homeMetadata: Metadata = generateSEOMetadata({
-  title: "Yaadro Delivery Management & Ecommerce for Shops",
+  title: "CodeTeak — Software Company | Yaadro Delivery & Ecommerce",
   description:
-    "Yaadro by CodeTeak is a delivery management system (DMS) and online store for shops. Track every home delivery, assign delivery partners, and take online orders with pay on delivery. Also from CodeTeak: Lens camera attendance.",
+    "CodeTeak is a software company based in Bengaluru, India and Dubai, UAE. Our product Yaadro is a delivery management system (DMS) and online store for shops. We also build custom web, mobile, and business software.",
   path: "/",
   keywords: [
+    "CodeTeak software company",
+    "software company Bengaluru",
+    "software company Dubai",
+    "software development company",
+    "Yaadro",
     "delivery management system",
     "DMS for shops",
-    "home delivery software",
     "ecommerce platform for shops",
-    "online store pay on delivery",
-    "supermarket delivery app",
-    "software development company",
-    "software company India",
-    "software company UAE",
+    "custom software development",
   ],
 });
 
@@ -232,9 +231,9 @@ export const contactMetadata: Metadata = generateSEOMetadata({
 });
 
 export const productsMetadata: Metadata = generateSEOMetadata({
-  title: "Products - Yaadro DMS & Ecommerce, Lens Attendance",
+  title: "Products - Yaadro DMS & Ecommerce",
   description:
-    "Yaadro is our delivery management system and ecommerce platform for shops: manage home deliveries and sell online with pay on delivery. Lens lets any business mark staff attendance with a quick camera look.",
+    "Yaadro is our delivery management system and ecommerce platform for shops: manage home deliveries and sell online with pay on delivery.",
   path: "/products",
   keywords: [
     "Yaadro",
@@ -243,9 +242,6 @@ export const productsMetadata: Metadata = generateSEOMetadata({
     "ecommerce platform for shops",
     "home delivery app for shops",
     "online ordering pay on delivery",
-    "Lens",
-    "face attendance system",
-    "staff attendance app",
     "business software products",
   ],
 });
@@ -253,7 +249,7 @@ export const productsMetadata: Metadata = generateSEOMetadata({
 export const aboutMetadata: Metadata = generateSEOMetadata({
   title: "About CodeTeak - Founders and Core Team",
   description:
-    "Meet the people behind CodeTeak, the team that builds Yaadro and Lens. Founded by Muhammed Rizwan P (Founder & CEO) and Mohammed Aslam (Co-Founder & COO), with core engineers Alfayad S, Abhinav Aneesh, Binel Biju, and Alan Joshy. Offices in Bengaluru and Dubai.",
+    "Meet the people behind CodeTeak, the team that builds Yaadro. Founded by Muhammed Rizwan P (Founder & CEO) and Mohammed Aslam (Co-Founder & COO), with core engineers including Alfayad S (Alfayad Shameer) — Kerala-based Full Stack Developer & UI/UX Designer who built the CodeTeak website — plus Abhinav Aneesh, Binel Biju, and Alan Joshy. Offices in Bengaluru and Dubai.",
   path: "/about",
   additionalImages: [
     "/core-team/rizwan.png",
@@ -277,6 +273,14 @@ export const aboutMetadata: Metadata = generateSEOMetadata({
     "Muhammed Rizwan P",
     "Mohammed Aslam",
     "Alfayad S",
+    "Alfayad Shameer",
+    "Alfayad full stack developer",
+    "Alfayad UI UX designer Kerala",
+    "full stack developer Kerala",
+    "UI UX designer India",
+    "Next.js developer Bengaluru",
+    "web designer Dubai team",
+    "who built CodeTeak website",
     "Abhinav Aneesh",
     "Binel Biju",
     "Alan Joshy",
@@ -344,14 +348,16 @@ export function generateProductMetadata(
   slug: string,
   title: string,
   description: string,
-  keywords: string[] = []
+  keywords: string[] = [],
+  options: { noIndex?: boolean } = {}
 ): Metadata {
   return generateSEOMetadata({
     title,
     description,
     path: `/products/${slug}`,
-    keywords: [slug.toLowerCase(), ...keywords],
+    keywords: options.noIndex ? [] : [slug.toLowerCase(), ...keywords],
     type: "product",
+    noIndex: options.noIndex,
   });
 }
 

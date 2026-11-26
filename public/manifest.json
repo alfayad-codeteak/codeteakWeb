@@ -1,7 +1,7 @@
 {
-  "name": "CodeTeak - Software for Growing Businesses",
+  "name": "CodeTeak - Software Company",
   "short_name": "CodeTeak",
-  "description": "CodeTeak builds software for businesses: Yaadro for shop home delivery and online ordering, Lens for simple camera attendance, plus product engineering, design, and cyber security services.",
+  "description": "CodeTeak is a software company. Our product Yaadro helps shops with home delivery and online ordering. We also offer product engineering, design, and cyber security services.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",

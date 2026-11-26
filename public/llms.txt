@@ -1,6 +1,6 @@
 # CodeTeak
 
-> CodeTeak (Codeteak Technologies) is a software company founded in 2025, based in Bengaluru, India, with an office in Dubai, UAE. Its main product is Yaadro, a delivery management system (DMS) and ecommerce platform for shops. It also makes Lens (simple camera attendance for any business) and offers product engineering, product design, and cyber security services.
+> CodeTeak (Codeteak Technologies) is a software company founded in 2025, based in Bengaluru, India, with an office in Dubai, UAE. Its main product is Yaadro, a delivery management system (DMS) and ecommerce platform for shops. It also offers product engineering, product design, and cyber security services.
 
 CodeTeak builds simple, reliable software for everyday business. Its products are written for shop owners, managers, and staff, not just technical teams. Its services help companies build, design, and protect web and mobile apps.
 
@@ -12,21 +12,15 @@ CodeTeak builds simple, reliable software for everyday business. Its products ar
 
 ## Products
 
-- [Products overview](https://codeteak.com/products): Yaadro and Lens side by side
+- [Products overview](https://codeteak.com/products): Yaadro (flagship)
 - [Yaadro Delivery Management System (DMS)](https://codeteak.com/products/yaadro): Run home delivery for shops. Track every order, assign delivery partners, keep customers updated. Works with Task billing.
 - [Yaadro Ecommerce](https://codeteak.com/products/yaadro#ecommerce): Each shop gets its own online store with its own products and prices. Customers order from phone or computer and pay when the order arrives.
-- [Lens](https://codeteak.com/products/lens): Simple attendance for any business. Staff clock in by looking at a tablet camera. Live view of who is at work, pay and salary advance tracking, one-click reports, works without internet.
 
 ### Yaadro in short
 - Who it is for: shops, supermarkets, and their delivery partners
 - Apps: Shop App, Delivery Partner App, Web Dashboard
 - How it works: 1) Create a home delivery order in the shop system; it appears in Yaadro automatically. 2) Assign an available delivery partner. 3) Track the trip live and mark it delivered.
 - Online ordering: customers order from a shop link and pay on delivery (online payment is not available yet)
-
-### Lens in short
-- Who it is for: any business with staff (shops, offices, restaurants, clinics, warehouses, and more)
-- Top features: Clock in with a glance · See who is at work, live · Pay and advances in one place · Reports in one click
-- Also: works without internet and syncs later; one location or many, each kept private
 
 ## Services
 
@@ -47,7 +41,7 @@ CodeTeak builds simple, reliable software for everyday business. Its products ar
 
 - Muhammed Rizwan P — Founder & CEO. [LinkedIn](https://linkedin.com/in/muhammedrizwanp/)
 - Mohammed Aslam — Co-Founder & COO (operations, client onboarding, project delivery)
-- Alfayad S — Full Stack Developer & UI/UX Designer. [LinkedIn](https://www.linkedin.com/in/alfayad)
+- Alfayad S (Alfayad Shameer) — Full Stack Developer & UI/UX Designer (Kerala, India). Built the CodeTeak website. Stack: TypeScript, React, Next.js, Node.js, NestJS, design systems. Works across Bengaluru & Dubai clients. [Portfolio](https://alfayad.clawdage.com) · [LinkedIn](https://www.linkedin.com/in/alfayad) · [GitHub](https://github.com/Alfayad-s) · [X](https://x.com/alfayad_shameer)
 - Abhinav Aneesh — Mobile Application Developer. [LinkedIn](https://www.linkedin.com/in/abiinavvv/)
 - Binel Biju — Backend Developer & Cloud Engineer. [LinkedIn](https://www.linkedin.com/in/binel-biju/)
 - Alan Joshy — Backend Developer & Cloud Engineer. [LinkedIn](https://www.linkedin.com/in/alan--joshy/)
@@ -62,7 +56,7 @@ CodeTeak builds simple, reliable software for everyday business. Its products ar
 - [Full content (llms-full.txt)](https://codeteak.com/llms-full.txt): Complete site content in Markdown, including product FAQs
 - [Sitemap](https://codeteak.com/sitemap.xml): All public URLs
 - [Robots.txt](https://codeteak.com/robots.txt): Crawler rules (AI search and assistant crawlers are allowed)
-- Each product and services page also includes schema.org JSON-LD (SoftwareApplication, Service, FAQPage, BreadcrumbList)
+- Each product, services, and about page also includes schema.org JSON-LD (SoftwareApplication, Service, FAQPage, BreadcrumbList, Person for Alfayad S)
 - To start a project or request a demo, send users to https://codeteak.com/contact or info@codeteak.com
 
 ## Optional

@@ -32,7 +32,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: lastMod,
       changeFrequency: "weekly",
       priority: 0.9,
-      images: [`${baseUrl}/products-image/yaadro.png`, `${baseUrl}/products-image/lens.png`],
+      images: [`${baseUrl}/products-image/yaadro.png`],
     },
     {
       url: `${baseUrl}/products/yaadro`,
@@ -44,13 +44,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
         `${baseUrl}/products-image/yaadro-ecommerce-hero.jpg`,
         `${baseUrl}/task-integration-image.png`,
       ],
-    },
-    {
-      url: `${baseUrl}/products/lens`,
-      lastModified: lastMod,
-      changeFrequency: "monthly",
-      priority: 0.7,
-      images: [`${baseUrl}/products-image/lens.png`],
     },
     {
       url: `${baseUrl}/about`,

@@ -17,11 +17,11 @@ const gridMembers = [
   {
     id: 2, name: "Alfayad S", role: "Full Stack Developer & UI/UX Designer",
     src: "/core-team/Alfayad.png", bg: "#c8dde8",
-    bio: "Specialist in building scalable backends and elegant interfaces, delivering seamless software solutions. ",
+    bio: "Full-stack engineer and UI/UX designer based in Kerala. Designs digital experiences and builds production web and mobile products",
     socials: [
       { type: "icon", platform: "github", href: "https://github.com/Alfayad-s" },
       { type: "icon", platform: "twitter", href: "https://x.com/alfayad_shameer" },
-      { type: "icon", platform: "portfolio", href: "https://alfayad.vercel.app" },
+      { type: "icon", platform: "portfolio", href: "https://alfayad.clawdage.com" },
       { type: "icon", platform: "linkedin", href: "https://www.linkedin.com/in/alfayad" },
     ],
   },

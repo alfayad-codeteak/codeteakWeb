@@ -74,6 +74,62 @@ export function OrganizationSchema({
       { "@type": "Person", name: "Muhammed Rizwan P", jobTitle: "Founder & CEO" },
       { "@type": "Person", name: "Mohammed Aslam", jobTitle: "Co-Founder & COO" },
     ],
+    employee: [
+      {
+        "@type": "Person",
+        "@id": `${baseUrl}/about#alfayad`,
+        name: "Alfayad S",
+        alternateName: "Alfayad Shameer",
+        jobTitle: "Full Stack Developer & UI/UX Designer",
+        url: "https://alfayad.clawdage.com",
+        image: `${baseUrl}/core-team/Alfayad.png`,
+        worksFor: { "@id": `${baseUrl}/#organization` },
+        homeLocation: {
+          "@type": "Place",
+          address: {
+            "@type": "PostalAddress",
+            addressRegion: "Kerala",
+            addressCountry: "IN",
+          },
+        },
+        knowsAbout: [
+          "Full stack development",
+          "UI/UX design",
+          "TypeScript",
+          "React",
+          "Next.js",
+          "Node.js",
+          "NestJS",
+          "Design systems",
+          "Docker",
+          "Kubernetes",
+        ],
+        sameAs: [
+          "https://alfayad.clawdage.com",
+          "https://github.com/Alfayad-s",
+          "https://www.linkedin.com/in/alfayad",
+          "https://x.com/alfayad_shameer",
+        ],
+      },
+      {
+        "@type": "Person",
+        name: "Abhinav Aneesh",
+        jobTitle: "Mobile Application Developer",
+        sameAs: ["https://www.linkedin.com/in/abiinavvv/", "https://github.com/abiinavvv"],
+      },
+      {
+        "@type": "Person",
+        name: "Binel Biju",
+        jobTitle: "Backend Developer & Cloud Engineer",
+        sameAs: ["https://www.linkedin.com/in/binel-biju/", "https://github.com/binelbpe"],
+      },
+      {
+        "@type": "Person",
+        name: "Alan Joshy",
+        jobTitle: "Backend Developer & Cloud Engineer",
+        sameAs: ["https://www.linkedin.com/in/alan--joshy/", "https://github.com/alanjoshy"],
+      },
+    ],
     address: address.map((addr) => ({
       "@type": "PostalAddress",
       streetAddress: addr.streetAddress,
@@ -90,19 +146,12 @@ export function OrganizationSchema({
         description: "Delivery management system (DMS) and ecommerce platform for shops",
         url: `${baseUrl}/products/yaadro`,
       },
-      {
-        "@type": "Brand",
-        name: "Lens",
-        description: "Simple camera attendance for any business",
-        url: `${baseUrl}/products/lens`,
-      },
     ],
     knowsAbout: [
       "Delivery management system",
       "Ecommerce for shops",
       "Home delivery management",
       "Online ordering",
-      "Staff attendance",
       "Web development",
       "Mobile app development",
       "Product design",
@@ -296,6 +345,70 @@ export function ItemListSchema({
       description: item.description,
     })),
   };
+
+  return <JsonLd data={schema} />;
+}
+
+interface PersonSchemaProps {
+  name: string;
+  alternateName?: string;
+  jobTitle: string;
+  description: string;
+  image?: string;
+  url?: string;
+  sameAs?: string[];
+  homeLocation?: {
+    addressRegion?: string;
+    addressCountry?: string;
+  };
+  knowsAbout?: string[];
+  worksFor?: string;
+}
+
+export function PersonSchema({
+  name,
+  alternateName,
+  jobTitle,
+  description,
+  image = `${baseUrl}/core-team/Alfayad.png`,
+  url,
+  sameAs = [],
+  homeLocation,
+  knowsAbout = [],
+  worksFor = "CodeTeak",
+}: PersonSchemaProps) {
+  const schema: Record<string, unknown> = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name,
+    alternateName,
+    jobTitle,
+    description,
+    image,
+    url,
+    worksFor: {
+      "@type": "Organization",
+      name: worksFor,
+      url: baseUrl,
+    },
+    knowsAbout,
+    sameAs,
+  };
+
+  if (homeLocation) {
+    schema.homeLocation = {
+      "@type": "Place",
+      address: {
+        "@type": "PostalAddress",
+        addressRegion: homeLocation.addressRegion,
+        addressCountry: homeLocation.addressCountry,
+      },
+    };
+  }
+
+  Object.keys(schema).forEach((key) => {
+    if (schema[key] === undefined) delete schema[key];
+  });
 
   return <JsonLd data={schema} />;
 }

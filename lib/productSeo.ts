@@ -13,6 +13,7 @@ export interface ProductSeo {
   keywords: string[];
   features: string[];
   faq: Array<{ question: string; answer: string }>;
+  noIndex?: boolean;
 }
 
 export const productSeo: Record<string, ProductSeo> = {
@@ -79,29 +80,14 @@ export const productSeo: Record<string, ProductSeo> = {
   lens: {
     slug: "lens",
     name: "Lens",
-    title: "Lens - Simple Camera Attendance for Any Business",
-    description:
-      "Lens is a simple attendance system for any business. Staff clock in by looking at a tablet camera. See who is at work live, track pay and salary advances, and download reports in one click. Works even without internet.",
+    title: "Lens",
+    description: "Camera attendance product from CodeTeak.",
     image: "/products-image/lens.png",
-    category: "Staff attendance and payroll tracking",
-    audience: "Any business with staff: shops, offices, restaurants, clinics, warehouses",
-    keywords: [
-      "Lens attendance",
-      "face attendance system",
-      "camera attendance app",
-      "staff attendance tablet",
-      "employee attendance app",
-      "contactless attendance",
-      "offline attendance system",
-      "salary advance tracking",
-      "attendance reports",
-      "attendance for small business",
-    ],
-    features: [
-      ...en.productDetail.lens.topFeatures.items.map((item) => `${item.title}: ${item.description}`),
-      `Works without internet: ${en.productDetail.lens.features.offlineFirst.description}`,
-      `One or many locations: ${en.productDetail.lens.features.multiTenant.description}`,
-    ],
-    faq: en.productDetail.lens.faq.items,
+    category: "Staff attendance",
+    audience: "Businesses with staff",
+    keywords: [],
+    features: [],
+    faq: [],
+    noIndex: true,
   },
 };

@@ -13,11 +13,13 @@ export default function ProductsPage() {
       />
       <ItemListSchema
         name="CodeTeak Products"
-        items={Object.values(productSeo).map((product) => ({
-          name: product.name,
-          url: `/products/${product.slug}`,
-          description: product.description,
-        }))}
+        items={Object.values(productSeo)
+          .filter((product) => !product.noIndex)
+          .map((product) => ({
+            name: product.name,
+            url: `/products/${product.slug}`,
+            description: product.description,
+          }))}
       />
       <ProductsPageClient />
     </>

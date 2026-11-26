@@ -389,7 +389,10 @@ export default function Home() {
       {/* Hero Section with left-side image on pure black background */}
       <HeroSection theme={theme} heroRef={heroRef} />
 
-      <FeaturedProducts language={language as Language} />
+      {/* Our products — hidden for now (do not remove) */}
+      <div className="hidden" aria-hidden="true">
+        <FeaturedProducts language={language as Language} />
+      </div>
 
       {/* About Section */}
       <section id="about" className="py-20 px-4 sm:px-6 lg:px-8 bg-muted/30">

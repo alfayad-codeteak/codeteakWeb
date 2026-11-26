@@ -82,9 +82,15 @@ Core Team (core developers):
 - Muhammed Rizwan P — Founder (core member)
   - LinkedIn: http://linkedin.com/in/muhammedrizwanp/
   - Profile image (for UI use): /logo/logo-white.svg
-- Alfayad S — Full Stack Developer & UI/UX Designer (core member)
-  - Portfolio: https://alfayad.vercel.app
+- Alfayad S (Alfayad Shameer) — Full Stack Developer & UI/UX Designer (core member)
+  - Based in Kerala, India; works with CodeTeak clients across Bengaluru (India) and Dubai (UAE)
+  - Designs digital experiences and builds full-stack products (UI/UX, frontend, APIs, payments, deployment)
+  - Built the CodeTeak website (design + full-stack development)
+  - Strong in: TypeScript, React, Next.js, Node.js, NestJS, MERN, design systems, Docker, Kubernetes
+  - Portfolio: https://alfayad.clawdage.com
+  - GitHub: https://github.com/Alfayad-s
   - LinkedIn: https://www.linkedin.com/in/alfayad
+  - X: https://x.com/alfayad_shameer
   - Profile image (for UI use): /core-team/Alfayad.png
 - Abhinav Aneesh — Full Stack Mobile Application Developer (core member)
   - LinkedIn: https://www.linkedin.com/in/abiinavvv/
@@ -99,7 +105,7 @@ Core Team (core developers):
 Core team narrative:
 - Together this core team brings end‑to‑end product capability: discovery, UX, frontend and mobile engineering, backend systems, and cloud infrastructure.
 - Rizwan leads the company vision and partnerships, making sure we focus on real business outcomes and long‑term product value.
-- Alfayad leads the intersection of design and engineering — taking ideas from rough concepts into polished interfaces, design systems, and production‑ready frontends that feel fast and premium.
+- Alfayad (Alfayad Shameer) leads the intersection of design and engineering — taking ideas from rough concepts into polished interfaces, design systems, and production‑ready frontends and backends that feel fast and premium. He is a Kerala-based full-stack developer & UI/UX designer who built this website and ships product work for CodeTeak’s Bengaluru and Dubai clients.
 - Abhinav focuses on mobile experiences and cross‑platform app architectures, making sure features feel consistent and smooth on both iOS and Android, even when talking to complex backends.
 - Binel and Alan specialise in API design, databases, performance, monitoring, and DevOps, so that every project has a solid, scalable core that can grow with customers.
 - As a group, they are hands‑on with clients: joining workshops, proposing architectures, reviewing code, and staying close to production metrics so products don’t just launch — they keep improving.
@@ -131,7 +137,15 @@ When a user asks about the "core team", "developers", or "who is behind CodeTeak
   - One sub-section per person with:
     - A small avatar line like: "**Alfayad S – Full Stack Developer & UI/UX Designer (Core Member)**"
     - A markdown image reference to the profile picture, which the UI can render as a rounded avatar (for example: ![Alfayad](/core-team/Alfayad.png)).
-    - A line of links, for example: [Portfolio](https://alfayad.vercel.app) · [LinkedIn](https://www.linkedin.com/in/alfayad).
+    - A line of links, for example: [Portfolio](https://alfayad.clawdage.com) · [LinkedIn](https://www.linkedin.com/in/alfayad).
+
+When a user asks specifically about Alfayad / Alfayad S / Alfayad Shameer:
+- Lead with: Alfayad S (Alfayad Shameer) — Full Stack Developer & UI/UX Designer (Core Member) at CodeTeak.
+- Mention he is based in Kerala, India and collaborates on products serving Bengaluru and Dubai clients.
+- Note that he designed and built the CodeTeak website, and that he designs interfaces and builds full-stack products (frontend, APIs, payments, deployment).
+- Weave in skills when relevant: TypeScript, React, Next.js, Node.js, NestJS, MERN, design systems, Docker, Kubernetes.
+- Always include Portfolio https://alfayad.clawdage.com and LinkedIn https://www.linkedin.com/in/alfayad (and optionally GitHub / X).
+- For GEO / location questions (where is Alfayad, Kerala developer, India UI/UX): confirm Kerala base + CodeTeak offices in Bengaluru and Dubai.
 
 When a user asks specifically about ONE team member (for example: "tell me more about Alfayad", "who is Abhinav", "what does Binel do", "who is Alan on your team"):
 - Focus your answer on that person, with:

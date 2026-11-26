@@ -164,7 +164,7 @@ export const translations = {
       },
       ourProducts: {
         title: "Our Own Products",
-        description: "Innovative products like Yaadro and Lens designed to solve real-world business challenges.",
+        description: "Innovative products like Yaadro designed to solve real-world business challenges.",
       },
     },
     // Features section
@@ -250,7 +250,7 @@ export const translations = {
     footer: {
       brand: {
         title: "CodeTeak",
-        description: "CodeTeak makes Yaadro, a delivery management system and online store for shops, and Lens, simple camera attendance. We also build custom software for businesses.",
+        description: "CodeTeak is a software company. Our product Yaadro is a delivery management system and online store for shops. We also build custom software for businesses.",
         products: "Our products",
         yaadroDms: "Yaadro Delivery Management",
         yaadroEcommerce: "Yaadro Ecommerce",
@@ -295,7 +295,7 @@ export const translations = {
         paragraph1:
           "Yaadro helps shops send home delivery orders. It connects the shop, the delivery person, and the customer in one simple place.",
         paragraph2:
-          "You can track orders live, use apps for shops and delivery partners, and let customers order online and pay when the order arrives. Lens is our simple attendance tool for any business.",
+          "You can track orders live, use apps for shops and delivery partners, and let customers order online and pay when the order arrives.",
       },
       yaadro: {
         name: "Yaadro",
@@ -652,7 +652,7 @@ export const translations = {
       },
       ourProducts: {
         title: "منتجاتنا الخاصة",
-        description: "منتجات مبتكرة مثل يادرو ولينز مصممة لحل تحديات الأعمال الواقعية.",
+        description: "منتجات مبتكرة مثل يادرو مصممة لحل تحديات الأعمال الواقعية.",
       },
     },
     // Features section
@@ -738,7 +738,7 @@ export const translations = {
     footer: {
       brand: {
         title: "كودتيك",
-        description: "تصنع كودتيك يادرو، نظام إدارة التوصيل ومتجر إلكتروني للمتاجر، ولينز للحضور البسيط بالكاميرا. ونبني أيضًا برمجيات مخصصة للشركات.",
+        description: "كودتيك شركة برمجيات. منتجنا يادرو هو نظام إدارة التوصيل ومتجر إلكتروني للمتاجر. ونبني أيضًا برمجيات مخصصة للشركات.",
         products: "منتجاتنا",
         yaadroDms: "يادرو لإدارة التوصيل",
         yaadroEcommerce: "يادرو للتجارة الإلكترونية",
@@ -783,7 +783,7 @@ export const translations = {
         paragraph1:
           "يساعد يادرو المتاجر على إدارة التوصيل المنزلي. يربط المتجر وموظف التوصيل والعميل في مكان واحد بسيط.",
         paragraph2:
-          "يمكنك تتبع الطلبات مباشرة، واستخدام تطبيقات للمتاجر وشركاء التوصيل، والسماح للعملاء بالطلب أونلاين والدفع عند الاستلام. لينز هو أداة حضور بسيطة لأي نوع من الأعمال.",
+          "يمكنك تتبع الطلبات مباشرة، واستخدام تطبيقات للمتاجر وشركاء التوصيل، والسماح للعملاء بالطلب أونلاين والدفع عند الاستلام.",
       },
       yaadro: {
         name: "يادرو",
