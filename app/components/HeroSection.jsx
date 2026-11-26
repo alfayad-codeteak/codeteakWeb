@@ -345,11 +345,11 @@ export default function HeroSection({ theme = "dark", heroRef }) {
     }
   `;
 
-  // Words for the split-text h1 animation
+  // Words for the split-text h1 animation — company + product messaging
   const h1Lines = [
-    { text: "We Build", delay: 0.48 },
-    { text: "Digital", em: true, delay: 0.58 },
-    { text: "Experiences", delay: 0.68 },
+    { text: "Software", delay: 0.48 },
+    { text: "Company", delay: 0.58 },
+    { text: "Yaadro", em: true, delay: 0.68 },
   ];
 
   return (
@@ -398,7 +398,7 @@ export default function HeroSection({ theme = "dark", heroRef }) {
               <div className="hs-imgwrap">
                 <Image
                   src={isDark ? "/image.png" : "/image-white.png"}
-                  alt="Codeteak visual"
+                  alt="CodeTeak software company"
                   width={720} height={1260} priority
                   style={{
                     display: "block",
@@ -429,7 +429,7 @@ export default function HeroSection({ theme = "dark", heroRef }) {
               {/* Eyebrow */}
               <div className={`hs-eyebrow ${mounted ? "hs-anim-eyebrow" : "hs-pre"}`}>
                 <span className={`hs-eline ${mounted ? "hs-eline-anim" : "hs-pre"}`} />
-                <span className="hs-etext">01 — Creative Studio</span>
+                <span className="hs-etext">CodeTeak · Bengaluru & Dubai</span>
               </div>
 
               {/* H1 — split text slide-up */}
@@ -452,13 +452,14 @@ export default function HeroSection({ theme = "dark", heroRef }) {
               </h1>
 
               <p className={`hs-body ${mounted ? "hs-anim-body" : "hs-pre"}`}>
-                Full-stack development studio crafting performant, beautifully
-                designed web applications from concept to launch.
+                CodeTeak is a software company. Our product Yaadro helps shops
+                run home delivery and online ordering. We also build custom web
+                and mobile software.
               </p>
 
               <div className={`hs-ctas ${mounted ? "hs-anim-ctas" : "hs-pre"}`}>
-                <Link href="/contact" className="hs-btn-p">Start a Project</Link>
-                <Link href="/services" className="hs-btn-s">View Our Services →</Link>
+                <Link href="/products/yaadro" className="hs-btn-p">Explore Yaadro</Link>
+                <Link href="/contact" className="hs-btn-s">Start a Project →</Link>
               </div>
             </div>
           </div>

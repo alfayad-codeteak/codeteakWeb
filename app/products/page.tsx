@@ -5,6 +5,14 @@ import ProductsPageClient from "./ProductsPageClient";
 export default function ProductsPage() {
   return (
     <>
+      <section className="sr-only" aria-label="CodeTeak products">
+        <h1>CodeTeak Products</h1>
+        <p>
+          CodeTeak is a software company. Our flagship product is Yaadro, a
+          delivery management system (DMS) and ecommerce platform for shops.
+        </p>
+        <a href="/products/yaadro">Yaadro — Delivery Management & Ecommerce</a>
+      </section>
       <BreadcrumbSchema
         items={[
           { name: "Home", url: "/" },

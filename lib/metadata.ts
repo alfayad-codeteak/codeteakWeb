@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from "next";
 
-const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://codeteak.com";
+const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://www.codeteak.com";
 const siteName = "CodeTeak";
 export const siteDescription =
   "CodeTeak is a software company based in Bengaluru and Dubai. We build custom web and mobile apps, and our product Yaadro is a delivery management system (DMS) and ecommerce platform for shops.";
@@ -312,6 +312,7 @@ export const blogMetadata: Metadata = generateSEOMetadata({
     "tech insights",
     "industry updates",
   ],
+  noIndex: true,
 });
 
 export const termsMetadata: Metadata = generateSEOMetadata({
@@ -349,12 +350,13 @@ export function generateProductMetadata(
   title: string,
   description: string,
   keywords: string[] = [],
-  options: { noIndex?: boolean } = {}
+  options: { noIndex?: boolean; image?: string } = {}
 ): Metadata {
   return generateSEOMetadata({
     title,
     description,
     path: `/products/${slug}`,
+    image: options.image,
     keywords: options.noIndex ? [] : [slug.toLowerCase(), ...keywords],
     type: "product",
     noIndex: options.noIndex,

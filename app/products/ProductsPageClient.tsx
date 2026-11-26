@@ -75,6 +75,7 @@ export default function ProductsPageClient() {
     });
   };
 
+  // Lens omitted from listing — product is noindex / not pushed
   const products = [
     {
       id: "yaadro",
@@ -83,14 +84,6 @@ export default function ProductsPageClient() {
       image: "/products-image/yaadro.png",
       features: t.products.yaadro.features,
       accent: "#6C3CE0",
-    },
-    {
-      id: "lens",
-      name: t.products.lens.name,
-      description: t.products.lens.description,
-      image: "/products-image/lens.png",
-      features: t.products.lens.features,
-      accent: "#FC4B01",
     },
   ];
 

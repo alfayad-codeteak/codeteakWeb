@@ -1,9 +1,9 @@
 import { MetadataRoute } from "next";
 
-const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://codeteak.com";
+const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://www.codeteak.com";
 
 /**
- * Professional sitemap for https://codeteak.com
+ * Professional sitemap for https://www.codeteak.com
  * Used by search engines for discovery and crawl priority.
  */
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -75,12 +75,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "daily",
       priority: 0.3,
     },
-    {
-      url: `${baseUrl}/blog`,
-      lastModified: lastMod,
-      changeFrequency: "weekly",
-      priority: 0.3,
-    },
+    // /blog omitted while placeholder ("Coming Soon") — noindex until real posts exist
   ];
 
   return routes;

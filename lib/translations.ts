@@ -27,11 +27,11 @@ export const translations = {
     },
     // Hero section
     hero: {
-      badge: "Generate any solution",
-      headline: "Transform Your Ideas Into",
-      headlineHighlight: "Digital Excellence",
-      description: "We craft innovative software solutions that drive your business forward. From web and mobile apps to AI integration, we turn your vision into reality with cutting-edge technology.",
-      cta: "Start Your Project",
+      badge: "CodeTeak · Software Company",
+      headline: "Software Company",
+      headlineHighlight: "Yaadro",
+      description: "CodeTeak is a software company based in Bengaluru and Dubai. Our product Yaadro is a delivery management system and online store for shops. We also build custom web and mobile software.",
+      cta: "Explore Yaadro",
       stats: {
         projects: "100+",
         projectsLabel: "Projects Delivered",
@@ -515,11 +515,11 @@ export const translations = {
     },
     // Hero section
     hero: {
-      badge: "إنشاء أي حل",
-      headline: "حوّل أفكارك إلى",
-      headlineHighlight: "تميز رقمي",
-      description: "نحن نصمم حلولاً برمجية مبتكرة تقود عملك إلى الأمام. من تطبيقات الويب والجوال إلى تكامل الذكاء الاصطناعي، نحول رؤيتك إلى واقع بتكنولوجيا متطورة.",
-      cta: "ابدأ مشروعك",
+      badge: "كودتيك · شركة برمجيات",
+      headline: "شركة برمجيات",
+      headlineHighlight: "يادرو",
+      description: "كودتيك شركة برمجيات في بنغالورو ودبي. منتجنا يادرو هو نظام إدارة التوصيل ومتجر إلكتروني للمتاجر. ونبني أيضًا برمجيات ويب وموبايل مخصصة.",
+      cta: "استكشف يادرو",
       stats: {
         projects: "100+",
         projectsLabel: "مشروع تم تسليمه",

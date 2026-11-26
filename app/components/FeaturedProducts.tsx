@@ -139,23 +139,26 @@ export default function FeaturedProducts({ language }: { language: Language }) {
           <YaadroCard href="/products/yaadro#ecommerce" image="/products-image/yaadro-ecommerce.png" data={t.ecommerce} />
         </div>
 
-        <Link
-          href="/products/lens"
-          className="group mt-5 flex flex-col items-start gap-5 rounded-3xl border border-border bg-card p-5 transition-colors hover:border-[#FC4B01]/50 sm:flex-row sm:items-center md:mt-6 md:p-6"
-        >
-          <div className="relative aspect-[3/2] w-full shrink-0 overflow-hidden rounded-2xl bg-muted sm:w-40">
-            <Image src="/products-image/lens.png" alt="" fill sizes="160px" className="object-cover" />
-          </div>
-          <div className="flex-1">
-            <p className="mb-1 text-xs font-mono uppercase tracking-[0.2em] text-brand-text">{t.lens.tag}</p>
-            <h3 className="mb-1 text-lg font-bold text-foreground md:text-xl">{t.lens.title}</h3>
-            <p className="text-sm text-muted-foreground">{t.lens.description}</p>
-          </div>
-          <span className="inline-flex shrink-0 items-center gap-2 text-sm font-semibold text-brand-text">
-            {t.lens.cta}
-            <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1 rtl:rotate-180" aria-hidden="true" />
-          </span>
-        </Link>
+        {/* Lens promo hidden — product is noindex / not being pushed */}
+        <div className="hidden" aria-hidden="true">
+          <Link
+            href="/products/lens"
+            className="group mt-5 flex flex-col items-start gap-5 rounded-3xl border border-border bg-card p-5 transition-colors hover:border-[#FC4B01]/50 sm:flex-row sm:items-center md:mt-6 md:p-6"
+          >
+            <div className="relative aspect-[3/2] w-full shrink-0 overflow-hidden rounded-2xl bg-muted sm:w-40">
+              <Image src="/products-image/lens.png" alt="" fill sizes="160px" className="object-cover" />
+            </div>
+            <div className="flex-1">
+              <p className="mb-1 text-xs font-mono uppercase tracking-[0.2em] text-brand-text">{t.lens.tag}</p>
+              <h3 className="mb-1 text-lg font-bold text-foreground md:text-xl">{t.lens.title}</h3>
+              <p className="text-sm text-muted-foreground">{t.lens.description}</p>
+            </div>
+            <span className="inline-flex shrink-0 items-center gap-2 text-sm font-semibold text-brand-text">
+              {t.lens.cta}
+              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1 rtl:rotate-180" aria-hidden="true" />
+            </span>
+          </Link>
+        </div>
       </div>
     </section>
   );

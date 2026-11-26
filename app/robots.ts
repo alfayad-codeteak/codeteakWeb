@@ -1,8 +1,8 @@
 import { MetadataRoute } from 'next';
 
-const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://codeteak.com';
+const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://www.codeteak.com';
 
-const privatePaths = ['/admin/', '/api/', '/products/lens'];
+const privatePaths = ['/admin/', '/api/', '/products/lens', '/blog'];
 
 // AI search engines, assistants, and browsing agents that may read and cite the site.
 const aiAgents = [

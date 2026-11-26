@@ -35,7 +35,7 @@ CodeTeak builds simple, reliable software for everyday business. Its products ar
 - [About](https://codeteak.com/about): Company story, founder, and core engineering team
 - [Contact](https://codeteak.com/contact): Contact form, email, phone, and office locations
 - [Tech News](https://codeteak.com/tech-news): Curated technology news
-- [Blog](https://codeteak.com/blog): Articles and updates (coming soon)
+- Blog: Coming soon (not indexed until real posts exist)
 
 ## Team
 

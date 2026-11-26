@@ -196,11 +196,7 @@ export default function Footer() {
                     {t.footer.brand.yaadroEcommerce}
                   </Link>
                 </li>
-                <li>
-                  <Link href="/products/lens" className="text-muted-foreground hover:text-[#FC4B01] transition-colors text-sm">
-                    {t.footer.brand.lens}
-                  </Link>
-                </li>
+                {/* Lens link hidden — product not being pushed in SEO */}
               </ul>
             </div>
 

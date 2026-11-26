@@ -1,6 +1,6 @@
 import { siteDescription } from "@/lib/metadata";
 
-const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://codeteak.com";
+const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://www.codeteak.com";
 
 function JsonLd({ data }: { data: Record<string, unknown> }) {
   return (
